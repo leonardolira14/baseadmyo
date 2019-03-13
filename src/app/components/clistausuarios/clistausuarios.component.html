@@ -1,0 +1,126 @@
+<div class="container-fluid bg-gris1 p-t-40 p-b-40">
+	<div class="row">
+		<div class="col-12">
+			<div class="card  contenedor m-t-40">
+				<div class="card-header bg-primary text-uppercase text-monse">
+					
+					<div class="container-fluid">
+						<div class="row d-flex align-items-center ">
+							<div class="col-6">
+								<h5>Lista de Usuarios</h5> 
+							</div>
+							<div class="col-6">
+								<div class="input-group">
+								  <input (keyup)="busqueda()" type="text" class="form-control" placeholder="Nombre de Usuario"  [(ngModel)]="palabra" >
+								   <div class="input-group-prepend">
+								    <span class="input-group-text text-primary bg-blanco" id="basic-addon1"><i class="fas fa-search"></i></span>
+								  </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="container-fluid">
+						
+						<div class="col-12 text-right">
+							<div class="btn-group" role="group" aria-label="Basic example">
+							  <button (click)="openalert(alertusuarios)" type="button" class="btn btn-secondary">Registrar</button>
+							</div>
+						</div>
+						<div class="col-12 m-t-40">
+							<table class="table table-hover">
+								<thead>
+									<th  scope="col">Nombre</th>
+									<th  scope="col">Apellidos</th>
+									<th  scope="col">Correo Electrónico</th>
+									<th class="text-center" scope="col">Puesto</th>
+									<th class="text-center" scope="col">Tipo Usuario</th>	
+									<th scope="col"> </th>	
+								</thead>
+								<tbody>
+									<tr *ngFor="let usuario of usuarios | paginate: {itemsPerPage: 7, currentPage: pageActual}; index as i">
+										<td>{{usuario.Nombre}}</td>
+										<td>{{usuario.Apellidos}}</td>
+										<td>{{usuario.Correo}}</td>
+										<td class="text-center">{{usuario.Puesto}}</td>
+										<td class="text-center">{{usuario.Tipo_Usuario}}</td>
+										<td>
+											<div ngbDropdown class="d-inline-block">
+										      <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Acciones</button>
+										      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+										        <button (click)="delete(usuario.IDUsuario,usuario.Status)" class="dropdown-item">{{usuario.Status==='1'?'Desactivar':'Activar' }}</button>
+										        <button (click)="modif(usuario.IDUsuario,alertusuarios)" class="dropdown-item">Editar</button>
+										        <button (click)="master(usuario.IDUsuario)" *ngIf="usuario.Tipo_Usuario!=='Master'" class="dropdown-item">Master</button>
+										      </div>
+										    </div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							 <pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+						</div>
+						
+					</div>
+				</div>
+			</div>	
+		</div>	
+	</div>
+</div>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</div>
+<ngb-alert *ngIf="staticAlertClosed" type="danger" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;z-index: 10001;" (click)="close(alert)">{{ alertterror }}</ngb-alert>
+<ngb-alert *ngIf="successAlertClosed" type="success" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;z-index: 10001;" (click)="close(alert)">{{ alertsuccess }}</ngb-alert>
+<ng-template #alertusuarios let-modal>
+<div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{modelusuario.IDUsuario?'Editar Usuario':'Registrar Usuario'}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closemodel(alertusuarios)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+    <div class="modal-body">
+    <form class="container">
+      	<div class="form-group row">
+		    <label class="col-sm-12 col-form-label">Nombre</label>
+		    <div class="col-sm-12">
+		    	<input class="form-control" [(ngModel)]="modelusuario.Nombre" name="Nombre" #Nombre="ngModel" type="text">
+		    </div>
+		</div>
+		<div class="form-group row">
+		    <label class="col-sm-12 col-form-label">Apellidos</label>
+		    <div class="col-sm-12">
+		    	<input class="form-control" [(ngModel)]="modelusuario.Apellidos" name="Apellidos" #Apellidos="ngModel" type="text">
+		    </div>
+		</div>
+		<div class="form-group row">
+		    <label class="col-sm-12 col-form-label">Puesto</label>
+		    <div class="col-sm-12">
+		    	<input class="form-control" [(ngModel)]="modelusuario.Puesto" name="Puesto" #Puesto="ngModel" type="text">
+		    </div>
+		</div>
+		<div class="form-group row">
+		    <label class="col-sm-12 col-form-label">Correo</label>
+		    <div class="col-sm-12">
+		    	<input class="form-control" [(ngModel)]="modelusuario.Correo" name="Correo" #Correo="ngModel" type="text">
+		    </div>
+		</div>
+		<div class="form-group row">
+		    <label class="col-sm-12 col-form-label">Visible</label>
+		    <div class="col-sm-12">
+		    	<select  [(ngModel)]="modelusuario.Visible" class="form-control" name="Visible" placeholder="Estado">
+									<option value="1">Visible </option>
+									<option value="0">No Visible </option>
+				</select>
+		    </div>
+		</div>	
+		
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="closemodel(alertusuarios)">Cerrar</button>
+    <button  type="button" (click)="deci(alertusuarios)" class="btn btn-primary" >Guardar</button>
+  </div>
+</ng-template>

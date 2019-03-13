@@ -1,0 +1,83 @@
+<div class="container-fluid bg-gris1 p-t-40 p-b-40">
+	<div class="row">
+		<div class="col-7">
+			<div class="card  contenedor m-t-40">
+				<div class="card-header bg-primary text-uppercase text-monse">
+					<h5>Datos de Usuario</h5> 
+				</div>
+				<div class="card-body">
+					<div class="container">
+						<div class="row">
+
+							<div class="form-group col-12 ">
+								<label for=""  class="text-roboto text-gris3">Nombre</label>
+								<input type="text" [(ngModel)]="datosusuarios.Nombre" class="form-control" name="Nombre" placeholder="Nombre">
+							</div>
+							<div class="form-group col-6 ">
+								<label for=""  class="text-roboto text-gris3">Apellidos</label>
+								<input type="text" [(ngModel)]="datosusuarios.Apellidos" class="form-control" name="Apellidos" placeholder="Apellidos">
+							</div>
+							<div class="form-group col-6 ">
+								<label for=""  class="text-roboto text-gris3">Puesto</label>
+								<input type="text" [(ngModel)]="datosusuarios.Puesto" class="form-control" name="Puesto" placeholder="Puesto">
+							</div>
+							<div class="form-group col-6 ">
+								<label for=""  class="text-roboto text-gris3">Correo Electrónico</label>
+								<input type="text" [(ngModel)]="datosusuarios.Correo" class="form-control" name="Correo" placeholder="Correo Electrónico">
+							</div>
+
+
+							<div class="form-group col-6 ">
+								<label for=""  class="text-roboto text-gris3">Visible</label>
+								<select  [(ngModel)]="datosusuarios.Visible" class="form-control" name="Estado" placeholder="Estado">
+									<option value="1">Visible </option>
+									<option value="0">No Visible </option>
+								</select>
+							</div>
+							<div class="col-12 text-center">
+								<button (click)="enviarform()" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cambios</button>
+							</div> 
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-5">
+				<div class="card  contenedor m-t-40">
+					<div class="card-header bg-primary text-uppercase text-monse">
+						<h5>Cambio de Contraseña</h5> 
+					</div>
+					<div class="card-body">
+						<div class="container">
+							<div class="row">
+								<div class="form-group col-12 ">
+									<label for=""  class="text-roboto text-gris3">Contraseña Actual</label>
+									<input type="text" [(ngModel)]="datosclave.actual" class="form-control" name="actual" placeholder="Contraseña Actual">
+								</div>
+								<div class="form-group col-12 ">
+									<label for=""  class="text-roboto text-gris3">Nueva Contraseña</label>
+									<input type="text" [(ngModel)]="datosclave.nueva" class="form-control" name="nueva" placeholder="Nueva Contraseña">
+								</div>
+								<div class="form-group col-12 ">
+									<label for=""  class="text-roboto text-gris3">Repetir Contraseña</label>
+									<input type="text" [(ngModel)]="datosclave.repetir" class="form-control" name="repetir" placeholder="Repetir Contraseña">
+								</div>
+
+								<div class="col-12 text-center">
+									<button (click)="saveclave()" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Contraseña</button>
+								</div> 
+							</div>
+						</div>
+					</div>
+				</div>
+		</div>
+		
+	</div>
+</div>
+	<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+		<div class="spinner-border text-light" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+	<ngb-alert *ngIf="staticAlertClosed" type="danger" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;" (click)="close(alert)">{{ alertterror }}</ngb-alert>
+	<ngb-alert *ngIf="successAlertClosed" type="success" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;" (click)="close(alert)">{{ alertsuccess }}</ngb-alert>

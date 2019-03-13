@@ -1,0 +1,18 @@
+@import '../../../styles';
+
+table{
+	& thead{
+		& th{
+			color: map-get($colors,blackk) !important;
+		}
+	}
+	& tbody{
+		& td{
+			color: map-get($gamagrises,girsmenu) !important;
+			&:last-child{
+				max-width: 130px;
+			}
+		}
+	}
+	
+}

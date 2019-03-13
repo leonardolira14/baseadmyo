@@ -1,0 +1,100 @@
+<div class="container-fluid  bg-gris1 p-t-40 p-b-40">
+	<div class="conatiner">
+		<div class="row">
+			<div class="col-12">
+				<div class="card  contenedor m-t-40">
+					<div class="card-header bg-primary text-uppercase text-monse">
+						<div class="container-fluid">
+							<div class="row d-flex align-items-center ">
+								<div class="col-6">
+									<h5>Catálogo de Asociaciones</h5> 
+								</div>
+								<div class="col-5">
+									<div class="input-group">
+										<input (keyup)="busqueda()" type="text" class="form-control" placeholder="Asociación/Camara"  [(ngModel)]="palabra" >
+										<div class="input-group-prepend">
+											<span class="input-group-text text-primary bg-blanco" id="basic-addon1"><i class="fas fa-search"></i></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-1">
+									<button (click)="openalert(alertcamaras)" class="btn btn-primary"><i class="fas fa-plus"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="container">
+							<div class="row">
+								
+								<div class="col-3 m-t-20 card-prod" *ngFor="let asociacion of asociaciones">
+									<div class="card" >
+										
+
+										<div class="card-body">
+											<h5 class="card-title">{{asociacion.Asociacion}}</h5>
+											
+											
+											<p class="card-text">
+												<a target="_blanck" href="{{asociacion.Web}">Sitio Web: {{asociacion.Web}}</a>
+											</p>
+											<div class="btn-group text-center d-flex" role="group" aria-label="Basic example">
+												<button (click)="delete(asociacion.IDAsocia)" type="button" class="btn btn-secondary mr-3">Eliminar</button>
+												<button (click)="editar(asociacion.IDAsocia,alertcamaras)" type="button" class="btn btn-secondary">Editar</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</div>
+<ngb-alert *ngIf="staticAlertClosed" type="danger" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;" (click)="close(alert)">{{ alertterror }}</ngb-alert>
+<ngb-alert *ngIf="successAlertClosed" type="success" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;" (click)="close(alert)">{{ alertsuccess }}</ngb-alert>
+
+<ng-template #alertcamaras let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">{{modelcamara.IDAsocia?'Editar Asociación':'Registrar Asociación'}}</h4>
+		<button type="button" class="close" aria-label="Close" (click)="closemodel(alertcamaras)">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<form class="container">
+			<div class="row">
+				
+				<div class="col-12">
+					<div class="form-group row">
+						<label class="col-sm-12 col-form-label">Asociación/Camara</label>
+						<div class="col-sm-12">
+							<input class="form-control" [(ngModel)]="modelcamara.Asociacion" name="Asociacion" #Asociacion="ngModel" type="text">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-form-label">Sitio Web</label>
+						<div class="col-sm-12">
+							<input class="form-control" [(ngModel)]="modelcamara.Web" name="Web" #web="ngModel" type="text">
+						</div>
+					</div>
+					
+				</div>
+			</div>
+			
+
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-danger" (click)="closemodel(alertcamaras)">Cerrar</button>
+		<button  type="button" (click)="deci(alertcamaras)" class="btn btn-primary" >Guardar</button>
+	</div>
+</ng-template>

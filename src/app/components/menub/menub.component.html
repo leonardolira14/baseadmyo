@@ -1,0 +1,112 @@
+<div class="container-fluid ray-blue">
+	
+</div>
+<div class="container m-t-30">
+	<div class="row d-flex align-items-center">
+		<div class="col-3">
+			<img src="assets/img/logo-admyo2.png" class="img-fluid" alt="admyo">
+		</div>
+		<div class="col-9">
+			<div class="btn-group float-right" role="group" aria-label="Basic example">
+			 <button type="button" class="btn btn-white text-primary">
+			 <i class="far fa-bell"></i><span class="badge badge-primary">0</span>
+			</button>
+			  <button (click)="cerrar()" type="button" class="btn btn-link text-primary"><i class="fas fa-times"></i> Cerrar Sesíon</button>
+			  
+			</div>
+			
+		</div>
+	</div>
+</div>
+<nav class="navbar navbar-expand-lg navbar-white bg-white m-t-30">
+  <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#nav1" aria-controls="nav1" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse d-flex justify-content-center" id="nav1">
+    <ul class="navbar-nav">
+      <li class="nav-item ">
+        <div ngbDropdown class="d-inline-block">
+	      <button class="btn btn-link" id="btn_imagen" ngbDropdownToggle>Tu Imagen</button>
+	      <div ngbDropdownMenu aria-labelledby="btn_imagen">
+	        <button (click)="goto('imagen/cliente/A')" class="dropdown-item">Como Cliente</button>
+	        <button (click)="goto('imagen/proveedor/A')"class="dropdown-item">Como Proveedor</button>
+	      </div>
+	    </div>
+      </li>
+      <li class="nav-item">
+        <div ngbDropdown class="d-inline-block">
+	      <button class="btn btn-link" id="btn_riesgo" ngbDropdownToggle>Tu Riesgo</button>
+	      <div ngbDropdownMenu aria-labelledby="btn_riesgo">
+	        <button (click)="goto('riesgo/cliente/A')" class="dropdown-item">De Clientes</button>
+	        <button (click)="goto('riesgo/proveedor/A')" class="dropdown-item">De Proveedores</button>
+	      </div>
+	    </div>
+      </li>
+      <li class="nav-item">
+        <div ngbDropdown class="d-inline-block">
+	      <button class="btn btn-link" id="btn_riesgo" ngbDropdownToggle>Clientes</button>
+	      <div ngbDropdownMenu aria-labelledby="btn_riesgo">
+	        <button (click)="goto('resumen/clientes')" class="dropdown-item">Resumen</button>
+	        <button (click)="goto('lista/clientes')" class="dropdown-item">Mi Clientes</button>
+	        <button (click)="goto('realizadas/clientes')" class="dropdown-item">Calificaciones Recibidas</button>
+	      </div>
+	    </div>
+      </li>
+      <li class="nav-item">
+        <div ngbDropdown class="d-inline-block">
+	      <button class="btn btn-link" id="btn_riesgo" ngbDropdownToggle>Proveedores</button>
+	      <div ngbDropdownMenu aria-labelledby="btn_riesgo">
+	        <button (click)="goto('resumen/proveedores')" class="dropdown-item">Resumen</button>
+	        <button (click)="goto('lista/proveedores')" class="dropdown-item">Mis Proveedores</button>
+	        <button (click)="goto('realizadas/proveedores')" class="dropdown-item">Calificaciones Recibidas</button>
+	      </div>
+	    </div>
+      </li>
+      <li class="nav-item dropdown">
+        <div ngbDropdown class="d-inline-block">
+	      <button class="btn btn-link" id="btn_datos_empresa" ngbDropdownToggle>Empresa</button>
+	      <div ngbDropdownMenu aria-labelledby="btn_datos_empresa">
+	        <button (click)="goto('perfil')" class="dropdown-item">Perfil</button>
+	        <button (click)="goto('datosempresa')" class="dropdown-item">Datos de Empresa</button>
+	        <button (click)="goto('productosyservicios')" class="dropdown-item">Productos y Servicios</button>
+	         <button (click)="goto('certificaciones')" class="dropdown-item">Certificaciones</button>
+	          <button (click)="goto('asociaciones')" class="dropdown-item">Asociaciones</button>
+	         <button (click)="goto('visitas')" class="dropdown-item">Visitas</button>
+	         <button (click)="goto('follow')" class="dropdown-item">Empesas Seguidas</button>
+	      </div>
+	    </div>
+      </li>
+      <li class="nav-item">
+        <div ngbDropdown class="d-inline-block">
+	      <button class="btn btn-link" id="btn_riesgo" ngbDropdownToggle>Usuarios</button>
+	      <div ngbDropdownMenu aria-labelledby="btn_riesgo">
+	        <button (click)="goto('datosusuario')" class="dropdown-item">Mis Datos</button>
+	        <button (click)="goto('listausuarios')" class="dropdown-item">Listas de Usuarios</button>
+	      </div>
+	    </div>
+      </li>
+       <li class="nav-item">
+        <div ngbDropdown class="d-inline-block">
+	      <button class="btn btn-link" id="btn_riesgo" ngbDropdownToggle>Empresa Consultada</button>
+	      <div ngbDropdownMenu aria-labelledby="btn_riesgo">
+	        <button (click)="goto('perfilb')" class="dropdown-item">Gestion de Usuarios</button>
+	        
+	      </div>
+	    </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link  " href="#" tabindex="-1" aria-disabled="false">Calificar</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link " href="#" tabindex="-1" aria-disabled="false">Qval</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<app-searchb></app-searchb>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</div>

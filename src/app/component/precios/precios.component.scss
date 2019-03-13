@@ -1,0 +1,28 @@
+@import '../../../styles';
+.cont-precios{
+	padding-top:5rem;
+	padding-bottom: 5rem;
+	& .card{
+
+		& .card-body{
+			background: transparent;
+			& .card-precio{
+				width: 100%;
+				display: block;
+				font-size: 2rem;
+				font-family: map-get($fonts,sans-pro);
+			}
+			& .list-group{
+				& .list-group-item{
+					font-family: map-get($fonts,sans-pro);
+				   font-size: 15px;
+				   color:map-get($gamagrises,gris3);
+				}
+			}
+		}
+		& .card-footter{
+			padding-top:1rem;
+			padding-bottom: 1rem;
+		}
+	}
+}

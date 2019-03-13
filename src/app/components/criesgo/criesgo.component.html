@@ -1,0 +1,243 @@
+<div class="container-fluid bg-gris1 p-t-40 p-b-40">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<button (click)="cambiar('A')" type="button" class="btn {{fecha_imagen==='A'?'btn-primary':'btn-secondary'}}">12 Meses</button>
+					<button (click)="cambiar('M')" type="button" class="btn {{fecha_imagen==='M'?'btn-primary':'btn-secondary'}}">Mes Actual</button>
+
+				</div>	
+			</div>
+			<div class="card w-100">
+				<div class="card-header text-white bg-primary">
+					<div class="row d-flex justify-content-center">
+						<div class="col-12 text-center text-uppercase">
+							<h5>TU RIESGO POR LA REPUTACIÓN DE TUS {{tipo_contrario}} </h5>
+						</div>
+						<div class="col-12 text-center text-uppercase">
+							<h6>BASADO EN LAS CALIFICACIONES RECIBIDAS DE TUS {{tipo_contrario}} {{leyenda}}.</h6>
+						</div>
+					</div>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-4">
+							<div class="row">
+								<div class="col-12">
+									<div class="card text-center">
+										<h6 class="text-uppercase text-primary">Cuantos han mejorado</h6>
+											<p>
+										<h1 class="text-secondary">{{riesgo?.mejorados?.numero}}</h1>
+											<p>
+										<h5 class="text-primary">{{riesgo?.mejorados?.porcentaje}}%</h5>
+									</div>
+								</div>
+								<div class="col-12 m-t-20 m-b-20">
+									<div class="card text-center">
+										<h6 class="text-uppercase text-primary">Cuantos se han mantenido</h6>
+											<p>
+										<h1 class="text-secondary">{{riesgo?.mantenidos?.numero}}</h1>
+											<p>
+										<h5 class="text-primary">{{riesgo?.mantenidos?.porcentaje}}%</h5>
+									</div>
+								</div>
+								<div class="col-12">
+									<div class="card text-center">
+										<h6 class="text-uppercase text-primary">Cuantos han Empeorado</h6>
+											<p>
+										<h1 class="text-secondary">{{riesgo?.empeorados?.numero}}</h1>
+											<p>
+										<h5 class="text-primary">{{riesgo?.empeorados?.porcentaje}}%</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-8">
+							<div class="card">
+								<h5 class="text-primary d-block text-center">Grafica General</h5>
+								<br>
+								<div class="container">
+									<div class="row">
+										<div class="col-12">
+											<div style="display: block">
+												<canvas baseChart
+												[colors]="doughnutColors"
+												[data]="pieChartData"
+												[labels]="pieChartLabels"
+												[chartType]="pieChartType"
+												(chartHover)="chartHovered($event)"
+												(chartClick)="chartClicked($event)"></canvas>
+											</div>
+										</div>	
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<div class="container m-t-20">
+		<div class="row">
+			<div class="card w-100">
+				<div class="card-header text-uppercase text-white bg-primary text-center">
+					<h5>Evolución Empeorados</h5>
+				</div>
+				<div class="card-body">
+					<div style="display: block">
+						<canvas baseChart width="400" height="100"
+						[datasets]="lineChartData"
+						[labels]="lineChartLabels"
+						[options]="lineChartOptions"
+						[colors]="lineChartColors"
+						[legend]="lineChartLegend"
+						[chartType]="lineChartType"
+						(chartHover)="chartHovered($event)"
+						(chartClick)="chartClicked($event)">
+					</canvas>
+				</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container m-t-20">
+		<div class="row">
+			<div class="card w-100">
+				<div class="card-header text-uppercase text-white bg-primary text-center">
+					<h5>Calidad</h5>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-12">
+							<div class="row">
+								<div class="col-4 m-b-20">
+									<div class="card text-center">
+										<h6 class="text-uppercase text-primary">Cuantos han mejorado</h6>
+											<p>
+										<h1 class="text-secondary">{{riesgo?.mejoradoscalidad?.num}}</h1>
+											<p>
+										<h5 class="text-primary">{{riesgo?.mejoradoscalidad?.porcentaje}}%</h5>
+									</div>
+								</div>
+								<div class="col-4  m-b-20">
+									<div class="card text-center">
+										<h6 class="text-uppercase text-primary">Cuantos se han mantenido</h6>
+											<p>
+										<h1 class="text-secondary">{{riesgo?.mantenidoscalidad?.num}}</h1>
+											<p>
+										<h5 class="text-primary">{{riesgo?.mantenidoscalidad?.porcentaje}}%</h5>
+									</div>
+								</div>
+								<div class="col-4 m-b-20">
+									<div class="card text-center">
+										<h6 class="text-uppercase text-primary">Cuantos han Empeorado</h6>
+											<p>
+										<h1 class="text-secondary">{{riesgo?.empeoradoscalidad?.num}}</h1>
+											<p>
+										<h5 class="text-primary">{{riesgo?.empeoradoscalidad?.porcentaje}}%</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container m-t-20">
+		<div class="row">
+			<div class="card w-100">
+				<div class="card-header text-uppercase text-white bg-primary text-center">
+					<h5>Cumplimiento</h5>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-12">
+							<div class="row">
+								<div class="col-4 m-b-20">
+									<div class="card text-center">
+										<h6 class="text-uppercase text-primary">Cuantos han mejorado</h6>
+											<p>
+										<h1 class="text-secondary">{{riesgo?.mejoradoscumplimiento?.num}}</h1>
+											<p>
+										<h5 class="text-primary">{{riesgo?.mejoradoscumplimiento?.porcentaje}}%</h5>
+									</div>
+								</div>
+								<div class="col-4  m-b-20">
+									<div class="card text-center">
+										<h6 class="text-uppercase text-primary">Cuantos se han mantenido</h6>
+											<p>
+										<h1 class="text-secondary">{{riesgo?.mantenidoscumplimiento?.num}}</h1>
+											<p>
+										<h5 class="text-primary">{{riesgo?.mantenidoscumplimiento?.porcentaje}}%</h5>
+									</div>
+								</div>
+								<div class="col-4 m-b-20">
+									<div class="card text-center">
+										<h6 class="text-uppercase text-primary">Cuantos han Empeorado</h6>
+											<p>
+										<h1 class="text-secondary">{{riesgo?.empeoradoscumplimiento?.num}}</h1>
+											<p>
+										<h5 class="text-primary">{{riesgo?.empeoradoscumplimiento?.porcentaje}}%</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container m-t-20" *ngIf="tipo_imagen=='proveedor'">
+		<div class="row">
+			<div class="card w-100">
+				<div class="card-header text-uppercase text-white bg-primary text-center">
+					<h5>Oferta</h5>
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-12">
+							<div class="row">
+								<div class="col-4 m-b-20">
+									<div class="card text-center">
+										<h6 class="text-uppercase text-primary">Cuantos han mejorado</h6>
+											<p>
+										<h1 class="text-secondary">{{riesgo?.mejoradosoferta?.num}}</h1>
+											<p>
+										<h5 class="text-primary">{{riesgo?.mejoradosoferta?.porcentaje}}%</h5>
+									</div>
+								</div>
+								<div class="col-4  m-b-20">
+									<div class="card text-center">
+										<h6 class="text-uppercase text-primary">Cuantos se han mantenido</h6>
+											<p>
+										<h1 class="text-secondary">{{riesgo?.mantenidosoferta?.num}}</h1>
+											<p>
+										<h5 class="text-primary">{{riesgo?.mantenidosoferta?.porcentaje}}%</h5>
+									</div>
+								</div>
+								<div class="col-4 m-b-20">
+									<div class="card text-center">
+										<h6 class="text-uppercase text-primary">Cuantos han Empeorado</h6>
+											<p>
+										<h1 class="text-secondary">{{riesgo?.empeoradosoferta?.num}}</h1>
+											<p>
+										<h5 class="text-primary">{{riesgo?.empeoradosoferta?.porcentaje}}%</h5>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</div>

@@ -1,0 +1,33 @@
+@import '../../../styles';
+.card-prod{
+	padding:10px;
+	& .card{
+		
+	}
+	& .card-img-top{
+			width: 263px;
+			height: 210px;
+		    margin: 0 auto;
+		}
+	& .card-body{
+			
+		& .card-title,.card-text{
+			text-align: justify;
+			color:map-get($gamagrises,girsmenu);
+		}
+		
+	}
+
+}
+.cont-img{
+	position: relative;
+	width: 200px;
+	height: 200px;
+	margin:0 auto;
+	
+}
+
+.btn-light{
+	color:get-map($colors,primary) !important;
+}
+

@@ -1,0 +1,33 @@
+@import '../../../styles';
+.navbar-brand{
+	padding-left: 5px;
+	& .img-menu{
+	width: 230px;
+	height: 60px;
+	}
+}
+.ray-blue{
+	background: map-get($colors,primary);
+	height: 4px;
+}
+.badge-primary{
+	background: map-get($colors,primary);
+	color:#fff;
+}
+.btn-link,a.nav-link {
+	text-decoration: none;
+	background: #fff;
+	color:map-get($colors,primary);
+}
+.nav-item{
+	.dropdown-toggle::after{
+		display: none;
+	}
+	& .btn-link,a.nav-link{
+		text-transform: uppercase;
+		font-family: map-get($fonts,monse);
+		text-decoration: none;
+		background: #fff;
+		color:map-get($gamagrises,girsmenu);
+	}
+}

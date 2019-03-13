@@ -1,0 +1,58 @@
+@import '../../../styles';
+.resumen_usuario{
+	position: relative;
+	width: 100%;
+	height: auto;
+	border:1px solid rgba(map-get($gamagrises,gris3),0.5) !important;
+	padding-bottom: 10px;
+	& .banner{
+		position: relative;
+		top:0;
+		left: 0;
+		height: 60px;
+		width: 100%;
+	}
+	& .img-user{
+		width: 100px;
+		height: 95px;
+		position: absolute;
+		top:30px;
+		left:50%;
+		transform: translateX(-50%);
+		border:2px solid map-get($colors,blanco);
+	}
+}
+.resumen{
+	padding-top:1rem;
+	padding-bottom:1rem;
+	& .titulo{
+		font-family: map-get($fonts,roboto);
+		font-size: .9rem;
+	}
+	& .numero{
+		font-family: map-get($fonts,roboto);
+		font-size: 4.5rem;
+		color:map-get($colors,secondary);
+		padding-bottom: 1rem;
+		padding-top: 1rem;
+		text-align: center;
+
+	}
+	& .variacion{
+		text-align: center;
+		font-size: 2rem;
+		&.neutro{
+			color:map-get($colors,primary);
+		}
+		&.green{
+			color:map-get($colors,succes);
+		}
+		&.red{
+			color:map-get($colors,danger);
+		}
+	}
+}
+.text-notificaciones{
+	font-size: .8rem;
+	text-align: justify;
+}

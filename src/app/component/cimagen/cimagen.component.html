@@ -1,0 +1,285 @@
+<div class="container-fluid bg-gris1 p-t-40 p-b-40">
+	<div class="container ">
+		<div class="row ">
+			<div class="col-3">
+				<div class="resumen_usuario bg-blanco d-block w-100">
+					<div class="banner" [ngStyle]="seletcbanner(empresa.Banner)">
+					</div>
+					<img src="{{empresa.Logo==''?'assets/img/foto-no-disponible.jpg':rutaserver+'assets/img/logosEmpresas/'+empresa.Logo}}" class="img-user rounded-circle bg-white" >
+					<div class="container-fluid  p-t-40">
+						<div class="row">
+							<div class="col-12 text-center text-roboto text-muted m-t-40">
+								<h5>{{nombre}}</h5>
+							</div>
+							<div class="col-12 text-center text-roboto text-muted">
+								<h6>{{puesto}}</h6>
+							</div>
+							<div class="col-12 text-center  m-t-10">
+								<div class="btn btn-primary" (click)="goto('datosusuario')">
+									Editar Datos
+								</div>
+							</div>
+							<div class="col-12 ray m-t-30 m-b-20"></div>
+							<div class="col-12 text-primary text-center">
+								<h6>Datos Empresa</h6>
+							</div>
+							<div class="col-12 text-roboto text-muted">
+								<h6>{{empresa.Razon_Social}}</h6>
+							</div>
+							<div class="col-12 text-roboto text-muted">
+								<h6>{{empresa.Nombre_Comer}}</h6>
+							</div>
+							<div class="col-12 text-roboto text-muted">
+								<h6>{{empresa.RFC}}</h6>
+							</div>
+							<div class="col-12 text-center m-t-10">
+								<div class="btn btn-primary" (click)="goto('datosempresa')">
+									Editar Datos
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card contenedor m-t-40">
+					<div class="card-header bg-primary">
+						Notificaciones
+					</div>
+					<div class="card-body lista text-muted">
+						<ul *ngIf="notificaciones" class="list-group d-block w-100">
+						  <li *ngFor="let notificacion of notificaciones" (click)="goto(notificacion.descripcion.link)"  class="list-group-item">
+						  		<span class=" d-block w-100 text-monse text-notificaciones">{{notificacion.descripcion.descrip}}</span>
+								<p>
+									<small class="text-muted">{{notificacion.Fecha}}</small>
+								</p>
+						  		
+						  </li>
+						  
+						</ul>
+						<span *ngIf="!notificaciones" class="text-center d-block w-100">Sin Notificaciones</span>
+					</div>
+					<div class="card-footer text-center">
+						<div class="btn btn-primary text-center">
+						   		Ver Más
+						 </div>
+					</div>
+				</div>
+				<div class="card contenedor m-t-40">
+					<div class="card-header bg-primary">
+						Empresas que Sigues
+					</div>
+					<div class="card-body lista text-muted">
+						<ul *ngIf="follow" class="list-group d-block w-100">
+						  <li *ngFor="let follo of follow" (click)="goto('/perfilb/'+follo.IDEmpresaSeguida)" class="list-group-item">
+						  		{{follo.Razon_Social}}  	
+						  </li>
+						 </ul>
+						 <span *ngIf="!follow" class="text-center d-block w-100">Sin Registros</span>
+					</div>
+					<div class="card-footer text-center">
+						<div class="btn btn-primary text-center">
+						   		Ver Más
+						 </div>
+					</div>
+				</div>
+			</div>
+			<div class="col-9">
+				<div class="card contenedor">
+					<div class="card-header  container text-center text-white bg-primary">
+							<div class="row">
+								<div class="col-12 text-uppercase text-monse">
+									<h5>RESUEN DE TU IMAGEN COMO CLIENTE</h5> 
+								</div>
+								<div class="col-12 text-uppercase text-monse">
+									<h6>BASADO EN CALIFICACIONES DE PROVEEDORES EN 12 MESES.</h6>
+								</div>
+							</div>
+					</div>
+					<div class="card-body container-fluid">
+						<div class="row">
+							<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
+								
+							</div>
+							<div class="col-6 ">
+								<div class="card  resumen container">
+									<div class="row">
+										<div class="col-12 titulo text-center text-primary text-uppercase">
+											Número de Calificaciones en 12 meses
+										</div> 
+										<div class="col-12 numero">
+											{{imagencliente?.totalCalif}}
+										</div>
+										<div class="col-12 variacion {{imagencliente?.aumento?.class}}">
+											{{imagencliente?.aumento?.num}}
+											<i  class="fas fa-arrow-{{imagencliente?.aumento?.class=='red'?'down':'up'}}"></i>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 ">
+								<div class="card  resumen container">
+									<div class="row">
+										<div class="col-12 titulo text-center text-primary text-uppercase">
+											Calificación Media en 12 meses
+										</div> 
+										<div class="col-12 numero">
+											{{imagencliente?.Media}}
+										</div>
+										<div class="col-12 variacion {{imagencliente?.aumentop?.class}}">
+											{{imagencliente?.aumentop?.num}}
+											<i  class="fas {{imagencliente?.aumentop?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>										
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 m-t-30">
+								<div class="card resumen  container">
+									<div class="row">
+										<div class="col-12 titulo text-center text-primary text-uppercase">
+											Calificación Media sobre la Calidad en 12 meses
+										</div> 
+										<div class="col-12 numero">
+											{{imagencliente?.Calidad?.media}}
+										</div>
+										<div class="col-12 variacion {{imagencliente?.Calidad?.incremento?.class}}">
+											{{imagencliente?.Calidad?.incremento?.num}}
+											<i  class="fas {{imagencliente?.Calidad?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 m-t-30">
+								<div class="card resumen  container">
+									<div class="row">
+										<div class="col-12 titulo text-center text-primary text-uppercase">
+											Calificación Media de Cumplimiento en 12 meses
+										</div> 
+										<div class="col-12 numero">
+											{{imagencliente?.Cumplimiento?.media}}
+										</div>
+										<div class="col-12 variacion {{imagencliente?.Cumplimiento?.incremento?.class}}">
+											{{imagencliente?.Cumplimiento?.incremento?.num}}
+											<i class="fas {{imagencliente?.Cumplimiento?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card contenedor m-t-40">
+					<div class="card-header  container text-center text-white bg-primary">
+							<div class="row">
+								<div class="col-12 text-uppercase text-monse">
+									<h5>RESUEN DE TU IMAGEN COMO proveedor</h5> 
+								</div>
+								<div class="col-12 text-uppercase text-monse">
+									<h6>BASADO EN CALIFICACIONES DE clientes EN 12 MESES.</h6>
+								</div>
+							</div>
+					</div>
+					<div class="card-body container-fluid">
+						<div class="row">
+							<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
+								
+							</div>
+							<div class="col-6">
+								<div class="card  resumen container">
+									<div class="row">
+										<div class="col-12 titulo text-center text-primary text-uppercase">
+											Número de Calificaciones en 12 meses
+										</div> 
+										<div class="col-12 numero">
+											{{imagenproveedor?.totalCalif}}
+										</div>
+										<div class="col-12 variacion {{imagenproveedor?.aumento?.class}}">
+											{{imagenproveedor?.aumento?.num}} 
+											<i class="fas {{imagenproveedor?.aumento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 ">
+								<div class="card  resumen container">
+									<div class="row">
+										<div class="col-12 titulo text-center text-primary text-uppercase">
+											Calificación Media en 12 meses
+										</div> 
+										<div class="col-12 numero">
+											{{imagenproveedor?.Media}}
+										</div>
+										<div class="col-12 variacion {{imagenproveedor?.aumentop?.class}}">
+											{{imagenproveedor?.aumentop?.num}}
+											<i  class="fas {{imagenproveedor?.aumentop?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+
+											
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 m-t-30">
+								<div class="card resumen  container">
+									<div class="row">
+										<div class="col-12 titulo text-center text-primary text-uppercase">
+											Calificación Media sobre la Calidad en 12 meses
+										</div> 
+										<div class="col-12 numero">
+											{{imagenproveedor?.Calidad?.media}}
+										</div>
+										<div class="col-12 variacion {{imagenproveedor?.Calidad?.incremento?.class}}">
+											{{imagenproveedor?.Calidad?.incremento?.num}}
+											<i  class="fas {{imagenproveedor?.Calidad?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 m-t-30">
+								<div class="card resumen  container">
+									<div class="row">
+										<div class="col-12 titulo text-center text-primary text-uppercase">
+											Calificación Media de Cumplimiento en 12 meses
+										</div> 
+										<div class="col-12 numero">
+											{{imagenproveedor?.Cumplimiento?.media}}
+										</div>
+										<div class="col-12 variacion {{imagenproveedor?.Cumplimiento?.incremento?.class}}">
+											{{imagenproveedor?.Cumplimiento?.incremento?.num}} 
+											<i  class="fas {{imagenproveedor?.Cumplimiento?.incremento.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-6 m-t-30">
+								<div class="card resumen  container">
+									<div class="row">
+										<div class="col-12 titulo text-center text-primary text-uppercase">
+											Calificación Media de Oferta en 12 meses
+										</div> 
+										<div class="col-12 numero">
+											{{imagenproveedor?.Oferta?.media}}
+										</div>
+										<div class="col-12 variacion {{imagenproveedor?.Oferta?.incremento?.class}}">
+											{{imagenproveedor?.Oferta?.incremento?.num}}
+											<i class="fas {{imagenproveedor?.Oferta?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+	  <span class="sr-only">Loading...</span>
+	</div>
+</div>

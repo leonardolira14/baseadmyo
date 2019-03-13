@@ -1,0 +1,49 @@
+<div class="card  contenedor m-t-40">
+	<div class="card-header bg-primary text-uppercase text-monse">
+		<h5>Datos de Contacto</h5> 
+	</div>
+	<div class="card-body">
+		<div class="container">
+			<div class="row">
+				<div class="form-group col-6 ">
+					<label for=""  class="text-roboto text-gris3">Página Web</label>
+					<input type="text" [(ngModel)]="datoscontacto.Sitio_Web" class="form-control" name="Sitio_Web" placeholder="Pagina Web">
+				</div>
+				<div class="form-group col-6 ">
+					<label for=""  class="text-roboto text-gris3">Dirección (Calle y Numero)</label>
+					<input type="text" [(ngModel)]="datoscontacto.Direc_Fiscal" class="form-control" name="Direc_Fiscal" placeholder="Calle y Número">
+				</div>
+				<div class="form-group col-6 ">
+					<label for=""  class="text-roboto text-gris3">Colonia</label>
+					<input type="text" [(ngModel)]="datoscontacto.Colonia" class="form-control" name="Colonia" placeholder="Colonia">
+				</div>
+				<div class="form-group col-6 ">
+					<label for=""  class="text-roboto text-gris3">Alcaldía/Municipio</label>
+					<input type="text" [(ngModel)]="datoscontacto.Deleg_Mpo" class="form-control" name="Deleg_Mpo" placeholder="Alcaldía/Municipio">
+				</div>
+				
+				
+				<div class="form-group col-6 ">
+					<label for=""  class="text-roboto text-gris3">Estado</label>
+					<select  [(ngModel)]="datoscontacto.Estado" class="form-control" name="Estado" placeholder="Estado">
+						<option *ngFor="let estado of estados" value="{{estado.Siglas}}">{{estado.estadonombre}}</option>
+					</select>
+				</div>
+				<div class="form-group col-6 ">
+					<label for=""  class="text-roboto text-gris3">Código Postal</label>
+					<input type="text" [(ngModel)]="datoscontacto.Codigo_Postal" class="form-control" name="Codigo_Postal" placeholder="Código Postal">
+				</div>
+				<div class="col-12 text-center">
+						<button (click)="enviarform()" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cambios</button>
+				</div> 
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+	  <span class="sr-only">Loading...</span>
+	</div>
+</div>
+<ngb-alert *ngIf="staticAlertClosed" type="danger" style="position: fixed;z-index: 1000;top: 0;width: 50%;margin: 0 auto;" (click)="close(alert)">{{ alertterror }}</ngb-alert>
+<ngb-alert *ngIf="successAlertClosed" type="success" style="position: fixed;z-index: 1000;top: 0;width: 50%;margin: 0 auto;" (click)="close(alert)">{{ alertsuccess }}</ngb-alert>

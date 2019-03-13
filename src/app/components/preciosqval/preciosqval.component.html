@@ -1,0 +1,60 @@
+<div class="container-fluid bg-primary  cont-precios">
+	<div class="row">
+		<div class="col-12 text-center m-b-40">
+			<h4 class="text-white text-uppercase text-prosto">Precios Qval</h4>
+		</div>
+	</div>
+	<div class="row d-flex justify-content-center">
+		<div class="col-12 col-md-4 col-xl-4 col-lg-4">
+			<div class="card">
+				<div class="card-body ">
+					<div class="card-precio text-white p-t-20 p-b-20 bg-orange text-center">
+						ESTANDAR
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item">Perfil en Qval</li>
+						<li class="list-group-item">Registro de 10 Grupos</li>
+						<li class="list-group-item">Registro de 50 Clientes/Proveedores</li>
+						<li class="list-group-item">App Móvil</li>
+						<li class="list-group-item">Alertas desempeño de clientes y proveedores</li>
+						<li class="list-group-item">Ver perfiles de clientes y proveedores</li>
+						<li class="list-group-item">Costo $100.00 MXN por licencia </li>
+					</ul>
+				</div>
+				<div class="card-footter text-center">
+					<button (click)="addcart('1')" class="btn btn-primary">Agregar al Carrito</button>
+				</div>
+				
+			</div>
+		</div>
+		<div class="col-12 col-md-4 col-xl-4 col-lg-4">
+			<div class="card">
+				<div class="card-body">
+					<div class="card-precio text-white p-t-20 p-b-20 bg-danger text-center">
+						EMPRESARIAL
+					</div>
+					<ul class="list-group">
+						<li class="list-group-item">Paquete Estadar</li>
+						<li class="list-group-item">Registro de Grupos Ilimitados</li>
+						<li class="list-group-item">Registro de Clientes/Proveedores Ilimitados</li>
+						<li class="list-group-item">App Móvil</li>
+						<li class="list-group-item">Api Web</li>
+						<li class="list-group-item">Publicar 10 necesidad de proveeduría al mes</li>
+						<li class="list-group-item">Ofertas Ilimitadas al mes sobre necesidades de proveeduria de terceros</li>
+						<li class="list-group-item">Costo $200.00 MXN por licencia</li>
+					</ul>
+				</div>
+				<div class="card-footter text-center">
+					<button (click)="addcart('2')" class="btn btn-primary">Agregar al Carrito</button>
+				</div>
+			</div>
+		</div>
+		
+		<div class="col-12 col-md-6 col-xl-6 col-lg-6 m-t-40">
+			<small class="text-white">Premium.-Resultados de perfil de empresa con reputación cliente/proveedor</small>
+		</div>
+		<div class="col-12 col-md-6 col-xl-6 col-lg-6 m-t-40 d-flex justify-content-end">
+			<button class="btn btn-secondary " (click)="addcart('0')">Seleccionar más adelante</button>
+		</div>
+	</div>
+</div>

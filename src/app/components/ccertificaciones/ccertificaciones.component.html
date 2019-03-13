@@ -1,0 +1,124 @@
+<div class="container-fluid  bg-gris1 p-t-40 p-b-40">
+	<div class="conatiner">
+		<div class="row">
+			<div class="col-12">
+				<div class="card  contenedor m-t-40">
+					<div class="card-header bg-primary text-uppercase text-monse">
+						<div class="container-fluid">
+							<div class="row d-flex align-items-center ">
+								<div class="col-6">
+									<h5>Catálogo de Certificaciones</h5> 
+								</div>
+								<div class="col-5">
+									<div class="input-group">
+										<input (keyup)="busqueda()" type="text" class="form-control" placeholder="Certificacion"  [(ngModel)]="palabra" >
+										<div class="input-group-prepend">
+											<span class="input-group-text text-primary bg-blanco" id="basic-addon1"><i class="fas fa-search"></i></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-1">
+									<button (click)="openalert(alertproductos)" class="btn btn-primary"><i class="fas fa-plus"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="container">
+							<div class="row">
+								
+								<div class="col-3 m-t-20 card-prod" *ngFor="let certificacion of certificaciones">
+									<div class="card" >
+										
+
+										<div class="card-body">
+											<h5 class="card-title">{{certificacion.Norma}}</h5>
+											<p class="card-text">
+												Fecha:{{certificacion.Fecha}}
+											</p>
+											<p class="card-text">
+												Calificación:{{certificacion.Calif}}
+											</p>
+											<p class="card-text">
+												<a target="_blanck" href="{{serverruta+'assets/certificaciones/'+certificacion.Archivo}}">Ver Archivo: {{certificacion.Archivo}}</a>
+											</p>
+											<div class="btn-group text-center d-flex" role="group" aria-label="Basic example">
+												<button (click)="delete(certificacion.IDNorma)" type="button" class="btn btn-secondary mr-3">Eliminar</button>
+												<button (click)="editar(certificacion.IDNorma,alertproductos)" type="button" class="btn btn-secondary">Editar</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</div>
+<ngb-alert *ngIf="staticAlertClosed" type="danger" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;" (click)="close(alert)">{{ alertterror }}</ngb-alert>
+<ngb-alert *ngIf="successAlertClosed" type="success" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;" (click)="close(alert)">{{ alertsuccess }}</ngb-alert>
+
+<ng-template #alertproductos let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">{{modelcertificacion.IDNorma?'Editar Certificación':'Registrar Certificación'}}</h4>
+		<button type="button" class="close" aria-label="Close" (click)="closemodel(alertproductos)">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<form class="container">
+			<div class="row">
+				<div class="col-12 m-auto m-t-20">
+					<label class="col-sm-12 col-form-label">Archivo</label>
+					<div class="input-group ">
+					  <input type="text" class="form-control" disabled [(ngModel)]="modelcertificacion.Archivo" name="Archivo" >
+					  <div class="input-group-prepend">
+					    <span class="input-group-text btn btn-primary" (click)="logo.click()"><i class="fas fa-archive"></i></span>
+					  </div>
+					</div>
+					<input (change)="preview(logo.files)" class="d-none" type="file" #logo >
+				</div>
+				<div class="col-12">
+					<div class="form-group row">
+						<label class="col-sm-12 col-form-label">Nombre de Certificación</label>
+						<div class="col-sm-12">
+							<input class="form-control" [(ngModel)]="modelcertificacion.Norma" name="Norma" #Norma="ngModel" type="text">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-form-label">Fecha de Calificación</label>
+						<div class="col-sm-12">
+							
+							<div class="input-group ">
+					 			<input ngbDatepicker #d="ngbDatepicker" class="form-control" [(ngModel)]="modelcertificacion.Fecha" name="Fecha" #Fecha="ngModel" type="text">
+					  			<div class="input-group-prepend">
+					   				<span class="input-group-text btn btn-primary" (click)="d.toggle()"><i class="fas fa-calendar-week"></i></span>
+					  			</div>
+					</div>
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-form-label">Calificación</label>
+						<div class="col-sm-12">
+							<input class="form-control"  mask="0.00" [(ngModel)]="modelcertificacion.Calif" name="Calif" #Calif="ngModel" type="text">
+						</div>
+					</div>
+				</div>
+			</div>
+			
+
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-danger" (click)="closemodel(alertproductos)">Cerrar</button>
+		<button  type="button" (click)="deci(alertproductos)" class="btn btn-primary" >Guardar</button>
+	</div>
+</ng-template>

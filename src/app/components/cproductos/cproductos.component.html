@@ -1,0 +1,107 @@
+<div class="container-fluid  bg-gris1 p-t-40 p-b-40">
+	<div class="conatiner">
+		<div class="row">
+			<div class="col-12">
+				<div class="card  contenedor m-t-40">
+					<div class="card-header bg-primary text-uppercase text-monse">
+						<div class="container-fluid">
+							<div class="row d-flex align-items-center ">
+								<div class="col-6">
+									<h5>Catálogo de Productos y Servicios</h5> 
+								</div>
+								<div class="col-5">
+									<div class="input-group">
+										<input (keyup)="busqueda()" type="text" class="form-control" placeholder="Producto o Servicio"  [(ngModel)]="palabra" >
+										<div class="input-group-prepend">
+											<span class="input-group-text text-primary bg-blanco" id="basic-addon1"><i class="fas fa-search"></i></span>
+										</div>
+									</div>
+								</div>
+								<div class="col-1">
+									<button (click)="openalert(alertproductos)" class="btn btn-primary"><i class="fas fa-plus"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-body">
+						<div class="container">
+							<div class="row">
+								
+								<div class="col-3 m-t-20 card-prod" *ngFor="let producto of productos">
+									<div class="card" >
+										<img src="{{producto.Foto===null?'src/assets/img/foto-no-disponible.jpg':rutaserver+'assets/img/logoprod/'+producto.Foto}}" class="card-img-top" alt="">
+
+										<div class="card-body">
+											<h5 class="card-title">{{producto.Producto}}</h5>
+											<p class="card-text">{{(producto.Descripcion.length>80)? (producto.Descripcion | slice:0:80)+'...':producto.Descripcion}}</p>
+											<div class="btn-group text-center d-flex" role="group" aria-label="Basic example">
+												<button (click)="eliminar(producto.IDProducto)" type="button" class="btn btn-secondary mr-3">Eliminar</button>
+												<button (click)="editar(producto.IDProducto,alertproductos)" type="button" class="btn btn-secondary">Editar</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</div>
+<ngb-alert *ngIf="staticAlertClosed" type="danger" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;" (click)="close(alert)">{{ alertterror }}</ngb-alert>
+<ngb-alert *ngIf="successAlertClosed" type="success" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;" (click)="close(alert)">{{ alertsuccess }}</ngb-alert>
+
+<ng-template #alertproductos let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">{{modelproductos.IDProducto?'Editar Producto o Servicio':'Registrar Producto o Servicio'}}</h4>
+		<button type="button" class="close" aria-label="Close" (click)="closemodel(alertproductos)">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<form class="container">
+			<div class="row">
+				<div class="col-6 m-auto m-t-20 text-center">
+					<div class="cont-img">
+						<img src="{{imglogo}}" class="img-fluid" alt="">
+					</div>
+					<button (click)="logo.click()" class="btn btn-primary">Cargar Logo</button>
+					<input (change)="preview(logo.files)" class="d-none" type="file" #logo >
+				</div>
+				<div class="col-6">
+					<div class="form-group row">
+						<label class="col-sm-12 col-form-label">Producto o Servicio</label>
+						<div class="col-sm-12">
+							<input class="form-control" [(ngModel)]="modelproductos.Producto" name="Producto" #Producto="ngModel" type="text">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-form-label">Promoción</label>
+						<div class="col-sm-12">
+							<input class="form-control" [(ngModel)]="modelproductos.Promocion" name="Promocion" #Promocion="ngModel" type="text">
+						</div>
+					</div>
+					<div class="form-group row">
+						<label class="col-sm-12 col-form-label">Descripción</label>
+						<div class="col-sm-12">
+							<textarea class="form-control" [(ngModel)]="modelproductos.Descripcion" name="Descripcion" #Descripcion="ngModel" col="5" rows="5"></textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+
+		</form>
+	</div>
+	<div class="modal-footer">
+		<button type="button" class="btn btn-danger" (click)="closemodel(alertproductos)">Cerrar</button>
+		<button  type="button" (click)="deci(alertproductos)" class="btn btn-primary" >Guardar</button>
+	</div>
+</ng-template>

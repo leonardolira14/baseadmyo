@@ -1,0 +1,35 @@
+@import '../../../styles';
+.resumen{
+	padding-top:1rem;
+	padding-bottom:1rem;
+	& .titulo{
+		font-family: map-get($fonts,roboto);
+		font-size: .9rem;
+	}
+	& .numero{
+		font-family: map-get($fonts,roboto);
+		font-size: 4.5rem;
+		color:map-get($colors,secondary);
+		padding-bottom: 1rem;
+		padding-top: 1rem;
+		text-align: center;
+
+	}
+	& .variacion{
+		text-align: center;
+		font-size: 2rem;
+		&.neutro{
+			color:map-get($colors,primary);
+		}
+		&.green{
+			color:map-get($colors,succes);
+		}
+		&.red{
+			color:map-get($colors,danger);
+		}
+	}
+}
+.text-notificaciones{
+	font-size: .8rem;
+	text-align: justify;
+}

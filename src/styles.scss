@@ -1,0 +1,363 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+$fonts:(
+	prosto: 'Prosto One',
+	open-sans: 'Open Sans',
+	lato: 'Lato',
+	roboto: 'Roboto',
+	sans-pro: 'Source Sans Pro',
+  monse: 'Montserrat',
+	);
+$colors: (
+  blanco:#fff,
+  azulprimary:#00204a,
+  primary:#005792,
+  azulcielo:#448ef6,
+  azuladmyo:    #005d8f,
+  succes: #00a65a,
+  orange:#f7ac43,
+  naranja:  #fdb44b,
+  danger:     #f53d3d,
+  dark:       #222,
+  gary-lte:  #d2d6de,
+  aqua: #00c0ef,
+  yellow: #f39c12,
+  blue: #0073b7,
+  navy: #001F3F,
+  teal: #39CCCC,
+  olive: #3D9970,
+  lime: #01FF70,
+  secondary: #FF851B,
+  fuchsia: #F012BE,
+  purple: #605ca8,
+  maroon: #D81B60,
+  blackk: #000,
+  dark-2: #222d32,
+  light-gray: #444,
+  alight-gray:#777
+);
+$gamagrises:(
+gris1:#f4f3f3,
+gris2:#dfdfdf,
+gris3:#393e46,
+girsmenu:#555,
+	);
+$spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50,55,60,65,70, 75,80,85,90,95,100,110,120,130,140);
+$sides: (top, bottom, left, right);
+@each $space in $spaceamounts {
+	@each $side in $sides {
+		.m-#{str-slice($side, 0, 1)}-#{$space} {
+			margin-#{$side}: #{$space}px !important;
+		}
+		.p-#{str-slice($side, 0, 1)}-#{$space} {
+			padding-#{$side}: #{$space}px !important;
+		}
+	}
+}
+@each $profile, $font in $fonts {
+	.text-#{$profile}{
+		font-family: $font !important;
+	}
+}
+@each $profile, $bgcolor in $gamagrises {
+	.text-#{$profile}{
+		color: $bgcolor !important;
+	}
+	.bg-#{$profile}{
+		background:$bgcolor  !important;
+		border-color:$bgcolor !important;
+		color:map-get( $colors, blanco);
+		
+	}
+}
+@each $profile, $bgcolor in $colors {
+	.bg-#{$profile}{
+		background:$bgcolor  !important;
+		border-color:$bgcolor !important;
+		color:map-get( $colors, blanco);
+	}
+	.text-#{$profile}{
+		color:$bgcolor !important;
+	}
+	.btn-outline-#{$profile}{
+	  color:$bgcolor;
+	  background: transparent !important;
+	  border-color: $bgcolor !important;
+	  border-radius: 0px !important;
+	  transition: all 0.5s;
+	  &:hover{
+	  	 color:map-get($colors,blanco);
+	  	transition: all 0.5s;
+		background:rbga($bgcolor,1)!important ;
+	  	border-color: $bgcolor !important;
+	  }
+	}
+	
+	.btn-#{$profile}{
+	  color:map-get($colors,blanco);
+	  background: $bgcolor !important;
+	  border-color: $bgcolor !important;
+	  border-radius: 0px !important;
+	  transition: all 0.5s;
+	  &:hover{
+	  	 color:map-get($colors,blanco);
+	  	transition: all 0.5s;
+		  background:rbga($bgcolor,0.5)!important ;
+	  	border-color: $bgcolor !important;
+	  }
+	}
+
+
+}
+.bg-transparent{
+	background: transparent !important;
+	border-color: transparent !important;
+}
+
+.titulo{
+  color:map-get( $colors, secondary);
+}
+
+.alert-success{
+  color:map-get( $colors, blanco);
+  border-color:map-get( $colors, succes) !important;
+  background-color: map-get( $colors, succes) !important;
+} 
+.alert-danger{
+  color:map-get( $colors, blanco);
+  border-color:map-get( $colors, danger) !important;
+  background-color: map-get( $colors, danger) !important;
+} 
+.modal{
+  max-height: 100vh;
+  overflow: hidden;
+  & .modal-body{
+    padding: 0px !important;
+    max-height: calc(100vh - 164px);
+    overflow: auto;
+    & input,& textarea,& select{
+      border-radius: 0px !important;
+      border-color: map-get($colors,black );
+    }
+    & select{
+      appearance: none;
+      background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 50%;
+    }
+  }
+  & .modal-header{
+    padding: .5rem 1rem !important;
+  }
+}
+
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+.m-c-alight-gray{
+  padding: 1rem;
+   border-left:.5px solid map-get($colors,gary-lte);
+   border-right:.5px solid map-get($colors,gary-lte);
+   border-bottom:.5px solid map-get($colors,gary-lte);
+}
+.my-pagination /deep/ .ngx-pagination {
+  & a,& button{
+      background: map-get($colors,secondary);
+      color:map-get($colors,blanco);
+      &:hover{
+          background: map-get($colors,primary);
+      }
+  }
+  & .current {
+      background: map-get($colors,primary);
+  }
+}
+
+.dropdown-item{
+  &:hover{
+    color:#fff;
+    background: map-get($colors,secondary)
+  }
+}
+ul.ltpreg{
+  width: 100%;
+  display: block;
+  & li{
+    list-style: none;
+  }
+}
+.accordion{
+  & .card{
+    & .card-header{
+        border-color:map-get($colors,secondary);
+        background: map-get($colors,secondary);
+        padding:1px 1px;
+        & .btn-link{
+          color:#fff;
+          background: map-get($colors,secondary);
+          text-decoration: none !important;
+        }
+    }
+    & .card-body{
+       padding:0px;
+       & .list-group{
+        width: 100%;
+        & .list-group-item{
+          cursor: pointer;
+        }
+       }
+    }
+  }
+  
+  
+}
+.p-fixed{
+  position: fixed;
+  z-index: 1000;
+  
+}
+.centrar{
+	margin-left: auto;
+	margin-right: auto;
+}
+.ray-secondary{
+	background: map-get($colors,secondary);
+	height: 3px;
+}
+.bg-contsl1{
+	background: transparent url('/admyo/assets/img/slider/terminos-y-condiciones-admyo-5.jpg')center center no-repeat;
+}
+.bg-contsl2{
+	background: transparent url('/admyo/assets/img/slider/contactanos-admyo-4.jpg')center center no-repeat;
+}
+.bg-contsl1,.bg-contsl2{
+	
+	background-size: cover;
+	& .titulos{
+		font-size: 4rem;
+		text-shadow: 4px 3px 2px #6D6D6D;
+	}
+	& .img-acompa{
+		@media screen and (max-width: 760px) {
+			display: none;
+		}
+	}
+}
+.titulos-h1{
+	font-size: 2rem;
+	color:map-get($colors,azuladmyo);
+}
+.subtitulo-h1{	
+	font-size: 1.4rem;
+	color:map-get($colors,secondary);
+}
+.text-h1{
+	font-family: map-get($fonts,open-sans);
+	text-align: justify;
+	font-size: 1rem;
+	color:map-get($gamagrises,gris3);
+}
+.titulos-h1,.subtitulo-h1{
+	text-align: justify;	
+	font-family: map-get($fonts,prosto);
+	
+}
+ input,select,textarea{
+    font-weight: 700;
+    font-size: 1rem;
+    border-radius: 0px !important;
+  }
+  .menu-reg{
+    & .ray{
+
+      left:0px;
+      width: 95%;
+      top: 25px;
+      position: relative;
+      height: 2px ;
+      background:map-get($colors,succes);
+      margin: 0 auto;
+    }
+    .paso{
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background:map-get($colors,succes);
+      color:#fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.3rem;
+      &.active{
+        background:map-get($colors,azuladmyo);
+      }
+    } 
+}
+.ray{
+  height: 2px;
+  background:map-get($colors,secondary);
+}
+.ayuda{
+  color:#fff;
+  background:map-get($colors,blanco);
+  font-weight: 700;
+  cursor: pointer;
+}
+.spiner_load{
+  top:0;
+  left: 0;
+  z-index: 1000;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: rgba(map-get($colors,blackk),0.6);
+}
+.card{
+  border-radius:0px !important;
+  & .card-header{
+    font-family: map-get($fonts,monse);
+    border-radius:0px !important;
+  }
+  & .card-footer{
+    font-family: map-get($fonts,monse);
+    border-radius:0px !important;
+    background: #fff;
+  }
+  & .card-body{
+    &.lista{
+      padding:0px !important; 
+      & .list-group{
+        border-radius:0px !important;
+        border-color:transparent !important; 
+        & .list-group-item{
+          border-radius:0px !important;
+          border-bottom:1px solid  rgba(map-get($gamagrises,gris3),0.5);
+        }
+      }
+    }
+  }
+  &.contenedor{
+    border-radius:0px !important;
+     border:1px solid rgba(map-get($gamagrises,gris3),0.5) !important;
+     & .card-body{
+      background: map-get($colors,blanco);
+     }
+  }
+}
+.sniper{
+  z-index: 10000;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  top:0;
+  left: 0;
+  background: rgba(0,0,0,0.7);
+}
+.list-group{
+  max-height: 450px;
+  overflow: auto;
+}

@@ -1,0 +1,178 @@
+<div class="container-fluid bg-gris1 p-t-40 p-b-40">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-4">
+				<div (click)="resumengo()" class="card btn-ir ">
+					<span><i class="fas fa-chart-area"></i></span>
+					<br>
+					<label>Resumen</label>
+				</div>
+			</div>
+			<div class="col-4 ">
+				<div (click)="lista()" class="card btn-ir">
+					<span><i class="fas fa-users"></i></span>
+					<br>
+					<label>Mis {{tipo}}</label>
+				</div>
+			</div>
+			<div class="col-4 ">
+				<div (click)="realizadas()" class="card btn-ir active">
+					<span><i class="fas fa-award"></i></span>
+					<br>
+					<label>Calificaciones Realizadas</label>
+				</div>
+			</div>
+		</div>
+		<div class="row m-t-30">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header bg-primary text-white text-monse text-uppercase text-center">
+						<h5>CALIFICACIONES REALIZADAS A {{tipo}}</h5>
+					</div>
+					<div class="card-body">
+						<div class="container-fluid">
+							<div class="row m-b-30">
+								<div class="col-3">
+									<div class="form-group">
+										<label for="">Fecha Inicio</label>
+										<div class="input-group">
+											<input  class="form-control" placeholder="yyyy-mm-dd"
+											name="fechainicio"   [(ngModel)]="model.Ifechainicio" ngbDatepicker #fechainicio="ngbDatepicker">
+											<div class="input-group-append">
+												<button class="btn btn-secondary calendar" (click)="fechainicio.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="form-group">
+										<label for="">Fecha Fin</label>
+										<div class="input-group">
+											<input  class="form-control" placeholder="yyyy-mm-dd"
+											name="fechafin" [(ngModel)]="model.Ifechafin" ngbDatepicker #fechafin="ngbDatepicker">
+											<div class="input-group-append">
+												<button class="btn btn-secondary calendar" (click)="fechafin.toggle()" type="button"><i class="fas fa-calendar-alt"></i></button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="form-group">
+										<label for="">Status</label>
+										<select  [(ngModel)]="model.estatus" name="estatus"  class="form-control">
+											<option value="">Todas</option>
+											<option value="Activa">Activas</option>
+											<option value="Pendiente">Pendientes de Resolución</option>
+											<option value="PendienteA">Pendientes de Anulación</option>
+										</select>
+									</div>
+								</div>
+								<div class="col-3">
+									<div class="form-group">
+										<label for="">{{tipo}}</label>
+										<select [(ngModel)]="model.empresabuscada" name="empresabuscada" class="form-control">
+											<option  value="">Todas</option>
+											<option *ngFor="let cliente of listaclie" value="{{cliente.num}}">{{cliente.Razon_Social}}</option>
+										</select>
+									</div>
+								</div>
+								<div (click)="getlista()" class="col-md-4 col-lg-4 col-xl-4 col-12 btn btn-primary centrar">
+									Filtar
+								</div>
+							</div>
+							<div class="row d-flex align-items-center m-b-30" *ngFor="let calificacion of calificaciones | paginate: {itemsPerPage: 5, currentPage: pageActual}; index as i">
+								<div class="col-2">
+									<img src="{{calificacion.Logo==''?'assets/img/foto-no-disponible.jpg':serverruta+'assets/img/logosEmpresas/'+calificacion.Logo}}" class="img-fluid" alt="">
+								</div>
+								<div class="col-8">
+									<div class="row ">
+										<div class="col-12 text-muted">Estatus: <strong class="text-primary">{{calificacion.Status}}</strong>
+										</div>
+										<div class="col-12 text-muted">Fecha de Calificación: <strong class="text-primary">{{calificacion.Fecha}}</strong>
+										</div>
+										<div class="col-12 text-muted">Razón Social: <strong class="text-primary">{{calificacion.Razon_Social}}</strong>
+										</div>
+										<div class="col-12 text-muted">Nombre Comercial: <strong class="text-primary">{{calificacion.Nombre_comer}}</strong></div>
+										<div class="col-12 text-muted">Nombre de Usuario que califica: <strong class="text-primary">{{calificacion.UsuarioEmisor}}</strong></div>
+										<div class="col-12 text-muted">Correo Electronico de Usuario que califica: <strong class="text-primary">{{calificacion.CorreoEmisor}}</strong></div>
+										<div class="col-12 text-muted">Nombre de Usuario a quien calificá: <strong class="text-primary">{{calificacion.UsuarioReceptor}}</strong></div>
+										<div class="col-12 text-muted">Correo Electronico de Usuario a quien calificá: <strong class="text-primary">{{calificacion.CorreoReceptor}}</strong></div>
+										<div class="col-12 text-muted">Fecha de Petición: <strong class="text-primary">{{calificacion.FechaPuesta}}</strong></div>
+										<div class="col-12 text-muted">Fecha de Modificación: <strong class="text-primary">{{calificacion.FechaModificacion}}</strong></div>
+									</div>
+								</div>	
+								<div class="col-2">
+									<div class="container-fluid">
+										<div class="row card-footerr">
+											<div class="col-12 d-flex">
+												<div ngbPopover="Visitar Perfil" (click)="visitar(calificacion.num_empresa_receptora)" class="btn-card mr-3">
+													<i class="fas fa-user-circle"></i>
+												</div>
+												<div  ngbPopover="Detalles" (click)="detalles(calificacion.IDValora,alertdetalle)" class="mr-3 btn-card">
+													<i class="fas fa-list-ul"></i>
+												</div>
+												<div ngbPopover="Calificar" (click)="calificar(calificacion.num_empresa_receptora,alertdeci)" class="mr-3 btn-card">
+													<i class="fas fa-check"></i>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 text-center m-t-20">
+									<pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<ng-template #alertdetalle let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Detalle de Calificación</h4>
+		<button type="button" class="close" aria-label="Close" (click)="closemodel(alertproductos)">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+	<div class="modal-body">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-12">
+					<table class="table table-hover">
+						<thead class="bg-primary text-white">
+							<th scope="col">Pregunta</th>
+							<th scope="col">Respuesta</th>
+						</thead>
+						<tbody>
+							<tr *ngFor="let pregunta of detalless">
+								<td>{{pregunta.Pregunta}}</td>
+								<td>{{pregunta.calificacion}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</ng-template>
+
+<ng-template #alerdeci let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title" id="modal-basic-title">Calificar ¿como?</h4>
+		<button type="button" class="close" aria-label="Close" (click)="closemodel(alertproductos)">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
+</ng-template>
+
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</div>

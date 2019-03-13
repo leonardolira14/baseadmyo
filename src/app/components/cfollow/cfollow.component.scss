@@ -1,0 +1,68 @@
+@import '../../../styles';
+.logo-baner{
+	height: 62px;
+	    position: absolute;
+	    z-index: 1;
+	    top: 0;
+	    left: 0;
+	    background-color:map-get($colors,secondary);
+	    width: 100%;
+}
+ .img-banner{
+		height: 62px;
+	    position: absolute;
+	    z-index: 1;
+	    top: 0;
+	    left: 0;
+	}
+	.img-logo{
+		    display: flex;
+		    flex-direction: column;
+		    align-items: center;
+		    margin-bottom: 8px;
+		    z-index: 1;
+		    padding-top: 10px;
+		    padding-bottom: 10px;
+	    & img{
+			background-color:map-get($colors,blanco);
+		    width: 80px;
+		    height: 80px;
+		    box-sizing: border-box;
+		    background-clip: content-box;
+		    border: 0 solid transparent;
+		    border-radius: 49.9%;
+	    }
+	}
+
+
+.cont-text{
+	font-family: map-get($fonts,monse);
+	padding:0px !important;
+	& li {
+		height: 70px;
+		& p{
+			font-weight: 700;
+			font-size:11px;
+		}
+	}
+}
+.card-footer{
+	& div.btn-card{
+		width: 40px;
+    height: 40px;
+    color: #fff;
+    background: map-get($colors,primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 10px;
+   font-size: 1.2rem;;
+    
+	cursor:pointer;
+
+	&:hover{
+		background: map-get($colors,secondary);
+		}
+	}
+}

@@ -1,0 +1,70 @@
+<div class="card m-t-30">
+	<div class="card-header bg-primary text-uppercase text-monse ">
+		<h5>Teléfonos</h5> 
+	</div>
+	<div class="card-body lista">
+		<ul class="list-group d-block w-100">
+			
+			<li *ngFor="let telefono of listtelefonos" class="list-group-item">
+
+				<div class="row">
+					<div class="col-12 ">
+						<h5 class="text-gris3">{{telefono.Numero}}</h5>
+						<small class="text-muted">{{telefono.Tipo_Numero}}</small>
+					</div>
+
+				</div>
+				<div class="row d-flex align-items-center m-t-10">
+					<div class="col-6">
+						<button (click)="delete(telefono.IDTel)" class="btn btn-link text-primary"><i class="fas fa-minus-circle"></i></button>
+					</div>
+					<div class="col-6 text-right">
+						<button (click)="obtdat(telefono.IDTel,alerttelefonos)"  class="btn btn-link text-primary"><i class="fas fa-pencil-alt"></i></button>
+					</div>
+				</div>
+			</li>
+			
+		</ul>
+	</div>
+	<div class="card-footer text-center">
+		<button (click)="openalert(alerttelefonos)" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</button>
+	</div>
+</div>
+<ng-template #alerttelefonos let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">{{modeltelefono.IDTel?'Editar Teléfono':'Registrar Teléfono'}}</h4>
+    <button type="button" class="close" aria-label="Close" (click)="closemodel(alerttelefonos)">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form class="container">
+      	<div class="form-group row">
+		    <label class="col-sm-12 col-form-label">Teléfono</label>
+		    
+		    <div class="col-sm-12">
+		    	<input class="form-control" [(ngModel)]="modeltelefono.Numero" name="Numero" #Numero="ngModel" type="text">
+		    </div>
+		</div>	
+		<div class="form-group row">
+		    <label class="col-sm-12 col-form-label">Tipo Teléfono</label>
+		    <div class="col-sm-12">
+		    	<select class="form-control" [(ngModel)]="modeltelefono.Tipo_Numero" name="Tipo_Numero" #Tipo_Numero="ngModel">
+		    		<option value="Fijo">Fijo</option>
+		    		<option value="Movil">Móvil</option>
+		    	</select>
+		    </div>
+		</div>	
+				
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-danger" (click)="closemodel(alertmarcas)">Cerrar</button>
+    <button type="button" (click)="addtel()" class="btn btn-primary" >Guardar</button>
+  </div>
+</ng-template>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+	  <span class="sr-only">Loading...</span>
+	</div>
+</div>

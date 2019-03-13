@@ -1,0 +1,41 @@
+@import '../../../styles';
+.numvisitas{
+	font-size: 7rem;
+	color:map-get($colors,secondary);
+}
+.card{
+	&.contenedor{
+		& .card-body{
+			height: 385px;
+		}
+		
+		&.tarjeta{
+			& .card-img-top{
+				width: 263px;
+				height: 210px;
+			    margin: 0 auto;
+			}
+			& .card-body{
+			max-height: 600px;
+			overflow: auto;
+			&.tarjeta1{
+				overflow: hidden;
+				    max-height: 190px;
+				& .card-title,.card-text{
+			text-align: justify;
+			color:map-get($gamagrises,girsmenu);
+		}
+			}
+		}
+			
+		}
+		&.area{
+			& canvas{
+				height: 385px;
+			}
+		}
+		& .cont-num{
+			height: 100%;
+		}
+	}
+}

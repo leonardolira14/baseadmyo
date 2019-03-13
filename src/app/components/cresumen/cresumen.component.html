@@ -1,0 +1,140 @@
+<div class="container-fluid  bg-gris1 p-t-40 p-b-40">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-4">
+							<div (click)="resumengo()" class="card btn-ir active">
+								<span><i class="fas fa-chart-area"></i></span>
+								<br>
+								<label>Resumen</label>
+							</div>
+						</div>
+						<div class="col-4 ">
+							<div (click)="lista()" class="card btn-ir">
+								<span><i class="fas fa-users"></i></span>
+								<br>
+								<label>Mis {{tipo}}</label>
+							</div>
+						</div>
+						<div class="col-4 ">
+							<div (click)="realizadas()" class="card btn-ir">
+								<span><i class="fas fa-award"></i></span>
+								<br>
+								<label>Calificaciones Realizadas</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 m-t-20">
+				<div class="card">
+					<div class="card-header text-uppercase bg-primary text-white text-center text-monse">
+						<h5>Resumen de Tus {{tipo}}</h5>
+					</div>
+					<div class="card-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-6 m-t-20">
+									<div class="card">
+										<h6 class="text-primary d-block text-center">Media de {{tipo}} calificados en el último trimestre</h6>
+										<div class="row">
+											<div class="col-md-12">
+												<div style="display: block">
+													<canvas baseChart 
+													[datasets]="barChartData" 
+													[labels]="barChartLabels" 
+													[options]="barChartOptions"
+													[colors]="coloursbar"
+													[legend]="barChartLegend" 
+													[chartType]="barChartType"
+													></canvas>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-6 m-t-20">
+									<div class="card">
+										<h6 class="text-primary d-block text-center">Número de {{tipo}} Registrados</h6>
+										<div class="row">
+											<div class="col-12">
+												<div style="display: block;">
+													<canvas #panelA baseChart width="400" height="200"
+													[datasets]="lineChartData"
+													[labels]="lineChartLabels"
+													[options]="lineChartOptions"
+													[colors]="lineChartColors"
+													[legend]="lineChartLegend"
+													[chartType]="lineChartType"
+													></canvas>
+												</div>
+											</div>
+										</div>
+									</div>	
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 m-t-20">
+				<div class="card">
+					<div class="card-header bg-primary text-white text-center text-monse">
+						<h5>Número de calificaciones realizadas a {{tipo}}</h5>
+					</div>
+					<div class="card-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12">
+									<div style="display: block;">
+										<canvas baseChart width="400" height="80"
+										[datasets]="lineChartDatanum"
+										[labels]="lineChartLabelsnum"
+										[options]="lineChartOptions"
+										[colors]="lineChartColors"
+										[legend]="lineChartLegend"
+										[chartType]="lineChartType"
+										></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 m-t-20">
+				<div class="card">
+					<div class="card-header bg-primary text-white text-center text-monse">
+						<h5>Promedio en número de calificaciones realizadas a {{tipo}}</h5>
+					</div>
+					<div class="card-body">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-12">
+									<div style="display: block;">
+										<canvas baseChart width="400" height="80"
+										[datasets]="lineChartDataprom"
+										[labels]="lineChartLabelsprom"
+										[options]="lineChartOptions"
+										[colors]="lineChartColors"
+										[legend]="lineChartLegend"
+										[chartType]="lineChartType"
+										></canvas>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</div>

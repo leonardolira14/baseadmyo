@@ -1,0 +1,345 @@
+<div class="container-fluid">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="banner" [ngStyle]="{'background-image':banner}">
+						<div class="logo" [ngStyle]="{'background-image':logo}">	
+						</div>
+					</div>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-8 titulo_Empresa">
+								<div class="row">
+									<div class="col-9 ">
+										<h3>{{datosperfilbuscado.datosempresa.Razon_Social}}</h3>
+									</div>
+									<div class="col-9 ">
+										<h5>{{datosperfilbuscado.datosempresa.Nombre_Comer}}</h5>
+									</div>
+									<div class="col-9 ">
+										<h5>{{datosperfilbuscado.datosempresa.RFC}}</h5>
+									</div>
+								</div>
+							</div>
+							<div class="col-4">
+								<div class="row">
+									<div class="col-12 text-right">
+										<h6 class="text-muted">Sitio Web <a href="{{datosperfilbuscado.datosempresa.Sitio_Web}}" target="_blank">{{datosperfilbuscado.datosempresa.Sitio_Web}}</a></h6>
+									</div>
+									<div class="col-12 text-right">
+										<h6 class="text-muted">Dirección: {{datosperfilbuscado.datosempresa.Direc_Fiscal+", "+datosperfilbuscado.datosempresa.Colonia+", "+datosperfilbuscado.datosempresa.Deleg_Mpo+", "+datosperfilbuscado.datosempresa.Estado+", "+datosperfilbuscado.datosempresa.Pais }}</h6>
+									</div>
+									<div class="col-12 text-right">
+										<h6 class="text-muted" *ngIf='datosperfilbuscado.telefonos'>Teléfono:
+											<span *ngFor="let telefono of datosperfilbuscado.telefonos">{{telefono.Numero+"("+telefono.Tipo_Numero+"), "}}</span>
+										</h6>
+									</div>
+
+								</div>
+							</div>
+						</div>						
+					</div>
+					
+					<div class="col-12 m-t-30">
+						<ngb-tabset>
+							<ngb-tab title="Imagen">
+								<ng-template ngbTabContent>
+									<div class="container-fluid resumen">
+										<div class="row">
+											<div class="col-12">
+												<div class="card contenedor">
+													<div class="card-header  container text-center text-white bg-primary">
+														<div class="row">
+															<div class="col-12 text-uppercase text-monse">
+																<h5>TU IMAGEN COMO CLIENTE</h5> 
+															</div>
+															<div class="col-12 text-uppercase text-monse">
+																<h6>BASADO EN CALIFICACIONES DE PROVEEDORES EN 12 MESES.</h6>
+															</div>
+														</div>
+													</div>
+													<div class="card-body container-fluid">
+														<div class="row">
+															<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
+																
+															</div>
+															<div class="col-6 ">
+																<div class="card  resumen container">
+																	<div class="row">
+																		<div class="col-12 titulo text-center text-primary text-uppercase">
+																			Número de Calificaciones en 12 meses
+																		</div> 
+																		<div class="col-12 numero">
+																			{{datosperfilbuscado.ImagenCliente.totalCalif}}
+																		</div>
+																		<div class="col-12 variacion {{datosperfilbuscado.ImagenCliente.aumento.class}}">
+																			{{datosperfilbuscado.ImagenCliente.aumento.num}}
+																			<i *ngIf="datosperfilbuscado.ImagenCliente.aumento.class=='red'" class="fas fa-arrow-down"></i>
+																			<i *ngIf="datosperfilbuscado.ImagenCliente.aumento.class=='green'" class="fas fa-arrow-up"></i>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-6 ">
+																<div class="card  resumen container">
+																	<div class="row">
+																		<div class="col-12 titulo text-center text-primary text-uppercase">
+																			Calificación Media en 12 meses
+																		</div> 
+																		<div class="col-12 numero">
+																			{{datosperfilbuscado.ImagenCliente.Media}}
+																		</div>
+																		<div class="col-12 variacion {{datosperfilbuscado.ImagenCliente.aumentop.class}}">
+																			{{datosperfilbuscado.ImagenCliente.aumentop.num}}
+																			<i *ngIf="datosperfilbuscado.ImagenCliente.aumentop.class=='red'" class="fas fa-arrow-down"></i>
+																			<i *ngIf="datosperfilbuscado.ImagenCliente.aumentop.class=='green'" class="fas fa-arrow-up"></i>
+
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-6 m-t-30">
+																<div class="card resumen  container">
+																	<div class="row">
+																		<div class="col-12 titulo text-center text-primary text-uppercase">
+																			Calificación Media sobre la Calidad en 12 meses
+																		</div> 
+																		<div class="col-12 numero">
+																			{{datosperfilbuscado.ImagenCliente.Calidad.media}}
+																		</div>
+																		<div class="col-12 variacion {{datosperfilbuscado.ImagenCliente.Calidad.incremento.class}}">
+																			{{datosperfilbuscado.ImagenCliente.Calidad.incremento.num}} <i *ngIf="datosperfilbuscado.ImagenCliente.Calidad.incremento.class=='red'" class="fas fa-arrow-down"></i>
+																			<i *ngIf="datosperfilbuscado.ImagenCliente.Calidad.incremento.class=='green'" class="fas fa-arrow-up"></i>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-6 m-t-30">
+																<div class="card resumen  container">
+																	<div class="row">
+																		<div class="col-12 titulo text-center text-primary text-uppercase">
+																			Calificación Media de Cumplimiento en 12 meses
+																		</div> 
+																		<div class="col-12 numero">
+																			{{datosperfilbuscado.ImagenCliente.Cumplimiento.media}}
+																		</div>
+																		<div class="col-12 variacion {{datosperfilbuscado.ImagenCliente.Cumplimiento.incremento.class}}">
+																			{{datosperfilbuscado.ImagenCliente.Cumplimiento.incremento.num}}<i *ngIf="datosperfilbuscado.ImagenCliente.Cumplimiento.incremento.class=='red'" class="fas fa-arrow-down"></i>
+																			<i *ngIf="datosperfilbuscado.ImagenCliente.Cumplimiento.incremento.class=='green'" class="fas fa-arrow-up"></i>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="col-12 m-t-30">
+												<div class="card contenedor">
+													<div class="card-header  container text-center text-white bg-primary">
+														<div class="row">
+															<div class="col-12 text-uppercase text-monse">
+																<h5>IMAGEN COMO PROVEEDOR</h5> 
+															</div>
+															<div class="col-12 text-uppercase text-monse">
+																<h6>BASADO EN CALIFICACIONES DE PROVEEDORES EN 12 MESES.</h6>
+															</div>
+														</div>
+													</div>
+													<div class="card-body container-fluid">
+														<div class="row">
+															<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
+																
+															</div>
+															<div class="col-6 ">
+																<div class="card  resumen container">
+																	<div class="row">
+																		<div class="col-12 titulo text-center text-primary text-uppercase">
+																			Número de Calificaciones en 12 meses
+																		</div> 
+																		<div class="col-12 numero">
+																			{{datosperfilbuscado.ImagenProveedor.totalCalif}}
+																		</div>
+																		<div class="col-12 variacion {{datosperfilbuscado.ImagenProveedor.aumento.class}}">
+																			{{datosperfilbuscado.ImagenProveedor.aumento.num}}
+																			<i *ngIf="datosperfilbuscado.ImagenProveedor.aumento.class=='red'" class="fas fa-arrow-down"></i>
+																			<i *ngIf="datosperfilbuscado.ImagenProveedor.aumento.class=='green'" class="fas fa-arrow-up"></i>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-6 ">
+																<div class="card  resumen container">
+																	<div class="row">
+																		<div class="col-12 titulo text-center text-primary text-uppercase">
+																			Calificación Media en 12 meses
+																		</div> 
+																		<div class="col-12 numero">
+																			{{datosperfilbuscado.ImagenProveedor.Media}}
+																		</div>
+																		<div class="col-12 variacion {{datosperfilbuscado.ImagenProveedor.aumentop.class}}">
+																			{{datosperfilbuscado.ImagenProveedor.aumentop.num}}
+																			<i *ngIf="datosperfilbuscado.ImagenProveedor.aumentop.class=='red'" class="fas fa-arrow-down"></i>
+																			<i *ngIf="datosperfilbuscado.ImagenProveedor.aumentop.class=='green'" class="fas fa-arrow-up"></i>
+
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-6 m-t-30">
+																<div class="card resumen  container">
+																	<div class="row">
+																		<div class="col-12 titulo text-center text-primary text-uppercase">
+																			Calificación Media sobre la Calidad en 12 meses
+																		</div> 
+																		<div class="col-12 numero">
+																			{{datosperfilbuscado.ImagenProveedor.Calidad.media}}
+																		</div>
+																		<div class="col-12 variacion {{datosperfilbuscado.ImagenProveedor.Calidad.incremento.class}}">
+																			{{datosperfilbuscado.ImagenProveedor.Calidad.incremento.num}} <i *ngIf="datosperfilbuscado.ImagenProveedor.Calidad.incremento.class=='red'" class="fas fa-arrow-down"></i>
+																			<i *ngIf="datosperfilbuscado.ImagenProveedor.Calidad.incremento.class=='green'" class="fas fa-arrow-up"></i>
+																		</div>
+																	</div>
+																</div>
+															</div>
+															<div class="col-6 m-t-30">
+																<div class="card resumen  container">
+																	<div class="row">
+																		<div class="col-12 titulo text-center text-primary text-uppercase">
+																			Calificación Media de Cumplimiento en 12 meses
+																		</div> 
+																		<div class="col-12 numero">
+																			{{datosperfilbuscado.ImagenProveedor.Cumplimiento.media}}
+																		</div>
+																		<div class="col-12 variacion {{datosperfilbuscado.ImagenProveedor.Cumplimiento.incremento.class}}">
+																			{{datosperfilbuscado.ImagenProveedor.Cumplimiento.incremento.num}}<i *ngIf="datosperfilbuscado.ImagenProveedor.Cumplimiento.incremento.class=='red'" class="fas fa-arrow-down"></i>
+																			<i *ngIf="datosperfilbuscado.ImagenProveedor.Cumplimiento.incremento.class=='green'" class="fas fa-arrow-up"></i>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</ng-template>
+							</ngb-tab>
+							<ngb-tab title="Productos o Servicios">
+								<ng-template ngbTabContent>
+									<div class="container-fluid">
+										<div class="row">
+											<div class="col-12">
+												<div class="card  contenedor m-t-40">
+													<div class="card-header bg-primary text-uppercase text-monse">
+														<h5>Catálogo de Productos y Servicios</h5> 
+														
+													</div>
+													<div class="card-body">
+														<div class="container">
+															<div class="row">
+
+																<div class="col-4 m-t-20 card-prod" *ngFor="let producto of datosperfilbuscado.Productos">
+																	<div class="card" >
+																		<img src="{{producto.Foto===null?'src/assets/img/foto-no-disponible.jpg':rutaserver+'assets/img/logoprod/'+producto.Foto}}" class="card-img-top" alt="">
+
+																		<div class="card-body">
+																			<h5 class="card-title">{{producto.Producto}}</h5>
+																			<p class="card-text">{{(producto.Descripcion.length>80)? (producto.Descripcion | slice:0:80)+'...':producto.Descripcion}}</p>
+																			
+																		</div>
+																	</div>
+																</div>
+															</div>
+
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									
+								</ng-template>
+							</ngb-tab>
+							<ngb-tab title="Marcas">
+								<ng-template ngbTabContent>
+									<div class="card m-t-30">
+										<div class="card-header bg-primary text-uppercase text-monse ">
+											<h5>Marcas</h5> 
+										</div>
+										<div class="card-body lista">
+											<ul class="list-group d-block w-100">
+												<li *ngFor="let marca of datosperfilbuscado.marcas" class="list-group-item">
+													<div class="row">
+
+														<div class="col-3 text-center">
+
+															<img *ngIf="marca.logo==''" class="img-fluid rounded-circle img-marcas" src="src/assets/img/foto-no-disponible.jpg" alt="">
+															<img *ngIf="marca.logo!==''" class="img-fluid rounded-circle img-marcas" src="{{rutaserver}}/assets/img/logosmarcas/{{marca.logo}}" alt="">
+														</div>
+														<div class="col-9 ">
+															<h5 class="text-gris3">{{marca.Marca}}</h5>
+														</div>
+
+													</div>
+
+												</li>						 
+											</ul>
+										</div>
+
+									</div>
+								</ng-template>
+							</ngb-tab>
+							<ngb-tab title="Certificaciones">
+								<ng-template ngbTabContent>
+									<div class="card  contenedor normas m-t-40">
+										<div class="card-header bg-primary text-uppercase text-monse">
+											<h5>Catálogo de Certificaciones</h5> 
+											
+										</div>
+										<div class="card-body">
+											<div class="container">
+												<div class="row">
+
+													<div class="col-3 m-t-20 card-prod" *ngFor="let certificacion of datosperfilbuscado.Normas">
+														<div class="card" >
+
+
+															<div class="card-body">
+																<h5 class="card-title">{{certificacion.Norma}}</h5>
+																<p class="card-text">
+																	Fecha de Certificación:{{certificacion.Fecha}}
+																</p>
+																<p class="card-text">
+																	Calificación:{{certificacion.Calif}}
+																</p>
+																<p class="card-text">
+																	<a target="_blanck" href="{{serverruta+'assets/certificaciones/'+certificacion.Archivo}}">Ver Archivo: {{certificacion.Archivo}}</a>
+																</p>
+
+															</div>
+														</div>
+													</div>
+												</div>
+
+											</div>
+										</div>
+									</div>
+								</ng-template>
+							</ngb-tab>
+
+						</ngb-tabset>
+					</div>			
+				</div>
+			</div>
+			
+		</div>
+	</div>
+</div>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</div>	

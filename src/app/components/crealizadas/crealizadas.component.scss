@@ -1,0 +1,76 @@
+
+@import '../../../styles';
+
+.btn-ir{
+	border-top: 2px solid #fff;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+    padding: 1rem;
+    border: 2px solid map-get($colors,blanco);
+    &:hover{
+		border-top: 2px solid map-get($colors,primary);
+		cursor: pointer;
+    }
+	&.active{
+		border-top: 2px solid map-get($colors,primary);
+	}
+	& span{
+		background: map-get($colors,primary);
+		color:#fff;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-content: center;
+		align-items: center;
+	    width: 50px;
+	    height: 50px;
+	    font-size: 1.5rem;
+	}
+	& label{
+		font-family:map-get($fonts,monse);
+		color:map-get($colors,primary);
+		font-size:1rem;
+		text-transform: uppercase;
+	}
+}
+
+.tarjeta1{
+	overflow: hidden;
+	max-height: 190px;
+	& .card-title,.card-text{
+		text-align: justify;
+		color:map-get($gamagrises,girsmenu);
+	}
+}
+.form-group{
+	& label{
+		text-transform: capitalize;
+		color:map-get($colors,primary);
+		font-family: map-get($fonts,monse);
+		font-size: 1.2rem;
+		display: block;
+		text-align: center;
+	}
+}
+.card-footerr{
+	& div.btn-card{
+		width: 40px;
+    height: 40px;
+    color: #fff;
+    background: map-get($colors,primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 10px;
+   font-size: 1.2rem;;
+    
+	cursor:pointer;
+
+	&:hover{
+		background: map-get($colors,secondary);
+		}
+	}
+}

@@ -1,0 +1,20 @@
+export interface RegistroInterface{
+	Razon_Social?:string;
+	Nombre_Comercial?:string;
+	RFC?:string;
+	Tipo_Persona?:string;
+	Sector?:string;
+	SubSector?:string;
+	Rama?:string;
+	Nombre?:string;
+	Apellidos?:string;
+	Correo1?:string;
+	Correo2?:string;
+	Clave1?:string;
+	Clave2?:string;
+	Productoadmyo?:string;
+	Precioadmyo?:any;
+	ProductoQval?:string;
+	PrecioQval?:any;
+	NlicenasQval?:any;
+}

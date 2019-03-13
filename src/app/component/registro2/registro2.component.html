@@ -1,0 +1,196 @@
+<div  class="fixed-top w-100 alert alert-danger alert-dismissible fade  alerterror" role="alert">
+  {{textalert}}
+  
+</div>
+<div class="container menu-reg">
+	
+	<div class="row m-t-40 m-b-40">
+		<div class="ray"></div>
+		<div class="col-3 d-flex justify-content-start">
+			<a routerLink="/preciosadmyo"><div class="paso ">1</div></a>
+		</div>
+		<div class="col-3 d-flex justify-content-center">
+			<a routerLink="/preciosqval"><div class="paso ">2</div></a>
+		</div>
+		<div class="col-3 d-flex justify-content-center"><a routerLink="/datosregistro"><div class="paso active">3</div></a></div>
+		<div class="col-3 d-flex justify-content-end"><a routerLink="/confirmarcompra"><div class="paso ">4</div></a></div>
+	</div>
+</div>
+<form  #formregistro="ngForm" (submit)="enviarform()" class="container-fluid">
+	<div class="row">
+		<div class="col-8">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					Datos de la empresa
+				</div>
+				<div class="card-body row">
+					<div class="form-group col-12">
+					    <label class="text-open-sans text-gris3" for="">* Razón Social/Nombre</label>
+					    <input type="text" name="Razon_Social"   [(ngModel)]="registroi.Razon_Social" class="form-control" placeholder=""> 
+					 </div>
+					 <div class="form-group col-6">
+					    <label class="text-open-sans text-gris3" >* Nombre Comercial</label>
+					    <input type="text" name="Nombre_Comercial"  [(ngModel)]="registroi.Nombre_Comercial" class="form-control" placeholder=""> 
+					 </div>
+					 <div class="form-group col-6">
+					    <label class="text-open-sans text-gris3" for="">* R.F.C.(REGISTRO FEDERAL DE CONTRIBUYENTES)</label>
+					    <input [(ngModel)]="registroi.RFC"  name="RFC" type="text" class="form-control" placeholder=""> 
+					 </div>
+					 <div class="form-group col-6">
+					    <label class="text-open-sans text-gris3" for="">* Tipo de Persona</label>
+					    <div class="input-group">
+							
+						   <select name="Tipo_Persona"  [(ngModel)]="registroi.Tipo_Persona"  class="form-control">
+					    	<option value="">Seleccciona</option>
+					    	<option value="PF">Persona Fisica Actividad Empresarial</option>
+					    	<option value="PM">Persona Moral</option>
+					   		</select>
+					   		<div class="input-group-prepend">
+							    <span triggers="mouseenter:mouseleave" ngbPopover="Una persona física es todo miembro de la especie humana con la posibilidad de adquirir derechos y contraer obligaciones. Mientras que las personas morales son un conjunto de personas físicas que se unen con un fin especifico, por ejemplo formar una sociedad o una empresa." container="body" class="ayuda input-group-text bg-blanco text-primary" id="basic-addon1">?</span>
+							</div>
+						</div>
+					   
+					    
+					 </div>
+					 <div class="form-group col-6">
+					    <label class="text-open-sans text-gris3" for="">* Sector</label>
+					    <div class="input-group">
+							
+						  	<select name="Sector"  [(ngModel)]="registroi.Sector" (change)="subsector()"  class="form-control">
+					    		<option value="">Seleccciona</option>
+					    		<option [value]="sector.IDNivel1" *ngFor="let sector of sectores">{{sector.Giro}}</option>
+					    	</select>
+					    	<div class="input-group-prepend">
+							    <span triggers="mouseenter:mouseleave" ngbPopover="Giro Principal al que pertence su empresa" class="ayuda input-group-text bg-blanco text-primary" id="basic-addon1">?</span>
+							</div>
+						</div>
+					 </div>
+					 <div class="form-group col-6">
+					    <label class="text-open-sans text-gris3" for="">SubSector</label>
+					    <div class="input-group">
+							
+						  	<select name="SubSector" (change)="rama()"  [(ngModel)]="registroi.SubSector" class="form-control">
+					    		<option value="">Selecciona</option>
+					    		<option [value]="sector.IDNivel2" *ngFor="let sector of subsectores">{{sector.Giro}}</option>
+					    	</select>
+					    	<div class="input-group-prepend">
+							    <span triggers="mouseenter:mouseleave" ngbPopover="SubGiro al que pertence su empresa" class="ayuda input-group-text bg-blanco text-primary" id="basic-addon1">?</span>
+							</div>
+						</div>
+					 </div>
+					 <div class="form-group col-6">
+					    <label class="text-open-sans text-gris3" for="">Rama</label>
+					    <div class="input-group">
+							
+						  	<select name="Rama"  [(ngModel)]="registroi.Rama"  class="form-control">
+					    		<option value="">Selecciona</option>
+					    		<option [value]="sector.IDGiro3" *ngFor="let sector of ramas">{{sector.Giro}}</option>
+					    	</select>
+					    	<div class="input-group-prepend">
+							    <span triggers="mouseenter:mouseleave" ngbPopover="Rama sobre la que valoran sus clientes/proveedores" class="ayuda input-group-text bg-blanco text-primary" id="basic-addon1">?</span>
+							</div>
+						</div>
+
+					 </div>
+				</div>
+			</div>
+			<div class="card m-t-20 m-b-20">
+				<div class="card-header bg-primary text-white">
+					Datos del Usuario Principal
+				</div>
+				<div class="card-body row">
+					<div class="form-group col-6">
+					    <label class="text-open-sans text-gris3" for="">* Nombre(S)</label>
+					    <input  name="Nombre" type="text" [(ngModel)]="registroi.Nombre" class="form-control" placeholder=""> 
+					 </div>
+					 <div class="form-group col-6">
+					    <label class="text-open-sans text-gris3" for="">Apellidos</label>
+					    <input  name="Apellido" type="text" [(ngModel)]="registroi.Apellidos" class="form-control" placeholder=""> 
+					 </div>
+					 <div class="form-group col-6">
+					    <label class="text-open-sans text-gris3" for="">* Correo Electrónico</label>
+					    <input  name="Correo1" type="text" [(ngModel)]="registroi.Correo1" class="form-control" placeholder=""> 
+					 </div>
+					 <div class="form-group col-6">
+					    <label class="text-open-sans text-gris3" for="">* Confirmar Correo Electrónico</label>
+					    <input  name="Correo2" type="text" [(ngModel)]="registroi.Correo2" class="form-control" placeholder=""> 
+					 </div>
+					  <div class="form-group col-6">
+					    <label class="text-open-sans text-gris3" for="">* Contraseña</label>
+					    <input  type="password" name="Clave1" [(ngModel)]="registroi.Clave1" class="form-control" placeholder=""> 
+					 </div>
+					 <div class="form-group col-6">
+					    <label class="text-open-sans text-gris3" for="">* Confirmar Contraseña</label>
+					    <input  type="password" name="Clave2" [(ngModel)]="registroi.Clave2" class="form-control" placeholder=""> 
+					 </div>
+				</div>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="card">
+				<div class="card-header bg-primary text-white">
+					Productos en el Carrito	
+				</div>
+				<div class="card-body">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-8">
+								{{producto}}
+							</div>
+							<div class="col-4 text-right">
+								{{precioproducto | currency}}
+							</div>
+							<div class="col-8 m-t-10">
+								{{productoqval}}<span *ngIf="licenciasqval">, {{precioproductoqval | currency}}</span>
+							</div>
+							<div class="col-4 text-right m-t-10">
+								<span *ngIf="!licenciasqval"> {{precioproductoqval | currency}}</span>
+								<input min="1" value="1" max="10000" #box *ngIf="licenciasqval" type="number" (keyup)="mult(box.value)" class="form-control">
+							</div>
+
+							<div class="col-12 ray m-t-20">
+								
+							</div>
+							<div class="col-8  text-right m-t-20">
+								Total a Pagar
+							</div>
+							<div class="col-4 text-right m-t-20">
+								<strong class="text-primary">{{total | currency}}</strong>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row m-t-40">
+				<div class="col-6 text-left">
+					<button class="btn btn-danger">Cambiar Plan</button>
+				</div>
+				<div class="col-6 text-right">
+					<button class="btn btn-secondary">Siguiente</button>
+				</div>
+				<div class="col-12 m-t-20">
+					<small class="text-muted">Nota: Todos los campos marcados con * son necesarios para el registro.</small>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</form>
+<div *ngIf="spinner" class="spiner_load d-flex justify-content-center align-items-center">
+	<div class="spinner-border spinner-grow-lg text-white" role="status">
+	  <span class="sr-only">Loading...</span>
+	</div>
+	<br>
+</div>
+<swal
+  #errorrfcSwal
+  title="Error!"
+  text="El RFC que intenta registrar no es valido"
+  type="warning">
+</swal>
+<swal
+  #siccesSwal
+  title="Exito!"
+  text="Gracias por su registro, verifique su bandeja de entrada en dónde le llegaron instrucciones para activar su cuenta"
+  type="success">
+</swal>

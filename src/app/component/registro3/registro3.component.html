@@ -1,0 +1,116 @@
+<div  class="fixed-top w-100 alert alert-danger alert-dismissible fade  alerterror" role="alert">
+    
+</div>
+<div class="container menu-reg">
+	<div class="row m-t-40 m-b-40">
+		<div class="ray"></div>
+		<div class="col-3 d-flex justify-content-start">
+			<a routerLink="/preciosadmyo"><div class="paso ">1</div></a>
+		</div>
+		<div class="col-3 d-flex justify-content-center">
+			<a routerLink="/preciosqval"><div class="paso ">2</div></a>
+		</div>
+		<div class="col-3 d-flex justify-content-center"><a routerLink="/datosregistro"><div class="paso ">3</div></a></div>
+		<div class="col-3 d-flex justify-content-end"><a routerLink="/confirmarcompra"><div class="paso active">4</div></a></div>
+	</div>
+</div>
+<form #formpag="ngForm"   class="container">
+	<div class="row">
+		<div class="col-col-12 col-md-5 col-xl-5 col-lg-5">
+			<div class="card">
+				<div class="card-header bg-primary">
+					Productos a Pagar
+				</div>
+				<div class="card-body">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-8">
+								{{producto}}
+							</div>
+							<div class="col-4 text-right">
+								{{precioproducto | currency}}
+							</div>
+							<div class="col-8 m-t-10">
+								{{productoqval}}
+							</div>
+							<div class="col-4 text-right m-t-10">
+								<span > {{precioproductoqval | currency}}</span>
+								
+							</div>
+
+							<div class="col-12 ray m-t-20">
+								
+							</div>
+							<div class="col-8  text-right m-t-20">
+								Total a Pagar
+							</div>
+							<div class="col-4 text-right m-t-20">
+								<strong class="text-primary">{{total | currency}}</strong>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-col-12 col-md-7 col-xl-7 col-lg-7">
+			<div class="card">
+				<div class="card-header bg-primary">
+					Datos de Pago
+				</div>
+				<div class="card-body">
+					<div class="row">
+						<div class="col-12 m-t-20 m-b-20">
+							<label class="text-open-sans text-gris3" >* Método de Pago: {{pago.Metodo}}</label>
+						</div>
+						<div class="form-group col-12 ">
+							<div class="w-100 text-center">
+								<div class="btn-group btn-group-toggle " [(ngModel)]="pago.Metodo" ngbRadioGroup name="radioBasic">
+								<label ngbButtonLabel class="btn-success">
+									<input  ngbButton type="radio" value="Oxxo">OXXO
+								</label>
+								<label ngbButtonLabel class="btn-success">
+									<input ngbButton type="radio"  value="Tarjeta"> Tarjeta de Crédito/Débito
+								</label>
+								<label ngbButtonLabel class="btn-success">
+									<input ngbButton type="radio"  value="Spei"> SPEI
+								</label>
+							</div>						 
+						</div>
+					</div>
+						<div class="form-group col-12 m-t-20">
+							    <label class="text-open-sans text-gris3" >* Nombre del Titular</label>
+							    <input type="text" [(ngModel)]="pago.Nombre" name="Nombre"  class="form-control" placeholder=""> 
+						</div>
+						<div class="form-group col-12">
+							    <label class="text-open-sans text-gris3" >* Correo Electrónico</label>
+							    <input type="text" [(ngModel)]="pago.Correo" name="Correo"  class="form-control" placeholder=""> 
+						</div>
+						<div class="form-group col-12">
+							    <label class="text-open-sans text-gris3" > Número de Teléfono</label>
+							    <input type="text" [(ngModel)]="pago.Movil" name="Movil" class="form-control" placeholder=""> 
+						</div>
+						<div class="form-group col-12" *ngIf='pago.Metodo=="Tarjeta"'>
+							    <label class="text-open-sans text-gris3" > Número de Tarjeta Débito/Crédito (16 Digitos)</label>
+							    <input type="text"  [(ngModel)]="pago.Tarjeta" name="Tarjeta" class="form-control" placeholder=""> 
+						</div>
+						<div class="form-group col-4 " *ngIf='pago.Metodo=="Tarjeta"'>
+							    <label class="text-open-sans text-gris3" > CVV</label>
+							    <input type="text" [(ngModel)]="pago.cvv" name="cvv" class="form-control" placeholder=""> 
+						</div>
+						<div class="form-group col-4 " *ngIf='pago.Metodo=="Tarjeta"'>
+							    <label class="text-open-sans text-gris3" > Mes</label>
+							    <input type="text" [(ngModel)]="pago.mes" name="mes" class="form-control" placeholder=""> 
+						</div>
+						<div class="form-group col-4" *ngIf='pago.Metodo=="Tarjeta"'>
+							    <label class="text-open-sans text-gris3" > Año</label>
+							    <input type="text"   [(ngModel)]="pago.anio" name="anio" class="form-control" placeholder=""> 
+						</div>
+						<div class="form-group col-12 text-center">
+						    <button class="btn btn-secondary" (click)="pagar()"><i class="fas fa-cash-register"></i> Pagar</button>
+						</div>
+						 </div>
+					</div>
+				</div>
+			</div>
+		</div>
+</form>

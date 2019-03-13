@@ -1,0 +1,167 @@
+<div class="container-fluid  bg-gris1 p-t-40 p-b-40">
+	<div class="conatiner">
+		<div class="row">
+			<div class="col-12 float-right">
+				<div class="btn-group" role="group" aria-label="Basic example">
+				  <button (click)="cambiomes('A')" type="button" class="btn btn-secondary">12 Meses</button>
+				  <button (click)="cambiomes('M')" type="button" class="btn btn-secondary">30 Dias</button>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="card  contenedor m-t-40">
+					<div class="card-header bg-primary text-uppercase text-monse">
+						<h5>Visitas a tu Perfil en {{fechasvisitas}}</h5> 
+					</div>
+					<div class="card-body">
+						<div class="container">
+							<div class="row">
+								<div class="col-12">
+									<div style="display: block">
+									  <canvas baseChart
+									  		  [colors]="doughnutColors"
+									          [data]="pieChartData"
+									          [labels]="pieChartLabels"
+									          [chartType]="pieChartType"
+									          (chartHover)="chartHovered($event)"
+									          (chartClick)="chartClicked($event)"></canvas>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-6">
+				<div class="card  contenedor m-t-40">
+					<div class="card-header bg-primary text-uppercase text-monse">
+						<h5>No de Visitas en {{fechasvisitas}}</h5> 
+					</div>
+					<div class="card-body">
+						<div class="container cont-num d-flex justify-content-center align-items-center">
+							<div class="row">
+								<div class="col-12 numvisitas">
+									{{numerovisitas}}
+									
+								</div>	
+									
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12">
+				<div class="card  contenedor m-t-40">
+					<div class="card-header bg-primary text-uppercase text-monse">
+						<h5>Evolución de Visitas en {{fechasvisitas}}</h5> 
+					</div>
+					<div class="card-body">
+						<div class="container area">
+							<div class="row">
+								<div class="col-12">
+									<div style="display: block">
+									    <canvas baseChart width="400" height="100"
+							                [datasets]="lineChartData"
+							                [labels]="lineChartLabels"
+							                [options]="lineChartOptions"
+							                [colors]="lineChartColors"
+							                [legend]="lineChartLegend"
+							                [chartType]="lineChartType"
+							                (chartHover)="chartHovered($event)"
+							                (chartClick)="chartClicked($event)">
+							            </canvas>
+								  </div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12" *ngIf="clientes?.length > 0">
+				<div class="card  contenedor tarjeta m-t-40">
+					<div class="card-header bg-primary text-uppercase text-monse">
+						<h5>Lista Visitas de Clientes en {{fechasvisitas}}</h5> 
+					</div>
+					<div class="card-body">
+						<div class="container area">
+							<div class="row">
+								<div *ngFor='let cliente of clientes' class="col-12 col-md-4 col-lg-4 col-xl-4">
+									<div class="card">
+									  <img src="{{cliente.Logo===''?'assets/img/foto-no-disponible.jpg':serverruta+'img/logosEmpresas/'+cliente.Logo}}" class="card-img-top" >
+									  <div class="card-body tarjeta1">
+									    <h5 class="card-title">{{cliente.Razon_Social}}</h5>
+									    <p class="card-text">Nombre Comercial:{{cliente.Nombre_Comer}}</p>
+									    <div class="btn-group" role="group" aria-label="Basic example">
+										 <button (click)="visitar(cliente.num)"  class="btn btn-primary">Visitar Pefil</button>
+										  <button type="button" class="btn btn-secondary">Calificar</button>
+										</div>
+									    
+									  </div>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12" *ngIf="proveedores?.length > 0">
+				<div class="card  contenedor tarjeta m-t-40">
+					<div class="card-header bg-primary text-uppercase text-monse">
+						<h5>Lista Visitas de Clientes en {{fechasvisitas}}</h5> 
+					</div>
+					<div class="card-body">
+						<div class="container area">
+							<div class="row">
+								<div *ngFor='let cliente of proveedores' class="col-12 col-md-4 col-lg-4 col-xl-4">
+									<div class="card">
+									  <img src="{{cliente.Logo===''?'assets/img/foto-no-disponible.jpg':serverruta+'img/logosEmpresas/'+cliente.Logo}}" class="card-img-top" >
+									  <div class="card-body tarjeta1">
+									    <h5 class="card-title">{{cliente.Razon_Social}}</h5>
+									    <p class="card-text">Nombre Comercial:{{cliente.Nombre_Comer}}</p>
+									    <div class="btn-group" role="group" aria-label="Basic example">
+										 <button (click)="visitar(cliente.num)"  class="btn btn-primary">Visitar Pefil</button>
+										  <button type="button" class="btn btn-secondary">Calificar</button>
+										</div>
+									    
+									  </div>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12" *ngIf="otros?.length > 0">
+				<div class="card  tarjeta contenedor m-t-40">
+					<div class="card-header bg-primary text-uppercase text-monse">
+						<h5>Lista Visitas de otras empresas en {{fechasvisitas}}</h5> 
+					</div>
+					<div class="card-body">
+						<div class="container area">
+							<div class="row">
+								<div *ngFor='let cliente of otros' class="col-12 col-md-3 col-lg-3 col-xl-3">
+									<div class="card">
+									  <img src="{{cliente.Logo===''?'assets/img/foto-no-disponible.jpg':serverruta+'img/logosEmpresas/'+cliente.Logo}}" class="card-img-top" >
+									  <div class="card-body tarjeta1">
+									    <h5 class="card-title">{{cliente.Razon_Social}}</h5>
+									    <p class="card-text">Nombre Comercial:{{cliente.Nombre_Comer}}</p>
+									    <div class="btn-group d-flex justify-content-center" role="group" aria-label="Basic example">
+										 <button (click)="visitar(cliente.num)"  class="btn btn-primary mr-3">Visitar Pefil</button>
+										  <button type="button" class="btn btn-secondary">Calificar</button>
+										</div>
+									    
+									  </div>
+									</div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</div>
