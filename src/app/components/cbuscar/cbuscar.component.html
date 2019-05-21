@@ -1,20 +1,193 @@
 <div class="container-fluid  bg-gris1 p-t-40 p-b-40">
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-4">
-				<div class="card  contenedor m-t-40">
-					<div class="card-header bg-primary text-uppercase text-monse">
-						<h5>Filtros de Búsqueda</h5> 
+		<div class="row m-t-40">
+			<div class="col-3">
+				<mat-card class="text-monse text-gris3">
+					<span class="text-monse text-gris3"><strong>{{palabra}}</strong></span>
+					<br>
+					<small class="text-muted">{{numresultados}}</small>
+					<div class="container-fluid m-t-40">
+						<div class="row">
+							
+							<div class="col-12 m-t-0">
+									<strong>Calificaciones Recibidas</strong>
+							</div>
+							<div class="col-12 m-t-10">
+									<mat-radio-group [(ngModel)]="model.Calificacion">	
+										<ul>
+											<li ><mat-radio-button color="primary" class="example-margin" value='0-10'>Menor a 10</mat-radio-button></li>
+											<li ><mat-radio-button color="primary" class="example-margin" value='11-50'>de 11 a 50</mat-radio-button></li>
+											<li ><mat-radio-button color="primary" class="example-margin" value='51-100'>de 51 a 100</mat-radio-button></li>
+											<li ><mat-radio-button color="primary" class="example-margin" value='101-250'>de 101 a 250</mat-radio-button></li>
+											<li ><mat-radio-button color="primary"  class="example-margin" value='251-500'>de 201 a 500</mat-radio-button></li>
+											<li ><mat-radio-button color="primary"  class="example-margin" value='501-1000'>Màs de 501</mat-radio-button></li>
+											
+											<li class="w-100 m-t-20">
+												<div class="container-fluid">
+													<div class="row">
+														<mat-form-field class="col-4" >
+															<input #inicio matInput placeholder="Min" value="0">
+														</mat-form-field>
+														<mat-form-field  class="col-4">
+																<input #fin matInput placeholder="Max" value="0">
+														</mat-form-field>
+														<div class="col-4">
+															<button (click)="porcalifcar(inicio.value,fin.value)" mat-mini-fab color="warn"><i class="fas fa-angle-right"></i></button>
+														</div>
+													</div>
+												</div>
+											</li>
+										</ul>
+									</mat-radio-group>
+	
+								</div>
+							
+							<div class="col-12 m-t-10">
+									<mat-form-field>
+											<mat-label>Ubicaciòn:</mat-label>
+											<mat-select [(ngModel)]="model.Ubicacion">
+													<mat-option  *ngFor=" let estado of ubucaciones"  [value]='estado.Siglas'>{{ estado.estadonombre }}</mat-option>
+											</mat-select>
+										</mat-form-field>
+							</div>
+							
+								<div class="col-12 m-t-10">
+										<section class="example-section">
+												<mat-checkbox class="example-margin" color="primary"  [(ngModel)]="model.Certificaciones">Certificaciones</mat-checkbox>
+										</section>
+								</div>
+								
+									<div class="col-12 m-t-10">
+											<section class="example-section">
+													<mat-checkbox class="example-margin" color="primary"  [(ngModel)]="model.Asociaciones">Asociaciones</mat-checkbox>
+											</section>
+									</div>
+							
+							
+							<div class="col-12 text-center m-t-20">
+								<div class="btn-group d-flex" role="group" aria-label="Basic example">
+										<button (click)="limpiarfiltro()" class="btn btn-danger mr-3">Limpiar</button>
+										<button (click)="buscar_filtro()" class="btn btn-succes">Aplicar</button>
+								</div>
+								
+							</div>
+						</div>
 					</div>
-				</div>
+				</mat-card>
 			</div>
-			<div class="col-8">
-				<div class="card  contenedor m-t-40">
-					<div class="card-header bg-primary text-uppercase text-monse">
-						<h5>Resultados de Búsqueda</h5> 
+			<div class="col-9">
+				<div class="card bg-gris1">
+					<div class="container-fluid">
+						<div class="row">
+							<div *ngFor='let empresa of resultados | paginate: {itemsPerPage: 21, currentPage: pageActual}; index as i' class="col-4 m-b-30">
+								<mat-card class="example-card">
+									<div [ngStyle]="eligebanner(empresa.Banner)"  class="card-banner">
+
+									</div>
+									<mat-card-header class="m-t-20 text-center">
+											  <div mat-card-avatar  [ngStyle]="eligelogo(empresa.Logo)" class="example-header-image"></div>
+											
+									</mat-card-header>
+									
+									<mat-card-content class="m-t-100 ">
+									<p>
+										<span class="title">
+												{{ empresa.Razon_Social }}	
+										</span>
+									</p>
+									<p>
+										<span class="subtitle">{{ empresa.Nombre_Comer }}</span>
+									</p>
+									 <div class="text-cont" >
+											{{ empresa.Perfil==""? 'Sin Descripciòn': empresa.Perfil }}
+									 </div>
+											
+									 
+									</mat-card-content>
+									<mat-card-actions class="text-center">
+										<button mat-button (click)="seguir(empresa.IDEmpresa)" matTooltip="Seguir"><i class="fas fa-paper-plane"></i></button>
+										<button mat-button (click)="calificar(empresa.IDEmpresa)" matTooltip="Calificar"><i class="fas fa-check"></i></button>
+										<button mat-button (click)="visitar(empresa.IDEmpresa)" matTooltip="Visitar Perfil"><i class="fas fa-eye"></i></button>
+									</mat-card-actions>
+								</mat-card>
+							</div>
+							<div class="col-12 text-center m-t-20">
+									<pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+		<div class="spinner-border text-light" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
+
+<ng-template  #invitacion let-modal>	
+	<div class="modal-body ">
+		<div class="container-fluid">
+			<div class="row text-primary text-monse">
+				<div class="col-12 tex-rigth m-t-10">
+						<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+								<span aria-hidden="true">&times;</span>
+							</button>
+				</div>
+			<div class="col-12 text-center">
+				<span>Parece que no tienes una cuenta admyo!</span>
+			</div>
+			<div class="col-12 text-justify m-t-10" >
+					Únete a la familia admyo hoy y recibe inumerables beneficios.
+					<p>
+						Deja que el mundo te conosca, crea una reputación empresarial, y empieza a crecer en el mundo de los negocios 
+					</p>
+					
+			</div>
+		</div>
+		</div>
+		
+	</div>
+	<div class="modal-footer text-center">
+			<div class="btn-group" role="group" aria-label="Basic example">
+					<button type="button" (click)="registro()" class="btn btn-primary">Obtener una Cuenta</button>	
+			</div>
+	</div>
+</ng-template>
+<ng-template  #cambiaplan let-modal>	
+		<div class="modal-body ">
+			<div class="container-fluid">
+				<div class="row text-primary text-monse">
+					<div class="col-12 tex-rigth m-t-10">
+							<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+									<span aria-hidden="true">&times;</span>
+								</button>
+					</div>
+				<div class="col-12 text-center">
+					<span>Parece que llegaste al tope!</span>
+				</div>
+				<div class="col-12 text-justify m-t-10" >
+					Te invitamos a cambiar de plan para obtener mas beneficios
+						
+				</div>
+			</div>
+			</div>
+			
+		</div>
+		<div class="modal-footer text-center">
+				<div class="btn-group" role="group" aria-label="Basic example">
+						<button type="button" (click)="registro()" class="btn btn-primary">Cambiar Plan</button>	
+				</div>
+		</div>
+	</ng-template>
+<swal
+  #succesSwal
+  title="Empresa en seguimiento"
+  text="Ahora podras saber todo lo que sucede con esta empresa"
+  type="success"
+  confirmButtonText="ok"
+   >
+</swal>

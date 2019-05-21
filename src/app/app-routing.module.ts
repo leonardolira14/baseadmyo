@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes,RouterModule } from '@angular/router'
+import { Routes, RouterModule } from '@angular/router';
 
 import { PhomeComponent } from './pages/phome/phome.component';
 import { TerminosComponent } from './pages/terminos/terminos.component';
@@ -26,42 +26,47 @@ import { DetalleimagenComponent } from './pages/detalleimagen/detalleimagen.comp
 import { RiesgoComponent } from './pages/riesgo/riesgo.component';
 import { ResumenComponent } from './pages/resumen/resumen.component';
 import { ListaComponent } from './pages/lista/lista.component';
+import { Lista2Component } from './pages/lista2/lista2.component'
 import { RealizadasComponent } from './pages/realizadas/realizadas.component';
-const appRoutes:Routes=[
-  {path:'',component: PhomeComponent},
-  {path:'terminosycondiciones',component: TerminosComponent},
-  {path:'saladeprensa',component: SalaComponent},
-  {path:'puntosydescuentos',component: PuntosComponent},
-  {path:'contacto',component: ContactoComponent},
-  {path:'preciosadmyo',component: Reg1Component},
-   {path:'preciosqval',component: PaqueteqvalComponent},
-  {path:'datosregistro',component: Reg2Component},
-  {path:'confirmarcompra',component: Reg3Component},
-  {path:'perfil',component: ImagenComponent},
-  {path:'datosempresa',component: DatosempresaComponent},
-  {path:'datosusuario',component: DatosusuarioComponent},
-  {path:'listausuarios',component: ListausuariosComponent},
-  {path:'productosyservicios',component: ProductosComponent},
-  {path:'certificaciones',component: CertificacionesComponent},
-  {path:'visitas',component: VisitasComponent},
-  {path:'asociaciones',component: AsociacionesComponent},
-  {path:'follow',component: FollowComponent},
-  {path:'buscar/:any',component: BuscarComponent},
-  {path:'buscar',component: BuscarComponent},
-  {path:'perfilbuscado/:any',component: PerfilbuscadoComponent},
-  {path:'imagen/:tipo/:fecha',component: PimagenComponent},
-  {path:'detalleimagen/:tipo/:fecha',component: DetalleimagenComponent},
-  {path:'riesgo/:tipo/:fecha',component: RiesgoComponent},
-  {path:'resumen/:tipo',component: ResumenComponent},
-  {path:'lista/:tipo',component: ListaComponent},
-  {path:'realizadas/:tipo',component: RealizadasComponent},
-  
-  ]
+import {  CalificarComponent  } from './pages/calificar/calificar.component'
+const appRoutes: Routes = [
+  {path: '', component: PhomeComponent},
+  {path: 'terminosycondiciones', component: TerminosComponent},
+  {path: 'saladeprensa', component: SalaComponent},
+  {path: 'puntosydescuentos', component: PuntosComponent},
+  {path: 'contacto', component: ContactoComponent},
+  {path: 'preciosadmyo', component: Reg1Component},
+   {path: 'preciosqval', component: PaqueteqvalComponent},
+  {path: 'datosregistro', component: Reg2Component},
+  {path: 'confirmarcompra', component: Reg3Component},
+  {path: 'perfil', component: ImagenComponent},
+  {path: 'datosempresa', component: DatosempresaComponent},
+  {path: 'datosusuario', component: DatosusuarioComponent},
+  {path: 'listausuarios', component: ListausuariosComponent},
+  {path: 'productosyservicios', component: ProductosComponent},
+  {path: 'certificaciones', component: CertificacionesComponent},
+  {path: 'visitas', component: VisitasComponent},
+  {path: 'asociaciones', component: AsociacionesComponent},
+  {path: 'follow', component: FollowComponent},
+  {path: 'buscar/:any', component: BuscarComponent},
+  {path: 'buscar', component: BuscarComponent},
+  {path: 'perfilbuscado/:any', component: PerfilbuscadoComponent},
+  {path: 'imagen/:tipo/:fecha', component: PimagenComponent},
+  {path: 'detalleimagen/:tipo/:fecha', component: DetalleimagenComponent},
+  {path: 'riesgo/:tipo/:fecha', component: RiesgoComponent},
+  {path: 'resumen/:tipo', component: ResumenComponent},
+  {path: 'lista/:tipo', component: ListaComponent},
+  {path: 'realizadas/:tipo', component: RealizadasComponent},
+  {path: 'calificar/:tipo/:empresa', component: CalificarComponent},
+  {path: 'calificar', component: CalificarComponent},
+  {path: 'lista2/:tipo', component: Lista2Component},
+
+  ];
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes,{ enableTracing: false })
+    RouterModule.forRoot(appRoutes, { enableTracing: false })
   ],
-  exports:[RouterModule],
+  exports: [RouterModule],
   declarations: []
 })
 export class AppRoutingModule { }

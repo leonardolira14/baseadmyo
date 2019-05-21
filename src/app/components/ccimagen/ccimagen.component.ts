@@ -10,9 +10,9 @@ import { ImagenService } from '../../services/imagen.service';
 export class CcimagenComponent implements OnInit {
 	public tipo_imagen:string="";
 	public fecha_imagen:string="";
-	public leyenda:string="EN LOS ULTIMOS 12 MESES";
+	public leyenda:string="EN LOS ÚLTIMOS 12 MESES";
 	public imagen:any=[];
-	
+	tipo="clientes";
 
 	datosgen:any=[];
 	datosusuarios:any=[];
@@ -23,7 +23,7 @@ export class CcimagenComponent implements OnInit {
 
 	public lineChartDataem:Array<any> = [
 	    {data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-	label: "Media de calificaciones"}
+	label: "Media de calificaciones recibidas"}
 	    
 	  ];
 	  public lineChartLabelsem:Array<any> = [];
@@ -76,6 +76,16 @@ export class CcimagenComponent implements OnInit {
    }
 
   ngOnInit() {
+		(this.tipo_imagen==="cliente")?'clientes':'proveedores';
+	}
+	goimagen(){
+		this.route.navigateByUrl('/imagen/'+	this.tipo_imagen+"/A");
+	}
+	lista(){
+  	this.route.navigateByUrl('/lista2/'+this.tipo);
+	}
+	recibidas(){
+  	this.route.navigateByUrl('/realizadas/'+this.tipo);
   }
   ir(){
   	this.route.navigateByUrl('/detalleimagen/'+this.tipo_imagen+"/"+this.fecha_imagen);
@@ -91,7 +101,7 @@ export class CcimagenComponent implements OnInit {
   	}else{
   		this.tipo_contrario="Clientes";
   	}
-  	this.fecha_imagen==="A"?this.leyenda="EN LOS úLTIMOS 12 MESES":this.leyenda="EN LOS ULTIMOS 30 Días"
+  	this.fecha_imagen==="A"?this.leyenda="EN LOS ÚLTIMOS 12 MESES":this.leyenda="EN LOS ÚLTIMOS 30 Días"
   	
   	var datos={fecha:this.fecha_imagen,tipo:this.tipo_imagen,IDEmpresa:this.datosempresa["IDEmpresa"]};
   	this.http.imagen(datos)

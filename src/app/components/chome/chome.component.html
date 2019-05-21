@@ -8,12 +8,15 @@
 			<h4 class="text-white text-uppercase">Empieza buscando</h4>
 		</div>
 		<div class="col-12">
-			<div class="input-group">
-		        <input placeholder="Empresa, Servicio, Producto, Marca" type="search" class="form-control">
-		        <div class="input-group-prepend ">
-				    <span class="input-group-text text-azulprimary bg-blanco" id="basic-addon1"><i class="fas fa-search"></i></span>
-				</div>
-		    </div>
+			<form (submit)="buscar()">
+					<div class="input-group">
+							<input [(ngModel)]="palabra" autocomplete="off" name="palabra" placeholder="Empresa, Nombre Comercial, Descripcion de la empresa, Servicio, Producto, Marca" type="search" class="form-control">
+											<div class="input-group-prepend ">
+											<span class="input-group-text text-azulprimary bg-blanco" id="basic-addon1"><i class="fas fa-search"></i></span>
+									</div>
+					</div>
+			</form>
+			
 		</div>
 		<div class="col-12 col-md-8 col-xl-8 col-lg-8 centrar m-t-20 clearfix text-center">
 			<button type="button" class="btn btn-primary  m-t-20" >Obtener una Cuenta </button>

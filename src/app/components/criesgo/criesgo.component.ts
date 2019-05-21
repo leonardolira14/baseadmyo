@@ -10,7 +10,7 @@ import { RiesgoService } from '../../services/riesgo.service';
 export class CriesgoComponent implements OnInit {
 	tipo_imagen:string="";
 	fecha_imagen:string="";
-	leyenda:string="EN LOS ULTIMOS 12 MESES";
+	leyenda:string="EN LOS ÚLTIMOS 12 MESES";
 	riesgo:any=[];
 
 	datosgen:any=[];
@@ -47,7 +47,7 @@ export class CriesgoComponent implements OnInit {
   public lineChartType:string = 'line';
   public lineChartData:Array<any> = [
     {data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-label: "Número de Visitas"}
+label: "Número de Empresas"}
     
   ];
     public lineChartLabels:Array<any> = [];
@@ -83,7 +83,7 @@ label: "Número de Visitas"}
   	}else{
   		this.tipo_contrario="proveedores";
   	}
-  	this.fecha_imagen==="A"?this.leyenda="EN LOS úLTIMOS 12 MESES":this.leyenda="EN LOS ULTIMOS 30 Días"
+  	this.fecha_imagen==="A"?this.leyenda="EN LOS ÚLTIMOS 12 MESES":this.leyenda="EN LOS ÚLTIMOS 30 Días"
   	var datos={fecha:this.fecha_imagen,tipo:this.tipo_imagen,IDEmpresa:this.datosempresa["IDEmpresa"]};
   	this.http.getriesgo(datos)
   	.subscribe((data)=>{

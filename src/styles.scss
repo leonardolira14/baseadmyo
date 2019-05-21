@@ -41,10 +41,16 @@ gris1:#f4f3f3,
 gris2:#dfdfdf,
 gris3:#393e46,
 girsmenu:#555,
+gris4:#eaeaea,
+gris5:#dae1e7
 	);
 $spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50,55,60,65,70, 75,80,85,90,95,100,110,120,130,140);
 $sides: (top, bottom, left, right);
+
 @each $space in $spaceamounts {
+  .p-#{$space} {
+    padding: #{$space}px !important;
+   }
 	@each $side in $sides {
 		.m-#{str-slice($side, 0, 1)}-#{$space} {
 			margin-#{$side}: #{$space}px !important;
@@ -360,4 +366,12 @@ ul.ltpreg{
 .list-group{
   max-height: 450px;
   overflow: auto;
+}
+.btn-inactivo{
+	color:map-get($gamagrises , girsmenu );
+	background: map-get($gamagrises , gris5 );
+	:hover{
+		color:map-get($gamagrises , girsmenu );
+		background: map-get($colors , primary );
+	}
 }

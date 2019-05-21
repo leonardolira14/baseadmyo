@@ -40,7 +40,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="card contenedor m-t-40">
+				<div class="card contenedor m-t-40 d-none">
 					<div class="card-header bg-primary">
 						Notificaciones
 					</div>
@@ -87,10 +87,10 @@
 					<div class="card-header  container text-center text-white bg-primary">
 							<div class="row">
 								<div class="col-12 text-uppercase text-monse">
-									<h5>RESUEN DE TU IMAGEN COMO CLIENTE</h5> 
+									<h5>RESUMEN DE TU IMAGEN COMO CLIENTE</h5> 
 								</div>
 								<div class="col-12 text-uppercase text-monse">
-									<h6>BASADO EN CALIFICACIONES DE PROVEEDORES EN 12 MESES.</h6>
+									<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS PROVEEDORES EN LOS ÚLTIMOS 12 MESES.</h6>
 								</div>
 							</div>
 					</div>
@@ -103,15 +103,19 @@
 								<div class="card  resumen container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Número de Calificaciones en 12 meses
+											NÚMERO DE CALIFICACIONES RECIBIDAS EN LOS ÚLTMOS EN 12 MESES
 										</div> 
 										<div class="col-12 numero">
 											{{imagencliente?.totalCalif}}
 										</div>
 										<div class="col-12 variacion {{imagencliente?.aumento?.class}}">
 											{{imagencliente?.aumento?.num}}
-											<i  class="fas fa-arrow-{{imagencliente?.aumento?.class=='red'?'down':'up'}}"></i>
+											<i *ngIf="imagencliente?.aumento?.num!='0%'"  class="fas fa-arrow-{{imagencliente?.aumento?.class=='red'?'down':'up'}}"></i>
 											
+										</div>
+										<div class="col-12">
+											<small class="text-muted">VARIACIÓN CON RELACIÓN A LOS 12 MESES ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>
@@ -120,15 +124,19 @@
 								<div class="card  resumen container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Calificación Media en 12 meses
+											CALIFICACIÓN MEDIA RECIBIDA EN LOS ÚLTMOS EN 12 MESES
 										</div> 
 										<div class="col-12 numero">
 											{{imagencliente?.Media}}
 										</div>
 										<div class="col-12 variacion {{imagencliente?.aumentop?.class}}">
 											{{imagencliente?.aumentop?.num}}
-											<i  class="fas {{imagencliente?.aumentop?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>										
+											<i *ngIf="imagencliente?.aumentop?.num!='0%'"  class="fas {{imagencliente?.aumentop?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>										
 											
+										</div>
+										<div class="col-12">
+											<small class="text-muted">VARIACIÓN CON RELACIÓN A LOS 12 MESES ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>
@@ -137,14 +145,18 @@
 								<div class="card resumen  container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Calificación Media sobre la Calidad en 12 meses
+											CALIFICACIÓN MEDIA RECIBIDA EN CALIDAD EN 12 MESES
 										</div> 
 										<div class="col-12 numero">
 											{{imagencliente?.Calidad?.media}}
 										</div>
 										<div class="col-12 variacion {{imagencliente?.Calidad?.incremento?.class}}">
 											{{imagencliente?.Calidad?.incremento?.num}}
-											<i  class="fas {{imagencliente?.Calidad?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+											<i *ngIf="imagencliente?.Calidad?.incremento?.num!='0%'" class="fas {{imagencliente?.Calidad?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+										</div>
+										<div class="col-12">
+											<small class="text-muted">VARIACIÓN CON RELACIÓN A LOS 12 MESES ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>
@@ -153,15 +165,19 @@
 								<div class="card resumen  container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Calificación Media de Cumplimiento en 12 meses
+											CALIFICACIÓN MEDIA RECIBIDA EN CUMPLIMIENTO EN 12 MESES
 										</div> 
 										<div class="col-12 numero">
 											{{imagencliente?.Cumplimiento?.media}}
 										</div>
 										<div class="col-12 variacion {{imagencliente?.Cumplimiento?.incremento?.class}}">
 											{{imagencliente?.Cumplimiento?.incremento?.num}}
-											<i class="fas {{imagencliente?.Cumplimiento?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+											<i *ngIf="imagencliente?.Cumplimiento?.incremento?.num!='0%'" class="fas {{imagencliente?.Cumplimiento?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
 
+										</div>
+										<div class="col-12">
+											<small class="text-muted">VARIACIÓN CON RELACIÓN A LOS 12 MESES ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>
@@ -173,10 +189,10 @@
 					<div class="card-header  container text-center text-white bg-primary">
 							<div class="row">
 								<div class="col-12 text-uppercase text-monse">
-									<h5>RESUEN DE TU IMAGEN COMO proveedor</h5> 
+									<h5>RESUMEN DE TU IMAGEN COMO proveedor</h5> 
 								</div>
 								<div class="col-12 text-uppercase text-monse">
-									<h6>BASADO EN CALIFICACIONES DE clientes EN 12 MESES.</h6>
+									<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS CLIENTES EN LOS ÚLTIMOS EN 12 MESES.</h6>
 								</div>
 							</div>
 					</div>
@@ -189,15 +205,19 @@
 								<div class="card  resumen container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Número de Calificaciones en 12 meses
+											NÚMERO DE CALIFICACIONES RECIBIDAS EN LOS ÚLTMOS EN 12 MESES
 										</div> 
 										<div class="col-12 numero">
 											{{imagenproveedor?.totalCalif}}
 										</div>
 										<div class="col-12 variacion {{imagenproveedor?.aumento?.class}}">
 											{{imagenproveedor?.aumento?.num}} 
-											<i class="fas {{imagenproveedor?.aumento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+											<i *ngIf="imagenproveedor?.aumento?.num!='0%'" class="fas {{imagenproveedor?.aumento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
 
+										</div>
+										<div class="col-12">
+											<small class="text-muted">VARIACIÓN CON RELACIÓN A LOS 12 MESES ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>
@@ -206,16 +226,20 @@
 								<div class="card  resumen container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Calificación Media en 12 meses
+											CALIFICACIÓN MEDIA RECIBIDA EN LOS ÚLTMOS EN 12 MESES
 										</div> 
 										<div class="col-12 numero">
 											{{imagenproveedor?.Media}}
 										</div>
 										<div class="col-12 variacion {{imagenproveedor?.aumentop?.class}}">
 											{{imagenproveedor?.aumentop?.num}}
-											<i  class="fas {{imagenproveedor?.aumentop?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+											<i  *ngIf="imagenproveedor?.aumentop?.num!='0%'" class="fas {{imagenproveedor?.aumentop?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
 
 											
+										</div>
+										<div class="col-12">
+											<small class="text-muted">VARIACIÓN CON RELACIÓN A LOS 12 MESES ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>
@@ -224,15 +248,19 @@
 								<div class="card resumen  container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Calificación Media sobre la Calidad en 12 meses
+											CALIFICACIÓN MEDIA RECIBIDA EN CALIDAD EN 12 MESES 
 										</div> 
 										<div class="col-12 numero">
 											{{imagenproveedor?.Calidad?.media}}
 										</div>
 										<div class="col-12 variacion {{imagenproveedor?.Calidad?.incremento?.class}}">
 											{{imagenproveedor?.Calidad?.incremento?.num}}
-											<i  class="fas {{imagenproveedor?.Calidad?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+											<i *ngIf="imagenproveedor?.Calidad?.incremento?.num!='0%'"  class="fas {{imagenproveedor?.Calidad?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
 
+										</div>
+										<div class="col-12">
+											<small class="text-muted">VARIACIÓN CON RELACIÓN A LOS 12 MESES ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>
@@ -241,15 +269,19 @@
 								<div class="card resumen  container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Calificación Media de Cumplimiento en 12 meses
+											CALIFICACIÓN MEDIA RECIBIDA EN CUMPLIMIENTO EN 12 MESES
 										</div> 
 										<div class="col-12 numero">
 											{{imagenproveedor?.Cumplimiento?.media}}
 										</div>
 										<div class="col-12 variacion {{imagenproveedor?.Cumplimiento?.incremento?.class}}">
 											{{imagenproveedor?.Cumplimiento?.incremento?.num}} 
-											<i  class="fas {{imagenproveedor?.Cumplimiento?.incremento.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+											<i  *ngIf="imagenproveedor?.Cumplimiento?.incremento?.num !='0%'" class="fas {{imagenproveedor?.Cumplimiento?.incremento.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
 
+										</div>
+										<div class="col-12">
+											<small class="text-muted">VARIACIÓN CON RELACIÓN A LOS 12 MESES ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>
@@ -258,15 +290,19 @@
 								<div class="card resumen  container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Calificación Media de Oferta en 12 meses
+											CALIFICACIÓN MEDIA RECIBIDA EN OFERTA EN 12 MESES
 										</div> 
 										<div class="col-12 numero">
 											{{imagenproveedor?.Oferta?.media}}
 										</div>
 										<div class="col-12 variacion {{imagenproveedor?.Oferta?.incremento?.class}}">
 											{{imagenproveedor?.Oferta?.incremento?.num}}
-											<i class="fas {{imagenproveedor?.Oferta?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+											<i *ngIf="imagenproveedor?.Oferta?.incremento?.num!='0%'" class="fas {{imagenproveedor?.Oferta?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
 
+										</div>
+										<div class="col-12">
+											<small class="text-muted">VARIACIÓN CON RELACIÓN A LOS 12 MESES ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>

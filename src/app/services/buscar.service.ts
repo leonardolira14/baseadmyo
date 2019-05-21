@@ -11,12 +11,16 @@ export class BuscarService {
   constructor(private http: HttpClient) { }
 
 
-  perfil(datos){
-  	return this.http.post(environment.urlserver+"perfil",datos)
-  	.pipe(map(data=>data));
+  perfil(datos) {
+  	return this.http.post(environment.urlserver + 'perfil', datos)
+  	.pipe(map(data => data));
   }
-  nueva_busqueda(datos){
-	return this.http.post(environment.urlserver+"busqueda",datos)
-  	.pipe(map(data=>data));
+  nueva_busqueda(datos) {
+	return this.http.post(environment.urlserver + 'busquedas', datos)
+  	.pipe(map(data => data));
+  }
+  follow(datos){
+    return this.http.post(environment.urlserver + 'addfollow', datos)
+  	.pipe(map(data => data));
   }
 }

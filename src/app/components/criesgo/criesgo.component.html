@@ -3,8 +3,8 @@
 		<div class="row">
 			<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
 				<div class="btn-group" role="group" aria-label="Basic example">
-					<button (click)="cambiar('A')" type="button" class="btn {{fecha_imagen==='A'?'btn-primary':'btn-secondary'}}">12 Meses</button>
-					<button (click)="cambiar('M')" type="button" class="btn {{fecha_imagen==='M'?'btn-primary':'btn-secondary'}}">Mes Actual</button>
+					<button (click)="cambiar('A')" type="button" class="btn {{fecha_imagen==='A'?'btn-primary':'btn-inactivo'}}">12 Meses</button>
+					<button (click)="cambiar('M')" type="button" class="btn {{fecha_imagen==='M'?'btn-primary':'btn-inactivo'}}">Mes Actual</button>
 
 				</div>	
 			</div>
@@ -15,7 +15,7 @@
 							<h5>TU RIESGO POR LA REPUTACIÓN DE TUS {{tipo_contrario}} </h5>
 						</div>
 						<div class="col-12 text-center text-uppercase">
-							<h6>BASADO EN LAS CALIFICACIONES RECIBIDAS DE TUS {{tipo_contrario}} {{leyenda}}.</h6>
+							<h6>BASADO EN LAS CALIFICACIONES RECIBIDAS A TUS {{tipo_contrario}} {{leyenda}}.</h6>
 						</div>
 					</div>
 				</div>
@@ -54,7 +54,7 @@
 						</div>
 						<div class="col-8">
 							<div class="card">
-								<h5 class="text-primary d-block text-center">Grafica General</h5>
+								<h5 class="text-primary d-block text-center">Grafica Riesgos de tus {{tipo_contrario}}</h5>
 								<br>
 								<div class="container">
 									<div class="row">
@@ -79,34 +79,12 @@
 			
 		</div>
 	</div>
+	
 	<div class="container m-t-20">
 		<div class="row">
 			<div class="card w-100">
 				<div class="card-header text-uppercase text-white bg-primary text-center">
-					<h5>Evolución Empeorados</h5>
-				</div>
-				<div class="card-body">
-					<div style="display: block">
-						<canvas baseChart width="400" height="100"
-						[datasets]="lineChartData"
-						[labels]="lineChartLabels"
-						[options]="lineChartOptions"
-						[colors]="lineChartColors"
-						[legend]="lineChartLegend"
-						[chartType]="lineChartType"
-						(chartHover)="chartHovered($event)"
-						(chartClick)="chartClicked($event)">
-					</canvas>
-				</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="container m-t-20">
-		<div class="row">
-			<div class="card w-100">
-				<div class="card-header text-uppercase text-white bg-primary text-center">
-					<h5>Calidad</h5>
+					<h5>Riesgo por la CALIDAD de tus {{tipo_contrario}}</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -150,7 +128,7 @@
 		<div class="row">
 			<div class="card w-100">
 				<div class="card-header text-uppercase text-white bg-primary text-center">
-					<h5>Cumplimiento</h5>
+					<h5>Riesgo por el compromiso de tus {{tipo_contrario}}</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -194,7 +172,7 @@
 		<div class="row">
 			<div class="card w-100">
 				<div class="card-header text-uppercase text-white bg-primary text-center">
-					<h5>Oferta</h5>
+					<h5>Riesgo por la oferta de tus  {{tipo_contrario}}</h5>
 				</div>
 				<div class="card-body">
 					<div class="row">
@@ -230,6 +208,29 @@
 							</div>
 						</div>
 					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container m-t-20">
+		<div class="row">
+			<div class="card w-100">
+				<div class="card-header text-uppercase text-white bg-primary text-center">
+					<h5>EVOLUCIÓN DE CLIENTES QUE HAN EMPEORADO</h5>
+				</div>
+				<div class="card-body">
+					<div style="display: block">
+						<canvas baseChart width="400" height="100"
+						[datasets]="lineChartData"
+						[labels]="lineChartLabels"
+						[options]="lineChartOptions"
+						[colors]="lineChartColors"
+						[legend]="lineChartLegend"
+						[chartType]="lineChartType"
+						(chartHover)="chartHovered($event)"
+						(chartClick)="chartClicked($event)">
+					</canvas>
+				</div>
 				</div>
 			</div>
 		</div>

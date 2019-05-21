@@ -24,6 +24,7 @@ datosgen:any=[];
 			this.token=this.datosgen["Token"];
 			this.numempresa=true;
 		}
+		console.log(this.cookieService.get('datosUsuario'));
   }
 
   ngOnInit() {

@@ -42,7 +42,7 @@
 		text-align: center;
 		font-size: 2rem;
 		&.neutro{
-			color:map-get($colors,primary);
+			color:map-get($gamagrises,girsmenu);
 		}
 		&.green{
 			color:map-get($colors,succes);

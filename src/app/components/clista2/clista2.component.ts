@@ -6,29 +6,30 @@ import { Router,ActivatedRoute} from '@angular/router';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-clista',
-  templateUrl: './clista.component.html',
-  styleUrls: ['./clista.component.scss']
+  selector: 'app-clista2',
+  templateUrl: './clista2.component.html',
+  styleUrls: ['./clista2.component.scss']
 })
-export class ClistaComponent implements OnInit {
-	listas:any=[];
-   model:any={};
-
-	datosgen:any=[];
-	datosempresa:any=[];
-	datosusuarios:any=[];
-	token:string="";
-	sniper:boolean=false;
-	tipo:string='';
-	serverruta:string=environment.urlserver;
-	pageActual:number=1;
+export class Clista2Component implements OnInit {
+  public tipo_imagen:string="";
+  tipo="clientes";
+  listas:any=[];
+  model:any={};
+  datosgen:any=[];
+  datosempresa:any=[];
+  datosusuarios:any=[];
+  token:string="";
+  sniper:boolean=false;
+  serverruta:string=environment.urlserver;
+  pageActual:number=1;
   constructor(
-		private parametros:ActivatedRoute,
+    private parametros:ActivatedRoute,
 		private route:Router, 
 		private http:GeneralService,
 		private cookieService:CookieService,
-		private modalService: NgbModal) { 
-  		this.datosgen=JSON.parse(this.cookieService.get('datosUsuario'));
+    private modalService: NgbModal
+    ) {
+  	this.datosgen=JSON.parse(this.cookieService.get('datosUsuario'));
 		this.datosusuarios=this.datosgen["datosusuario"];
 		this.datosempresa=this.datosgen["empresa"];
 		this.token=this.datosgen["Token"];
@@ -36,12 +37,13 @@ export class ClistaComponent implements OnInit {
 	  	.subscribe((params)=>{
 	  		this.sniper=true;
 	  		if(params["tipo"]!==undefined){
-	  			this.tipo=params["tipo"];
+          this.tipo=params["tipo"];
+          this.tipo_imagen=params["tipo"];
 	  		}
 	  		this.getlista();
 	  		
 	  	})
-  }
+     }
 
   ngOnInit() {
   }
@@ -56,18 +58,6 @@ export class ClistaComponent implements OnInit {
   		console.log(data);
   	})
   }
-   resumengo(){
-  	this.route.navigateByUrl('/resumen/'+this.tipo);
-  }
-  lista(){
-  	this.route.navigateByUrl('/lista/'+this.tipo);
-  }
-  realizadas(){
-  	this.route.navigateByUrl('/realizadas/'+this.tipo);
-  }
-  visitar(ir){
-    this.route.navigateByUrl('/perfilbuscado/'+ir)
-  }
   setmylogo(logo){
   	let styles = {
     'background-image': logo==''? "url('assets/img/foto-no-disponible.jpg')":"url('"+this.serverruta+"assets/img/logosEmpresas/"+logo+"')"};
@@ -77,5 +67,14 @@ export class ClistaComponent implements OnInit {
   	let styles = {
     'background-image': logo==''? "url('assets/img/bg_tercer.jpg')":"url('"+this.serverruta+"assets/img/banners/"+logo+"')"};
   	return styles;
+  }
+  goimagen(){
+		this.route.navigateByUrl('/imagen/'+	this.tipo_imagen+"/A");
+	}
+	lista(){
+  	this.route.navigateByUrl('/lista2/'+this.tipo);
+	}
+	recibidas(){
+  	this.route.navigateByUrl('/realizadas/'+this.tipo);
   }
 }

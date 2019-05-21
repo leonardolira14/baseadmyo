@@ -29,8 +29,11 @@ export class CdatostelefonosComponent implements OnInit {
   ngOnInit() {
 	  this.http.gettels(this.token,this.numempresa)
 	  .subscribe((data)=>{
-	  	this.listtelefonos=data["response"]["result"]["telefonos"];
-	  	console.log(this.listtelefonos)
+		  if(data["response"]["result"]["telefonos"]!==false){
+			this.listtelefonos=data["response"]["result"]["telefonos"];
+		  }
+	  	
+	  	
 	  })
   }
   openalert(alert){

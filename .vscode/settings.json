@@ -1,0 +1,5 @@
+{
+    "javascript.format.insertSpaceAfterSemicolonInForStatements": false,
+    "javascript.format.insertSpaceBeforeAndAfterBinaryOperators": false,
+    "tslint.enable": false
+}

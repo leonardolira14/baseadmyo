@@ -4,7 +4,6 @@ import { RegistroService } from '../../services/registro.service';
 import { RegistroInterface } from '../../models/registro-interface';
 import { FormBuilder, FormGroup,FormControl } from '@angular/forms';
 import {  SwalComponent } from '@toverux/ngx-sweetalert2';
-import swal from 'sweetalert2';
 import * as $ from 'jquery';
 
 @Component({

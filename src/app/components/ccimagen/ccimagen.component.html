@@ -1,6 +1,33 @@
 <div class="container-fluid bg-gris1 p-t-40 p-b-40">
 	<div class="container">
 		<div class="row">
+				<div class="col-12 m-b-30">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-4">
+									<div (click)="goimagen()" class="card btn-ir active">
+										<span><i class="fas fa-chart-area"></i></span>
+										<br>
+										<label>Imagen como {{tipo_imagen}}</label>
+									</div>
+								</div>
+								<div class="col-4 ">
+									<div (click)="lista()" class="card btn-ir ">
+										<span><i class="fas fa-users"></i></span>
+										<br>
+										<label>Mis {{tipo}}</label>
+									</div>
+								</div>
+								<div class="col-4 ">
+									<div (click)="recibidas()" class="card btn-ir">
+										<span><i class="fas fa-award"></i></span>
+										<br>
+										<label>Calificaciones Recibidas</label>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
 			<div class="col-12">
 				<div class="card contenedor">
 					<div class="card-header  container text-center text-white bg-primary">
@@ -9,7 +36,7 @@
 								<h5>TU IMAGEN COMO {{tipo_imagen}}</h5> 
 							</div>
 							<div class="col-12 text-uppercase text-monse">
-								<h6>BASADO EN CALIFICACIONES DE {{tipo_contrario}} {{leyenda}}.</h6>
+								<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS {{tipo_contrario}} {{leyenda}}.</h6>
 							</div>
 						</div>
 					</div>
@@ -17,9 +44,9 @@
 						<div class="row d-flex justify-content-center">
 							<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
 								<div class="btn-group" role="group" aria-label="Basic example">
-									<button (click)="cambiar('A')" type="button" class="btn {{fecha_imagen==='A'?'btn-primary':'btn-secondary'}}">12 Meses</button>
-									<button (click)="cambiar('M')" type="button" class="btn {{fecha_imagen==='M'?'btn-primary':'btn-secondary'}}">Mes Actual</button>
-									<button (click)="ir()" type="button" class="btn btn-secondary">Mas Detalles</button>
+									<button (click)="cambiar('A')" type="button" class="btn {{fecha_imagen==='A'?'btn-primary':'btn-inactivo'}}">12 Meses</button>
+									<button (click)="cambiar('M')" type="button" class="btn {{fecha_imagen==='M'?'btn-primary':'btn-inactivo'}}">Mes Actual</button>
+									<button (click)="ir()" type="button" class="btn btn-inactivo">Más Detalle</button>
 								</div>	
 							</div>
 							<div class="col-6 ">
@@ -33,7 +60,11 @@
 										</div>
 										<div class="col-12 variacion {{imagen?.aumento?.class}}">
 											{{imagen?.aumento?.num}}
-											<i  class="fas fa-arrow-{{imagen?.aumento?.class=='red'?'down':'up'}}"></i>
+											<i  *ngIf='imagen?.aumento?.num!="0%"' class="fas fa-arrow-{{imagen?.aumento?.class=='red'?'down':'up'}}"></i>
+										</div>
+										<div class="col-12 text-center">
+											<small class="text-muted text-uppercase">VARIACIÓN CON RELACIÓN A LOS {{leyenda}} ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>
@@ -42,15 +73,19 @@
 								<div class="card  resumen container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Calificación Media {{leyenda}}
+											CALIFICACIÓN MEDIA RECIBIDA {{leyenda}}
 										</div> 
 										<div class="col-12 numero">
 											{{imagen?.Media}}
 										</div>
 										<div class="col-12 variacion {{imagen?.aumentop?.class}}">
 											{{imagen?.aumentop?.num}}
-											<i  class="fas {{imagen?.aumentop?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+											<i *ngIf='imagen?.aumentop?.class!="neutro"'  class="fas {{imagen?.aumentop?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
 											
+										</div>
+										<div class="col-12 text-center">
+											<small class="text-muted text-uppercase">VARIACIÓN CON RELACIÓN A LOS {{leyenda}} ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>
@@ -59,14 +94,18 @@
 								<div class="card resumen  container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Calificación Media sobre la Calidad {{leyenda}}
+											CALIFICACIÓN MEDIA RECIBIDA en calidad {{leyenda}}
 										</div> 
 										<div class="col-12 numero">
 											{{imagen?.Calidad?.media}}
 										</div>
 										<div class="col-12 variacion {{imagen?.Calidad?.incremento?.class}}">
 											{{imagen?.Calidad?.incremento?.num}}
-											<i  class="fas {{imagen?.Calidad?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+											<i  *ngIf='imagen?.Calidad?.incremento?.class!="neutro"' class="fas {{imagen?.Calidad?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+										</div>
+										<div class="col-12 text-center">
+											<small class="text-muted text-uppercase">VARIACIÓN CON RELACIÓN A LOS {{leyenda}} ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>
@@ -75,14 +114,18 @@
 								<div class="card resumen  container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Calificación Media de Cumplimiento {{leyenda}}
+											Calificación Media recibida en Cumplimiento {{leyenda}}
 										</div> 
 										<div class="col-12 numero">
 											{{imagen?.Cumplimiento?.media}}
 										</div>
 										<div class="col-12 variacion {{imagen?.Cumplimiento?.incremento?.class}}">
 											{{imagen?.Cumplimiento?.incremento?.num}}
-											<i class="fas {{imagen?.Cumplimiento?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+											<i  *ngIf='imagen?.Cumplimiento?.incremento?.class!="neutro"' class="fas {{imagen?.Cumplimiento?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+										</div>
+										<div class="col-12 text-center">
+											<small class="text-muted text-uppercase">VARIACIÓN CON RELACIÓN A LOS {{leyenda}} ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>
@@ -91,14 +134,18 @@
 								<div class="card resumen  container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Calificación Media de Oferta {{leyenda}}
+											Calificación Media recibida en Oferta {{leyenda}}
 										</div> 
 										<div class="col-12 numero">
 											{{imagen?.Oferta?.media}}
 										</div>
 										<div class="col-12 variacion {{imagen?.Oferta?.incremento?.class}}">
 											{{imagen?.Oferta?.incremento?.num}}
-											<i class="fas {{imagen?.Oferta?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+											<i *ngIf='imagen?.Oferta?.incremento?.class!="neutro"' class="fas {{imagen?.Oferta?.incremento?.class=='red'?'fa-arrow-down':'fa-arrow-up'}}"></i>
+										</div>
+										<div class="col-12 text-center">
+											<small class="text-muted text-uppercase">VARIACIÓN CON RELACIÓN A LOS {{leyenda}} ANTERIORES
+											</small>
 										</div>
 									</div>
 								</div>
@@ -114,7 +161,7 @@
 					<div class="card-header  container text-center text-white bg-primary">
 						<div class="row">
 							<div class="col-12 text-uppercase text-monse">
-								<h5>Evolución de calificaciones {{leyenda}}</h5> 
+								<h5>EVOLUCIÓN DE CALIFICACIONES recibidas {{leyenda}}</h5> 
 							</div>
 							
 						</div>
@@ -145,7 +192,100 @@
 					<div class="card-header  container text-center text-white bg-primary">
 						<div class="row">
 							<div class="col-12 text-uppercase text-monse">
-								<h5>Evolución de Media de calificaciones {{leyenda}}</h5> 
+								<h5>EVOLUCIÓN DE la MEDIA DE Calificación recibida {{leyenda}}</h5> 
+							</div>
+							
+						</div>
+					</div>
+					<div class="card-body container-fluid">
+						<div class="container area">
+							<div class="row">
+								<div class="col-12">
+									<div style="display: block">
+									    <canvas baseChart width="400" height="100"
+							                [datasets]="lineChartDataem"
+							                [labels]="lineChartLabelsem"
+							                [options]="lineChartOptions"
+							                [colors]="lineChartColors"
+							                [legend]="lineChartLegend"
+							                [chartType]="lineChartType"
+							                >
+							            </canvas>
+								  </div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 m-t-30">
+				<div class="card contenedor">
+					<div class="card-header  container text-center text-white bg-primary">
+						<div class="row">
+							<div class="col-12 text-uppercase text-monse">
+								<h5>EVOLUCIÓN DE la MEDIA DE Calificación recibida en calidad {{leyenda}}</h5> 
+							</div>
+							
+						</div>
+					</div>
+					<div class="card-body container-fluid">
+						<div class="container area">
+							<div class="row">
+								<div class="col-12">
+									<div style="display: block">
+									    <canvas baseChart width="400" height="100"
+							                [datasets]="lineChartDataem"
+							                [labels]="lineChartLabelsem"
+							                [options]="lineChartOptions"
+							                [colors]="lineChartColors"
+							                [legend]="lineChartLegend"
+							                [chartType]="lineChartType"
+							                >
+							            </canvas>
+								  </div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 m-t-30">
+				<div class="card contenedor">
+					<div class="card-header  container text-center text-white bg-primary">
+						<div class="row">
+							<div class="col-12 text-uppercase text-monse">
+								<h5>EVOLUCIÓN DE la MEDIA DE Calificación recibida en cumplimiento  {{leyenda}}</h5> 
+							</div>
+							
+						</div>
+					</div>
+					<div class="card-body container-fluid">
+						<div class="container area">
+							<div class="row">
+								<div class="col-12">
+									<div style="display: block">
+									    <canvas baseChart width="400" height="100"
+							                [datasets]="lineChartDataem"
+							                [labels]="lineChartLabelsem"
+							                [options]="lineChartOptions"
+							                [colors]="lineChartColors"
+							                [legend]="lineChartLegend"
+							                [chartType]="lineChartType"
+							                >
+							            </canvas>
+								  </div>
+								</div>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 m-t-30" *ngIf='tipo_imagen==="proveedor"'>
+				<div class="card contenedor">
+					<div class="card-header  container text-center text-white bg-primary">
+						<div class="row">
+							<div class="col-12 text-uppercase text-monse">
+								<h5>EVOLUCIÓN DE la MEDIA DE Calificación recibida en oferta {{leyenda}}</h5> 
 							</div>
 							
 						</div>

@@ -3,8 +3,8 @@
 		<div class="row">
 			<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
 				<div class="btn-group" role="group" aria-label="Basic example">
-					<button (click)="cambiar('A')" type="button" class="btn {{fecha_imagen==='A'?'btn-primary':'btn-secondary'}}">12 Meses</button>
-					<button (click)="cambiar('M')" type="button" class="btn {{fecha_imagen==='M'?'btn-primary':'btn-secondary'}} ">Mes Actual</button>
+					<button (click)="cambiar('A')" type="button" class="btn {{fecha_imagen==='A'?'btn-primary':'btn-inactivo'}}">12 Meses</button>
+					<button (click)="cambiar('M')" type="button" class="btn {{fecha_imagen==='M'?'btn-primary':'btn-inactivo'}} ">Mes Actual</button>
 					
 								</div>	
 				</div>
@@ -13,10 +13,10 @@
 					<div class="card-header  container text-center text-white bg-primary">
 						<div class="row">
 							<div class="col-12 text-uppercase text-monse">
-								<h5>DETALLES DE TU IMAGEN COMO {{tipo_imagen}}</h5> 
+								<h5>DETALLES DE TU IMAGEN COMO {{tipo_imagen}} en calidad</h5> 
 							</div>
 							<div class="col-12 text-uppercase text-monse">
-								<h6>BASADO EN CALIFICACIONES DE {{tipo_contrario}} {{leyenda}}</h6>
+								<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS  {{tipo_contrario}} {{leyenda}}</h6>
 							</div>
 						</div>
 					</div>
@@ -25,7 +25,7 @@
 							<div class="row">
 								<div class="col-6 m-t-30">
 									<div class="card text-monse text-center presentacion">
-										<h6 class="text-uppercase text-primary ">Calificación Media en Calidad</h6>
+										<h6 class="text-uppercase text-primary ">CALIFICACIÓN MEDIA RECIBIDA EN CALIDAD</h6>
 										<div class="container">
 											<div class="row">
 												<div class="col-12 numero">
@@ -95,7 +95,7 @@
 								<h5>DETALLES DE TU IMAGEN COMO {{tipo_imagen}} en Cumplimiento</h5> 
 							</div>
 							<div class="col-12 text-uppercase text-monse">
-								<h6>BASADO EN CALIFICACIONES DE {{tipo_contrario}} {{leyenda}}</h6>
+								<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS  {{tipo_contrario}} {{leyenda}}</h6>
 							</div>
 						</div>
 					</div>
@@ -104,7 +104,7 @@
 							<div class="row">
 								<div class="col-6 m-t-30">
 									<div class="card text-monse text-center presentacion">
-										<h6 class="text-uppercase text-primary ">Calificación Media en Cumplimiento</h6>
+										<h6 class="text-uppercase text-primary ">CALIFICACIÓN MEDIA RECIBIDA EN  Cumplimiento</h6>
 										<div class="container">
 											<div class="row">
 												<div class="col-12 numero">
@@ -174,7 +174,7 @@
 								<h5>DETALLES DE TU IMAGEN COMO {{tipo_imagen}} en oferta</h5> 
 							</div>
 							<div class="col-12 text-uppercase text-monse">
-								<h6>BASADO EN CALIFICACIONES DE {{tipo_contrario}} {{leyenda}}</h6>
+								<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS  {{tipo_contrario}} {{leyenda}}</h6>
 							</div>
 						</div>
 					</div>
@@ -183,7 +183,7 @@
 							<div class="row">
 								<div class="col-6 m-t-30">
 									<div class="card text-monse text-center presentacion">
-										<h6 class="text-uppercase text-primary ">Calificación Media en Oferta</h6>
+										<h6 class="text-uppercase text-primary ">CALIFICACIÓN MEDIA RECIBIDA EN  Oferta</h6>
 										<div class="container">
 											<div class="row">
 												<div class="col-12 numero">

@@ -1,0 +1,307 @@
+<div class="container-fluid bg-gris1 p-t-40 p-b-40">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+          <mat-horizontal-stepper #stepper>
+              <mat-step>
+                  <ng-template matStepLabel>Datos a Calificar</ng-template>
+                  <div class="container">
+                      <div class="row">
+                          <div class="col-12">
+                              <div class="container-fluid">
+                                <div class="row">
+                                  <div class="col-6">
+                                    <div (click)="cambio_selec('Cliente')"  class="card btn-ir {{(tipo_califica==='Cliente')?'active':''}}">
+                                      <span><i class="fas fa-user-alt"></i></span>
+                                      <br>
+                                      <label>Cliente</label>
+                                    </div>
+                                  </div>
+                                  <div class="col-6 ">
+                                    <div (click)="cambio_selec('Proveedor')" class="card btn-ir {{(tipo_califica==='Proveedor')?'active':''}}">
+                                      <span><i class="fas fa-user-tie"></i></span>
+                                      <br>
+                                      <label>Proveedor</label>
+                                    </div>
+                                  </div>
+                                  
+                                </div>
+                              </div>
+                            </div>
+                        <div class="col-12 m-t-20">
+                          <div class="card contenedor">
+                                  <div class="card-header  container text-center text-white bg-primary">
+                                      <div class="row">
+                                          <div class="col-12 text-uppercase text-monse">
+                                              <h5>Calificar</h5> 
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="card-body container-fluid">
+                                    <div class="row d-flex  align-content-center">
+                                      <span class="d-block col-6 text-muted">
+                                        <h5>NOMBRE O RAZÓN SOCIAL</h5>
+                                      </span>
+                                      <mat-form-field class="col-6">
+                                          <input class="text-muted" matInput  aria-label="State" [matAutocomplete]="auto" [(ngModel)]="model_calificar.Razon" [formControl]="stateCtrl">
+                                          <mat-autocomplete #auto="matAutocomplete">
+                                            <mat-option *ngFor="let state of filteredStates | async" (click)="select_empresa(state.IDEmpresa)" >
+                                              <span>{{state.Razon_Social}}</span> |
+                                              <small>RFC: {{state.RFC}}</small>
+                                            </mat-option>
+                                          </mat-autocomplete>
+                                        </mat-form-field>
+                                      
+                                      <span class="d-block col-6 text-muted m-t-20">
+                                          <h5>RFC (Registro Federal de Contribuyentes)</h5>
+                                      </span>
+                                      
+                                        <mat-form-field  class="col-6 m-t-10">
+                                          <input class="text-muted" matInput [(ngModel)]="model_calificar.rfc" name="rfc" >
+                                        </mat-form-field>
+                                        
+                                      <span class="d-block col-6 text-muted m-t-20">
+                                          <h5>EMAIL (Correo Electrònico)</h5>
+                                      </span>
+                                      <mat-form-field  class="col-6 m-t-10">
+                                          <input class="text-muted" matInput  [(ngModel)]="model_calificar.email" name="email" >
+                                      </mat-form-field>
+                                      <span class="d-block col-6 text-muted m-t-20">
+                                          <h5>SELECCIONE GIRO</h5>
+                                      </span>
+                                      <div class="form-group col-6 m-t-20">
+                                      <select  [(ngModel)]="model_calificar.Giro" (change)="select_subgiro()" class="form-control " name="giro">
+                                          <option value="0" >Selecciona</option>  
+                                        <option [value]="giro.IDNivel1" *ngFor='let giro of giros'>{{giro.Giro}}</option>
+                                        </select>
+                                     </div>
+                                      <span class="d-block col-6 text-muted m-t-20">
+                                          <h5>SELECCIONE SUBGIRO</h5>
+                                      </span>
+                                      <div class="form-group col-6 m-t-20">
+                                        <select  [(ngModel)]="model_calificar.Subgiro" (change)="select_rama()" class="form-control " name="subgiro">
+                                            <option value="0" >Selecciona</option>  
+                                            <option [value]="giro.IDNivel2" *ngFor='let giro of subgiros'>{{giro.Giro}}</option>
+                                        </select>
+                                        </div>
+                                      <span class="d-block col-6 text-muted m-t-20">
+                                          <h5>SELECCIONE RAMA</h5>
+                                      </span>
+                                      <div class="form-group col-6 m-t-20">
+                                        <select  [(ngModel)]="model_calificar.Rama"  class="form-control " name="rama">
+                                            <option value="0" >Selecciona</option>
+                                            <option [value]="giro.IDGiro3" *ngFor='let giro of ramas'>{{giro.Giro}}</option>
+                                        </select>
+                                      </div>
+                                      <div class="col-12 text-right m-t-30">
+                                          <div class="btn-group" role="group" aria-label="Basic example">
+                                              <button type="button" class="btn btn-primary mr-3">Home</button>
+                                              <button type="button" class="btn btn-succes" (click)="obtener_cuestionario()">Calificar</button>
+                                            </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                            </div>
+                        </div> 
+                      </div>
+                  </div>
+              </mat-step>
+              <mat-step>
+                  <ng-template matStepLabel>Cuestionario</ng-template>
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="card contenedor">
+                            <div class="card-header  container text-center text-white bg-primary">
+                                <div class="row">
+                                    <div class="col-12 text-uppercase text-monse">
+                                        <h5>Calificando a la empresa: {{model_calificar.Razon}}</h5> 
+                                    </div>
+                                </div>
+                            </div>
+                          <div class="card-body container">
+                            <div class="row">
+                              <div class="col-12 m-b-10 m-t-30 text-muted">
+                                <h5>Calidad</h5>
+                              </div>
+                              <mat-list class="col-12">
+                                <div  id="{{folder.Nump}}" class="{{(folder.dependecia==='SI')?'d-none':''}}" *ngFor="let folder of cuestionario_calidad; let i=index;" >
+                                    <mat-list-item>
+                                      
+                                          <div class="container" >
+                                              <div class="row d-flex align-items-center">
+                                                <div class="col-7 m-t-20">
+                                                  {{folder.Pregunta}}
+                                                </div>
+                                                <div class="col-5 m-t-20" *ngIf="folder.Forma==='Si/No'">
+                                                  <mat-radio-group (change)="ver_dependencia(folder.Nump,'calidad')" [(ngModel)]="folder.Respuesta_usuario" aria-label="Select an option">
+                                                      <mat-radio-button  color="primary" class="mr-3" value="SI">Si</mat-radio-button>
+                                                      <mat-radio-button  color="primary" value="NO">No</mat-radio-button>
+                                                  </mat-radio-group>
+                                                </div>
+                                                <div class="col-5 m-t-20" *ngIf="folder.Forma==='Si/No/No Aplica'">
+                                                  <mat-radio-group (change)="ver_dependencia(folder.Nump,'calidad')" [(ngModel)]="cuestionario_calidad[i].Respuesta_usuario" aria-label="Select an option">
+                                                      <mat-radio-button  color="primary" class="mr-3" value="SI">Si</mat-radio-button>
+                                                      <mat-radio-button color="primary"  class="mr-3" value="NO">No</mat-radio-button>
+                                                      <mat-radio-button  color="primary" value="NA">No Aplica</mat-radio-button>
+                                                  </mat-radio-group>
+                                                </div>
+                                                <div class="col-5 m-t-20" *ngIf="folder.Forma==='NUM' || folder.Forma==='DIAS' || folder.Forma==='MESES' || folder.Forma==='HORAS'">
+                                                    <mat-form-field class="w-100">
+                                                        <input matInput [(ngModel)]="cuestionario_calidad[i].Respuesta_usuario" type="number">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-5 m-t-20" *ngIf="folder.Forma==='AB' || folder.Forma==='OM'">
+                                                    <mat-form-field class="w-100">
+                                                        <input matInput [(ngModel)]="cuestionario_calidad[i].Respuesta_usuario" type="text">
+                                                    </mat-form-field>
+                                                </div>
+                                              </div>
+                                            </div>
+                                      
+                                    </mat-list-item>
+                                  </div>
+                              </mat-list>
+                              <div class="col-12 m-b-10 m-t-30 text-muted">
+                                  <h5>Cumplimiento</h5>
+                              </div>
+                              <mat-list class="col-12">
+                                  <div id="{{folder.Nump}}" *ngFor="let folder of cuestionario_cumplimiento; let i=index;" >
+                                      <mat-list-item class="par_preg" *ngIf="(folder.dependecia==='NO')?'d-none':''">
+                                          <div class="container">
+                                              <div class="row row d-flex align-items-center">
+                                                <div class="col-7 m-t-20">
+                                                  {{folder.Pregunta}}
+                                                </div>
+                                                <div class="col-5 m-t-20" (change)="ver_dependencia(folder.Nump,'cumplimiento')" *ngIf="folder.Forma==='Si/No'">
+                                                  <mat-radio-group [(ngModel)]="cuestionario_cumplimiento[i].Respuesta_usuario" aria-label="Select an option">
+                                                      <mat-radio-button color="primary" class="mr-3" value="SI">Si</mat-radio-button>
+                                                      <mat-radio-button color="primary" value="NO">No</mat-radio-button>
+                                                  </mat-radio-group>
+                                                </div>
+                                                <div class="col-5 m-t-20" *ngIf="folder.Forma==='Si/No/No Aplica'">
+                                                  <mat-radio-group (change)="ver_dependencia(folder.Nump,'cumplimiento')"  [(ngModel)]="cuestionario_cumplimiento[i].Respuesta_usuario" aria-label="Select an option">
+                                                      <mat-radio-button color="primary" class="mr-3" value="SI">Si</mat-radio-button>
+                                                      <mat-radio-button color="primary"  class="mr-3" value="NO">No</mat-radio-button>
+                                                      <mat-radio-button color="primary" value="NA">No Aplica</mat-radio-button>
+                                                  </mat-radio-group>
+                                                </div>
+                                                <div class="col-5 m-t-20"  *ngIf="cuestionario_cumplimiento[i].Forma==='NUM' || folder.Forma==='DIAS' || folder.Forma==='MESES' || folder.Forma==='HORAS'">
+                                                    <mat-form-field class="w-100">
+                                                        <input matInput (keyup)="ver_dependencia(folder.Nump,'cumplimiento')" [(ngModel)]="cuestionario_cumplimiento[i].Respuesta_usuario" type="number">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-5 m-t-20" *ngIf="cuestionario_cumplimiento[i].Forma==='AB' || folder.Forma==='OM'">
+                                                    <mat-form-field class="w-100">
+                                                        <input matInput (keyup)="ver_dependencia(folder.Nump,'cumplimiento')" [(ngModel)]="folder.Respuesta_usuario" type="text">
+                                                    </mat-form-field>
+                                                </div>
+                                              </div>
+                                            </div>
+                                      </mat-list-item>
+                                    </div>
+                              </mat-list>
+                              <div class="col-12 m-b-10 m-t-30 text-muted" *ngIf="tipo_califica==='Proveedor'">
+                                  <h5>Oferta</h5>
+                              </div>
+                              <mat-list class="col-12" *ngIf="tipo_califica==='Proveedor'">
+                                  <div id="{{folder.Nump}}" *ngFor="let folder of cuestionario_oferta; let  i=index;" >
+                                      <mat-list-item class="par_preg" *ngIf="(folder.dependecia==='NO')?'d-none':''">
+                                          <div class="container">
+                                              <div class="row d-flex align-items-center ">
+                                                <div class="col-7 m-t-20 m-t-20">
+                                                  {{folder.Pregunta}}
+                                                </div>
+                                                <div class="col-5 m-t-20 m-t-20" *ngIf="folder.Forma==='Si/No'">
+                                                  <mat-radio-group (change)="ver_dependencia(folder.Nump,'oferta')"  [(ngModel)]="cuestionario_oferta[i].Respuesta_usuario" aria-label="Select an option">
+                                                      <mat-radio-button color="primary" class="mr-3" value="SI">Si</mat-radio-button>
+                                                      <mat-radio-button color="primary" value="NO">No</mat-radio-button>
+                                                  </mat-radio-group>
+                                                </div>
+                                                <div class="col-5 m-t-20 m-t-20" *ngIf="folder.Forma==='Si/No/No Aplica'">
+                                                  <mat-radio-group (change)="ver_dependencia(folder.Nump,'oferta')"  [(ngModel)]="cuestionario_oferta[i].Respuesta_usuario" aria-label="Select an option">
+                                                      <mat-radio-button color="primary" class="mr-3" value="SI">Si</mat-radio-button>
+                                                      <mat-radio-button color="primary" class="mr-3" value="NO">No</mat-radio-button>
+                                                      <mat-radio-button color="primary" value="NA">No Aplica</mat-radio-button>
+                                                  </mat-radio-group>
+                                                </div>
+                                                <div class="col-5 m-t-20 m-t-20" *ngIf="cuestionario_oferta[i].Forma==='NUM' || folder.Forma==='DIAS' || folder.Forma==='MESES' || folder.Forma==='HORAS'">
+                                                    <mat-form-field class="w-100">
+                                                        <input matInput  (keyup)="ver_dependencia(folder.Nump,'oferta')" [(ngModel)]="cuestionario_oferta[i].Respuesta_usuario" type="number">
+                                                    </mat-form-field>
+                                                </div>
+                                                <div class="col-5 m-t-20 m-t-20" *ngIf="cuestionario_oferta[i].Forma==='AB' || folder.Forma==='OM'">
+                                                    <mat-form-field class="w-100">
+                                                        <input matInput (keyup)="ver_dependencia(folder.Nump,'oferta')" [(ngModel)]="folder.Respuesta_usuario" type="text">
+                                                    </mat-form-field>
+                                                </div>
+                                              </div>
+                                            </div>
+                                      </mat-list-item>
+                                    </div>
+                              </mat-list>
+                              <div class="col-12 m-b-10 m-t-30 text-muted">
+                                  <h5>Recomendaciòn</h5>
+                              </div>
+                              <mat-list class="col-12">
+                                  <div id="{{folder.Nump}}" *ngFor="let folder of cuestionario_recomendacion; let i=index" >
+                                    <mat-list-item class="par_preg" *ngIf="(folder.dependecia==='NO')?'d-none':''"  >
+                                        <div class="container" *ngIf="(folder.dependecia==='SI')?'false':'true'">
+                                            <div class="row d-flex align-items-center">
+                                              <div class="col-7 m-t-20">
+                                                {{folder.Pregunta}}
+                                              </div>
+                                              <div class="col-md-5 m-t-20" *ngIf="folder.Forma==='Si/No'">
+                                                <mat-radio-group (change)="ver_dependencia(folder.Nump,'recomendacion')" [(ngModel)]="cuestionario_recomendacion[i].Respuesta_usuario" aria-label="Select an option">
+                                                    <mat-radio-button color="primary" class="mr-3" value="SI">Si</mat-radio-button>
+                                                    <mat-radio-button color="primary" value="NO">No</mat-radio-button>
+                                                </mat-radio-group>
+                                              </div>
+                                              <div class="col-5 m-t-20" *ngIf="folder.Forma==='Si/No/No Aplica'">
+                                                <mat-radio-group (change)="ver_dependencia(folder.Nump,'recomendacion')" [(ngModel)]="cuestionario_recomendacion[i].Respuesta_usuario" aria-label="Select an option">
+                                                    <mat-radio-button color="primary" class="mr-3" value="SI">Si</mat-radio-button>
+                                                    <mat-radio-button color="primary" class="mr-3" value="NO">No</mat-radio-button>
+                                                    <mat-radio-button color="primary"  value="NA">No Aplica</mat-radio-button>
+                                                </mat-radio-group>
+                                              </div>
+                                              <div class="col-5 m-t-20" *ngIf="cuestionario_recomendacion[i].Forma==='NUM' || folder.Forma==='DIAS' || folder.Forma==='MESES' || folder.Forma==='HORAS'">
+                                                  <mat-form-field class="w-100">
+                                                      <input matInput (keyup)="ver_dependencia(folder.Nump,'recomendacion')" [(ngModel)]="cuestionario_recomendacion[i].Respuesta_usuario" type="number">
+                                                  </mat-form-field>
+                                              </div>
+                                              <div class="col-5 m-t-20" *ngIf="cuestionario_recomendacion[i].Forma==='AB' || folder.Forma==='OM'">
+                                                  <mat-form-field class="w-100">
+                                                      <input matInput (keyup)="ver_dependencia(folder.Nump,'recomendacion')" [(ngModel)]="cuestionario_recomendacion[i].Respuesta_usuario" type="text">
+                                                  </mat-form-field>
+                                              </div>
+                                            </div>
+                                          </div>
+                                    </mat-list-item>
+                                  </div>
+                              </mat-list>
+                            </div>
+                            <div class="col-12 text-right m-t-30">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-danger mr-3">Cancelar</button>
+                                    <button type="button" (click)="enviar_cuestion()" class="btn btn-succes">Calificar</button>
+                                    
+                                  </div>
+                            </div>
+                              
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </mat-step>
+          </mat-horizontal-stepper>
+      </div>
+    </div>
+  </div> 
+</div>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+    <div class="spinner-border text-light" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+  

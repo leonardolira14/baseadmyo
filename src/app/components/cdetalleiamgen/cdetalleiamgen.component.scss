@@ -52,3 +52,11 @@
 	}
 	
 }
+.btn-inactivo{
+	color:map-get($gamagrises , girsmenu );
+	background: map-get($gamagrises , gris5 );
+	:hover{
+		color:map-get($gamagrises , girsmenu );
+		background: map-get($colors , primary );
+	}
+}

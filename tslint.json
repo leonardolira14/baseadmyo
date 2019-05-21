@@ -20,6 +20,7 @@
       true,
       "rxjs/Rx"
     ],
+    "javascript.suggestionActions.enabled": false,
     "import-spacing": true,
     "indent": [
       true,

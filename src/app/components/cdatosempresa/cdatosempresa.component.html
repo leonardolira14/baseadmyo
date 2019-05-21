@@ -127,7 +127,6 @@ w-50 mx-auto" *ngIf='alertbol' role="alert">
 										<option value="">Selecciona</option>
 										<option *ngFor='let tipo of tipoempresas' value="{{tipo.Tipo}}">{{tipo.Tipo}}</option>
 									</select>
-
 								</div>
 								<div class="form-group col-6">
 									<label for="" class="text-roboto text-gris3">No. empleados</label>
@@ -144,8 +143,12 @@ w-50 mx-auto" *ngIf='alertbol' role="alert">
 									</select>
 								</div>
 								<div class="form-group col-6">
-									<label for="" class="text-roboto text-gris3">Días de Pago de su plan /Mes</label>
-									<input readonly type="text" class="form-control" [(ngModel)]="datosempresa.DiasPago" placeholder="0"> 
+									<label for="" class="text-roboto text-gris3">Días de Pago</label>
+									<input readonly type="text" class="form-control"  placeholder="0"> 
+								</div>
+								<div class="form-group col-6">
+									<label for="" class="text-roboto text-gris3">El proximo cargo sera el día.</label>
+									<input readonly type="text" class="form-control" [value]="datosempresa.DiasPago" placeholder="0"> 
 								</div>
 								<div class="form-group col-12">
 									<label for="" class="text-roboto text-gris3">Descripción de la Empresa</label>
@@ -251,4 +254,5 @@ w-50 mx-auto" *ngIf='alertbol' role="alert">
     <button type="button" (click)="addmarca()" class="btn btn-primary" >Guardar</button>
   </div>
 </ng-template>
+
 

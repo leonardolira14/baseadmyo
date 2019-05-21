@@ -88,7 +88,7 @@ export class GeneralService {
     .pipe(map(data=>data));
   }
   cerrarsession(token,empresa){
-     return this.http.post(environment.urlserver+"cerrarsession",{token,empresa})
+     return this.http.post(environment.urlserver+"cerrarsession",{token,IDEmpresa:empresa})
     .pipe(map(data=>data));
   }
 
@@ -107,6 +107,11 @@ export class GeneralService {
   }
   detallescalificacion(datos){
     return this.http.post(environment.urlserver+"detallescalificacion",datos)
+    .pipe(map(data=>data));
+  }
+  //funciones para calificar
+  getempresas(){
+    return this.http.get(environment.urlserver+"getallempresas")
     .pipe(map(data=>data));
   }
 }

@@ -55,12 +55,8 @@ export class CdatosempresaComponent implements OnInit {
   	this.http.getperfilempresa(this.numempresa,this.token)
   	.subscribe((data)=>{
   		if(data["response"]["code"]===0){
-        console.log(data)
-
-  			this.girost=data["response"]["result"]["giros"];
-  			
+    		this.girost=data["response"]["result"]["giros"];
   			this.marcas=data["response"]["result"]["marcas"];
-  			
   			this.noempleados=data["response"]["result"]["noempleados"]
 			this.factanual=data["response"]["result"]["factanual"];
 			this.tipoempresas=data["response"]["result"]["tipoempresas"];
@@ -75,8 +71,6 @@ export class CdatosempresaComponent implements OnInit {
 				this.banner="url('"+this.rutaserver+"/assets/img/banners/"+this.datosempresa["Banner"]+"') ";
 			}
 			this.allgiros=data["response"]["result"]["allgiros"];
-
-  		}else{
 
   		}
   		
@@ -306,5 +300,8 @@ export class CdatosempresaComponent implements OnInit {
     setTimeout(function(){
         this.alertbol=false;
     },4000)
-  }
+	}
+	restante_dias(numero){
+	
+	}
 }

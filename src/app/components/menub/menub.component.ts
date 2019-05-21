@@ -32,9 +32,8 @@ export class MenubComponent implements OnInit {
 	}
 	cerrar(){
 		this.sniper=true;
-		this.cookieService.deleteAll();
+		this.cookieService.deleteAll('/');
 		localStorage.clear();
-		console.log(this.token,this.numempresa)
 		this.http.cerrarsession(this.token,this.numempresa)
 		.subscribe((data)=>{
 			this.sniper=true;

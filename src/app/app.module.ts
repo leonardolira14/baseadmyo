@@ -14,7 +14,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatCheckboxModule,MatDialogModule,MatCardModule,MatToolbarModule,MatIconModule} from '@angular/material';
+// tslint:disable-next-line:max-line-length
+import {MatAutocompleteModule,MatStepperModule,MatButtonModule,MatTooltipModule,MatRadioModule, MatInputModule, MatListModule, MatSelectModule, MatCheckboxModule,MatDialogModule,MatCardModule,MatToolbarModule,MatIconModule} from '@angular/material';
 import { PhomeComponent } from './pages/phome/phome.component';
 import { MenuaComponent } from './components/menua/menua.component';
 import { ChomeComponent } from './components/chome/chome.component';
@@ -72,6 +73,10 @@ import { ListaComponent } from './pages/lista/lista.component';
 import { RealizadasComponent } from './pages/realizadas/realizadas.component';
 import { ClistaComponent } from './components/clista/clista.component';
 import { CrealizadasComponent } from './components/crealizadas/crealizadas.component';
+import { CalificarComponent } from './pages/calificar/calificar.component';
+import { CcalificarComponent } from './components/ccalificar/ccalificar.component';
+import { Clista2Component } from './components/clista2/clista2.component';
+import { Lista2Component } from './pages/lista2/lista2.component';
 
 
 @NgModule({
@@ -132,7 +137,11 @@ import { CrealizadasComponent } from './components/crealizadas/crealizadas.compo
     ListaComponent,
     RealizadasComponent,
     ClistaComponent,
-    CrealizadasComponent
+    CrealizadasComponent,
+    CalificarComponent,
+    CcalificarComponent,
+    Clista2Component,
+    Lista2Component
 
   ],
   imports: [
@@ -142,7 +151,7 @@ import { CrealizadasComponent } from './components/crealizadas/crealizadas.compo
     NgbAlertModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
-    MatButtonModule, MatCheckboxModule, AppRoutingModule,MatDialogModule,
+    MatButtonModule,MatStepperModule,MatAutocompleteModule, MatCheckboxModule, MatRadioModule, AppRoutingModule,MatDialogModule,MatSelectModule,MatListModule,MatInputModule,MatTooltipModule,
     MatCardModule,
     MatIconModule,
     MatToolbarModule,

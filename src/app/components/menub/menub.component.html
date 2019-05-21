@@ -48,8 +48,8 @@
 	      <button class="btn btn-link" id="btn_riesgo" ngbDropdownToggle>Clientes</button>
 	      <div ngbDropdownMenu aria-labelledby="btn_riesgo">
 	        <button (click)="goto('resumen/clientes')" class="dropdown-item">Resumen</button>
-	        <button (click)="goto('lista/clientes')" class="dropdown-item">Mi Clientes</button>
-	        <button (click)="goto('realizadas/clientes')" class="dropdown-item">Calificaciones Recibidas</button>
+	        <button (click)="goto('lista/clientes')" class="dropdown-item">Mis Clientes</button>
+	        <button (click)="goto('realizadas/clientes')" class="dropdown-item">Calificaciones Realizadas</button>
 	      </div>
 	    </div>
       </li>
@@ -59,7 +59,7 @@
 	      <div ngbDropdownMenu aria-labelledby="btn_riesgo">
 	        <button (click)="goto('resumen/proveedores')" class="dropdown-item">Resumen</button>
 	        <button (click)="goto('lista/proveedores')" class="dropdown-item">Mis Proveedores</button>
-	        <button (click)="goto('realizadas/proveedores')" class="dropdown-item">Calificaciones Recibidas</button>
+	        <button (click)="goto('realizadas/proveedores')" class="dropdown-item">Calificaciones Realizadas</button>
 	      </div>
 	    </div>
       </li>
@@ -89,14 +89,10 @@
        <li class="nav-item">
         <div ngbDropdown class="d-inline-block">
 	      <button class="btn btn-link" id="btn_riesgo" ngbDropdownToggle>Empresa Consultada</button>
-	      <div ngbDropdownMenu aria-labelledby="btn_riesgo">
-	        <button (click)="goto('perfilb')" class="dropdown-item">Gestion de Usuarios</button>
-	        
-	      </div>
 	    </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link  " href="#" tabindex="-1" aria-disabled="false">Calificar</a>
+        <button class="nav-link btn btn-secondary text-white text-uppercase" (click)="goto('calificar')" >Calificar</button>
       </li>
       <li class="nav-item">
         <a class="nav-link " href="#" tabindex="-1" aria-disabled="false">Qval</a>
