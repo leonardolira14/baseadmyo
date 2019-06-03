@@ -50,7 +50,7 @@
 							</div>
 							<div class="col-9">
 								<div class="row">
-									<div class="col-12">
+									<div class="col-12" *ngIf="gratis_admyo">
 										<mat-list role="list">
 											<mat-list-item role="listitem">Desarrollo de perfil empresarial</mat-list-item>
 											<mat-list-item role="listitem">Calificar empresas</mat-list-item>
@@ -66,7 +66,7 @@
 											<mat-list-item role="listitem">Seguimiento de 3 Empresas</mat-list-item>
 										</mat-list>
 									</div>
-									<div class="col-12">
+									<div class="col-12" *ngIf="micro_admyo">
 										<mat-list role="list">
 											<mat-list-item role="listitem">Desarrollo de perfil empresarial</mat-list-item>
 											<mat-list-item role="listitem">Calificar empresas</mat-list-item>
