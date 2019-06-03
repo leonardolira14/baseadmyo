@@ -1,0 +1,28 @@
+@import '../../../styles';
+
+.card-precios{
+    font-family: map-get($fonts, sans-pro );
+    text-align: center;
+    background: rgba(map-get($gamagrises, gris3 ),0.1);
+    cursor:pointer;
+    &:hover{
+        background:map-get($colors, primary );
+        & .titulo,& .precio{
+            color: map-get($colors, blanco );
+        }
+    }
+    &.active{
+        background:map-get($colors, primary );
+        & .titulo,& .precio{
+            color: map-get($colors, blanco );
+        }  
+    }
+    & .titulo{
+       font-size: 1.5rem;
+       color: map-get($gamagrises, gris3 );
+    }
+    & .precio{
+        font-size: 1.2rem 
+    }
+    
+}

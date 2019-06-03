@@ -15,7 +15,7 @@ import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 // tslint:disable-next-line:max-line-length
-import {MatAutocompleteModule,MatStepperModule,MatButtonModule,MatTooltipModule,MatRadioModule, MatInputModule, MatListModule, MatSelectModule, MatCheckboxModule,MatDialogModule,MatCardModule,MatToolbarModule,MatIconModule} from '@angular/material';
+import {MatTabsModule,MatAutocompleteModule,MatStepperModule,MatButtonModule,MatTooltipModule,MatRadioModule, MatInputModule, MatListModule, MatSelectModule, MatCheckboxModule,MatDialogModule,MatCardModule,MatToolbarModule,MatIconModule} from '@angular/material';
 import { PhomeComponent } from './pages/phome/phome.component';
 import { MenuaComponent } from './components/menua/menua.component';
 import { ChomeComponent } from './components/chome/chome.component';
@@ -151,6 +151,7 @@ import { Lista2Component } from './pages/lista2/lista2.component';
     NgbAlertModule,
     BrowserAnimationsModule,
     NoopAnimationsModule,
+    MatTabsModule,
     MatButtonModule,MatStepperModule,MatAutocompleteModule, MatCheckboxModule, MatRadioModule, AppRoutingModule,MatDialogModule,MatSelectModule,MatListModule,MatInputModule,MatTooltipModule,
     MatCardModule,
     MatIconModule,
