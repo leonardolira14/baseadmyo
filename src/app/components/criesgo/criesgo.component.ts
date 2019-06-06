@@ -52,7 +52,12 @@ label: "Número de Empresas"}
   ];
     public lineChartLabels:Array<any> = [];
 
-  constructor(private http:RiesgoService,private cookieService:CookieService,private route:Router,private parametros:ActivatedRoute) {
+  constructor(
+    private http:RiesgoService,
+    private cookieService:CookieService,
+    private route:Router,
+    private parametros:ActivatedRoute
+    ) {
   	this.datosgen=JSON.parse(this.cookieService.get('datosUsuario'));
 	this.datosusuarios=this.datosgen["datosusuario"];
 	this.datosempresa=this.datosgen["empresa"];
@@ -103,6 +108,9 @@ label: "Número de Empresas"}
  
   public chartHovered(e:any):void {
     console.log(e);
+  }
+  detalle(){
+    this.route.navigateByUrl("/detallesriesgo/"+this.tipo_imagen+"/"+this.fecha_imagen);
   }
 
 }

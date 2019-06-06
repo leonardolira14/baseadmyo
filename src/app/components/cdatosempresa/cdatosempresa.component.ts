@@ -266,6 +266,7 @@ export class CdatosempresaComponent implements OnInit {
     formData.append("nempleados",this.datosempresa["NoEmpleados"]);
     formData.append("facanual",this.datosempresa["FacAnual"]);
     formData.append("perfil",this.datosempresa["Perfil"]);
+    formData.append("diaspagoempresa",this.datosempresa["DiasPagoEmpresa"]);
      formData.append("token",this.token);
     if(this.fileempresabanner!==null){
       formData.append("banner",this.fileempresabanner,this.fileempresabanner.name);

@@ -1,4 +1,35 @@
 <div class="container-fluid bg-gris1 p-t-40 p-b-40">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 m-b-30">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-4">
+							<div (click)="goimagen()" class="card btn-ir active">
+								<span><i class="fas fa-chart-area"></i></span>
+								<br>
+								<label>Imagen como {{tipo_imagen}}</label>
+							</div>
+						</div>
+						<div class="col-4 ">
+							<div (click)="lista()" class="card btn-ir ">
+								<span><i class="fas fa-users"></i></span>
+								<br>
+								<label>Mis {{tipo}}</label>
+							</div>
+						</div>
+						<div class="col-4 ">
+							<div (click)="recibidas()" class="card btn-ir">
+								<span><i class="fas fa-award"></i></span>
+								<br>
+								<label>Calificaciones Recibidas</label>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="container resumen">
 		<div class="row">
 			<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
@@ -6,8 +37,8 @@
 					<button (click)="cambiar('A')" type="button" class="btn {{fecha_imagen==='A'?'btn-primary':'btn-inactivo'}}">12 Meses</button>
 					<button (click)="cambiar('M')" type="button" class="btn {{fecha_imagen==='M'?'btn-primary':'btn-inactivo'}} ">Mes Actual</button>
 					
-								</div>	
-				</div>
+				</div>	
+			</div>
 			<div class="col-12">
 				<div class="card contenedor">
 					<div class="card-header  container text-center text-white bg-primary">
@@ -64,20 +95,20 @@
 										</div>
 										<div class="col-9">
 											<div class="row">
-											  <div class="col-md-12 chart">
-											    <div style="display: block" class="contene">
-											      <canvas baseChart 
-											       width="400" height="80"
-											      [datasets]="calidad.serie" 
-											      [labels]="barChartLabels"
-											      [options]="barChartOptions"
-											      [legend]="barChartLegend"
-											      [chartType]="barChartType"
-											      (chartHover)="chartHovered($event)"
-											       (chartClick)="chartClicked($event)"></canvas>
-											    </div>
-											    
-											  </div>
+												<div class="col-md-12 chart">
+													<div style="display: block" class="contene">
+														<canvas baseChart 
+														width="400" height="80"
+														[datasets]="calidad.serie" 
+														[labels]="barChartLabels"
+														[options]="barChartOptions"
+														[legend]="barChartLegend"
+														[chartType]="barChartType"
+														(chartHover)="chartHovered($event)"
+														(chartClick)="chartClicked($event)"></canvas>
+													</div>
+
+												</div>
 											</div>
 										</div>
 									</div>
@@ -143,20 +174,20 @@
 										</div>
 										<div class="col-9">
 											<div class="row">
-											  <div class="col-md-12 chart">
-											    <div style="display: block">
-											      <canvas baseChart 
-											      width="400" height="80"
-											      [datasets]="calidad.serie" 
-											      [labels]="barChartLabels"
-											      [options]="barChartOptions"
-											      [legend]="barChartLegend"
-											      [chartType]="barChartType"
-											      (chartHover)="chartHovered($event)"
-											       (chartClick)="chartClicked($event)"></canvas>
-											    </div>
-											   
-											  </div>
+												<div class="col-md-12 chart">
+													<div style="display: block">
+														<canvas baseChart 
+														width="400" height="80"
+														[datasets]="calidad.serie" 
+														[labels]="barChartLabels"
+														[options]="barChartOptions"
+														[legend]="barChartLegend"
+														[chartType]="barChartType"
+														(chartHover)="chartHovered($event)"
+														(chartClick)="chartClicked($event)"></canvas>
+													</div>
+
+												</div>
 											</div>
 										</div>
 									</div>
@@ -222,20 +253,20 @@
 										</div>
 										<div class="col-9">
 											<div class="row">
-											  <div class="col-md-12 chart">
-											    <div style="display: block">
-											      <canvas baseChart 
-											      width="400" height="80"
-											      [datasets]="calidad.serie" 
-											      [labels]="barChartLabels"
-											      [options]="barChartOptions"
-											      [legend]="barChartLegend"
-											      [chartType]="barChartType"
-											      (chartHover)="chartHovered($event)"
-											       (chartClick)="chartClicked($event)"></canvas>
-											    </div>
-											    
-											  </div>
+												<div class="col-md-12 chart">
+													<div style="display: block">
+														<canvas baseChart 
+														width="400" height="80"
+														[datasets]="calidad.serie" 
+														[labels]="barChartLabels"
+														[options]="barChartOptions"
+														[legend]="barChartLegend"
+														[chartType]="barChartType"
+														(chartHover)="chartHovered($event)"
+														(chartClick)="chartClicked($event)"></canvas>
+													</div>
+
+												</div>
 											</div>
 										</div>
 									</div>

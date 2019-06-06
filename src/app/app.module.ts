@@ -77,7 +77,10 @@ import { CalificarComponent } from './pages/calificar/calificar.component';
 import { CcalificarComponent } from './components/ccalificar/ccalificar.component';
 import { Clista2Component } from './components/clista2/clista2.component';
 import { Lista2Component } from './pages/lista2/lista2.component';
-
+import { RecibidasComponent } from './pages/recibidas/recibidas.component';
+import { CrecibidasComponent } from './components/crecibidas/crecibidas.component';
+import { DetallesriesgoComponent } from './pages/detallesriesgo/detallesriesgo.component';
+import { CdetallesriesgoComponent } from './components/cdetallesriesgo/cdetallesriesgo.component';
 
 @NgModule({
   declarations: [
@@ -141,7 +144,11 @@ import { Lista2Component } from './pages/lista2/lista2.component';
     CalificarComponent,
     CcalificarComponent,
     Clista2Component,
-    Lista2Component
+    Lista2Component,
+    RecibidasComponent,
+    CrecibidasComponent,
+    DetallesriesgoComponent,
+    CdetallesriesgoComponent
 
   ],
   imports: [

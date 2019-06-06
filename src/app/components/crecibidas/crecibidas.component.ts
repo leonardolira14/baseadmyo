@@ -4,14 +4,18 @@ import {NgbModal, ModalDismissReasons,NgbPopoverConfig} from '@ng-bootstrap/ng-b
 import { GeneralService } from '../../services/general.service';
 import { Router,ActivatedRoute} from '@angular/router';
 import { environment } from 'src/environments/environment';
-
+import Swal from 'sweetalert2'
 @Component({
-  selector: 'app-crealizadas',
-  templateUrl: './crealizadas.component.html',
-  styleUrls: ['./crealizadas.component.scss']
+  selector: 'app-crecibidas',
+  templateUrl: './crecibidas.component.html',
+  styleUrls: ['./crecibidas.component.scss']
 })
-export class CrealizadasComponent implements OnInit {
-	model: any={};
+export class CrecibidasComponent implements OnInit {
+  @ViewChild("alertpendiente") private  alertpendiente;
+	public tipo_imagen:string="";
+  pendiente_valora_id="";
+  tipo_contrario="";
+model: any={};
 	listaclie:any=[];
 	calificaciones:any=[];
 	detalless:any=[];
@@ -23,8 +27,9 @@ export class CrealizadasComponent implements OnInit {
 	tipo:string='';
 	serverruta:string=environment.urlserver;
 	pageActual:number=1;
+  motivo_pendiente="";
   constructor(
-    private config: NgbPopoverConfig,
+  	private config: NgbPopoverConfig,
     private parametros:ActivatedRoute,
     private route:Router, 
     private http:GeneralService,
@@ -48,8 +53,10 @@ export class CrealizadasComponent implements OnInit {
   }
 
   ngOnInit() {
+  	(this.tipo==="clientes")?this.tipo_imagen="cliente":this.tipo_imagen='proveedor';
+    (this.tipo=="clientes")?this.tipo_contrario="Proveedores":this.tipo_contrario="Clientes";
   }
-  getlista(){
+    getlista(){
   	this.sniper=true;
     if(this.model["Ifechainicio"]){
      var  fecha=this.model["Ifechainicio"]["year"]+"-"+this.model["Ifechainicio"]["month"]+"-"+this.model["Ifechainicio"]["day"];
@@ -63,7 +70,7 @@ export class CrealizadasComponent implements OnInit {
   	this.model["token"]=this.token;
   	this.model["tipo"]=this.tipo;
   	console.log(this.model);
-  	this.http.getallrealizadas(this.model)
+  	this.http.getallrecibidas(this.model)
   	.subscribe((data)=>{
       this.model={};
   	this.sniper=false;
@@ -77,14 +84,14 @@ export class CrealizadasComponent implements OnInit {
 
 
 
-  resumengo(){
-  	this.route.navigateByUrl('/resumen/'+this.tipo);
-  }
-  lista(){
-  	this.route.navigateByUrl('/lista/'+this.tipo);
-  }
-  realizadas(){
-  	this.route.navigateByUrl('/realizadas/'+this.tipo);
+  goimagen(){
+		this.route.navigateByUrl('/imagen/'+	this.tipo_imagen+"/A");
+	}
+	lista(){
+  	this.route.navigateByUrl('/listan/'+this.tipo);
+	}
+	recibidas(){
+  	this.route.navigateByUrl('/recibidas/'+this.tipo);
   }
   visitar(ir){
     this.route.navigateByUrl('/perfilbuscado/'+ir);  
@@ -108,4 +115,33 @@ closemodel(content){
   	})
     
   }
+  select_status(status){
+    if(status==="Pendiente"){
+      return "Pendiente de Resolución";
+    }else if(status==="PendienteA"){
+       return "Pendiente de Anulación";
+    }else{
+      return "Activa";
+    }
+
+  }
+  pendiente(idvalora){
+    this.openalert(this.alertpendiente);
+    this.pendiente_valora_id=idvalora;
+    
+  }
+  solicitar(){
+    if(this.motivo_pendiente===""){
+     Swal('Error', 'Seleccione el motivo de la solicitud!', 'error');
+    }else{
+      const datos={valoracion:this.pendiente_valora_id,motivo:this.motivo_pendiente}
+      this.http.pendiente_valoracion(datos)
+      .subscribe(data=>{
+        this.closemodel(this.alertpendiente);
+        Swal('Exito', 'Solicitud enviada!', 'success');
+        this.getlista();
+      })
+    }
+  }
+
 }

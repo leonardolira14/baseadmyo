@@ -105,6 +105,12 @@ export class GeneralService {
     return this.http.post(environment.urlserver+"getallrealizadas",datos)
     .pipe(map(data=>data));
   }
+
+  getallrecibidas(datos){
+    return this.http.post(environment.urlserver+"getallrecibidas",datos)
+    .pipe(map(data=>data));
+  }
+
   detallescalificacion(datos){
     return this.http.post(environment.urlserver+"detallescalificacion",datos)
     .pipe(map(data=>data));
@@ -112,6 +118,11 @@ export class GeneralService {
   //funciones para calificar
   getempresas(){
     return this.http.get(environment.urlserver+"getallempresas")
+    .pipe(map(data=>data));
+  }
+  //funcion para poner en resolucion una valoracion
+  pendiente_valoracion(datos){
+    return this.http.post(environment.urlserver+"pendientevaloracion",datos)
     .pipe(map(data=>data));
   }
 }

@@ -38,7 +38,6 @@ export class Clista2Component implements OnInit {
 	  		this.sniper=true;
 	  		if(params["tipo"]!==undefined){
           this.tipo=params["tipo"];
-          this.tipo_imagen=params["tipo"];
 	  		}
 	  		this.getlista();
 	  		
@@ -46,6 +45,7 @@ export class Clista2Component implements OnInit {
      }
 
   ngOnInit() {
+    (this.tipo==="clientes")?this.tipo_imagen="cliente":this.tipo_imagen="proveedor";
   }
   getlista(){
   	
@@ -75,6 +75,6 @@ export class Clista2Component implements OnInit {
   	this.route.navigateByUrl('/lista2/'+this.tipo);
 	}
 	recibidas(){
-  	this.route.navigateByUrl('/realizadas/'+this.tipo);
+  	this.route.navigateByUrl('/recibidas/'+this.tipo);
   }
 }

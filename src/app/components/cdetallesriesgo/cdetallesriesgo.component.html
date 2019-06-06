@@ -1,0 +1,176 @@
+<div class="container-fluid bg-gris1 p-t-40 p-b-40">
+	<div class="container resumen">
+		<div class="row">
+			<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<button (click)="cambiar('A')" type="button" class="btn {{fecha_riesgo==='A'?'btn-primary':'btn-inactivo'}}">12 Meses</button>
+					<button (click)="cambiar('M')" type="button" class="btn {{fecha_riesgo==='M'?'btn-primary':'btn-inactivo'}} ">Mes Actual</button>
+					
+				</div>	
+			</div>
+			<div class="col-12">
+				<div class="card contenedor">
+					<div class="card-header  container text-center text-white bg-primary">
+						<div class="row">
+							<div class="col-12 text-uppercase text-monse">
+								<h5>DETALLES DE TU RIESGO de tus {{tipo}} en calidad</h5> 
+							</div>
+							<div class="col-12 text-uppercase text-monse">
+								<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS  {{tipo}} {{leyenda}}</h6>
+							</div>
+						</div>
+					</div>
+
+					<div class="body-card bg-white">
+						<div class="container-fluid">
+							<div class="row">
+								<div *ngFor="let calidad of detalle_riesgo.listado_calidad" class="col-12 m-t-30  text-center">
+									<h5 class="text-primary text-monse m-b-30">{{calidad.Pregunta}}</h5>
+									<div class="row">
+										<div class="col-3 d-flex align-items-center">
+											<div class="card text-center" style="padding: 20px;">
+												<h5 class="d-block text-primary">No de Calificaciones</h5>
+												<h5 class="d-block text-secondary">{{calidad.Totalcalificaciones}}</h5>
+												<h5 class="d-block text-primary">Clientes Evaluados</h5>
+												<h5 class=" d-block text-secondary">{{calidad.clientesevaluados}}</h5>
+											</div>	
+										</div>
+										<div class="col-9">
+											<div class="row">
+												<div class="col-md-12 chart">
+													<div style="display: block">
+														<canvas baseChart 
+														width="400" height="80"
+														
+														[datasets]="calidad.serie" 
+														[labels]="barChartLabels"
+														[options]="barChartOptions"
+														[legend]="barChartLegend"
+														[chartType]="barChartType"
+														></canvas>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 m-t-30">
+				<div class="card contenedor">
+					<div class="card-header  container text-center text-white bg-primary">
+						<div class="row">
+							<div class="col-12 text-uppercase text-monse">
+								<h5>DETALLES DE TU RIESGO de tus {{tipo}} en cumplimiento</h5> 
+							</div>
+							<div class="col-12 text-uppercase text-monse">
+								<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS  {{tipo}} {{leyenda}}</h6>
+							</div>
+						</div>
+					</div>
+
+					<div class="body-card bg-white">
+						<div class="container-fluid">
+							<div class="row">
+								<div *ngFor="let cumplimiento of detalle_riesgo.listadatos_cumplimiento" class="col-12 m-t-30  text-center">
+									<h5 class="text-primary text-monse m-b-30">{{cumplimiento.Pregunta}}</h5>
+									<div class="row">
+										<div class="col-3 d-flex align-items-center">
+											<div class="card text-center" style="padding: 20px;">
+												<h5 class="d-block text-primary">No de Calificaciones</h5>
+												<h5 class="d-block text-secondary">{{cumplimiento.Totalcalificaciones}}</h5>
+												<h5 class="d-block text-primary">Clientes Evaluados</h5>
+												<h5 class=" d-block text-secondary">{{cumplimiento.clientesevaluados}}</h5>
+											</div>	
+										</div>
+										<div class="col-9">
+											<div class="row">
+												<div class="col-md-12 chart">
+													<div style="display: block">
+														<canvas baseChart 
+														width="400" height="80"
+														
+														[datasets]="cumplimiento.serie" 
+														[labels]="barChartLabels"
+														[options]="barChartOptions"
+														[legend]="barChartLegend"
+														[chartType]="barChartType"
+														></canvas>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-12 m-t-30" *ngIf="tipo_persona==='proveedor'">
+				<div class="card contenedor">
+					<div class="card-header  container text-center text-white bg-primary">
+						<div class="row">
+							<div class="col-12 text-uppercase text-monse">
+								<h5>DETALLES DE TU RIESGO de tus {{tipo}} en oferta</h5> 
+							</div>
+							<div class="col-12 text-uppercase text-monse">
+								<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS  {{tipo}} {{leyenda}}</h6>
+							</div>
+						</div>
+					</div>
+
+					<div class="body-card bg-white">
+						<div class="container-fluid">
+							<div class="row">
+								<div *ngFor="let oferta of detalle_riesgo.listado_oferta" class="col-12 m-t-30  text-center">
+									<h5 class="text-primary text-monse m-b-30">{{oferta.Pregunta}}</h5>
+									<div class="row">
+										<div class="col-3 d-flex align-items-center">
+											<div class="card text-center" style="padding: 20px;">
+												<h5 class="d-block text-primary">No de Calificaciones</h5>
+												<h5 class="d-block text-secondary">{{oferta.Totalcalificaciones}}</h5>
+												<h5 class="d-block text-primary">Clientes Evaluados</h5>
+												<h5 class=" d-block text-secondary">{{oferta.clientesevaluados}}</h5>
+											</div>	
+										</div>
+										<div class="col-9">
+											<div class="row">
+												<div class="col-md-12 chart">
+													<div style="display: block">
+														<canvas baseChart 
+														width="400" height="80"
+														
+														[datasets]="oferta.serie" 
+														[labels]="barChartLabels"
+														[options]="barChartOptions"
+														[legend]="barChartLegend"
+														[chartType]="barChartType"
+														></canvas>
+													</div>
+
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+	<div class="spinner-border text-light" role="status">
+		<span class="sr-only">Loading...</span>
+	</div>
+</div>

@@ -2,10 +2,6 @@
 .resumen{
 	padding-top:1rem;
 	padding-bottom:1rem;
-	& .presentacion{
-		height: 170px;
-		padding:10px 15px;
-	}
 	& .titulo{
 		font-family: map-get($fonts,roboto);
 		font-size: .9rem;
@@ -22,11 +18,8 @@
 	& .variacion{
 		text-align: center;
 		font-size: 2rem;
-		padding-bottom: 1rem;
-	    padding-top: 1rem;
-	    font-size: 4.5rem;
 		&.neutro{
-			color:map-get($colors,primary);
+			color:map-get($gamagrises,gris3);
 		}
 		&.green{
 			color:map-get($colors,succes);
@@ -34,30 +27,6 @@
 		&.red{
 			color:map-get($colors,danger);
 		}
-	}
-}
-.chart{
-	position: relative;
-	height: 200px;
-	width: 100%;
-	& .contene{
-		position: absolute;
-		top:0;
-		left: 0;
-		width: 100%;
-		height: 200px;
-		& canvas{
-			
-		}
-	}
-	
-}
-.btn-inactivo{
-	color:map-get($gamagrises , girsmenu );
-	background: map-get($gamagrises , gris5 );
-	:hover{
-		color:map-get($gamagrises , girsmenu );
-		background: map-get($colors , primary );
 	}
 }
 .btn-ir{
@@ -92,5 +61,25 @@
 		color:map-get($colors,primary);
 		font-size:1rem;
 		text-transform: uppercase;
+	}
+}
+.card-footerr{
+	& div.btn-card{
+		width: 40px;
+    height: 40px;
+    color: #fff;
+    background: map-get($colors,primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 10px;
+   font-size: 1.2rem;;
+    
+	cursor:pointer;
+
+	&:hover{
+		background: map-get($colors,secondary);
+		}
 	}
 }

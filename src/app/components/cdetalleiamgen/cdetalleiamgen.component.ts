@@ -13,7 +13,7 @@ export class CdetalleiamgenComponent implements OnInit {
 	fecha_imagen:string="";
 	leyenda:string="EN LOS ULTIMOS 12 MESES";
 	imagen:any=[];
-
+  tipo:any="";
 	datosgen:any=[];
 	datosusuarios:any=[];
 	datosempresa:any=[];
@@ -41,6 +41,7 @@ export class CdetalleiamgenComponent implements OnInit {
 	  		this.sniper=true;
 	  		if(params["tipo"]!==undefined){
 	  			this.tipo_imagen=params["tipo"];
+          (this.tipo_imagen==="cliente")?this.tipo='clientes':this.tipo="proveedores";
 	  		}
 	  		if(params["fecha"]!==undefined){
 	  			this.fecha_imagen=params["fecha"];
@@ -48,8 +49,17 @@ export class CdetalleiamgenComponent implements OnInit {
 	  		this.solicitar()
 	  	})
    }
-
+goimagen(){
+    this.route.navigateByUrl('/imagen/'+  this.tipo_imagen+"/A");
+  }
+  lista(){
+    this.route.navigateByUrl('/listan/'+this.tipo);
+  }
+  recibidas(){
+    this.route.navigateByUrl('/recibidas/'+this.tipo);
+  }
   ngOnInit() {
+    
   }
   cambiar(y){
   	this.fecha_imagen=y;

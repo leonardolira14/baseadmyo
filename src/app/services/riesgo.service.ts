@@ -14,4 +14,8 @@ export class RiesgoService {
   	return this.http.post(environment.urlserver+"getriesgo",datos)
     .pipe(map(data=>data));
   }
+  getdetalle(datos){
+	return this.http.post(environment.urlserver+"getdetalle",datos)
+    .pipe(map(data=>data));
+  }
 }

@@ -29,6 +29,8 @@ import { ListaComponent } from './pages/lista/lista.component';
 import { Lista2Component } from './pages/lista2/lista2.component'
 import { RealizadasComponent } from './pages/realizadas/realizadas.component';
 import {  CalificarComponent  } from './pages/calificar/calificar.component'
+import { RecibidasComponent } from './pages/recibidas/recibidas.component';
+import { DetallesriesgoComponent } from './pages/detallesriesgo/detallesriesgo.component';
 const appRoutes: Routes = [
   {path: '', component: PhomeComponent},
   {path: 'terminosycondiciones', component: TerminosComponent},
@@ -57,10 +59,11 @@ const appRoutes: Routes = [
   {path: 'resumen/:tipo', component: ResumenComponent},
   {path: 'lista/:tipo', component: ListaComponent},
   {path: 'realizadas/:tipo', component: RealizadasComponent},
+  {path: 'recibidas/:tipo', component: RecibidasComponent},
   {path: 'calificar/:tipo/:empresa', component: CalificarComponent},
   {path: 'calificar', component: CalificarComponent},
-  {path: 'lista2/:tipo', component: Lista2Component},
-
+  {path: 'listan/:tipo', component: Lista2Component},
+  {path: 'detallesriesgo/:tipo/:fecha',component: DetallesriesgoComponent }
   ];
 @NgModule({
   imports: [

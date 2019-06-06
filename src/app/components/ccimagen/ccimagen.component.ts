@@ -26,7 +26,25 @@ export class CcimagenComponent implements OnInit {
 	label: "Media de calificaciones recibidas"}
 	    
 	  ];
+	  public lineChartDataemcalidad:Array<any> = [
+	    {data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	label: "Media de calificaciones recibidas en calidad"}
+	    
+	  ];
+	  public lineChartDataemcumplimiento:Array<any> = [
+	    {data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	label: "Media de calificaciones recibidas en cumplimiento"}
+	    
+	  ];
+	   public lineChartDataemoferta:Array<any> = [
+	    {data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+	label: "Media de calificaciones recibidas en oferta"}
+	    
+	  ];
 	  public lineChartLabelsem:Array<any> = [];
+	  public lineChartLabelsemcalidad:Array<any> = [];
+	  public lineChartLabelsemcumplimiento:Array<any> = [];
+	  public lineChartLabelsemoferta:Array<any> = [];
 	  public lineChartDataec:Array<any> = [
 	    {data:[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
 	label: "No de calificaciones"}
@@ -67,6 +85,7 @@ export class CcimagenComponent implements OnInit {
 	  		this.sniper=true;
 	  		if(params["tipo"]!==undefined){
 	  			this.tipo_imagen=params["tipo"];
+	  			(this.tipo_imagen==="cliente")?this.tipo='clientes':this.tipo='proveedores';
 	  		}
 	  		if(params["fecha"]!==undefined){
 	  			this.fecha_imagen=params["fecha"];
@@ -76,16 +95,16 @@ export class CcimagenComponent implements OnInit {
    }
 
   ngOnInit() {
-		(this.tipo_imagen==="cliente")?'clientes':'proveedores';
+		
 	}
 	goimagen(){
-		this.route.navigateByUrl('/imagen/'+	this.tipo_imagen+"/A");
+		this.route.navigateByUrl('/imagen/'+this.tipo_imagen+"/A");
 	}
 	lista(){
-  	this.route.navigateByUrl('/lista2/'+this.tipo);
+  	this.route.navigateByUrl('/listan/'+this.tipo);
 	}
 	recibidas(){
-  	this.route.navigateByUrl('/realizadas/'+this.tipo);
+  	this.route.navigateByUrl('/recibidas/'+this.tipo);
   }
   ir(){
   	this.route.navigateByUrl('/detalleimagen/'+this.tipo_imagen+"/"+this.fecha_imagen);
@@ -113,6 +132,12 @@ export class CcimagenComponent implements OnInit {
 
   		this.lineChartDataec[0]["data"]=this.imagen["serievolucion"]["data"];
   		this.lineChartLabelsec=this.imagen["serievolucion"]["label"];
+  		//para las grafias de calidad
+  		this.lineChartDataemcalidad[0]["data"]=this.imagen["evolucion_calidad"]["data"];
+  		this.lineChartLabelsemcalidad=this.imagen["evolucion_calidad"]["label"];
+  		//para las grafias de cumplimiento
+  		this.lineChartDataemcumplimiento[0]["data"]=this.imagen["evolucion_cumplimiento"]["data"];
+  		this.lineChartLabelsemcumplimiento=this.imagen["evolucion_cumplimiento"]["label"];
   		this.sniper=false;
   	})
   }

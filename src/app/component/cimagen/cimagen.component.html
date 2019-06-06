@@ -8,18 +8,7 @@
 					<img src="{{empresa.Logo==''?'assets/img/foto-no-disponible.jpg':rutaserver+'assets/img/logosEmpresas/'+empresa.Logo}}" class="img-user rounded-circle bg-white" >
 					<div class="container-fluid  p-t-40">
 						<div class="row">
-							<div class="col-12 text-center text-roboto text-muted m-t-40">
-								<h5>{{nombre}}</h5>
-							</div>
-							<div class="col-12 text-center text-roboto text-muted">
-								<h6>{{puesto}}</h6>
-							</div>
-							<div class="col-12 text-center  m-t-10">
-								<div class="btn btn-primary" (click)="goto('datosusuario')">
-									Editar Datos
-								</div>
-							</div>
-							<div class="col-12 ray m-t-30 m-b-20"></div>
+							
 							<div class="col-12 text-primary text-center">
 								<h6>Datos Empresa</h6>
 							</div>
@@ -32,11 +21,28 @@
 							<div class="col-12 text-roboto text-muted">
 								<h6>{{empresa.RFC}}</h6>
 							</div>
+							
 							<div class="col-12 text-center m-t-10">
 								<div class="btn btn-primary" (click)="goto('datosempresa')">
 									Editar Datos
 								</div>
 							</div>
+							<div class="col-12 ray m-t-30"></div>
+							<div class="col-12 text-primary text-center">
+								<h6>Datos de Usuario</h6>
+							</div>
+							<div class="col-12 text-center text-roboto text-muted m-t-20">
+								<h5>{{nombre}}</h5>
+							</div>
+							<div class="col-12 text-center text-roboto text-muted">
+								<h6>{{puesto}}</h6>
+							</div>
+							<div class="col-12 text-center  m-t-10">
+								<div class="btn btn-primary" (click)="goto('datosusuario')">
+									Editar Datos
+								</div>
+							</div>
+							
 						</div>
 					</div>
 				</div>
@@ -76,7 +82,7 @@
 						 <span *ngIf="!follow" class="text-center d-block w-100">Sin Registros</span>
 					</div>
 					<div class="card-footer text-center">
-						<div class="btn btn-primary text-center">
+						<div (click)="goto('/follow')" class="btn btn-primary text-center">
 						   		Ver Más
 						 </div>
 					</div>
