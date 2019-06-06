@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { RegistroService } from '../../services/registro.service';
 import { CookieService } from 'ngx-cookie-service';
@@ -9,11 +9,20 @@ import { Router} from '@angular/router'
   styleUrls: ['./menua.component.scss']
 })
 export class MenuaComponent implements OnInit {
+  @ViewChild('content') private alertlogin;
+  @ViewChild('alertolvide') private alertolvide;
    model: any = {};
    alertmsj:boolean=false;
   errortext:string="";
   textbotton:string="Ingresar"
-  constructor(private route:Router,private cookieService: CookieService,private modalService: NgbModal,private http:RegistroService) { }
+  boton_olvida:string="Aceptar"
+  correo_electronico:string="";
+  constructor(
+    private route:Router,
+    private cookieService: CookieService,
+    private modalService: NgbModal,
+    private http:RegistroService
+    ) { }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
@@ -53,4 +62,18 @@ export class MenuaComponent implements OnInit {
 closemodel(content){
     this.modalService.dismissAll(content);
   }
+  goto(ir){
+    this.route.navigateByUrl('/'+ir);
+  }
+  olvide(){
+    this.closemodel(this.alertlogin);
+    this.open(this.alertolvide);
+    
+  }
+  mandar_correo(){
+    //ahora mando el correo electronico al webservice
+    console.log(this.correo_electronico)
+    this.boton_olvida="Procesando Datos"
+  }
+
 }

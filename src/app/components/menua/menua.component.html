@@ -6,7 +6,7 @@
 		<div class="col-12 col-md-4 col-lg-4  col-xl-8text-right">
 			<div class="btn-group text-center" role="group" aria-label="Basic example ">
 			  <button type="button" class="btn btn-azulprimary" (click)="open(content)"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
-			  <button type="button" class="btn btn-azulprimary"><i class="fas fa-user-plus"></i> Registrarse</button>
+			  <button (click)="goto('preciosadmyo')" type="button" class="btn btn-azulprimary"><i class="fas fa-user-plus"></i> Registrarse</button>
         <button routerLink="/" type="button" class="btn btn-azulprimary"><i class="fas fa-home"></i></button>
          <button routerLink="/" type="button" class="btn btn-azulprimary"><i class="fas fa-shopping-cart"></i> <span class="badge badge-light">0</span></button>
 			</div>
@@ -18,7 +18,7 @@
 </div>
 <ng-template #content let-modal>
   <div class="modal-header bg-primary">
-    <h5 class="modal-title text-white text-uppercase" id="modal-basic-title">Ingresa a tu perfil Admyo</h5>
+    <h5 class="modal-title text-white " id="modal-basic-title">Ingresa a tu perfil admyo</h5>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
@@ -53,7 +53,7 @@
 		        </div>
 		     </div>
 		     <div class="col-12 form-group">
-		        <mat-checkbox name="recordar" [(ngModel)]="model.recordar" #recordar="ngModel" class="example-margin">Recordar Credenciales</mat-checkbox>	
+		        <mat-checkbox name="recordar" [(ngModel)]="model.recordar" #recordar="ngModel"  class="btn-recordar">Recordar usuario y contraseña</mat-checkbox>	
 		     </div>
     	</div>
       <button type="submit" class="d-none">asdf</button> 
@@ -66,12 +66,60 @@
     	<div class="row">
     		
     		<div class="col-12   text-center">
-    			<button type="button" class="btn btn-danger m-r-20" (click)="modal.close('Save click')">Olvide Mi Contraseña </button>
+    			<button type="button" class="btn btn-danger m-r-20" (click)="olvide('content')">Olvide Mi Contraseña </button>
     			<button type="submit" (click)="onSubmit()" class="btn btn-secondary">{{textbotton}} </button>
     		</div>
         <div class="col-12 text-center">
-          <button type="button" class="btn btn-primary" (click)="modal.close('Save click')">Obtener una Cuenta </button>
+          <button type="button" class="btn btn-primary" (click)="goto('preciosadmyo')">Obtener una Cuenta </button>
         </div>
+    		
+    	</div>
+    </div>
+  </div>
+</ng-template>
+<ng-template #alertolvide let-modal>
+  <div class="modal-header bg-primary">
+    <h5 class="modal-title text-white " id="modal-basic-title">Recupera tu cuenta</h5>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body bg-primary">
+    <div *ngIf="alertmsj" class="alert alert-danger" role="alert">
+      {{errortext}}
+    </div>
+    <div class="container cont-login">
+    	<div class="row">
+    		<div class="col-4 centrar m-t-30">
+    			<div class="cont-logo">
+    				<img src="assets/img/login-w-icon.png" class="img-fluid" alt="">
+    			</div>
+				</div>
+				<div class="col-12 m-t-20">
+					Ingresa tu correo electrónico para recuperar tu cuenta.
+				</div>	
+    		<div class="col-12 form-group m-t-10">
+		        <div class="input-group">
+		          	<input name="user" [(ngModel)]="correo_electronico" placeholder="Correo Electrónico" #user="ngModel" autocomplete="off" autofocus  type="text" class="form-control">
+		          	<div class="input-group-prepend ">
+					    <span class="input-group-text text-primary bg-blanco" id="basic-addon1"><i class="fas fa-at"></i></span>
+					 </div>
+		        </div>
+		     </div>		     
+    	</div>
+    </div>
+  </div>
+  <div class="modal-footer  bg-primary">
+
+  	
+    <div class="container">
+    	<div class="row">
+    		
+    		<div class="col-12   text-center">
+					<button type="button" class="btn btn-primary mr-3" (click)="goto('preciosadmyo')">Obtener una Cuenta </button>
+    			<button type="submit" (click)="mandar_correo()" class="btn btn-secondary">{{boton_olvida}} </button>
+    		</div>
+        
     		
     	</div>
     </div>

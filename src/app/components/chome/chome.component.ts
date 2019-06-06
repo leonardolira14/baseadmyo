@@ -16,4 +16,7 @@ export class ChomeComponent implements OnInit {
     //console.log(this.palabra);
     this.route.navigateByUrl('/buscar/' + this.palabra );
   }
+  goto(ir){
+    this.route.navigateByUrl('/'+ir);
+  }
 }
