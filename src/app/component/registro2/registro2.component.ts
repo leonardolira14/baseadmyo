@@ -50,9 +50,17 @@ export class Registro2Component implements OnInit,OnDestroy {
   alertmsj:boolean=false;
   constructor(private router:Router,private http:RegistroService) {
   	if(localStorage.card_admyo){
-  		this.datosgenerales=JSON.parse(localStorage.card_admyo);
-  		this.selecttorproducto(this.datosgenerales["productos"]);
-      this.seleccionarproductoqval(this.datosgenerales["productosqval"]);
+      this.datosgenerales=JSON.parse(localStorage.card_admyo);
+      console.log(this.datosgenerales);
+      this.producto=this.datosgenerales[0].plan
+      this.precioproducto=this.datosgenerales[0].total;
+      this.precioproductoqval=this.datosgenerales[1].total;
+      this.productoqval=this.datosgenerales[1].plan;
+      this.numlicqval=this.datosgenerales[1].NumLic
+      if(this.datosgenerales[1].NumLic>=10){
+        this.licenciasqval=true;
+      }
+      console.log(this.numlicqval)
       if(this.datosgenerales["datoscliente"]!==undefined){
         this.registroi=this.datosgenerales["datoscliente"];
       }
@@ -61,33 +69,8 @@ export class Registro2Component implements OnInit,OnDestroy {
   		this.router.navigateByUrl('/preciosadmyo');
   	}
   }
-  selecttorproducto(producto){
-  	if(producto===1){
-  		this.precioproducto=0;
-  		this.producto="Paquete Free";
-  	}else if(producto===2){
-  		this.precioproducto=200;
-  		this.producto="Paquete PYMES";
-  	}else{
-  		this.precioproducto=1000;
-  		this.producto="Paquete Empresarial";
-  	}
-  }
-  seleccionarproductoqval(producto){
-    if(producto===0){
-      this.precioproductoqval=0;
-      this.productoqval="Sin Licencias Qval";
+  
 
-    }else if(producto===1){
-      this.precioproductoqval=100;
-      this.productoqval="Paquete Estandar Qval";
-      this.licenciasqval=true;
-    }else if(producto===2){
-      this.precioproductoqval=200;
-      this.productoqval="Paquete Empresarial Qval";
-      this.licenciasqval=true;
-    }
-  }
   mult(num){
     let totalmult=this.precioproductoqval*num;
     this.numlicqval=num;

@@ -17,7 +17,7 @@ export class Registro3Component implements OnInit {
 	total:number;
   licenciasqval:boolean=false;
 	 public pago:PagoInterface={
-		Metodo:"Oxxo",
+		Metodo:"Tarjeta",
 		Nombre:"",
 		Correo:"",
 		Tarjeta:"",
@@ -28,7 +28,7 @@ export class Registro3Component implements OnInit {
 		Anio:"",
 	 }
   constructor() {
-  	  	if(localStorage.card_admyo){
+  	  /*if(localStorage.card_admyo){
   		this.datosgenerales=JSON.parse(localStorage.card_admyo);
   		this.pago.Nombre=this.datosgenerales["datoscliente"]["Nombre"]+" "+this.datosgenerales["datoscliente"]["Apellidos"];
 		this.pago.Correo=this.datosgenerales["datoscliente"]["Correo1"];
@@ -38,7 +38,7 @@ export class Registro3Component implements OnInit {
         this.seleccionarproductoqval(this.datosgenerales["productosqval"]);
         this.total=this.precioproducto+this.precioproductoqval;
         console.log(this.datosgenerales)
-  	}
+  	}*/
    }
 
   ngOnInit() {

@@ -278,15 +278,16 @@ ul.ltpreg{
     border-radius: 0px !important;
   }
   .menu-reg{
+    
     & .ray{
-
+      margin: 0 auto;
       left:0px;
-      width: 95%;
+      width: 73%;
       top: 25px;
       position: relative;
       height: 2px ;
       background:map-get($colors,succes);
-      margin: 0 auto;
+      
     }
     .paso{
       width: 50px;
@@ -300,6 +301,9 @@ ul.ltpreg{
       font-size: 1.3rem;
       &.active{
         background:map-get($colors,azuladmyo);
+      }
+      &.desactivate{
+        background:#6D6D6D;
       }
     } 
 }

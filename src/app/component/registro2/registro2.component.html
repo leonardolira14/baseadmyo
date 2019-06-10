@@ -2,18 +2,16 @@
   {{textalert}}
   
 </div>
-<div class="container menu-reg">
-	
-	<div class="row m-t-40 m-b-40">
+<div class="container menu-reg m-t-40 m-b-40">
 		<div class="ray"></div>
+	<div class="row d-flex justify-content-center">
+	
 		<div class="col-3 d-flex justify-content-start">
 			<a routerLink="/preciosadmyo"><div class="paso ">1</div></a>
 		</div>
-		<div class="col-3 d-flex justify-content-center">
-			<a routerLink="/preciosqval"><div class="paso ">2</div></a>
-		</div>
-		<div class="col-3 d-flex justify-content-center"><a routerLink="/datosregistro"><div class="paso active">3</div></a></div>
-		<div class="col-3 d-flex justify-content-end"><a routerLink="/confirmarcompra"><div class="paso ">4</div></a></div>
+	
+		<div class="col-3 d-flex justify-content-center"><a routerLink="/datosregistro"><div class="paso active">2</div></a></div>
+		<div class="col-3 d-flex justify-content-end"><a routerLink="/confirmarcompra"><div class="paso desactivate">3</div></a></div>
 	</div>
 </div>
 <form  #formregistro="ngForm" (submit)="enviarform()" class="container-fluid">
@@ -145,7 +143,7 @@
 							</div>
 							<div class="col-4 text-right m-t-10">
 								<span *ngIf="!licenciasqval"> {{precioproductoqval | currency}}</span>
-								<input min="1" value="1" max="10000" #box *ngIf="licenciasqval" type="number" (keyup)="mult(box.value)" class="form-control">
+								<input min="1" value="1" max="10000"  *ngIf="licenciasqval" [(ngModel)]="numlicqval" name="numlicqval" type="number"  class="form-control">
 							</div>
 
 							<div class="col-12 ray m-t-20">

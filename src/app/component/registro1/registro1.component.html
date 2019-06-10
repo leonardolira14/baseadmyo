@@ -1,88 +1,154 @@
-<div class="container menu-reg">
-	
-	<div class="row m-t-40 m-b-40">
+<div class="container menu-reg m-t-40 m-b-40">
 		<div class="ray"></div>
+	<div class="row d-flex justify-content-center">
+	
 		<div class="col-3 d-flex justify-content-start">
 			<a routerLink="/preciosadmyo"><div class="paso active">1</div></a>
 		</div>
-		<div class="col-3 d-flex justify-content-center">
-			<a routerLink="/preciosqval"><div class="paso ">2</div></a>
-		</div>
-		<div class="col-3 d-flex justify-content-center"><a routerLink="/datosregistro"><div class="paso ">3</div></a></div>
-		<div class="col-3 d-flex justify-content-end"><a routerLink="/confirmarcompra"><div class="paso ">4</div></a></div>
+	
+		<div class="col-3 d-flex justify-content-center"><a routerLink="/datosregistro"><div class="paso desactivate">2</div></a></div>
+		<div class="col-3 d-flex justify-content-end"><a routerLink="/confirmarcompra"><div class="paso desactivate">3</div></a></div>
 	</div>
 </div>
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-12">
-			<mat-tab-group>
+			<mat-tab-group #tb_precios>
 				<mat-tab label="Paquetes Admyo">
 					<div class="container-fluid">
-						<div class="row">
+						<div class="row p-b-20">
 							<div class="col-3">
 								<div class="row">
-									<div class="card col-12 card-precios m-t-30 active">
+									<div (click)="cambio_micro('gratis')" class="card col-12 card-precios m-t-30 {{(gratis_admyo)?'active':''}}">
 										<span class="titulo">Gratis</span>
 										<br>
 										<span class="precio">$0.00</span>
 									</div>
-									<div class="card col-12 card-precios m-t-30">
+									<div (click)="cambio_micro('micro')"  class="card col-12 card-precios m-t-30 {{(micro_admyo)?'active':''}}">
 										<span class="titulo">Micro Empresas</span>
 										<br>
 										<span class="precio">$200.00 Mensuales</span>
 									</div>
-									<div class="card col-12 card-precios m-t-30">
+									<div (click)="cambio_micro('micro_anual')" class="card col-12 card-precios m-t-30 {{(micro_admyo_anual)?'active':''}}">
 										<span class="titulo">Micro Empresas</span>
 										<br>
 										<span class="precio">$166.67 Mensual (Pago Anual)</span>
 									</div>
-									<div class="card col-12 card-precios m-t-30">
+									<div (click)="cambio_micro('empresa')" class="card col-12 card-precios m-t-30 {{(empresa_admyo)?'active':''}}">
 											<span class="titulo">Empresarial</span>
 											<br>
 											<span class="precio">$1000.00 Mensual </span>
 										</div>
-										<div class="card col-12 card-precios m-t-30">
+									<div (click)="cambio_micro('empresa_anual')" class="card col-12 card-precios m-t-30 {{(empresa_admyo_anual)?'active':''}}">
 												<span class="titulo">Empresarial</span>
 												<br>
 												<span class="precio">$833.33 Mensual (Pago Anual)</span>
-											</div>
+									</div>
 								</div>
 							</div>
 							<div class="col-9">
 								<div class="row">
-									<div class="col-12" *ngIf="gratis_admyo">
+									<div class="col-12 m-t-p text-center text-prosto">
+										<h3>Plan Seleccionado {{plan_selec}}</h3>
+									</div>	
+									<div class="col-6" *ngIf="gratis_admyo">
 										<mat-list role="list">
-											<mat-list-item role="listitem">Desarrollo de perfil empresarial</mat-list-item>
-											<mat-list-item role="listitem">Calificar empresas</mat-list-item>
-											<mat-list-item role="listitem">2 Usuarios</mat-list-item>
-											<mat-list-item role="listitem">API Web</mat-list-item>
-											<mat-list-item role="listitem">Plataforma Móvil</mat-list-item>
-											<mat-list-item role="listitem">Certificaciones de calidad ilimitados</mat-list-item>
-											<mat-list-item role="listitem">Socio asociaciones ilimitadas</mat-list-item>
-											<mat-list-item role="listitem">Alerta de desempeño de cientes y proveedores</mat-list-item>
-											<mat-list-item role="listitem">Alertas de visitas a tu perfil</mat-list-item>
-											<mat-list-item role="listitem">2 productos y servicios</mat-list-item>
-											<mat-list-item role="listitem">2 marcas</mat-list-item>
-											<mat-list-item role="listitem">Seguimiento de 3 Empresas</mat-list-item>
+											<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Desarrollo de perfil empresarial</mat-list-item>
+											<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Calificar empresas</mat-list-item>
+											<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> 2 Usuarios</mat-list-item>
+											<mat-list-item role="listitem" class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i> Usuarios Ilimitados</mat-list-item>
+											<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> API Web</mat-list-item>
+											<mat-list-item role="listitem"  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Plataforma Móvil</mat-list-item>
+											<mat-list-item role="listitem"  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Certificaciones de calidad ilimitados</mat-list-item>
+											<mat-list-item role="listitem"  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Asociaciones ilimitadas</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Resumen general de empresas buscadas</mat-list-item>
+											<mat-list-item role='listitem' class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i> Detalle de Empresas y Seguidas</mat-list-item>
+											<mat-list-item role='listitem' class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i> Seguimiento de empresas Ilimitadas</mat-list-item>
 										</mat-list>
 									</div>
-									<div class="col-12" *ngIf="micro_admyo">
+									<div class="col-6" *ngIf="gratis_admyo">
 										<mat-list role="list">
-											<mat-list-item role="listitem">Desarrollo de perfil empresarial</mat-list-item>
-											<mat-list-item role="listitem">Calificar empresas</mat-list-item>
-											<mat-list-item role="listitem">Usuarios ilimitados</mat-list-item>
-											<mat-list-item role="listitem">API Web</mat-list-item>
-											<mat-list-item role="listitem">Plataforma Móvil</mat-list-item>
-											<mat-list-item role="listitem">Certificaciones de calidad ilimitados</mat-list-item>
-											<mat-list-item role="listitem">Socio asociaciones ilimitadas</mat-list-item>
-											<mat-list-item role="listitem">Detalle de empresas buscadas y seguidas</mat-list-item>
-											<mat-list-item role="listitem">Alerta de desempeño de cientes y proveedores</mat-list-item>
-											<mat-list-item role="listitem">Alertas de visitas a tu perfil</mat-list-item>
-											<mat-list-item role="listitem">Productos y servicios ilimitados</mat-list-item>
-											<mat-list-item role="listitem">Marcas ilimitadas</mat-list-item>
-											<mat-list-item role="listitem">Seguimiento de Empresas ilimitadas</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary  text-lits"> <i class="fas fa-check-circle mr-3"></i>Alerta de calificaciones recibidas</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Alerta de desempeño de clientes y proveedores</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Alerta de visitas a tu perfil</mat-list-item>
+											<mat-list-item role='listitem' class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i> Alerta de desempeño de empresas seguidas</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> 2 Productos y Servicios</mat-list-item>
+											<mat-list-item role='listitem' class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i> Productos y Servicios Ilimitados</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> 2 Marcas</mat-list-item>
+											<mat-list-item role='listitem' class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i>Marcas Ilimitadas</mat-list-item>
+											<mat-list-item role='listitem' class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Seguimiento de 3 empresas</mat-list-item>
+											<mat-list-item role='listitem' class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i> Seguimiento de empresas Ilimitadas</mat-list-item>
 										</mat-list>
 									</div>
+									<div class="col-6" *ngIf="micro_admyo || micro_admyo_anual">
+										<mat-list role="list">
+											<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Desarrollo de perfil empresarial</mat-list-item>
+											<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Calificar empresas</mat-list-item>
+											<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>2 Usuarios</mat-list-item>
+											<mat-list-item role="listitem" class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i>Usuarios Ilimitados</mat-list-item>
+											<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>API Web</mat-list-item>
+											<mat-list-item role="listitem"  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Plataforma Móvil</mat-list-item>
+											<mat-list-item role="listitem"  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Certificaciones de calidad ilimitados</mat-list-item>
+											<mat-list-item role="listitem"  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Asociaciones ilimitadas</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Resumen general de empresas buscadas</mat-list-item>
+											<mat-list-item role='listitem' class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Detalle de Empresas y Seguidas</mat-list-item>
+											<mat-list-item role='listitem' class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i>Seguimiento de empresas Ilimitadas</mat-list-item>
+										</mat-list>
+									</div>
+									<div class="col-6" *ngIf="micro_admyo || micro_admyo_anual">
+										<mat-list role="list">
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Alerta de calificaciones recibidas</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Alerta de desempeño de clientes y proveedores</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Alerta de visitas a tu perfil</mat-list-item>
+											<mat-list-item role='listitem' class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Alerta de desempeño de empresas seguidas</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>2 Productos y Servicios</mat-list-item>
+											<mat-list-item role='listitem' class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i>Productos y Servicios Ilimitados</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>2 Marcas</mat-list-item>
+											<mat-list-item role='listitem' class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i>Marcas Ilimitadas</mat-list-item>
+											<mat-list-item role='listitem' class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Seguimiento de 3 empresas</mat-list-item>
+											<mat-list-item role='listitem' class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i>Seguimiento de empresas Ilimitadas</mat-list-item>
+										</mat-list>
+									</div>
+									<div class="col-6" *ngIf="empresa_admyo || empresa_admyo_anual">
+										<mat-list role="list">
+											<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Desarrollo de perfil empresarial</mat-list-item>
+											<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Calificar empresas</mat-list-item>
+											<mat-list-item role="listitem" class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i>2 Usuarios</mat-list-item>
+											<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Usuarios Ilimitados</mat-list-item>
+											<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>API Web</mat-list-item>
+											<mat-list-item role="listitem"  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Plataforma Móvil</mat-list-item>
+											<mat-list-item role="listitem"  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Certificaciones de calidad ilimitados</mat-list-item>
+											<mat-list-item role="listitem"  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Asociaciones ilimitadas</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Resumen general de empresas buscadas</mat-list-item>
+											<mat-list-item role='listitem' class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Detalle de Empresas y Seguidas</mat-list-item>
+											<mat-list-item role='listitem' class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Seguimiento de empresas Ilimitadas</mat-list-item>
+										</mat-list>
+									</div>
+									<div class="col-6" *ngIf="empresa_admyo || empresa_admyo_anual">
+										<mat-list role="list">
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Alerta de calificaciones recibidas</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Alerta de desempeño de clientes y proveedores</mat-list-item>
+											<mat-list-item role='listitem'  class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Alerta de visitas a tu perfil</mat-list-item>
+											<mat-list-item role='listitem' class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Alerta de desempeño de empresas seguidas</mat-list-item>
+											<mat-list-item role='listitem'  class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i>2 Productos y Servicios</mat-list-item>
+											<mat-list-item role='listitem' class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Productos y Servicios Ilimitados</mat-list-item>
+											<mat-list-item role='listitem'  class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i>2 Marcas</mat-list-item>
+											<mat-list-item role='listitem' class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Marcas Ilimitadas</mat-list-item>
+											<mat-list-item role='listitem' class="text-muted text-lits"><i class="fas fa-check-circle mr-3"></i>Seguimiento de 3 empresas</mat-list-item>
+											<mat-list-item role='listitem' class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Seguimiento de empresas Ilimitadas</mat-list-item>
+										</mat-list>
+									</div>
+									<div class="col-12 text-right">
+											<h5 class=text-lits>
+												Nuestros Precios no Incluyen I.V.A.
+												<p>Coste Final: {{Coste_Final | currency}}</p>
+											</h5>
+											
+											<div class="btn-group" role="group" aria-label="Basic example">
+												<button type="button" (click)="next_pass()" class="btn btn-succes">Siguiente</button>
+											</div>
+									</div>
+									
 								</div>
 							</div>
 						</div>
@@ -90,8 +156,60 @@
 				</mat-tab>
 				<mat-tab label="Paquetes Qval">
 					<div class="container-fluid">
-						<div class="row">
-							
+						<div class="row  p-b-20">
+							<div class="col-3">
+								<div (click)="cambio_qval('empresarial_qval')" class="card col-12 card-precios m-t-30 {{(empresarial_qval)?'active':''}}">
+								<span class="titulo">Empresarial</span>
+									<br>
+								<span class="precio">$3,000.00 Mensuales</span>
+								</div>
+								<div (click)="cambio_qval('empresarial_anual')" class="card col-12 card-precios m-t-30 {{(empresarial_anual)?'active':''}}">
+									<span class="titulo">Empresarial</span>
+										<br>
+										<span class="precio">$2500.00 Anual</span>
+								</div>
+							</div>
+							<div class="col-9">
+								<div class="row">
+										<div class="col-6">
+												<mat-list role="list">
+													<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Logo en aplicación de Usuario</mat-list-item>
+													<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Aplicación de gestión</mat-list-item>
+													<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Alertas de cumplimiento de cuestionarios</mat-list-item>
+													<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Alertas de repuesta específica en un cuestionario</mat-list-item>
+													<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i> Número ilimitado de preguntas</mat-list-item>
+													
+													
+												</mat-list>
+											</div>
+											<div class="col-6">
+													<mat-list role="list">
+															<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Número ilimitado de clientes y proveedores</mat-list-item>
+															<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>Número ilimitado cuestionarios</mat-list-item>
+															<mat-list-item role="listitem" class="text-primary text-lits"><i class="fas fa-check-circle mr-3"></i>10 usuarios</mat-list-item>
+															<mat-list-item role="listitem" class="text-primary text-lits m-t-30">
+																	<mat-form-field class="example-full-width">
+																			<input matInput type="number" (keyup)="num_lic()"   [(ngModel)]="input_numlic"  placeholder="No de Usuarios" value="10">
+																	</mat-form-field>
+																	<small>$100.00 por cada usuario Adicional</small>
+															</mat-list-item>
+													</mat-list>
+											</div>
+										<div class="col-12 text-right">
+												<h5 class=text-lits>
+														Nuestros Precios no Incluyen I.V.A.
+														<p>Coste Final: {{Coste_Final | currency}}</p>
+												</h5>
+											<div class="btn-group" role="group" aria-label="Basic example">
+												<button type="button" (click)="por_momento()" class="btn btn-secondary mr-3">Por el momento no estoy interesado</button>
+												<button type="button" (click)="add_plaqval()" class="btn btn-succes">Agregar Plan Qval</button>
+											</div>
+										</div>
+								</div>
+									
+									
+							</div>
+								
 						</div>
 					</div>
 				</mat-tab>
