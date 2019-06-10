@@ -31,4 +31,8 @@ export class RegistroService {
       return this.http.post(environment.urlserver+"login",login)
       .pipe(map(data=>data));
    }
+   pago(datos){
+     console.log(datos);
+     return this.http.post(environment.urlserver + 'pago', datos);
+   }
 }

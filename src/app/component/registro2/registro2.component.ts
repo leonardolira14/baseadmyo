@@ -55,12 +55,9 @@ export class Registro2Component implements OnInit,OnDestroy {
       this.producto=this.datosgenerales[0].plan
       this.precioproducto=this.datosgenerales[0].total;
       this.precioproductoqval=this.datosgenerales[1].total;
-      this.productoqval=this.datosgenerales[1].plan;
+      this.check_planqval(this.datosgenerales[1].plan);
       this.numlicqval=this.datosgenerales[1].NumLic
-      if(this.datosgenerales[1].NumLic>=10){
-        this.licenciasqval=true;
-      }
-      console.log(this.numlicqval)
+       
       if(this.datosgenerales["datoscliente"]!==undefined){
         this.registroi=this.datosgenerales["datoscliente"];
       }
@@ -71,10 +68,18 @@ export class Registro2Component implements OnInit,OnDestroy {
   }
   
 
-  mult(num){
-    let totalmult=this.precioproductoqval*num;
-    this.numlicqval=num;
-    this.total=totalmult+this.precioproducto;
+  check_planqval(plan){
+    
+    if(plan===''){
+      this.productoqval='';
+      this.licenciasqval=false;
+    }else if(plan==='empresarial_qval'){
+      this.productoqval='Plan Empresarial Qval';
+      this.licenciasqval=true;
+    }else{
+      this.productoqval='Plan Empresarial Anual Qval';
+      this.licenciasqval=true;
+    }
   }
   ngOnDestroy(){
     this.datosgenerales["datoscliente"]=this.registroi;
@@ -158,8 +163,6 @@ export class Registro2Component implements OnInit,OnDestroy {
     return rfcSinDigito + digitoVerificador;
   }
   enviarform(){
-
-   $(".alerterror").removeClass("show")
     if(this.validar_rfc(this.registroi.RFC)===false){
       this.errorrfcSwal.show()
       return false;
@@ -167,9 +170,9 @@ export class Registro2Component implements OnInit,OnDestroy {
     this.spinner=true;
     this.registroi.NlicenasQval=this.numlicqval;
     this.registroi.Precioadmyo=this.precioproducto;
-    this.registroi.Productoadmyo=this.datosgenerales["productos"];
-    this.registroi.ProductoQval=this.datosgenerales["productosqval"];
-    this.registroi.PrecioQval=this.precioproductoqval
+    this.registroi.Productoadmyo=this.datosgenerales[0].leyenda;
+    this.registroi.ProductoQval=this.datosgenerales[1].plan;
+    this.registroi.PrecioQval=this.precioproductoqval;
    this.http.saveregister(this.registroi)
    .subscribe((data)=>{
      this.spinner=false;
@@ -180,6 +183,9 @@ export class Registro2Component implements OnInit,OnDestroy {
       if(this.total===0){
          this.siccesSwal.show();
       }else{
+        this.datosgenerales.push(this.registroi);
+        this.datosgenerales.push({IDEmpresa:data["response"]["result"]})
+        localStorage.setItem('card_admyo',JSON.stringify(this.datosgenerales))
         this.router.navigateByUrl('/confirmarcompra');
       }
      
@@ -194,5 +200,8 @@ export class Registro2Component implements OnInit,OnDestroy {
         setTimeout(()=>{
    $(".alerterror").removeClass("show");
     },4000)
+  }
+  goto(ir){
+    this.router.navigateByUrl(ir);
   }
 }

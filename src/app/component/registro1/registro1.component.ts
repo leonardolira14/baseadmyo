@@ -38,6 +38,7 @@ export class Registro1Component implements OnInit {
         this.cambio_micro(this.car[0].leyenda);
         this.cambio_qval(this.car[1].plan);
         this.input_numlic=this.car[1].NumLic;
+        this.num_lic();
       }
      }
 
@@ -74,7 +75,7 @@ export class Registro1Component implements OnInit {
         this.micro_admyo_anual=true;
         this.empresa_admyo_anual=false;
         this.plan_selec="Micro Empresa Anual";
-        this.coste_admyo=166.67;
+        this.coste_admyo=2000;
         this.anual_admyo=true;
         this.mensual_admyo=false;
         break;
@@ -96,7 +97,7 @@ export class Registro1Component implements OnInit {
         this.micro_admyo_anual=false;
         this.empresa_admyo_anual=true;
         this.plan_selec="Empresarial Anual";
-        this.coste_admyo=833.33;
+        this.coste_admyo=10000;
         this.anual_admyo=true;
         this.mensual_admyo=false;
         break;
@@ -150,7 +151,8 @@ export class Registro1Component implements OnInit {
     this.tb_precios.selectedIndex = 2;
   }
   add_plaqval(){
-    this.car=[{'leyenda':this.leyenda_admyo,'plan':this.plan_selec,'total':this.coste_admyo},{'plan':this.leyenda_qval,'total':this.coste_qval,'NumLic':this.input_numlic}];
+    this.num_lic();
+    this.car=[{'anual':this.anual_admyo,'leyenda':this.leyenda_admyo,'plan':this.plan_selec,'total':this.coste_admyo},{'anual':this.anual_qval,'plan':this.leyenda_qval,'total':this.coste_qval,'NumLic':this.input_numlic}];
 
     console.log(this.car);
     localStorage.setItem("card_admyo",JSON.stringify(this.car));
@@ -165,7 +167,7 @@ export class Registro1Component implements OnInit {
     this.anual_qval=false;
     this.Coste_Final=this.coste_admyo+this.coste_qval;
 
-    this.car=[{'leyenda':this.leyenda_admyo,'plan':this.plan_selec,'total':this.coste_admyo},{'plan':'','total':0,'NumLic':this.input_numlic}];
+    this.car=[{'leyenda':this.leyenda_admyo,'plan':this.plan_selec,'total':this.coste_admyo},{'plan':'','total':0,'NumLic':0}];
     
 
     localStorage.setItem("card_admyo",JSON.stringify(this.car));

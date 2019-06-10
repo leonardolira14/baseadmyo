@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PagoInterface } from '../../models/pago-interface';
-
+import { Router} from '@angular/router'
+import swal from 'sweetalert2';
+import { RegistroService } from '../../services/registro.service';
+declare var Conekta: any;
 
 @Component({
   selector: 'app-registro3',
@@ -15,7 +18,9 @@ export class Registro3Component implements OnInit {
 	productoqval:string;
 	precioproductoqval:number;
 	total:number;
-  licenciasqval:boolean=false;
+	licenciasqval:boolean=false;
+	spinner=false;
+	public datos_pago={};
 	 public pago:PagoInterface={
 		Metodo:"Tarjeta",
 		Nombre:"",
@@ -27,54 +32,103 @@ export class Registro3Component implements OnInit {
 		Mes:"",
 		Anio:"",
 	 }
-  constructor() {
-  	  /*if(localStorage.card_admyo){
+  constructor(
+		 private rote:Router,
+		 private http:RegistroService
+		 ) {
+			Conekta.setPublicKey('key_EDxZCrdzJsGgsEaqzxutE8A');
+      Conekta.setLanguage('es');
+  	  if(localStorage.card_admyo){
   		this.datosgenerales=JSON.parse(localStorage.card_admyo);
-  		this.pago.Nombre=this.datosgenerales["datoscliente"]["Nombre"]+" "+this.datosgenerales["datoscliente"]["Apellidos"];
-		this.pago.Correo=this.datosgenerales["datoscliente"]["Correo1"];
-		this.precioproductoqval=this.datosgenerales["datoscliente"]["PrecioQval"];
-		this.precioproducto=this.datosgenerales["datoscliente"]["Precioadmyo"];
-		this.selecttorproducto(this.datosgenerales["datoscliente"]["productos"]);
-        this.seleccionarproductoqval(this.datosgenerales["productosqval"]);
+  		this.pago.Nombre=this.datosgenerales[2]["Nombre"]+" "+this.datosgenerales[2]["Apellidos"];
+			this.pago.Correo=this.datosgenerales[2]["Correo1"];
+			this.producto=this.datosgenerales[0]["plan"] 
+      this.precioproducto=this.datosgenerales[0]["total"];
+      this.precioproductoqval=this.datosgenerales[1]["total"];
+			this.check_planqval(this.datosgenerales[1]["plan"]);
         this.total=this.precioproducto+this.precioproductoqval;
         console.log(this.datosgenerales)
-  	}*/
+  	}
    }
 
   ngOnInit() {
 
-  }
-  selecttorproducto(producto){
-  	if(producto===1){
-  		this.precioproducto=0;
-  		this.producto="Paquete Free";
-  	}else if(producto===2){
-  		this.precioproducto=200;
-  		this.producto="Paquete PYMES";
-  	}else{
-  		this.precioproducto=1000;
-  		this.producto="Paquete Empresarial";
-  	}
-  }
-  seleccionarproductoqval(producto){
-    if(producto===0){
-      this.precioproductoqval=0;
-      this.productoqval="Sin Licencias Qval";
-
-    }else if(producto===1){
-      this.precioproductoqval=100;
-      this.productoqval="Paquete Estandar Qval";
+	}
+	check_planqval(plan){
+    
+    if(plan===''){
+      this.productoqval='';
+      this.licenciasqval=false;
+    }else if(plan==='empresarial_qval'){
+      this.productoqval='Plan Empresarial Qval';
       this.licenciasqval=true;
-    }else if(producto===2){
-      this.precioproductoqval=200;
-      this.productoqval="Paquete Empresarial Qval";
+    }else{
+      this.productoqval='Plan Empresarial Anual Qval';
       this.licenciasqval=true;
     }
-  }
+	}
   pagar(){
-  	this.datosgenerales["metdo_pay"]=this.pago;
+  	/*this.datosgenerales["metdo_pay"]=this.pago;
   	localStorage.setItem("card_admyo",this.datosgenerales);
-  	console.log(this.pago)
+		console.log(this.pago)*/
+		const tokenParams = {
+			'card': {
+				'number': this.pago.Tarjeta,
+				'name': this.pago.Nombre ,
+				'exp_year': this.pago.Anio,
+				'exp_month': this.pago.Mes,
+				'cvc': this.pago.cvv,
+			}
+		};
+		
+		Conekta.token.create(tokenParams, (data) => {
+			let telefono = '0000000000';
+			if ((this.pago.Movil === undefined) || (this.pago.Movil === '') ) {
+				telefono = '0000000000';
+			} else {
+				telefono = this.pago.Movil;
+			}
+			this.datos_pago['datosempresa']=this.datosgenerales[3]['IDEmpresa'];
+			this.datos_pago['pagoqval'] = {
+				metodo: 'tarjeta',
+				token: data.id,
+				nombre: tokenParams.card.name,
+				total: this.precioproductoqval,
+				correo: this.pago.Correo,
+				tel: telefono,
+				descripcion: this.productoqval,
+				tiempo:this.datosgenerales[1]['anual']
+			};
+			this.datos_pago['pagoadmyo'] = {
+
+				metodo: 'tarjeta',
+				token: data.id,
+				nombre: tokenParams.card.name,
+				total: this.precioproducto,
+				correo: this.pago.Correo,
+				tel: telefono,
+				descripcion: this.producto,
+				tiempo:this.datosgenerales[0]['anual']
+			};
+		 this.http.pago(this.datos_pago)
+		 .subscribe( datas => {
+			this.spinner = false;
+		 if (datas['ok'] === 'succes') {
+			// tslint:disable-next-line:max-line-length
+			swal('Exito!', 'Gracias por su compra,se han enviado las instrucciones para la activaciòn de la cuenta al correo electrònico', 'success');
+			localStorage.removeItem('datos_pago_qval');
+			this.goto('');
+		} else {
+			swal('Error!', datas['error'], 'error');
+		 }
+		 });
+		}, (error) => {
+			this.spinner = false;
+			swal('Error!', error.message_to_purchaser, 'error' );
+		});
   }
+	goto(ir){
+		this.rote.navigateByUrl(ir)
+	}
 
 }

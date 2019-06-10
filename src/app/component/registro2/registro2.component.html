@@ -138,12 +138,13 @@
 							<div class="col-4 text-right">
 								{{precioproducto | currency}}
 							</div>
-							<div class="col-8 m-t-10">
-								{{productoqval}}<span *ngIf="licenciasqval">, {{precioproductoqval | currency}}</span>
+							<div class="col-8 m-t-10" *ngIf="licenciasqval">
+								{{productoqval}}
+								<p>
+								<small class="text-muted">No de Licencias: {{numlicqval}}</small>
 							</div>
-							<div class="col-4 text-right m-t-10">
-								<span *ngIf="!licenciasqval"> {{precioproductoqval | currency}}</span>
-								<input min="1" value="1" max="10000"  *ngIf="licenciasqval" [(ngModel)]="numlicqval" name="numlicqval" type="number"  class="form-control">
+							<div class="col-4 text-right m-t-10" *ngIf="licenciasqval">
+								<span >{{precioproductoqval | currency}}</span>
 							</div>
 
 							<div class="col-12 ray m-t-20">
@@ -161,10 +162,10 @@
 			</div>
 			<div class="row m-t-40">
 				<div class="col-6 text-left">
-					<button class="btn btn-danger">Cambiar Plan</button>
+					<div (click)="goto('preciosadmyo')" class="btn btn-danger">Cambiar Plan</div>
 				</div>
 				<div class="col-6 text-right">
-					<button class="btn btn-secondary">Siguiente</button>
+					<button type="submit"  class="btn btn-secondary">Siguiente</button>
 				</div>
 				<div class="col-12 m-t-20">
 					<small class="text-muted">Nota: Todos los campos marcados con * son necesarios para el registro.</small>
