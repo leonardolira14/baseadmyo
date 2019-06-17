@@ -42,7 +42,8 @@ gris2:#dfdfdf,
 gris3:#393e46,
 girsmenu:#555,
 gris4:#eaeaea,
-gris5:#dae1e7
+gris5:#dae1e7,
+grismenuopaco:rgba(#555,0.6)
 	);
 $spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50,55,60,65,70, 75,80,85,90,95,100,110,120,130,140);
 $sides: (top, bottom, left, right);
@@ -74,6 +75,25 @@ $sides: (top, bottom, left, right);
 		border-color:$bgcolor !important;
 		color:map-get( $colors, blanco);
 		
+  }
+  .btn-#{$profile}{
+		background:$bgcolor  !important;
+		border-color:$bgcolor !important;
+		color:map-get( $colors, blanco);
+		
+  }
+  .btn-outline-#{$profile}{
+	  color:$bgcolor;
+	  background: transparent !important;
+	  border-color: $bgcolor !important;
+	  border-radius: 0px !important;
+	  transition: all 0.5s;
+	  &:hover{
+	  	 color:map-get($colors,blanco);
+	  	transition: all 0.5s;
+		background:rbga($bgcolor,1)!important ;
+	  	border-color: $bgcolor !important;
+	  }
 	}
 }
 @each $profile, $bgcolor in $colors {

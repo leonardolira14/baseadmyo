@@ -32,6 +32,17 @@ export class Registro3Component implements OnInit {
 		Mes:"",
 		Anio:"",
 	 }
+	 public pago_qval:PagoInterface={
+		Metodo:"Tarjeta",
+		Nombre:"",
+		Correo:"",
+		Tarjeta:"",
+		cvv:"",
+		Token:"",
+		Movil:"",
+		Mes:"",
+		Anio:"",
+	 }
   constructor(
 		 private rote:Router,
 		 private http:RegistroService
@@ -41,8 +52,12 @@ export class Registro3Component implements OnInit {
   	  if(localStorage.card_admyo){
   		this.datosgenerales=JSON.parse(localStorage.card_admyo);
   		this.pago.Nombre=this.datosgenerales[2]["Nombre"]+" "+this.datosgenerales[2]["Apellidos"];
-			this.pago.Correo=this.datosgenerales[2]["Correo1"];
-			this.producto=this.datosgenerales[0]["plan"] 
+		this.pago.Correo=this.datosgenerales[2]["Correo1"];
+
+		this.pago_qval.Nombre=this.datosgenerales[2]["Nombre"]+" "+this.datosgenerales[2]["Apellidos"];
+		this.pago_qval.Correo=this.datosgenerales[2]["Correo1"];
+
+		this.producto=this.datosgenerales[0]["plan"] 
       this.precioproducto=this.datosgenerales[0]["total"];
       this.precioproductoqval=this.datosgenerales[1]["total"];
 			this.check_planqval(this.datosgenerales[1]["plan"]);
@@ -52,7 +67,12 @@ export class Registro3Component implements OnInit {
    }
 
   ngOnInit() {
-
+		if(this.precioproducto>3000){
+			this.pago.Metodo="Transferencia";
+		}
+		if(this.precioproductoqval>3000){
+			this.pago_qval.Metodo="Transferencia";
+		}
 	}
 	check_planqval(plan){
     
@@ -67,10 +87,28 @@ export class Registro3Component implements OnInit {
       this.licenciasqval=true;
     }
 	}
-  pagar(){
-  	/*this.datosgenerales["metdo_pay"]=this.pago;
-  	localStorage.setItem("card_admyo",this.datosgenerales);
-		console.log(this.pago)*/
+
+  pagar_admyo(){
+	  this.datos_pago['datosempresa']=this.datosgenerales[3]['IDEmpresa'];
+	let telefono = '0000000000';
+	if ((this.pago.Movil === undefined) || (this.pago.Movil === '') ) {
+		telefono = '0000000000';
+	} else {
+		telefono = this.pago.Movil;
+	}
+	if(this.pago.Metodo==='Transferencia'){
+		this.datos_pago['pago'] = {
+			para:'admyo',
+			metodo: this.pago.Metodo,
+			nombre:this.pago.Nombre,
+			total: this.precioproducto,
+			correo: this.pago.Correo,
+			tel: telefono,
+			descripcion: this.producto,
+			tiempo:this.datosgenerales[1]['anual']
+		};
+		this.send_pago(this.datos_pago)
+	}else{
 		const tokenParams = {
 			'card': {
 				'number': this.pago.Tarjeta,
@@ -82,26 +120,12 @@ export class Registro3Component implements OnInit {
 		};
 		
 		Conekta.token.create(tokenParams, (data) => {
-			let telefono = '0000000000';
-			if ((this.pago.Movil === undefined) || (this.pago.Movil === '') ) {
-				telefono = '0000000000';
-			} else {
-				telefono = this.pago.Movil;
-			}
-			this.datos_pago['datosempresa']=this.datosgenerales[3]['IDEmpresa'];
-			this.datos_pago['pagoqval'] = {
-				metodo: 'tarjeta',
-				token: data.id,
-				nombre: tokenParams.card.name,
-				total: this.precioproductoqval,
-				correo: this.pago.Correo,
-				tel: telefono,
-				descripcion: this.productoqval,
-				tiempo:this.datosgenerales[1]['anual']
-			};
-			this.datos_pago['pagoadmyo'] = {
-
-				metodo: 'tarjeta',
+			
+			
+			
+			this.datos_pago['pago'] = {
+				para:'admyo',
+				metodo: this.pago.Metodo,
 				token: data.id,
 				nombre: tokenParams.card.name,
 				total: this.precioproducto,
@@ -110,22 +134,95 @@ export class Registro3Component implements OnInit {
 				descripcion: this.producto,
 				tiempo:this.datosgenerales[0]['anual']
 			};
-		 this.http.pago(this.datos_pago)
-		 .subscribe( datas => {
-			this.spinner = false;
-		 if (datas['ok'] === 'succes') {
-			// tslint:disable-next-line:max-line-length
-			swal('Exito!', 'Gracias por su compra,se han enviado las instrucciones para la activaciòn de la cuenta al correo electrònico', 'success');
-			localStorage.removeItem('datos_pago_qval');
-			this.goto('');
+			this.send_pago(this.datos_pago)
+			}, (error) => {
+				this.spinner = false;
+				swal('Error!', error.message_to_purchaser, 'error' );
+			});
+	}
+  }
+  pagar_qval(){
+	this.datos_pago['datosempresa']=this.datosgenerales[3]['IDEmpresa'];
+	let telefono = '0000000000';
+	if ((this.pago.Movil === undefined) || (this.pago.Movil === '') ) {
+		telefono = '0000000000';
+	} else {
+		telefono = this.pago.Movil;
+	}
+  	if(this.pago_qval.Metodo==='Transferencia'){
+		this.datos_pago['pago'] = {
+			para:'qval',
+			metodo: this.pago_qval.Metodo,
+			nombre:this.pago_qval.Nombre,
+			total: this.precioproductoqval,
+			correo: this.pago_qval.Correo,
+			tel: telefono,
+			descripcion: this.productoqval,
+			tiempo:this.datosgenerales[1]['anual']
+		};
+		this.send_pago(this.datos_pago)
+	  }else{
+
+	  
+	const tokenParams = {
+		'card': {
+			'number': this.pago_qval.Tarjeta,
+			'name': this.pago_qval.Nombre ,
+			'exp_year': this.pago_qval.Anio,
+			'exp_month': this.pago_qval.Mes,
+			'cvc': this.pago_qval.cvv,
+		}
+	};
+	
+	Conekta.token.create(tokenParams, (data) => {
+		this.datos_pago['pago'] = {
+			para:'qval',
+			metodo: this.pago_qval.Metodo,
+			token: data.id,
+			nombre: tokenParams.card.name,
+			total: this.precioproductoqval,
+			correo: this.pago_qval.Correo,
+			tel: telefono,
+			descripcion: this.productoqval,
+			tiempo:this.datosgenerales[1]['anual']
+		};
+		this.send_pago(this.datos_pago)
+	}, (error) => {
+		this.spinner = false;
+		swal('Error!', error.message_to_purchaser, 'error' );
+	});
+	
+  }
+}
+  send_pago(pago){
+	this.http.pago(pago)
+	 .subscribe( datas => {
+		this.spinner = false;
+	 	if (datas['ok'] === 'succes') {
+		swal('Exito!', 'Gracias por su compra,se han enviado las instrucciones para la activaciòn de la cuenta al correo electrònico', 'success');
+		if(datas['pago']==="Transferencia"){
+			swal({
+				title: '<strong>Datos de Pago</strong>',
+				type: 'info',
+				html:
+				  'Banco: '+ datas['Bank']+'<p>'+'CLABE: '+datas['CLABE']+'<p> Cantidad: $ '+datas['Cantidad']
+				  + "<p> ID Orden: "+datas['ID_orden']+"<p> <strong>Una ves realizada la transferencia favor de mandar el comprobante a infoadmyo@admyo.com, con asunto: 'pago admyo' seguido del ID orden.</strong>",
+				showCloseButton: true,
+				showCancelButton: false,
+				focusConfirm: false,
+				confirmButtonText:
+				  'Aceptar',				
+			  })
+		}else{
+			swal('Exito!', 'Gracias por su compra,se han enviado las instrucciones para la activaciòn de la cuenta al correo electrònico', 'success');	
+		}
+		localStorage.removeItem('datos_pago_qval');
+		//this.goto('');
 		} else {
 			swal('Error!', datas['error'], 'error');
-		 }
-		 });
-		}, (error) => {
-			this.spinner = false;
-			swal('Error!', error.message_to_purchaser, 'error' );
-		});
+	 	}
+	 });
+		
   }
 	goto(ir){
 		this.rote.navigateByUrl(ir)
