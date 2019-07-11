@@ -35,10 +35,15 @@ export class Registro1Component implements OnInit {
     ) {
       if(localStorage.card_admyo){
         this.car=JSON.parse(localStorage.card_admyo);
-        this.cambio_micro(this.car[0].leyenda);
-        this.cambio_qval(this.car[1].plan);
-        this.input_numlic=this.car[1].NumLic;
-        this.num_lic();
+        console.log(this.car[0].leyenda);
+        return ;
+        if(this.car[0].leyenda){
+          this.cambio_micro(this.car[0].leyenda);
+          this.cambio_qval(this.car[1].plan);
+          this.input_numlic=this.car[1].NumLic;
+          this.num_lic();
+        }
+        
       }
      }
 
