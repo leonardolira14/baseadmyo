@@ -24,134 +24,475 @@
 		</div>
 	</div>
 </div>
-<div class="container-fluid bg-primary">
-	<div class="container ">
-		<div class="row p-b-40 p-t-20">
-			<div class="col-md-6 col-lg-6 col-xl-6 m-t-20">
-				<div class="row text-white">
-					<div class="col-5 centrar d-flex justify-content-center m-t-20 m-b-20">
-						<div class="circulo-bg">
-							<i class="fas fa-globe-americas"></i>
-						</div>
+<div class="container-fluid bg-primary m-b-30">
+	<div class="row p-b-20 p-t-20">
+		<div class="col-12 text-white text-prosto">
+			<h4>Que aportamos</h4>
+		</div>
+		<div class="col-12 text-white m-t-10 text-monse">
+				Capacidad para medir la reputación empresarial de tu empresa, la de tus clientes y proveedores actuales y los potenciales a tiempo real
+		</div>
+	</div>
+</div>
+<div class="container fluid">
+	<div class="row text-monse">
+		<div class="col-4">
+			<div class="row ">
+				<div class="col-12">
+					<h5 ><strong>Gestiona tu imagen empresarial</strong> </h5>
+				</div>
+				<div class="col-12 m-t-20">
+					<ul>
+						<li>Como Cliente</li>
+						<li>Como Proveedor</li>
+					</ul>
+				</div>
+				<div class="col-12 m-t-20">
+					<img src="/admyo/assets/img/ejemplo1.png" class="img-fluid" alt="">
+				</div>
+				<div class="col-12 text-right m-t-35">
+					<div class="btn btn-primary" (click)="modal_imagen=true">Ver Detalle</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="row">
+					<div class="col-12">
+						<h5> <strong>Gestiona tu riesgo empresarial</strong> </h5>
 					</div>
+					<div class="col-12 m-t-20">
+							<ul>
+								<li>De clientes</li>
+								<li>De Proveedores</li>
+							</ul>
+					</div>
+					<div class="col-12 m-t-20">
+							<img src="/admyo/assets/img/ejemplo2.png" class="img-fluid" alt="">
+						</div>
+					<div class="col-12 text-right m-t-35">
+							<div class="btn btn-primary" >Ver Detalle</div>
+					</div>
+			</div>
+		</div>
+		<div class="col-4">
+			<div class="row">
+					<div class="col-12">
+							<h5> <strong>Seguimiento y Búsqueda de empresas</strong> </h5>
+					</div>
+					<div class="col-12 m-t-20">
+							<ul>
+								<li>De clientes/Proveedores/Socios</li>
+								<li>De la competencia</li>
+							</ul>
+					</div>
+					<div class="col-12">
+							<img src="/admyo/assets/img/ejemplo3.png" class="img-fluid" alt="">
+						</div>
+					<div class="col-12 text-right">
+							<div class="btn btn-primary" (click)="modal_busqueda=true">Ver Detalle</div>
+					</div>
+			</div>
+		</div>
+		<div class="ray-secondary"></div>
+		<div class="col-4 m-t-40">
+				<div class="row">
+						<div class="col-12">
+								<h5> <strong>Gestiona tu documentación</strong> </h5>
+						</div>
+						<div class="col-12 m-t-20">
+								<ul>
+									<li>Certificados de Calidad</li>
+									
+								</ul>
+						</div>
+						<div class="col-12">
+								<img src="/admyo/assets/img/ejemplo4.png" class="img-fluid" alt="">
+							</div>
+						<div class="col-12 text-right m-t-20">
+								<div class="btn btn-primary" (click)="modal_certificados=true">Ver Detalle</div>
+						</div>
+				</div>
+		</div>
+		<div class="col-4 m-t-40">
+				<div class="row">
+						<div class="col-12">
+								<h5> <strong>Publicita tus productos</strong> </h5>
+						</div>
+						<div class="col-12 m-t-20">
+								<ul>
+									<li>Sube tus productos y servivios</li>
+									
+								</ul>
+						</div>
+						<div class="col-12">
+								<img src="/admyo/assets/img/ejemplo5.png" class="img-fluid" alt="">
+							</div>
+						<div class="col-12 text-right m-t-30 ">
+								<div class="btn btn-primary" (click)="modal_productos=true">Ver Detalle</div>
+						</div>
+				</div>
+		</div>
+		<div class="col-4 m-t-40">
+				<div class="row">
+						<div class="col-12">
+								<h5> <strong>Recibe notificaciones de riesgos y calificaciones	</strong> </h5>
+						</div>
+						<div class="col-12 m-t-20">
+								<ul>
+									<li>Notificaciones de cambios en clientes y proveedores	</li>
+									<li>Notificaciones de cambios en perfil</li>
+								</ul>
+						</div>
+						
+						<div class="col-12 text-right">
+								<div class="btn btn-primary" (click)="modal_notificaciones=true">Ver Detalle</div>
+						</div>
+				</div>
+		</div>
+
+	</div>
+</div>
+<div class="container-fluid bg-primary m-b-30 m-t-30">
+		<div class="row p-b-20 p-t-20">
+			<div class="col-12 text-white text-prosto">
+				<h4>Paquetes Admyo</h4>
+			</div>
+		</div>
+</div>
+<app-registro1></app-registro1>
+<div class="container-fluid bg-primary m-b-30">
+		<div class="row p-b-20 p-t-20">
+			<div class="col-12 text-white text-prosto">
+				<h4>Nuestras Apps</h4>
+			</div>
+			<div class="col-12 text-white m-t-10 text-monse">
+					Nuestras apps que permiten usar nuestros sistemas desde tu celular o tableta
+			</div>
+		</div>
+</div>
+<div class="container">
+	<div class="row d-flex justify-content-center">
+		<div class="col-6">
+			<div class="card">
+				<div class="row">
 					<div class="col-12 text-center ">
-						<h4 class="text-prosto">Admyo</h4>
-					</div>
-					<div class="col-12 text-justify">
-						<p class="text-justify text-roboto">
-							ADMYO es la primer plataforma web de Reputación Empresarial, surgida en México para que las empresas interactúen y se conozcan mejor y al instante con base en la experiencia real de otras empresas, para incrementar ingresos y reducir riesgos.							
-						</p>
+						<img src="/admyo/assets/img/admyo1.png" class="img-fluid" alt="">
 					</div>
 					<div class="col-12 text-center">
-						<button class="btn btn-secondary">Registrarse</button>
-					</div>	
+							<img src="/admyo/assets/img/apps1.png" class="img-fluid" alt="">
+					</div>
 				</div>
 			</div>
-			<div class="col-md-6 col-lg-6 col-xl-6 m-t-20">
-				<div class="row text-white">
-					<div class="col-5 centrar d-flex justify-content-center m-t-20 m-b-20">
-						<div class="circulo-bg">
-							<i class="fas fa-mobile-alt"></i>
+		</div>
+	</div>
+</div>
+
+<div class="container-fluid bg-primary m-b-30 m-t-30">
+		<div class="row p-b-20 p-t-20">
+			<div class="col-12 text-white text-prosto">
+				<h4>Donde estamos</h4>
+			</div>
+			<div class="col-12 text-white m-t-10 text-monse">
+					Algunas de nuestras estadísticas
+			</div>
+		</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-5 text-primary text-prosto text-center p-20">
+				<h5> + de 150 Empresas participando</h5>
+		</div>
+		<div class="col-5 text-primary text-prosto text-center p-20">
+				<h5>+ de 300 consultas de perfil mensuales</h5>
+		</div>
+		<div class="col-12 bg-primary hpx-2">
+		</div>
+		<div class="col-5 text-primary text-prosto text-center p-20">
+			<h5>+ de 8,000 empresas calificadas</h5>
+			
+		</div>
+		
+		<div class="col-5 text-primary text-prosto text-center p-20"><h5>+ de 15 giros representados</h5></div>
+	</div>
+</div>
+<div class="preload-modal" *ngIf="modal_imagen">
+	<div class="container-fluid">
+		<div class="row d-flex justify-content-center">
+			<div class="col-10 card" style="padding:0;">
+				<div class="card-header text-monse bg-primary text-white">
+						Gestiona tu imagen empresarial
+				</div>
+				<div class="card-body text-monse">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-6">
+								<div class="row">
+									<div class="col-12 text-primary text-center">
+										<strong><h5>Como Cliente</h5></strong> 
+									</div>
+									<div class="col-12">
+										Cumplimiento
+									</div>
+									<div class="col-12">
+										<ul class="w-100">
+											<li>Pago de Factura</li>
+											<li>Razones de falta de pago adecuadas</li>
+											<li>En cuantos días pago el cliente</li>
+											<li>Retraso en el pago de factura</li>
+											<li>Razones de retraso adecuadas</li>
+											<li>Nuevas condiciones de pago o compra</li>
+										</ul>
+									</div>
+									<div class="col-12">
+											Calidad
+										</div>
+										<div class="col-12">
+											<ul class="w-100">
+												<li>Compromiso con calidad	</li>
+												<li>Sabe lo que quiere	</li>
+												<li>Regresa producto sin razón</li>
+												<li>Regresa producto en correcto estado	</li>
+												<li>Cumple con normativas del sector</li>
+												<li>Dispuesto a pagar la calidad</li>
+												<li>Socialmente responsable	</li>
+												<li>Atiende llamadas y visitas	</li>
+											</ul>
+										</div>
+								</div>
+							</div>
+							<div class="col-6">
+								<div class="row">
+									<div class="col-12 text-primary text-center">
+											<strong><h5>Como Proveedor</h5></strong> 
+									</div>
+										<div class="col-6">
+												Cumplimiento
+											<ul class="w-100">
+												<li>Entrega a tiempo</li>
+												<li>Tiempo de retraso</li>
+												<li>Razones de retraso adecuadas	</li>
+												<li>Nuevas condiciones de entrega	</li>
+											</ul>
+										</div>
+										
+											<div class="col-6">
+													Calidad
+												<ul class="w-100">
+													<li>Comprometido con calidad
+														</li>
+													<li>Calidad especificada
+														</li>
+													<li>Cumple con normativas del sector
+														</li>
+													<li>Ofrece garantía
+														</li>
+													<li>Cumple garantía
+														</li>
+													<li>Socialmente responsable
+														</li>
+													<li>Atiende llamadas y visitas
+														</li>
+												</ul>
+											</div>
+											<div class="col-12">
+													Oferta
+												</div>
+												<div class="col-12">
+													<ul class="w-100">
+														<li>Ofrece crédito
+															</li>
+														<li>Producto sirve para mejorar negocio
+															</li>
+														<li>Calidad adecua al precio
+															</li>
+														<li>Existen costos ocultos
+															</li>
+														
+													</ul>
+												</div>
+								</div>
+							</div>
 						</div>
 					</div>
-					<div class="col-12 text-center">
-						<h4 class="text-prosto">QVal</h4>
-					</div>
-					<div class="col-12 text-justify">
-						<p class="text-justify text-roboto">
-							QVAL es la herramienta móvil que permite a las empresas medir y gestionar cualquier indicador de negocio en tiempo real.							
-						</p>
-					</div>	
-					<div class="col-12 text-center m-t-50">
-						<button class="btn btn-secondary">Registrarse</button>
-					</div>
+				</div>
+				<div class="card-fotter text-right">
+					<div class="btn btn-primary mr-3" (click)="modal_imagen=false">Cerrar</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
-<div class="container-fluid cont-beneficios">
-	<div class="row">
-		<div class="col-md-6 col-lg-6 col-xl-6 col-12 bg-gris3 p-l-10 p-r-10 p-t-20 text-center">
-		
-			
-				<h4 class="text-prosto text-white">BENEFICIOS DE SUSCRIBIRTE EN ADMYO</h4>
-			
-				<ul>
-					<li>¡Genera una reputación y posiciónate entre un gran número de clientes y proveedores!</li>
-					<li>¡Disminuye los riesgos para tu empresa y aumenta tus ventas!</li>
-					<li>Gestiona tu imagen corporativa en internet y redes sociales.</li>
-					<li>Controla la calidad y saneamiento económico en la cadena de valor de tus productos y servicios.</li>
-				</ul>
-			
-		
+<div class="preload-modal" *ngIf="modal_busqueda">
+		<div class="container-fluid">
+			<div class="row d-flex justify-content-center">
+				<div class="col-10 card" style="padding:0;">
+					<div class="card-header text-monse bg-primary text-white">
+							Seguimiento y Búsqueda de empresas
+					</div>
+					<div class="card-body text-monse">
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-6">
+									<div class="row">
+										<div class="col-12 text-primary text-center">
+											<strong><h5>Busqueda de empresas</h5></strong> 
+										</div>
+										<div class="col-12">
+											Filtros
+										</div>
+										<div class="col-12">
+											<ul class="w-100">
+												<li>Calificaciones recibidas
+													</li>
+												<li>Calificación Media recibida
+													</li>
+												<li>Certificaciones disponibles
+													</li>
+												<li>Miembro a Asociaciones
+													</li>
+												<li>Ubicación</li>
+												
+											</ul>
+										</div>
+										<div class="col-12">
+												Criterios de Busqueda
+											</div>
+											<div class="col-12">
+												<ul class="w-100">
+													<li>Nombre comercial de empresa
+														</li>
+													<li>Razón social
+														</li>
+													<li>RFC</li>
+													<li>Productos y servicios
+														</li>
+													<li>Certificados de calidad
+														</li>
+													<li>Marcas</li>
+													<li>Descripción de empresa
+														</li>
+													
+												</ul>
+											</div>
+									</div>
+								</div>
+								<div class="col-6">
+									<div class="row">
+										<div class="col-12 text-primary text-center">
+												<strong><h5>Seguimiento de Empresas</h5></strong> 
+										</div>
+											<div class="col-12">
+													
+												<ul class="w-100">
+													<li>Alertas de desempeño</li>
+													<li>Visitas a perfil</li>
+													
+												</ul>
+											</div>
+									
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="card-fotter text-right">
+						<div class="btn btn-primary mr-3" (click)="modal_busqueda=false">Cerrar</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="col-md-6 col-lg-6 col-xl-6 col-12">
-		<img src="assets/img/office1.jpg" class="img-fluid" alt="Admyo">
-	</div>
-	<div class="col-md-6 col-lg-6 col-xl-6 col-12">
-		<img src="assets/img/business-2884023_1920.jpg" class="img-fluid" alt="Admyo">
-	</div>
-	<div class="col-md-6 col-lg-6 col-xl-6 col-12 p-l-10 p-r-10 p-t-20 text-center">
-		
-			<h4 class="text-prosto text-gris3">BENEFICIOS DE SUSCRIBIRTE EN QVAL</h4>
-		
-			<ul>
-				<li class="text-gris3">¡Podrás medir cualquier KPI en tiempo real desde cualquier lugar!</li>
-				<li class="text-gris3">¡Incentiva el logor de objetivos integrando otros datos!</li>
-				<li class="text-gris3">Qval enviará alertas a tus responsables de área si existen desviaciones o respuestas negativas.</li>
-				<li class="text-gris3">Qval se integra con el portal de reputación en indicadores de Admyo.</li>
-			</ul>
-		
-		
-	</div>
-	</div>
+<div class="preload-modal" *ngIf="modal_productos">
+		<div class="container-fluid">
+				<div class="row d-flex justify-content-center">
+					<div class="col-5 card" style="padding:0;">
+						<div class="card-header text-monse bg-primary text-white">
+								Productos
+						</div>
+						<div class="card-body text-monse container">
+							<div class="row">
+								<div class="col-12 text-center">
+										Datos a completar
+								</div>
+								<div class="col-12">
+									<ul class="w-100">
+										<li>Nombre de Producto</li>
+										<li>Descripción de Producto</li>
+										<li>Imagen de Producto</li>
+										<li>Promoción</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="card-fotter text-right">
+							<div class="btn btn-primary" (click)="modal_productos=false">Cerrar</div>
+						</div>
+					</div>
+				</div>
+		</div>
 </div>
-<div class="container testimoniales m-b-40">
-	<div class="row">
-		<div class="col-12 text-center m-t-40 m-b-40">
-			<h4 class="text-prosto text-uppercase">Nuestros clientes hablan por nosotros</h4>
+<div class="preload-modal" *ngIf="modal_notificaciones">
+		<div class="container-fluid">
+				<div class="row d-flex justify-content-center">
+					<div class="col-5 card" style="padding:0;">
+						<div class="card-header text-monse bg-primary text-white">
+								Notificaciones
+						</div>
+						<div class="card-body text-monse container">
+							<div class="row">
+								<div class="col-12 text-center">
+										De que se reciven las notificaciones
+								</div>
+								<div class="col-12">
+									<ul class="w-100">
+										<li>Calificación recibida
+											</li>
+										<li>Cambio en reputación de clientes y proveedores
+											</li>
+										<li>Seguimiento de terceros de tu empresa</li>
+										<li>Visitas recibidas
+											</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="card-fotter  text-right">
+							<div class="btn btn-primary" (click)="modal_notificaciones=false">Cerrar</div>
+						</div>
+					</div>
+				</div>
 		</div>
-		<div class="col-12 col-md-4 col-lg-4 col-xl-4">
-			<mat-card class="card-test text-center">
-				<img mat-card-image src="assets/img/testimoniales/th1.png" alt="LITHO_admyo">
-				<mat-card-header>
-					<mat-card-title>OFFSET ANDINA S.A. DE C.V.</mat-card-title>
-    				<mat-card-subtitle>México</mat-card-subtitle>
-				</mat-card-header>
-				
-				 <mat-card-content>
-				 	<p>Con admyo un nuevo cliente me ha podido encontrar y no me ha dado problemas con el pago
-				 </mat-card-content>
-			</mat-card>
-		</div>
-		
-		<div class="col-12 col-md-4 col-lg-4 col-xl-4">
-			<mat-card class="example-card">
-				<img mat-card-image src="assets/img/testimoniales/th2.png" alt="Netmar_Admyo">
-				<mat-card-header>
-					<mat-card-title>Netmar S.A. de C.V.</mat-card-title>
-    				<mat-card-subtitle>México</mat-card-subtitle>
-				</mat-card-header>
-				
-				 <mat-card-content>
-				 	<p>Con la reputación que me han dado mis clientes he podido generar una cuenta importante
-				 </mat-card-content>
-			</mat-card>
-		</div>
-		<div class="col-12 col-md-4 col-lg-4 col-xl-4">
-			<mat-card class="example-card">
-				<img mat-card-image src="assets/img/testimoniales/th3.png" alt="Matas_Lorenzo_Admyo">
-				<mat-card-header>
-					<mat-card-title>Matas Lorenzo</mat-card-title>
-    				<mat-card-subtitle>México</mat-card-subtitle>
-				</mat-card-header>
-				
-				 <mat-card-content>
-				 	<p>He podido recuperar una cuenta morosa gracias a la presión y seguimiento que le ha dado admyo
-				 </mat-card-content>
-			</mat-card>
-		</div>
-	</div>
 </div>
-<app-precios></app-precios>
+<div class="preload-modal" *ngIf="modal_certificados">
+		<div class="container-fluid">
+				<div class="row d-flex justify-content-center">
+					<div class="col-5 card" style="padding:0;">
+						<div class="card-header text-monse bg-primary text-white">
+								Certificados
+						</div>
+						<div class="card-body text-monse container">
+							<div class="row">
+								<div class="col-12 text-center">
+										Datos a completar
+
+								</div>
+								<div class="col-12">
+									<ul class="w-100">
+										<li>Nombre certificacion
+											</li>
+										<li>Fecha certificación
+											</li>
+										<li>Calificación Certificación(si aplica)</li>
+										<li>Imagen o Archivo a anexar
+											</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div class="card-fotter text-right">
+							<div class="btn btn-primary" (click)="modal_certificados=false">Cerrar</div>
+						</div>
+					</div>
+				</div>
+		</div>
+</div>

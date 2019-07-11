@@ -45,12 +45,18 @@ gris4:#eaeaea,
 gris5:#dae1e7,
 grismenuopaco:rgba(#555,0.6)
 	);
-$spaceamounts: (5, 10, 15, 20, 25, 30, 35, 40, 45, 50,55,60,65,70, 75,80,85,90,95,100,110,120,130,140);
+$spaceamounts: (1,2,3,4,5, 10, 15, 20, 25, 30, 35, 40, 45, 50,55,60,65,70, 75,80,85,90,95,100,110,120,130,140);
 $sides: (top, bottom, left, right);
 
 @each $space in $spaceamounts {
   .p-#{$space} {
     padding: #{$space}px !important;
+   }
+   .wpx-#{$space} {
+    width: #{$space}px !important;
+   }
+   .hpx-#{$space} {
+    height: #{$space}px !important;
    }
 	@each $side in $sides {
 		.m-#{str-slice($side, 0, 1)}-#{$space} {
@@ -398,4 +404,16 @@ ul.ltpreg{
 		color:map-get($gamagrises , girsmenu );
 		background: map-get($colors , primary );
 	}
+}
+.preload-modal{
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -1,7 +1,15 @@
 @import '../../../styles';
 
 
-
+.btn{
+	border-radius: 0px !important;
+}
+.ray-amarilla{
+	background: map-get($colors,yellow);
+	color:map-get($colors,blanco );
+	font-family: map-get($fonts,monse);
+	padding: 1.5rem .5rem; 
+}
 .container-searchhome{
 	position: relative;
 	display: flex;
