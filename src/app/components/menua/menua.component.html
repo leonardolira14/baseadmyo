@@ -1,21 +1,44 @@
-<div class="container-fluid bg-azulprimary">
-	<div class="row d-flex justify-content-end align-items-center">
-		<div class="col-12 col-md-8 col-lg-8  col-xl-8 text-white text-justify">
-			Totomosco No 19 Col. Santa Maria Malinalco, Azcapotzalco Tel: (+52 1) 55557646474, 55557646474
+<div class="container-fluid ">
+	<div class="row d-flex align-items-center p-t-20 p-b-20 ">
+		<div class="col-3">
+			<img src="/admyo/assets/img/logo-admyo2.png" class="img-fluid" alt="">
 		</div>
-		<div class="col-12 col-md-4 col-lg-4  col-xl-8text-right">
-			<div class="btn-group text-center" role="group" aria-label="Basic example ">
-			  <button type="button" class="btn btn-azulprimary" (click)="open(content)"><i class="fas fa-sign-in-alt"></i> Ingresar</button>
-			  <button (click)="goto('preciosadmyo')" type="button" class="btn btn-azulprimary"><i class="fas fa-user-plus"></i> Registrarse</button>
-        <button routerLink="/" type="button" class="btn btn-azulprimary"><i class="fas fa-home"></i></button>
-         <button routerLink="/" type="button" class="btn btn-azulprimary"><i class="fas fa-shopping-cart"></i> <span class="badge badge-light">0</span></button>
-			</div>
+		<div class="col-9 text-right">
+				<div class="btn-group" role="group" aria-label="Basic example">
+						<button type="button" class="btn btn-primary mr-3" (click)="open(content)">Ingresar</button>
+						<div class="btn btn-primary" (click)="goto('preciosadmyo')">Registrarse</div>
+					</div>
+			
+		</div>	
+	</div>
+</div>
+
+<div class="container">
+	<div class="row">
+		<div class="col-3 text-center">
+				<button mat-button [matMenuTriggerFor]="menu" >Software</button>
+				<mat-menu #menu="matMenu">
+					<button mat-menu-item  (click)="goto('')">admyo</button>
+					<button mat-menu-item>qval</button>
+				</mat-menu>
+		</div>
+		<div class="col-3 text-center">
+				<button mat-button (click)="goto('preciosadmyo')" >Precios</button>
+		</div>
+		<div class="col-3 text-center">
+				<button mat-button (click)="goto('Recursos')" >Recursos</button>
+				
+		</div>
+		<div class="col-3 text-center">
+				<button mat-button (click)="goto('Partners')" >Partners</button>
+				
 		</div>
 	</div>
 </div>
-<div class="ray-secondary">
-  
-</div>
+
+<div class="ray-secondary"></div>
+
+
 <ng-template #content let-modal>
   <div class="modal-header bg-primary">
     <h5 class="modal-title text-white " id="modal-basic-title">Ingresa a tu perfil admyo</h5>

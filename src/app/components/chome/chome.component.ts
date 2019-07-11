@@ -8,6 +8,11 @@ import { Router }  from '@angular/router'
 })
 export class ChomeComponent implements OnInit {
   palabra = '';
+  public modal_imagen=false;
+  public modal_busqueda=false;
+  public modal_productos=false;
+  public modal_notificaciones=false;
+  public modal_certificados=false;
   constructor(private route: Router) { }
 
   ngOnInit() {
