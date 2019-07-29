@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  urlserver: 'http://localhost/admyo_web/back/'
+  urlserver: 'http://localhost/admyo/web/admyoback/'
 };
 
 /*

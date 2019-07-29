@@ -1,0 +1,11 @@
+@import '../../../styles';
+.card-notificacion{
+    border: 1px solid map-get($gamagrises, gris2 );
+    padding: 2rem 1rem;
+    min-height: 291px;
+    & .mat-card-footer{
+        bottom: 30px;
+        position: absolute;
+        right: 1pc;
+    }
+}

@@ -3,13 +3,13 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule,ReactiveFormsModule  } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { SweetAlert2Module } from '@toverux/ngx-sweetalert2';
 import { CookieService } from 'ngx-cookie-service';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NgxMaskModule } from 'ngx-mask';
 import { ChartsModule } from 'ng2-charts';
-//style
+// style
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -20,16 +20,20 @@ import {MatTabsModule,
   MatStepperModule,
   MatButtonModule,
   MatTooltipModule,
-  MatRadioModule, 
-  MatInputModule, 
-  MatListModule, 
-  MatSelectModule, 
+  MatRadioModule,
+  MatInputModule,
+  MatListModule,
+  MatSelectModule,
   MatCheckboxModule,
   MatDialogModule,
   MatCardModule,
   MatToolbarModule,
   MatIconModule,
-  MatMenuModule} from '@angular/material';
+  MatMenuModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatSlideToggleModule
+} from '@angular/material';
 import { PhomeComponent } from './pages/phome/phome.component';
 import { MenuaComponent } from './components/menua/menua.component';
 import { ChomeComponent } from './components/chome/chome.component';
@@ -95,6 +99,7 @@ import { RecibidasComponent } from './pages/recibidas/recibidas.component';
 import { CrecibidasComponent } from './components/crecibidas/crecibidas.component';
 import { DetallesriesgoComponent } from './pages/detallesriesgo/detallesriesgo.component';
 import { CdetallesriesgoComponent } from './components/cdetallesriesgo/cdetallesriesgo.component';
+import { PnotificacionesComponent } from './pages/pnotificaciones/pnotificaciones.component';
 
 @NgModule({
   declarations: [
@@ -162,10 +167,14 @@ import { CdetallesriesgoComponent } from './components/cdetallesriesgo/cdetalles
     RecibidasComponent,
     CrecibidasComponent,
     DetallesriesgoComponent,
-    CdetallesriesgoComponent
+    CdetallesriesgoComponent,
+    PnotificacionesComponent
 
   ],
   imports: [
+    MatSlideToggleModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     BrowserModule,
     NgbModule,
     NgbPaginationModule,
@@ -173,12 +182,23 @@ import { CdetallesriesgoComponent } from './components/cdetallesriesgo/cdetalles
     BrowserAnimationsModule,
     NoopAnimationsModule,
     MatTabsModule,
-    MatButtonModule,MatMenuModule,MatStepperModule,MatAutocompleteModule, MatCheckboxModule, MatRadioModule, AppRoutingModule,MatDialogModule,MatSelectModule,MatListModule,MatInputModule,MatTooltipModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatStepperModule,
+    MatAutocompleteModule,
+    MatCheckboxModule,
+     MatRadioModule,
+      AppRoutingModule,
+     MatDialogModule,
+     MatSelectModule,
+     MatListModule,
+     MatInputModule,
+     MatTooltipModule,
     MatCardModule,
     MatIconModule,
     MatToolbarModule,
     HttpClientModule,
-    FormsModule,ReactiveFormsModule, 
+    FormsModule, ReactiveFormsModule,
     NgxPaginationModule,
     NgxMaskModule.forRoot(),
     ChartsModule,
@@ -189,7 +209,7 @@ import { CdetallesriesgoComponent } from './components/cdetallesriesgo/cdetalles
             cancelButtonClass: 'btn'
         })
   ],
-  providers: [CookieService ],
+  providers: [CookieService, MatDatepickerModule ],
   bootstrap: [AppComponent],
   exports: [MatButtonModule, MatCheckboxModule],
 })

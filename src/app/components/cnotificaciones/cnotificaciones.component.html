@@ -1,3 +1,100 @@
-<p>
-  cnotificaciones works!
-</p>
+<div class="container">
+  <div class="row m-t-30">
+    <mat-form-field class="col-4">
+      <mat-label>Tipo de Notificación</mat-label>
+      <mat-select [(ngModel)]="tipo">
+        <mat-option *ngFor="let notificacion of tipo_notificacion" [value]="notificacion.Value">
+          {{notificacion.Nombre}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-4">
+      <input [(ngModel)]="fecha" matInput [matDatepicker]="dp3" placeholder="Fecha" disabled>
+      <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
+      <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+    </mat-form-field>
+    <div class="col-2 text-center">
+      <button (click)="filter()" class="btn btn-secondary">Aplicar Filtros</button>
+    </div>
+    <div class="col-2 text-center">
+        <button  (click)="model_notificaciones=true" matTooltip="Configurar notificaciones" mat-button>
+            <mat-icon class="text-secondary">settings</mat-icon>
+        </button>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="col-4 m-b-30" *ngFor="let notificacion of listnotificaciones| paginate: {itemsPerPage: 12, currentPage: pageActual}; index as i">
+      <mat-card class="w-100 card-notificacion">
+        <mat-card-content class="container-fluid  d-felx align-items-center" >
+          <div class="row ">
+            <div class="col-12 mt-3">
+                <h6 class="text-center text-monse">{{dame_titulo(notificacion.Descript)}}</h6>
+            </div>
+          </div>
+            <div class="row">
+            <div class="col-12">
+              <small>Empresa:</small>
+              <br>
+              <h6>{{notificacion.Razon_Social}}</h6>
+            </div>
+            <div class="col-12" *ngIf="notificacion.Descript==='calificacionC' || notificacion.Descript==='calificacionp' || notificacion.Descript==='calificacionrp' || notificacion.Descript==='calificacionrc' || notificacion.Descript==='vista'">
+              <small>Usuario:</small>
+              <br>
+              <h6>{{notificacion.Nombre_Usurio}}</h6>
+            </div>
+            <div class="col-12">
+              <small>Fecha de {{tiopoleyenda(notificacion.Descript)}}:</small>
+              <br>
+              <h6>{{notificacion.Fecha}}</h6>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-footer class="text-right ">
+            <div class="btn-group" role="group" aria-label="Basic example">
+              <button *ngIf="notificacion.Descript==='calificacionC' || notificacion.Descript==='calificacionp'" (click)="calificar(notificacion.IDEmpresaN)"   type="button" class="btn btn-succes mr-3">Calificar</button>
+              <button (click)="goto(notificacion.IDEmpresaN)"  type="button" class="btn btn-primary mr-3">Ver empresa</button>
+              <button (click)="borrar(notificacion.IDNotificacion)" type="button" class="btn btn-danger mr-2">Borrar</button>
+            </div>
+        </mat-card-footer>
+      </mat-card>
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-12 text-center m-t-20">
+        <pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+      </div>
+    </div>
+</div>
+<div class="preload-modal"  *ngIf="model_notificaciones">
+  <div class="container-fluid">
+    <div class="row d-flex justify-content-center">
+      <div class="col-4 card p-0">
+          <div class="card-header text-monse bg-primary text-white">
+              Configurar Notificaciones
+              <button (click)="model_notificaciones=false" class="close" aria-label="Close">
+                  <mat-icon class="text-white">clear</mat-icon>
+              </button>
+          </div>
+          <div class="card-body text-monse container">
+            <div class="row">
+              <div class="col-12 text-center">
+                <h6>Selecciona dela lista las notificaciones que quieres activar.</h6>
+              </div>
+                <mat-selection-list class="col-12">
+                    <mat-list-item role="listitem" *ngFor="let notificacion of tipo_notificacion">
+                        <mat-slide-toggle color="primary" > {{notificacion.Nombre}}</mat-slide-toggle>
+                    </mat-list-item>
+                </mat-selection-list>  
+            </div>
+          </div>
+          <div class="card-footer text-right">
+              <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn btn-outline-danger mr-3" (click)="model_notificaciones=false">Cerrar</button>
+                  <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

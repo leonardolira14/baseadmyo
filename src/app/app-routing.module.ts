@@ -31,6 +31,7 @@ import { RealizadasComponent } from './pages/realizadas/realizadas.component';
 import {  CalificarComponent  } from './pages/calificar/calificar.component'
 import { RecibidasComponent } from './pages/recibidas/recibidas.component';
 import { DetallesriesgoComponent } from './pages/detallesriesgo/detallesriesgo.component';
+import { PnotificacionesComponent } from './pages/pnotificaciones/pnotificaciones.component'
 const appRoutes: Routes = [
   {path: '', component: PhomeComponent},
   {path: 'terminosycondiciones', component: TerminosComponent},
@@ -63,7 +64,8 @@ const appRoutes: Routes = [
   {path: 'calificar/:tipo/:empresa', component: CalificarComponent},
   {path: 'calificar', component: CalificarComponent},
   {path: 'listan/:tipo', component: Lista2Component},
-  {path: 'detallesriesgo/:tipo/:fecha',component: DetallesriesgoComponent }
+  {path: 'detallesriesgo/:tipo/:fecha', component: DetallesriesgoComponent },
+  {path: 'notificaciones', component: PnotificacionesComponent }
   ];
 @NgModule({
   imports: [
