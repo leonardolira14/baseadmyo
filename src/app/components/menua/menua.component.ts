@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import {NgbModal, ModalDismissReasons, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import { RegistroService } from '../../services/registro.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router} from '@angular/router';
@@ -18,11 +18,15 @@ export class MenuaComponent implements OnInit {
   boton_olvida = 'Aceptar';
   correo_electronico = '';
   constructor(
+    private config: NgbModalConfig,
     private route: Router,
     private cookieService: CookieService,
     private modalService: NgbModal,
     private http: RegistroService
-    ) { }
+    ) { 
+      this.config.backdrop = 'static';
+      this.config.keyboard = false;
+    }
 
   open(content) {
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'});
