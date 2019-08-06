@@ -28,7 +28,7 @@ import { ResumenComponent } from './pages/resumen/resumen.component';
 import { ListaComponent } from './pages/lista/lista.component';
 import { Lista2Component } from './pages/lista2/lista2.component'
 import { RealizadasComponent } from './pages/realizadas/realizadas.component';
-import {  CalificarComponent  } from './pages/calificar/calificar.component'
+import { CalificarComponent  } from './pages/calificar/calificar.component'
 import { RecibidasComponent } from './pages/recibidas/recibidas.component';
 import { DetallesriesgoComponent } from './pages/detallesriesgo/detallesriesgo.component';
 import { PnotificacionesComponent } from './pages/pnotificaciones/pnotificaciones.component'
@@ -39,7 +39,7 @@ const appRoutes: Routes = [
   {path: 'puntosydescuentos', component: PuntosComponent},
   {path: 'contacto', component: ContactoComponent},
   {path: 'preciosadmyo', component: Reg1Component},
-   {path: 'preciosqval', component: PaqueteqvalComponent},
+  {path: 'preciosqval', component: PaqueteqvalComponent},
   {path: 'datosregistro', component: Reg2Component},
   {path: 'confirmarcompra', component: Reg3Component},
   {path: 'perfil', component: ImagenComponent},
@@ -65,7 +65,8 @@ const appRoutes: Routes = [
   {path: 'calificar', component: CalificarComponent},
   {path: 'listan/:tipo', component: Lista2Component},
   {path: 'detallesriesgo/:tipo/:fecha', component: DetallesriesgoComponent },
-  {path: 'notificaciones', component: PnotificacionesComponent }
+  {path: 'notificaciones', component: PnotificacionesComponent },
+  {path: 'activar/:token', component: PhomeComponent }
   ];
 @NgModule({
   imports: [

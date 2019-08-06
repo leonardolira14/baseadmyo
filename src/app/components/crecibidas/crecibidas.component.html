@@ -210,3 +210,41 @@
 		<span class="sr-only">Loading...</span>
 	</div>
 </div>
+<div class="preload-modal" *ngIf="model_calificar">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="col-4 card p-0">
+                <div class="card-header text-monse bg-primary text-white">
+                   Calificar 
+                    <button (click)="model_notificaciones=false" class="close" aria-label="Close">
+                        <mat-icon class="text-white">clear</mat-icon>
+                    </button>
+                </div>
+                <div class="card-body text-monse container">
+                    <div class="row">
+                      <div class="col-6 ">
+                        <div (click)="cambio_selec('Cliente')" class="card btn-ir {{(tipo_calificar === 'Cliente')?'active':''}}">
+                            <span><i class="fas fa-user-alt"></i></span>
+                            <br>
+                            <label>Cliente</label>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                          <div (click)="cambio_selec('Proveedor')" class="card btn-ir {{(tipo_calificar==='Proveedor')?'active':''}}">
+                              <span><i class="fas fa-user-tie"></i></span>
+                              <br>
+                              <label>Proveedor</label>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-right">
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                          <button type="button" class="btn btn-outline-danger mr-3" (click)="model_calificar=false">Cerrar</button>
+                          <button (click)="gotoc()" type="button" class="btn btn-primary">Calificar</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+</div>

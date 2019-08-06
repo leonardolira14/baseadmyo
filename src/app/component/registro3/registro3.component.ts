@@ -86,7 +86,7 @@ export class Registro3Component implements OnInit {
       this.productoqval = 'Plan Empresarial Anual Qval';
       this.licenciasqval = true;
     }
-	}
+}
 
   pagar_admyo() {
 	  this.datos_pago['datosempresa'] = this.datosgenerales[3]['IDEmpresa'];

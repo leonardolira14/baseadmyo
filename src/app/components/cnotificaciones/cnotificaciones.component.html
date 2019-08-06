@@ -3,20 +3,26 @@
     <mat-form-field class="col-4">
       <mat-label>Tipo de Notificación</mat-label>
       <mat-select [(ngModel)]="tipo">
+          <mat-option  value="td">
+              Todas
+            </mat-option>
         <mat-option *ngFor="let notificacion of tipo_notificacion" [value]="notificacion.Value">
           {{notificacion.Nombre}}
         </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field class="col-4">
-      <input [(ngModel)]="fecha" matInput [matDatepicker]="dp3" placeholder="Fecha" disabled>
-      <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-      <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+    <mat-form-field class="col-3">
+      <input [(ngModel)]="fecha" ngbDatepicker #fechainicio="ngbDatepicker" matInput  placeholder="Fecha" >
+      <mat-icon matSuffix (click)="fechainicio.toggle()">event</mat-icon>
     </mat-form-field>
-    <div class="col-2 text-center">
-      <button (click)="filter()" class="btn btn-secondary">Aplicar Filtros</button>
+    <div class="col-4 text-center">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button (click)="filter()" class="btn btn-secondary mr-3">Aplicar Filtros</button>
+            <button (click)="limpiar_filtro()"  class="btn btn-outline-danger">Limpiar Filtro</button>
+        </div>
+      
     </div>
-    <div class="col-2 text-center">
+    <div class="col-1 text-center">
         <button  (click)="model_notificaciones=true" matTooltip="Configurar notificaciones" mat-button>
             <mat-icon class="text-secondary">settings</mat-icon>
         </button>
@@ -53,7 +59,7 @@
         <mat-card-footer class="text-right ">
             <div class="btn-group" role="group" aria-label="Basic example">
               <button *ngIf="notificacion.Descript==='calificacionC' || notificacion.Descript==='calificacionp'" (click)="calificar(notificacion.IDEmpresaN)"   type="button" class="btn btn-succes mr-3">Calificar</button>
-              <button (click)="goto(notificacion.IDEmpresaN)"  type="button" class="btn btn-primary mr-3">Ver empresa</button>
+              <button (click)="goto('perfilbuscado/'+notificacion.IDEmpresaN)"  type="button" class="btn btn-primary mr-3">Ver empresa</button>
               <button (click)="borrar(notificacion.IDNotificacion)" type="button" class="btn btn-danger mr-2">Borrar</button>
             </div>
         </mat-card-footer>
@@ -82,8 +88,9 @@
                 <h6>Selecciona dela lista las notificaciones que quieres activar.</h6>
               </div>
                 <mat-selection-list class="col-12">
+                    
                     <mat-list-item role="listitem" *ngFor="let notificacion of tipo_notificacion">
-                        <mat-slide-toggle color="primary" > {{notificacion.Nombre}}</mat-slide-toggle>
+                        <mat-slide-toggle  [disabled]="siono(datos_generales_empresa.empresa.TipoCuenta,notificacion.Value)"   color="primary" [(ngModel)]="mode_notificaciones[notificacion.Value]" > {{notificacion.Nombre}}</mat-slide-toggle>
                     </mat-list-item>
                 </mat-selection-list>  
             </div>
@@ -91,10 +98,48 @@
           <div class="card-footer text-right">
               <div class="btn-group" role="group" aria-label="Basic example">
                   <button type="button" class="btn btn-outline-danger mr-3" (click)="model_notificaciones=false">Cerrar</button>
-                  <button type="button" class="btn btn-primary">Guardar</button>
+                  <button type="button" (click)="guardar_config()" class="btn btn-primary">Guardar</button>
                 </div>
           </div>
       </div>
     </div>
   </div>
+</div>
+<div class="preload-modal" *ngIf="model_calificar">
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center">
+            <div class="col-4 card p-0">
+                <div class="card-header text-monse bg-primary text-white">
+                   Calificar 
+                    <button (click)="model_notificaciones=false" class="close" aria-label="Close">
+                        <mat-icon class="text-white">clear</mat-icon>
+                    </button>
+                </div>
+                <div class="card-body text-monse container">
+                    <div class="row">
+                      <div class="col-6 ">
+                        <div (click)="cambio_selec('Cliente')" class="card btn-ir {{(tipo_calificar === 'Cliente')?'active':''}}">
+                            <span><i class="fas fa-user-alt"></i></span>
+                            <br>
+                            <label>Cliente</label>
+                        </div>
+                      </div>
+                      <div class="col-6">
+                          <div (click)="cambio_selec('Proveedor')" class="card btn-ir {{(tipo_calificar==='Proveedor')?'active':''}}">
+                              <span><i class="fas fa-user-tie"></i></span>
+                              <br>
+                              <label>Proveedor</label>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer text-right">
+                      <div class="btn-group" role="group" aria-label="Basic example">
+                          <button type="button" class="btn btn-outline-danger mr-3" (click)="model_calificar=false">Cerrar</button>
+                          <button (click)="gotoc()" type="button" class="btn btn-primary">Calificar</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
 </div>

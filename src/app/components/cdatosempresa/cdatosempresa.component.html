@@ -19,7 +19,7 @@ w-50 mx-auto" *ngIf='alertbol' role="alert">
 						  		<div class="col-12" >
 						  			<h5 class="text-gris3">{{(giro.giron1.length>25)? (giro.giron1 | slice:0:25)+'...':giro.giron1}}</h5>
 						  			<h6 class="text-muted">{{(giro.giron2.length>25)? (giro.giron2 | slice:0:25)+'...':giro.giron2}}</h6>
-						  			<small class="text-muted">{{(giro.giron3.length>25)? (giro.giron3 | slice:0:25)+'...':giro.giron3}}</small>
+						  			
 						  			<div class="row d-flex align-items-center m-t-10">
 						  				<div class="col-6">
 						  					<span (click)="deletegiro(giro.IDGE)" class="text-primary"><i class="fas fa-minus-circle"></i></span>

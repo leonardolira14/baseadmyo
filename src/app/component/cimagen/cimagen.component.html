@@ -46,29 +46,7 @@
 						</div>
 					</div>
 				</div>
-				<div class="card contenedor m-t-40 d-none">
-					<div class="card-header bg-primary">
-						Notificaciones
-					</div>
-					<div class="card-body lista text-muted">
-						<ul *ngIf="notificaciones" class="list-group d-block w-100">
-						  <li *ngFor="let notificacion of notificaciones" (click)="goto(notificacion.descripcion.link)"  class="list-group-item">
-						  		<span class=" d-block w-100 text-monse text-notificaciones">{{notificacion.descripcion.descrip}}</span>
-								<p>
-									<small class="text-muted">{{notificacion.Fecha}}</small>
-								</p>
-						  		
-						  </li>
-						  
-						</ul>
-						<span *ngIf="!notificaciones" class="text-center d-block w-100">Sin Notificaciones</span>
-					</div>
-					<div class="card-footer text-center">
-						<div class="btn btn-primary text-center">
-						   		Ver Más
-						 </div>
-					</div>
-				</div>
+				
 				<div class="card contenedor m-t-40">
 					<div class="card-header bg-primary">
 						Empresas que Sigues

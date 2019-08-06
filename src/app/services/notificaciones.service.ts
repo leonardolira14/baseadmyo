@@ -9,6 +9,9 @@ export class NotificacionesService {
 
   constructor(private http: HttpClient) { }
 
+  getnumnoficaciones(datos) {
+    return this.http.post(environment.urlserver + 'numregistros', datos);
+  }
   getnoficaciones(datos) {
     return this.http.post(environment.urlserver + 'getallnotification', datos);
   }
@@ -18,4 +21,5 @@ export class NotificacionesService {
   delete(datos) {
     return this.http.post(environment.urlserver + 'deletegnotification', datos);
   }
+  
 }

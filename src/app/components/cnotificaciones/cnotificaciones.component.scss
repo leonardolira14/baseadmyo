@@ -9,3 +9,37 @@
         right: 1pc;
     }
 }
+.btn-ir{
+	border-top: 2px solid #fff;
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	align-items: center;
+    padding: 1rem;
+    border: 2px solid map-get($colors,blanco);
+    &:hover{
+		border-top: 2px solid map-get($colors,primary);
+		cursor: pointer;
+    }
+	&.active{
+		border-top: 2px solid map-get($colors,primary);
+	}
+	& span{
+		background: map-get($colors,primary);
+		color:#fff;
+		border-radius: 50%;
+		display: flex;
+		justify-content: center;
+		align-content: center;
+		align-items: center;
+	    width: 50px;
+	    height: 50px;
+	    font-size: 1.5rem;
+	}
+	& label{
+		font-family:map-get($fonts,monse);
+		color:map-get($colors,primary);
+		font-size:1rem;
+		text-transform: uppercase;
+	}
+}
