@@ -1,5 +1,13 @@
 {
     "javascript.format.insertSpaceAfterSemicolonInForStatements": false,
     "javascript.format.insertSpaceBeforeAndAfterBinaryOperators": false,
-    "tslint.enable": false
+    "tslint.enable": false,
+    "max-line-length": [
+        true,
+        {
+            "limit": 120,
+            "ignore-pattern": "^import |^export {(.*?)}"
+        }
+    ],
+    "tslint.suppressWhileTypeErrorsPresent": true
 }

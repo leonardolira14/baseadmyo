@@ -1,0 +1,107 @@
+<div class="container">
+  <div class="row m-t-30">
+    <mat-form-field class="col-3">
+      <mat-label>Ordenar</mat-label>
+      <mat-select>
+        <mat-option>
+         a - z
+        </mat-option>
+        <mat-option>
+          z - a
+         </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-3">
+      <mat-label>Orden de Riesgo</mat-label>
+      <mat-select>
+        <mat-option>
+         Mayor a Menor
+        </mat-option>
+        <mat-option>
+         Menor a Mayor
+         </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-3">
+        <mat-label>Giro</mat-label>
+        <mat-select>
+          <mat-option>
+           a - z
+          </mat-option>
+          <mat-option>
+            z - a
+           </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <mat-form-field class="col-3">
+      <input matInput placeholder="Buscar Empresa" value="">
+    </mat-form-field>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12 m-t-20">
+      <div class="card">
+        <div class="card-header text-uppercase bg-primary text-white text-center text-monse">
+          <h5>Lista de Tus {{ tipo_s }} {{forma}}</h5>
+        </div>
+        <div class="card-body tarjeta contenedor">
+          <div class="container-fluid area">
+            <div class="row">
+              <div *ngFor='let item of listas | paginate: {itemsPerPage: 8, currentPage: pageActual}; index as i' class="col-12 col-md-3 col-lg-3 col-xl-3 m-b-30">
+                <div class="card tarjeta1">
+                  <div class="cont-img">
+                    <div class="banner" [ngStyle]="setmybanner(item.Banner)">
+                      
+                    </div>										
+                    <div [ngStyle]="setmylogo(item.Logo)" class="logo">
+                      
+                    </div>
+                      
+                    
+                  </div>
+                  
+                  <div class="card-body p-t-40 container-fluid">
+                    <h5 class="card-title">{{item.Razon_Social}}</h5>
+                    <p class="card-text">{{item.Nombre_Comer}}</p>
+                    <div class="row text-center ">
+                      <div class="col-12 ">
+                        Riesgo como Cliente
+                      </div>
+                      <div class="col-6 card p-t-15 p-b-15 ">
+                        65%  
+                        <i class="fas fa-arrow-down"></i>
+                      </div>
+                      <div class="col-6 card p-t-15 p-b-15">
+                        7.52
+                      </div>
+                      <div class="col-12 m-t-30">
+                        Riesgo como Proveedor
+                      </div>
+                      <div class="col-6 card p-t-15 p-b-15 ">
+                        65.5% 
+                        <i class="fas fa-arrow-up"></i>
+                      </div>
+                      <div class="col-6 card p-t-15 p-b-15 ">
+                        7.52
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card-footer">
+                    <div class="btn-group d-flex" role="group" aria-label="Basic example">
+                      <button (click)="visitar(item.num)"  class="btn btn-primary m-r-20">Visitar Pefil</button>
+                      <button type="button" class="btn btn-secondary">Calificar</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12 text-center m-t-20">
+                <pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+              </div>	
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

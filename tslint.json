@@ -23,14 +23,33 @@
     "javascript.suggestionActions.enabled": false,
     "import-spacing": true,
     "indent": [
-      true,
-      "spaces"
+      {
+        "type": "array",
+        "items": [
+          {
+            "type": "string",
+            "enum": [
+              "tabs",
+              "spaces"
+            ]
+          },
+          {
+            "type": "number",
+            "enum": [
+              2,
+              4
+            ]
+          }
+        ],
+        "minLength": 0,
+        "maxLength": 5
+      }
     ],
     "interface-over-type-literal": true,
     "label-position": true,
     "max-line-length": [
       true,
-      140
+      1000
     ],
     "member-access": false,
     "member-ordering": [

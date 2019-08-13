@@ -1,7 +1,27 @@
 <div class="container-fluid bg-gris1 p-t-40 p-b-40">
 	<div class="container resumen">
 		<div class="row">
-			<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
+			<mat-form-field class="col-3  m-t-30  m-b-30">
+				<mat-label>
+					Sector
+				</mat-label>
+				<mat-select  [(ngModel)]="ram" (selectionChange)="rama()">
+					<mat-option  [value]='sector.IDNivel1' *ngFor="let sector of sectores">
+						{{sector.Giro}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<mat-form-field class="col-3  m-t-30  m-b-30">
+					<mat-label>
+						Rama
+					</mat-label>
+					<mat-select  [(ngModel)]="ramita" (selectionChange)="ngOnInit()">
+							<mat-option  [value]='ramas.IDNivel2' *ngFor="let ramas of ramas">
+								{{ramas.Giro}}
+							</mat-option>
+						</mat-select>
+				</mat-form-field>
+			<div class="col-6 text-right m-t-30  m-b-30">
 				<div class="btn-group" role="group" aria-label="Basic example">
 					<button (click)="cambiar('A')" type="button" class="btn {{fecha_riesgo==='A'?'btn-primary':'btn-inactivo'}}">12 Meses</button>
 					<button (click)="cambiar('M')" type="button" class="btn {{fecha_riesgo==='M'?'btn-primary':'btn-inactivo'}} ">Mes Actual</button>
@@ -29,15 +49,38 @@
 									<div class="row">
 										<div class="col-3 d-flex align-items-center">
 											<div class="card text-center" style="padding: 20px;">
-												<h5 class="d-block text-primary">No de Calificaciones</h5>
-												<h5 class="d-block text-secondary">{{calidad.Totalcalificaciones}}</h5>
-												<h5 class="d-block text-primary">Clientes Evaluados</h5>
-												<h5 class=" d-block text-secondary">{{calidad.clientesevaluados}}</h5>
+												<h6 class="d-block text-primary">Respuesta Positiva</h6>
+												<h5 class="d-block text-secondary">{{calidad.Respuesta}}</h5>
+												<h6 class="d-block text-primary">Número de calificaciones que han recibido tus clientes</h6>
+												<h5 class=" d-block text-secondary">{{calidad.total_calificaciones}}</h5>
 											</div>	
 										</div>
 										<div class="col-9">
-											<div class="row">
-												<div class="col-md-12 chart">
+											<div class="row text-monse">
+												<div class="col-4 card p-t-15 p-b-15 text-muted">
+													Media Anterior
+													<p>{{calidad.promedio_pasado.num}}</p>	
+												</div>
+												<div class="col-4 card p-t-15 p-b-15 text-muted">
+													Media Actual
+													<p>{{calidad.promedio_actual.num}}</p>	
+												</div>
+												<div class="col-4 card p-t-15 p-b-15">
+													<i class="fas fa-arrow-down"></i>
+												</div>
+												<div class="col-4 card p-t-15 p-b-15 text-muted">
+														Empeorados
+														<p class="text-danger">{{calidad.empeorados}}</p>	
+													</div>
+													<div class="col-4 card p-t-15 p-b-15 text-muted">
+														Mantenidos
+														<p>{{calidad.mantenidos}}</p>	
+													</div>
+													<div class="col-4 card p-t-15 p-b-15 text-muted">
+														Mejorados
+														<p class="text-succes">{{calidad.mejorados}}</p>
+													</div>
+												<!--<div class="col-md-12 chart">
 													<div style="display: block">
 														<canvas baseChart 
 														width="400" height="80"
@@ -50,7 +93,7 @@
 														></canvas>
 													</div>
 
-												</div>
+												</div>-->
 											</div>
 										</div>
 									</div>
@@ -77,33 +120,42 @@
 					<div class="body-card bg-white">
 						<div class="container-fluid">
 							<div class="row">
-								<div *ngFor="let cumplimiento of detalle_riesgo.listadatos_cumplimiento" class="col-12 m-t-30  text-center">
+								<div *ngFor="let cumplimiento of detalle_riesgo.listado_cumplimiento" class="col-12 m-t-30  text-center">
 									<h5 class="text-primary text-monse m-b-30">{{cumplimiento.Pregunta}}</h5>
 									<div class="row">
 										<div class="col-3 d-flex align-items-center">
 											<div class="card text-center" style="padding: 20px;">
-												<h5 class="d-block text-primary">No de Calificaciones</h5>
-												<h5 class="d-block text-secondary">{{cumplimiento.Totalcalificaciones}}</h5>
-												<h5 class="d-block text-primary">Clientes Evaluados</h5>
-												<h5 class=" d-block text-secondary">{{cumplimiento.clientesevaluados}}</h5>
+												<h6 class="d-block text-primary">Respuesta Positiva</h6>
+												<h5 class="d-block text-secondary">{{cumplimiento.Respuesta}}</h5>
+												<h6 class="d-block text-primary">Número de calificaciones que han recibido tus clientes</h6>
+												<h5 class=" d-block text-secondary">{{cumplimiento.total_calificaciones}}</h5>
 											</div>	
 										</div>
 										<div class="col-9">
-											<div class="row">
-												<div class="col-md-12 chart">
-													<div style="display: block">
-														<canvas baseChart 
-														width="400" height="80"
-														
-														[datasets]="cumplimiento.serie" 
-														[labels]="barChartLabels"
-														[options]="barChartOptions"
-														[legend]="barChartLegend"
-														[chartType]="barChartType"
-														></canvas>
-													</div>
-
-												</div>
+											<div class="row text-monse">
+													<div class="col-4 card p-t-15 p-b-15 text-muted">
+															Media Anterior
+															<p>{{cumplimiento.promedio_pasado.num}}</p>	
+														</div>
+														<div class="col-4 card p-t-15 p-b-15 text-muted">
+															Media Actual
+															<p>{{cumplimiento.promedio_actual.num}}</p>	
+														</div>
+														<div class="col-4 card p-t-15 p-b-15">
+															<i class="fas fa-arrow-down"></i>
+														</div>
+														<div class="col-4 card p-t-15 p-b-15 text-muted">
+																Empeorados
+																<p class="text-danger">{{cumplimiento.empeorados}}</p>
+															</div>
+															<div class="col-4 card p-t-15 p-b-15 text-muted">
+																Mantenidos
+																<p class="">{{cumplimiento.mantenidos}}</p>
+															</div>
+															<div class="col-4 card p-t-15 p-b-15 text-muted">
+																Mejorados
+																<p class="text-succes">{{cumplimiento.mejorados}}</p>
+															</div>
 											</div>
 										</div>
 									</div>
@@ -135,28 +187,37 @@
 									<div class="row">
 										<div class="col-3 d-flex align-items-center">
 											<div class="card text-center" style="padding: 20px;">
-												<h5 class="d-block text-primary">No de Calificaciones</h5>
+												<h5 class="d-block text-primary">Respuesta Positiva</h5>
 												<h5 class="d-block text-secondary">{{oferta.Totalcalificaciones}}</h5>
-												<h5 class="d-block text-primary">Clientes Evaluados</h5>
-												<h5 class=" d-block text-secondary">{{oferta.clientesevaluados}}</h5>
+												<h6 class="d-block text-primary">Número de calificaciones que han recibido tus clientes</h6>
+												<h5 class=" d-block text-secondary">{{oferta.total_calificaciones}}</h5>
 											</div>	
 										</div>
 										<div class="col-9">
-											<div class="row">
-												<div class="col-md-12 chart">
-													<div style="display: block">
-														<canvas baseChart 
-														width="400" height="80"
-														
-														[datasets]="oferta.serie" 
-														[labels]="barChartLabels"
-														[options]="barChartOptions"
-														[legend]="barChartLegend"
-														[chartType]="barChartType"
-														></canvas>
-													</div>
-
-												</div>
+											<div class="row text-monse">
+													<div class="col-4 card p-t-15 p-b-15 text-muted">
+															Media Anterior
+															<p>94.7</p>	
+														</div>
+														<div class="col-4 card p-t-15 p-b-15 text-muted">
+															Media Actual
+															<p>94.7</p>	
+														</div>
+														<div class="col-4 card p-t-15 p-b-15">
+															<i class="fas fa-arrow-down"></i>
+														</div>
+														<div class="col-4 card p-t-15 p-b-15 text-muted">
+																Empeorado
+																<p class="text-danger">115</p>	
+															</div>
+															<div class="col-4 card p-t-15 p-b-15 text-muted">
+																Mantenido
+																<p>252</p>	
+															</div>
+															<div class="col-4 card p-t-15 p-b-15 text-muted">
+																Mejorado
+																<p class="text-succes">123</p>
+															</div>
 											</div>
 										</div>
 									</div>

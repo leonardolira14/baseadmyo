@@ -100,6 +100,9 @@ import { CrecibidasComponent } from './components/crecibidas/crecibidas.componen
 import { DetallesriesgoComponent } from './pages/detallesriesgo/detallesriesgo.component';
 import { CdetallesriesgoComponent } from './components/cdetallesriesgo/cdetallesriesgo.component';
 import { PnotificacionesComponent } from './pages/pnotificaciones/pnotificaciones.component';
+import { ListaRiesgoComponent } from './pages/lista-riesgo/lista-riesgo.component';
+import { ClistaRiesgoComponent } from './components/clista-riesgo/clista-riesgo.component';
+
 
 @NgModule({
   declarations: [
@@ -168,7 +171,9 @@ import { PnotificacionesComponent } from './pages/pnotificaciones/pnotificacione
     CrecibidasComponent,
     DetallesriesgoComponent,
     CdetallesriesgoComponent,
-    PnotificacionesComponent
+    PnotificacionesComponent,
+    ListaRiesgoComponent,
+    ClistaRiesgoComponent,
 
   ],
   imports: [
