@@ -9,13 +9,16 @@ import { map } from 'rxjs/operators';
 export class RiesgoService {
 
   constructor(private http: HttpClient) { }
-  
-  getriesgo(datos){
-  	return this.http.post(environment.urlserver+"getriesgo",datos)
-    .pipe(map(data=>data));
+
+  getriesgo(datos) {
+  	return this.http.post(environment.urlserver + 'getriesgo', datos)
+    .pipe(map(data => data));
   }
-  getdetalle(datos){
-	return this.http.post(environment.urlserver+"getdetalle",datos)
-    .pipe(map(data=>data));
+  getdetalle(datos) {
+	return this.http.post(environment.urlserver + 'getdetalle', datos)
+    .pipe(map(data => data));
+  }
+  getlist(datos) {
+    return this.http.post(environment.urlserver + 'listpersonriesgo', datos);
   }
 }

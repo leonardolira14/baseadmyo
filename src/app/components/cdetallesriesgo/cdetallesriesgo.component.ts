@@ -77,13 +77,13 @@ export class CdetallesriesgoComponent implements OnInit {
   }
 
   ngOnInit() {
-  	this.sniper = true;
+  // 	this.sniper = true;
   	(this.tipo_persona === 'cliente') ? this.tipo = 'clientes' : this.tipo = 'proveedores';
   	this.fecha_riesgo === 'A' ? this.leyenda = 'EN LOS úLTIMOS 12 MESES' : this.leyenda = 'EN LOS ULTIMOS 30 Días';
   	const datos = {fecha: this.fecha_riesgo, tipo: this.tipo_persona, IDEmpresa: this.datosempresa['IDEmpresa'], rama: this.ramita};
   	this.http.getdetalle(datos)
   	.subscribe(data => {
-  		this.detalle_riesgo = data['response']['result'];
+  		this.detalle_riesgo = data['response']['result']['datos'];
   		console.log(data);
   		this.sniper = false;
 	  });
@@ -95,12 +95,12 @@ export class CdetallesriesgoComponent implements OnInit {
   rama() {
 	  this.httpregistro.getsubsector(this.ram)
 	  .subscribe(respuesta => {
-		  console.log(respuesta)
+		  console.log(respuesta);
 		  this.ramas = respuesta['response']['result'];
 	  });
   }
-  getdetalle(){
-	console.log(this.ramita)
+  getdetalle() {
+	console.log(this.ramita);
   }
   cambiar(fecha) {
    	this.fecha_riesgo = fecha;

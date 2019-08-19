@@ -8,6 +8,9 @@ import { RiesgoService } from '../../services/riesgo.service';
   styleUrls: ['./criesgo.component.scss']
 })
 export class CriesgoComponent implements OnInit {
+	ramas = [];
+	leyenda_rama = '';
+	rama = '';
 	tipo_imagen = '';
 	fecha_imagen = '';
 	leyenda = 'EN LOS ÚLTIMOS 12 MESES';
@@ -89,14 +92,16 @@ label: 'Número de Empresas'}
   		this.tipo_contrario = 'proveedores';
   	}
   	this.fecha_imagen === 'A' ? this.leyenda = 'EN LOS ÚLTIMOS 12 MESES' : this.leyenda = 'EN LOS ÚLTIMOS 30 Días';
-  	const datos = {fecha: this.fecha_imagen, tipo: this.tipo_imagen, IDEmpresa: this.datosempresa['IDEmpresa'], Tipo_Persona: this.tipo_persona};
+  	const datos = {fecha: this.fecha_imagen, tipo: this.tipo_imagen, IDEmpresa: this.datosempresa['IDEmpresa'], Tipo_Persona: this.tipo_persona, rama: this.rama};
   	this.http.getriesgo(datos)
   	.subscribe((data) => {
   		this.sniper = false;
-		this.riesgo = data['response']['result'];
-		console.log(this.riesgo);
+		this.riesgo = data['response']['result']['Riesgo'];
+		this.ramas = data['response']['result']['Ramas'];
+		this.damerama();
+		console.log(data['response']['result']);
 		  this.pieChartData = this.riesgo['seriecir']['data'];
-  		
+
   	});
 
   }
@@ -116,7 +121,27 @@ label: 'Número de Empresas'}
 		this.tipo_persona = tipo;
 		this.solicitar();
 	}
-	list(forma){
-		this.route.navigateByUrl('/listariesgo/' + forma + '/' + this.tipo_imagen + '/' + this.fecha_imagen);
+	list(forma) {
+		this.route.navigateByUrl('/listariesgo/' + forma + '/' + this.tipo_imagen + '/' +  this.tipo_persona + '/' + this.rama + '/' + this.fecha_imagen);
+	}
+	damerama() {
+		let nom_giro = '';
+		if (this.rama === '') {
+			this.ramas.forEach(item => {
+				if (item.Principal === '1') {
+					nom_giro = item.Giro;
+					this.rama = item.IDNivel2;
+					return;
+				}
+			});
+		} else {
+			this.ramas.forEach(item => {
+				if (item.IDNivel2 === this.rama) {
+					nom_giro = item.Giro;
+					return;
+				}
+			});
+		}
+		this.leyenda_rama = nom_giro;
 	}
 }

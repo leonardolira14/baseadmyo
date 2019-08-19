@@ -102,7 +102,7 @@ import { CdetallesriesgoComponent } from './components/cdetallesriesgo/cdetalles
 import { PnotificacionesComponent } from './pages/pnotificaciones/pnotificaciones.component';
 import { ListaRiesgoComponent } from './pages/lista-riesgo/lista-riesgo.component';
 import { ClistaRiesgoComponent } from './components/clista-riesgo/clista-riesgo.component';
-
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -177,6 +177,7 @@ import { ClistaRiesgoComponent } from './components/clista-riesgo/clista-riesgo.
 
   ],
   imports: [
+    OrderModule,
     MatSlideToggleModule,
     MatNativeDateModule,
     MatDatepickerModule,

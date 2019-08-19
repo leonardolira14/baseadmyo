@@ -34,6 +34,7 @@
     "ng2-date-picker": "^2.11.0",
     "ngx-cookie-service": "^2.1.0",
     "ngx-mask": "^7.3.6",
+    "ngx-order-pipe": "^2.0.3",
     "ngx-pagination": "^3.2.1",
     "popper.js": "^1.14.7",
     "rxjs": "~6.2.0",

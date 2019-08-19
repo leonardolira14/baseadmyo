@@ -65,8 +65,12 @@
 													Media Actual
 													<p>{{calidad.promedio_actual.num}}</p>	
 												</div>
-												<div class="col-4 card p-t-15 p-b-15">
-													<i class="fas fa-arrow-down"></i>
+												<div class="col-4 card p-t-15 p-b-15 d-flex justify-content-center">
+													<h2>	
+														<i *ngIf="calidad.promedio_actual.num > calidad.promedio_pasado.num" class="fas fa-arrow-down text-succes"></i>
+														<i *ngIf="calidad.promedio_actual.num < calidad.promedio_pasado.num" class="fas fa-arrow-up text-danger"></i>
+														<i *ngIf="calidad.promedio_actual.num === calidad.promedio_pasado.num" class="fas fa-minus text-primary"></i>
+													</h2>
 												</div>
 												<div class="col-4 card p-t-15 p-b-15 text-muted">
 														Empeorados
@@ -80,20 +84,7 @@
 														Mejorados
 														<p class="text-succes">{{calidad.mejorados}}</p>
 													</div>
-												<!--<div class="col-md-12 chart">
-													<div style="display: block">
-														<canvas baseChart 
-														width="400" height="80"
-														
-														[datasets]="calidad.serie" 
-														[labels]="barChartLabels"
-														[options]="barChartOptions"
-														[legend]="barChartLegend"
-														[chartType]="barChartType"
-														></canvas>
-													</div>
-
-												</div>-->
+												
 											</div>
 										</div>
 									</div>
@@ -141,8 +132,11 @@
 															Media Actual
 															<p>{{cumplimiento.promedio_actual.num}}</p>	
 														</div>
-														<div class="col-4 card p-t-15 p-b-15">
-															<i class="fas fa-arrow-down"></i>
+														<div class="col-4 card p-t-15 p-b-15 d-flex justify-content-center">
+															<h2><i *ngIf="cumplimiento.promedio_actual.num > cumplimiento.promedio_pasado.num" class="fas fa-arrow-down text-succes"></i>
+															<i *ngIf="cumplimiento.promedio_actual.num < cumplimiento.promedio_pasado.num" class="fas fa-arrow-up text-danger"></i>
+															<i *ngIf="cumplimiento.promedio_actual.num === cumplimiento.promedio_pasado.num" class="fas fa-minus text-primary"></i>
+															</h2>
 														</div>
 														<div class="col-4 card p-t-15 p-b-15 text-muted">
 																Empeorados
@@ -188,7 +182,7 @@
 										<div class="col-3 d-flex align-items-center">
 											<div class="card text-center" style="padding: 20px;">
 												<h5 class="d-block text-primary">Respuesta Positiva</h5>
-												<h5 class="d-block text-secondary">{{oferta.Totalcalificaciones}}</h5>
+												<h5 class="d-block text-secondary">{{oferta.Respuesta}}</h5>
 												<h6 class="d-block text-primary">Número de calificaciones que han recibido tus clientes</h6>
 												<h5 class=" d-block text-secondary">{{oferta.total_calificaciones}}</h5>
 											</div>	
@@ -197,27 +191,31 @@
 											<div class="row text-monse">
 													<div class="col-4 card p-t-15 p-b-15 text-muted">
 															Media Anterior
-															<p>94.7</p>	
+															<p>{{oferta.promedio_pasado.num}}</p>	
 														</div>
 														<div class="col-4 card p-t-15 p-b-15 text-muted">
 															Media Actual
-															<p>94.7</p>	
+															<p>{{oferta.promedio_actual.num}}</p>
+															
 														</div>
-														<div class="col-4 card p-t-15 p-b-15">
-															<i class="fas fa-arrow-down"></i>
+														<div class="col-4 card p-t-15 p-b-15 d-flex justify-content-center">
+															<h2><i *ngIf="oferta.promedio_actual.num > oferta.promedio_pasado.num" class="fas fa-arrow-down text-succes"></i>
+															<i *ngIf="oferta.promedio_actual.num < oferta.promedio_pasado.num" class="fas fa-arrow-up text-danger"></i>
+															<i *ngIf="oferta.promedio_actual.num === oferta.promedio_pasado.num" class="fas fa-minus text-primary"></i>
+															</h2>
 														</div>
 														<div class="col-4 card p-t-15 p-b-15 text-muted">
-																Empeorado
-																<p class="text-danger">115</p>	
-															</div>
-															<div class="col-4 card p-t-15 p-b-15 text-muted">
-																Mantenido
-																<p>252</p>	
-															</div>
-															<div class="col-4 card p-t-15 p-b-15 text-muted">
-																Mejorado
-																<p class="text-succes">123</p>
-															</div>
+															Empeorado
+															<p class="text-danger">{{oferta.empeorados}}</p>	
+														</div>
+														<div class="col-4 card p-t-15 p-b-15 text-muted">
+															Mantenido
+															<p>{{oferta.mantenidos}}</p>	
+														</div>
+														<div class="col-4 card p-t-15 p-b-15 text-muted">
+															Mejorado
+															<p class="text-succes">{{oferta.mejorados}}</p>
+														</div>
 											</div>
 										</div>
 									</div>

@@ -1,40 +1,30 @@
 <div class="container">
   <div class="row m-t-30">
     <mat-form-field class="col-3">
-      <mat-label>Ordenar</mat-label>
-      <mat-select>
-        <mat-option>
+      <mat-label>Ordenar Razón Social</mat-label>
+      <mat-select [(value)]="selected" (valueChange)="orden(selected)">
+        <mat-option value="az">
          a - z
         </mat-option>
-        <mat-option>
+        <mat-option value="za">
           z - a
          </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field class="col-3">
-      <mat-label>Orden de Riesgo</mat-label>
-      <mat-select>
-        <mat-option>
+      <mat-label>Orden de Variación Riesgo</mat-label>
+      <mat-select [(value)]="selectedd" (valueChange)="orden_variacion(selectedd)">
+        <mat-option value="az">
          Mayor a Menor
         </mat-option>
-        <mat-option>
+        <mat-option value="za">
          Menor a Mayor
          </mat-option>
       </mat-select>
     </mat-form-field>
-    <mat-form-field class="col-3">
-        <mat-label>Giro</mat-label>
-        <mat-select>
-          <mat-option>
-           a - z
-          </mat-option>
-          <mat-option>
-            z - a
-           </mat-option>
-        </mat-select>
-      </mat-form-field>
-    <mat-form-field class="col-3">
-      <input matInput placeholder="Buscar Empresa" value="">
+
+    <mat-form-field class="col-6">
+      <input (keyup)="busqueda()"  [(ngModel)]="palabra" matInput placeholder="Buscar Empresa">
     </mat-form-field>
   </div>
 </div>
@@ -48,7 +38,7 @@
         <div class="card-body tarjeta contenedor">
           <div class="container-fluid area">
             <div class="row">
-              <div *ngFor='let item of listas | paginate: {itemsPerPage: 8, currentPage: pageActual}; index as i' class="col-12 col-md-3 col-lg-3 col-xl-3 m-b-30">
+              <div *ngFor='let item of listas  | paginate: {itemsPerPage: 8, currentPage: pageActual} ; index as i' class="col-12 col-md-3 col-lg-3 col-xl-3 m-b-30">
                 <div class="card tarjeta1">
                   <div class="cont-img">
                     <div class="banner" [ngStyle]="setmybanner(item.Banner)">
@@ -66,25 +56,25 @@
                     <p class="card-text">{{item.Nombre_Comer}}</p>
                     <div class="row text-center ">
                       <div class="col-12 ">
-                        Riesgo como Cliente
+                        Riesgo como {{persona}}
                       </div>
-                      <div class="col-6 card p-t-15 p-b-15 ">
-                        65%  
-                        <i class="fas fa-arrow-down"></i>
-                      </div>
-                      <div class="col-6 card p-t-15 p-b-15">
-                        7.52
-                      </div>
-                      <div class="col-12 m-t-30">
-                        Riesgo como Proveedor
-                      </div>
-                      <div class="col-6 card p-t-15 p-b-15 ">
-                        65.5% 
-                        <i class="fas fa-arrow-up"></i>
-                      </div>
-                      <div class="col-6 card p-t-15 p-b-15 ">
-                        7.52
-                      </div>
+                      <mat-card class="col-6 card p-t-15 p-b-15 ">
+                          <mat-card-content>
+                              Variación
+                              <p>
+                              <i *ngIf="item.Incremento.class === 'green'" class="fas fa-arrow-down text-succes"></i>
+                              <i *ngIf="item.Incremento.class === 'red'" class="fas fa-arrow-up text-danger"></i>
+                              <i *ngIf="item.Incremento.class === 'neutro'"  class="fas fa-minus text-primary"></i>
+                              {{item.Incremento.num}}
+                          </mat-card-content>
+                      </mat-card>
+                      <mat-card class="col-6 card p-t-15 p-b-15 ">
+                          <mat-card-content>
+                            Media
+                            <p>
+                            {{item.Media===null?'0':item.Media}}
+                          </mat-card-content>
+                      </mat-card>
                     </div>
                   </div>
                   <div class="card-footer">

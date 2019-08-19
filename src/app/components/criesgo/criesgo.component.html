@@ -1,7 +1,16 @@
 <div class="container-fluid bg-gris1 p-t-40 p-b-40">
 	<div class="container">
 		<div class="row">
-			<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
+			
+			<mat-form-field class="col-4">
+				<mat-label>Rama</mat-label>
+				<mat-select [(ngModel)]="rama" (selectionChange)="solicitar()">
+					<mat-option [value]="rama.IDNivel2" *ngFor="let rama of ramas">
+						{{rama.Giro}}
+					</mat-option>
+				</mat-select>
+			</mat-form-field>
+			<div class="col-8 d-flex justify-content-end m-t-30  m-b-30">
 				<div class="btn-group" role="group" aria-label="Basic example">
 					<button (click)="cambiar_persona('Cliente')"  type="button" class="btn {{tipo_persona==='Cliente'?'btn-primary':'btn-inactivo'}}">Como Cliente</button>
 					<button (click)="cambiar_persona('Proveedor')" type="button" class="btn {{tipo_persona==='Proveedor'?'btn-primary':'btn-inactivo'}} mr-3">Como Proveedor</button>
@@ -19,6 +28,9 @@
 						</div>
 						<div class="col-12 text-center text-uppercase">
 							<h6>BASADO EN LAS CALIFICACIONES RECIBIDAS A TUS {{tipo_contrario}} {{leyenda}}.</h6>
+						</div>
+						<div class="col-12 text-center text-uppercase">
+							<h6> en la rama de: {{leyenda_rama}}.</h6>
 						</div>
 					</div>
 				</div>

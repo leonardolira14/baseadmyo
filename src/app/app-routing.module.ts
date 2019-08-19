@@ -68,7 +68,7 @@ const appRoutes: Routes = [
   {path: 'detallesriesgo/:tipo/:fecha', component: DetallesriesgoComponent },
   {path: 'notificaciones', component: PnotificacionesComponent },
   {path: 'activar/:token', component: PhomeComponent },
-  {path: 'listariesgo/:forma/:tipo/:fecha', component: ListaRiesgoComponent}
+  {path: 'listariesgo/:forma/:tipo/:persona/:rama/:fecha', component: ListaRiesgoComponent}
   ];
 @NgModule({
   imports: [

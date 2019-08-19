@@ -1,21 +1,28 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute} from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-import { GeneralService } from 'src/app/services/general.service';
+import { RiesgoService } from '../../services/riesgo.service';
 import { environment } from 'src/environments/environment';
+import { OrderPipe } from 'ngx-order-pipe';
 @Component({
   selector: 'app-clista-riesgo',
   templateUrl: './clista-riesgo.component.html',
   styleUrls: ['./clista-riesgo.component.scss']
 })
 export class ClistaRiesgoComponent implements OnInit {
+  selected = '';
+  selectedd = '';
+  palabra = '';
+  giro = '';
   pageActual = 1;
   listas: any = [];
+  listas_alterna: any = [];
   sniper = false;
   tipo = '';
   tipo_s = '';
   forma = '';
   fecha = '';
+  persona = '';
   serverruta: string = environment.urlserver;
   datosgen: any = [];
   datosempresa: any = [];
@@ -25,8 +32,9 @@ export class ClistaRiesgoComponent implements OnInit {
   constructor(
     private parametros: ActivatedRoute,
 		private route: Router,
-		private http: GeneralService,
-		private cookieService: CookieService,
+		private http: RiesgoService,
+    private cookieService: CookieService,
+    private orderPipe: OrderPipe
   ) {
     this.datosgen = JSON.parse(this.cookieService.get('datosUsuario'));
 		this.datosusuarios = this.datosgen['datosusuario'];
@@ -39,6 +47,8 @@ export class ClistaRiesgoComponent implements OnInit {
           this.tipo = params['tipo'];
           this.forma = params['forma'];
           this.fecha = params['fecha'];
+          this.persona = params['persona'];
+          this.giro = params['rama'];
         }
         this.getlista();
 	  	});
@@ -56,12 +66,13 @@ export class ClistaRiesgoComponent implements OnInit {
           break;
     }
   	this.sniper = true;
-  	const datos = {IDEmpresa: this.datosempresa['IDEmpresa'], token: this.token, tipo: this.tipo};
-  	this.http.getlista(datos)
+  	const datos = {giro: this.giro, IDEmpresa: this.datosempresa['IDEmpresa'], persona: this.persona , fecha: this.fecha, forma: this.forma, token: this.token, tipo: this.tipo};
+  	this.http.getlist(datos)
   	.subscribe((data) => {
   		this.sniper = false;
-  		this.listas = data['response']['result'];
-  		console.log(data);
+      this.listas = data['response']['result']['Empresas'];
+      this.listas_alterna = this.listas;
+  		console.log(this.listas);
   	});
   }
   setmylogo(logo) {
@@ -76,6 +87,34 @@ export class ClistaRiesgoComponent implements OnInit {
   }
   visitar(ir) {
     this.route.navigateByUrl('/perfilbuscado/' + ir);
+  }
+  busqueda() {
+  	if (this.palabra === '') {
+  		this.listas = this.listas_alterna;
+  	} else {
+  		this.listas = this.buscapalarabra();
+  	}
+
+  }
+  buscapalarabra() {
+  	const empresal = this.listas_alterna;
+  		return empresal.filter(empresa => empresa.Razon_Social.toLocaleLowerCase().includes(this.palabra.toLocaleLowerCase()));
+  }
+  orden(orden) {
+    if (orden === 'az') {
+      this.listas = this.orderPipe.transform( this.listas_alterna,'Razon_Social',false);
+    } else {
+      this.listas = this.orderPipe.transform( this.listas_alterna,'Razon_Social',true);
+    }
+  
+
+  }
+  orden_variacion(orden) {
+    if (orden === 'az') {
+      this.listas = this.orderPipe.transform( this.listas_alterna,['Incremento']['num'],false);
+    } else {
+      this.listas = this.orderPipe.transform( this.listas_alterna,['Incremento']['num'],true);
+    }
   }
 
 }
