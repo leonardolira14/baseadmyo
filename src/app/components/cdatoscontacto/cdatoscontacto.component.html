@@ -1,9 +1,7 @@
-<div class="card  contenedor m-t-40">
-	<div class="card-header bg-primary text-uppercase text-monse">
-		<h5>Datos de Contacto</h5> 
-	</div>
-	<div class="card-body">
-		<div class="container">
+
+<h5 class="text-uppercase text-monse text-muted m-t-30">Datos de Contacto</h5> 
+
+<mat-card class="container-fluid">
 			<div class="row">
 				<div class="form-group col-6 ">
 					<label for=""  class="text-roboto text-gris3">Página Web</label>
@@ -34,12 +32,12 @@
 					<input type="text" [(ngModel)]="datoscontacto.Codigo_Postal" class="form-control" name="Codigo_Postal" placeholder="Código Postal">
 				</div>
 				<div class="col-12 text-center">
-						<button (click)="enviarform()" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cambios</button>
+						<button (click)="enviarform()" class="btn btn-outline-primary"> Guardar Cambios</button>
 				</div> 
 			</div>
-		</div>
-	</div>
-</div>
+</mat-card>
+
+
 <div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
 	<div class="spinner-border text-light" role="status">
 	  <span class="sr-only">Loading...</span>

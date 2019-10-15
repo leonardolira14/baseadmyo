@@ -1,17 +1,24 @@
-<div class="container-fluid  bg-gris1 p-t-40 p-b-40">
-	<div class="conatiner">
+
+
+
+<div class="container-fluid  p-t-40 p-b-40">
+	<div class="container">
 		<div class="row">
-			<div class="col-12 float-right">
-				<div class="btn-group" role="group" aria-label="Basic example">
+			<div class="col-8 text-monse text-muted m-t-20 m-b-20">
+				<h2>Visitas Recibidas</h2>
+			</div>
+			
+			<div class="col-4 text-right">
+				<div class="btn-group text-right" role="group" aria-label="Basic example">
 				  <button (click)="cambiomes('A')" type="button" class="btn btn-secondary">12 Meses</button>
 				  <button (click)="cambiomes('M')" type="button" class="btn btn-secondary">30 Dias</button>
 				</div>
 			</div>
-			<div class="col-6">
-				<div class="card  contenedor m-t-40">
-					<div class="card-header bg-primary text-uppercase text-monse">
+			<div class="col-6 m-t-40">
+				<div class="text-monse text-muted">
 						<h5>Visitas a tu Perfil en {{fechasvisitas}}</h5> 
-					</div>
+				</div>
+				<div class="card  contenedor">	
 					<div class="card-body">
 						<div class="container">
 							<div class="row">
@@ -31,11 +38,11 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-6">
-				<div class="card  contenedor m-t-40">
-					<div class="card-header bg-primary text-uppercase text-monse">
+			<div class="col-6 m-t-40">
+				<div class="text-monse text-muted">
 						<h5>No de Visitas en {{fechasvisitas}}</h5> 
-					</div>
+				</div>
+				<div class="card  contenedor">
 					<div class="card-body">
 						<div class="container cont-num d-flex justify-content-center align-items-center">
 							<div class="row">
@@ -49,11 +56,12 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12">
-				<div class="card  contenedor m-t-40">
-					<div class="card-header bg-primary text-uppercase text-monse">
+			<div class="col-12 m-t-40">
+					<div class="text-monse text-muted">
 						<h5>Evolución de Visitas en {{fechasvisitas}}</h5> 
 					</div>
+				<div class="card  contenedor ">
+					
 					<div class="card-body">
 						<div class="container area">
 							<div class="row">

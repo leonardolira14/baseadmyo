@@ -15,11 +15,11 @@ export class CproductosComponent implements OnInit {
 	modelproductos: any = {};
 	productos: any = [];
 	rutaserver = environment.urlserver;
-	imglogo = '';
+	imglogo: any ;
 	filemarcalogo: File = null;
 	public imagePath;
 	public message;
-
+	pageActual = 1;
 	datosgen: any = [];
 	datosempresa: any = [];
 	token = '';
@@ -28,7 +28,6 @@ export class CproductosComponent implements OnInit {
 	successAlertClosed = false;
 	alertterror = '';
 	alertsuccess = '';
-	pageActual = 1;
 	datosusuarios: any = [];
 
 	constructor(private route: Router, private http: ProductosService, private cookieService: CookieService, private modalService: NgbModal) {

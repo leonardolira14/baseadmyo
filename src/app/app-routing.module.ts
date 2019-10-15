@@ -33,6 +33,7 @@ import { RecibidasComponent } from './pages/recibidas/recibidas.component';
 import { DetallesriesgoComponent } from './pages/detallesriesgo/detallesriesgo.component';
 import { PnotificacionesComponent } from './pages/pnotificaciones/pnotificaciones.component'
 import { ListaRiesgoComponent } from './pages/lista-riesgo/lista-riesgo.component';
+import { PgirosComponent } from './pages/pgiros/pgiros.component';
 const appRoutes: Routes = [
   {path: '', component: PhomeComponent},
   {path: 'terminosycondiciones', component: TerminosComponent},
@@ -68,7 +69,8 @@ const appRoutes: Routes = [
   {path: 'detallesriesgo/:tipo/:fecha', component: DetallesriesgoComponent },
   {path: 'notificaciones', component: PnotificacionesComponent },
   {path: 'activar/:token', component: PhomeComponent },
-  {path: 'listariesgo/:forma/:tipo/:persona/:rama/:fecha', component: ListaRiesgoComponent}
+  {path: 'listariesgo/:forma/:tipo/:persona/:rama/:fecha', component: ListaRiesgoComponent},
+  {path: 'giros', component: PgirosComponent}
   ];
 @NgModule({
   imports: [

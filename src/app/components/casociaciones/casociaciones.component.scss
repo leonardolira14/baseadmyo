@@ -1,24 +1,8 @@
 @import '../../../styles';
-.card-prod{
-	padding:10px;
-	& .card{
-		
-	}
-	& .card-img-top{
-			width: 263px;
-			height: 210px;
-		    margin: 0 auto;
-		}
-	& .card-body{
-			
-		& .card-title,.card-text{
-			text-align: justify;
-			color:map-get($gamagrises,girsmenu);
-		}
-		
-	}
-
-}
+.card-avatar-camara{
+	position: relative;
+	min-height: 420px;
+  }
 .cont-img{
 	position: relative;
 	width: 200px;
@@ -30,4 +14,10 @@
 .btn-light{
 	color:get-map($colors,primary) !important;
 }
-
+::ng-deep .cdk-overlay-container{
+	z-index: 1070 !important;
+}
+.avatar-card{
+	width: 120px;
+	height: 120px;
+} 

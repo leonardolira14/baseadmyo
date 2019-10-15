@@ -1,25 +1,24 @@
 @import '../../../styles';
-.card-prod{
-	padding:10px;
-	& .card{
-		height: 434px;
-	}
-	& .card-img-top{
-			width: 263px;
-			height: 210px;
-		    margin: 0 auto;
-		}
-	& .card-body{
-			
-		& .card-title,.card-text{
-			text-align: justify;
-			color:map-get($gamagrises,girsmenu);
-		}
-		& .card-text{
-			height: 72px;
-		}
-	}
+.card-avatar{
+    position: relative;
 
+   & .avatar{
+        width: 100px;
+        height: 100px;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+    } 
+    & .text-nombre{
+        font-size: 1rem;
+        font-family: map-get($fonts,monse);
+        color:map-get($colors ,gris4);
+    }
+    & .text-usuario{
+        font-size: 0.8rem;
+        font-family: map-get($fonts,monse);
+        color:map-get($colors ,girsmenu);
+    }
 }
 .cont-img{
 	position: relative;

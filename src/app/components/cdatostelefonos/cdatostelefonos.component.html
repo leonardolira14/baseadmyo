@@ -1,35 +1,20 @@
-<div class="card m-t-30">
-	<div class="card-header bg-primary text-uppercase text-monse ">
-		<h5>Teléfonos</h5> 
-	</div>
-	<div class="card-body lista">
-		<ul class="list-group d-block w-100">
-			
-			<li *ngFor="let telefono of listtelefonos" class="list-group-item">
-
-				<div class="row">
-					<div class="col-12 ">
-						<h5 class="text-gris3">{{telefono.Numero}}</h5>
-						<small class="text-muted">{{telefono.Tipo_Numero}}</small>
-					</div>
-
+<h5 class="text-uppercase text-monse text-muted m-t-30">Teléfonos</h5> 
+<mat-card>
+	<mat-list role="list">
+			<mat-list-item *ngFor="let telefono of listtelefonos"  class="m-b-10" role="listitem">
+				<h5 matLine class="text-gris3">{{telefono.Numero}}</h5>
+				<div matLine class="d-felx align-items-baseline">
+						<small   class="text-muted">{{telefono.Tipo_Numero}}</small>
+						<button (click)="delete(telefono.IDTel)" class="btn btn-link text-primary  float-right"><i class="fas fa-minus-circle"></i></button>
+						<button (click)="obtdat(telefono.IDTel,alerttelefonos)"  class="btn btn-link text-primary float-right"><i class="fas fa-pencil-alt"></i></button>
+						
 				</div>
-				<div class="row d-flex align-items-center m-t-10">
-					<div class="col-6">
-						<button (click)="delete(telefono.IDTel)" class="btn btn-link text-primary"><i class="fas fa-minus-circle"></i></button>
-					</div>
-					<div class="col-6 text-right">
-						<button (click)="obtdat(telefono.IDTel,alerttelefonos)"  class="btn btn-link text-primary"><i class="fas fa-pencil-alt"></i></button>
-					</div>
-				</div>
-			</li>
-			
-		</ul>
-	</div>
-	<div class="card-footer text-center">
-		<button (click)="openalert(alerttelefonos)" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</button>
-	</div>
-</div>
+			</mat-list-item>
+			<div class="text-center w-100">
+					<button (click)="openalert(alerttelefonos)" class="btn btn-outline-primary"> Agregar</button>
+			</div>
+	</mat-list>
+</mat-card>
 <ng-template #alerttelefonos let-modal>
   <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">{{modeltelefono.IDTel?'Editar Teléfono':'Registrar Teléfono'}}</h4>

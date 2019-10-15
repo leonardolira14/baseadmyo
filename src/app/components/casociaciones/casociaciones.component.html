@@ -1,59 +1,60 @@
-<div class="container-fluid  bg-gris1 p-t-40 p-b-40">
-	<div class="conatiner">
-		<div class="row">
-			<div class="col-12">
-				<div class="card  contenedor m-t-40">
-					<div class="card-header bg-primary text-uppercase text-monse">
-						<div class="container-fluid">
-							<div class="row d-flex align-items-center ">
-								<div class="col-6">
-									<h5>Catálogo de Asociaciones</h5> 
-								</div>
-								<div class="col-5">
-									<div class="input-group">
-										<input (keyup)="busqueda()" type="text" class="form-control" placeholder="Asociación/Camara"  [(ngModel)]="palabra" >
-										<div class="input-group-prepend">
-											<span class="input-group-text text-primary bg-blanco" id="basic-addon1"><i class="fas fa-search"></i></span>
-										</div>
-									</div>
-								</div>
-								<div class="col-1">
-									<button (click)="openalert(alertcamaras)" class="btn btn-primary"><i class="fas fa-plus"></i></button>
-								</div>
+<div class="container">
+	<div class="row">
+		<div class="col-12 text-uppercase text-muted text-monse m-t-40 m-b-30">
+			<h2>Catálogo de Asociaciones</h2> 
+		</div>
+		<mat-form-field class="col-9">
+			<input (keyup)="busqueda()" matInput class="text-dark" placeholder="Buscar Asociaciones/Camaras" value="">
+		</mat-form-field>
+		<div class="col-3 text-right">
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<button type="button" (click)="openalert(alertcamaras)" class="btn btn-secondary"><i class="material-icons">add</i></button>
+				</div>
+		</div>
+		<div class="col-3 m-t-30" *ngFor="let asociacion of asociaciones | paginate: {itemsPerPage: 20, currentPage: pageActual}; index as i">
+			<mat-card class="w-100 card-avatar-camara">
+					<div class="row">
+							<div class="col-12 text-right">
+								<button mat-icon-button [matMenuTriggerFor]="menu">
+										<mat-icon>more_vert</mat-icon>
+								</button>
+								<mat-menu #menu="matMenu">
+									<button  (click)="delete(asociacion.IDAsocia)" mat-menu-item>
+										<mat-icon>delete</mat-icon>
+										<span>Eliminar</span>
+									</button>
+								</mat-menu>
 							</div>
-						</div>
 					</div>
-					<div class="card-body">
-						<div class="container">
-							<div class="row">
-								
-								<div class="col-3 m-t-20 card-prod" *ngFor="let asociacion of asociaciones">
-									<div class="card" >
-										
-
-										<div class="card-body">
-											<h5 class="card-title">{{asociacion.Asociacion}}</h5>
-											
-											
-											<p class="card-text">
-												<a target="_blanck" href="{{asociacion.Web}">Sitio Web: {{asociacion.Web}}</a>
-											</p>
-											<div class="btn-group text-center d-flex" role="group" aria-label="Basic example">
-												<button (click)="delete(asociacion.IDAsocia)" type="button" class="btn btn-secondary mr-3">Eliminar</button>
-												<button (click)="editar(asociacion.IDAsocia,alertcamaras)" type="button" class="btn btn-secondary">Editar</button>
-											</div>
-										</div>
-									</div>
-								</div>
+					<div class="row text-usuario text-muted">
+							
+							<div class="col-12 text-center">
+								<img src="{{(asociacion.Imagen===''|| asociacion.Imagen===null)?'/assets/img/avatar1.png':urlserver + '/assets/img/asociaciones/' + asociacion.Imagen}}"  mat-card-avatar  class="avatar-card">
+							</div>
+							<div class="col-12 m-t-30 text-center">
+								<h6 >{{asociacion.Nombre}}</h6>
+							</div>
+							<div class="col-12 text-center m-t-20">
+									<a target="_blanck" ng-href="{{asociacion.Web}">Sitio Web: {{asociacion.Web}}</a>
 							</div>
 							
-						</div>
+							<div class="btn-group text-center d-flex col-12 m-t-20" role="group" aria-label="Basic example">
+									<button (click)="delete(asociacion.IDAsocia)" type="button" class="btn btn-outline-secondary mr-3">Eliminar</button>
+								</div>
 					</div>
-				</div>
-			</div>
+			</mat-card>
+			
+		</div>
+		<div class="col-12 text-center m-t-40">
+				<pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
 		</div>
 	</div>
 </div>
+
+
+
+
+
 <div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
 	<div class="spinner-border text-light" role="status">
 		<span class="sr-only">Loading...</span>
@@ -70,28 +71,60 @@
 		</button>
 	</div>
 	<div class="modal-body">
-		<form class="container">
+		<div class="container">
 			<div class="row">
-				
-				<div class="col-12">
-					<div class="form-group row">
-						<label class="col-sm-12 col-form-label">Asociación/Camara</label>
-						<div class="col-sm-12">
-							<input class="form-control" [(ngModel)]="modelcamara.Asociacion" name="Asociacion" #Asociacion="ngModel" type="text">
+				<div class="col-4">
+						<div class="row">
+								<div class="col-12 text-center m-t-30">
+									<img src="{{logo_avatar}}"  mat-card-avatar  class="avatar-card">
+								</div>
+								<div class="col-12 text-center m-t-20">
+									<button type="button" (click)="img_avatar.click()" class="btn btn-outline-primary">Cambiar Avatar</button>
+									<input type="file"  (change)="preview(img_avatar.files)" accept="image/gif, image/jpeg, image/png" #img_avatar class="d-none">
+								</div>
+				  
 						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-form-label">Sitio Web</label>
-						<div class="col-sm-12">
-							<input class="form-control" [(ngModel)]="modelcamara.Web" name="Web" #web="ngModel" type="text">
-						</div>
-					</div>
-					
 				</div>
+				<div class="col-8">
+					<div class="row">
+						<mat-form-field class="col-12 m-t-30">
+							<input  type="text" placeholder="Nombre" aria-label="Nombre" matInput [formControl]="mycontrol"   [matAutocomplete]="auto">
+								<mat-autocomplete (optionSelected)='getPosts($event.option.value)' #auto="matAutocomplete" [displayWith]="displayFn">
+									<mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+												{{option.Nombre}}
+									 </mat-option>
+								</mat-autocomplete>
+						</mat-form-field>
+						<mat-form-field class="col-12">
+								<input [(ngModel)]="modelcamara.Siglas" matInput placeholder="Siglas" >
+						</mat-form-field>
+						<mat-form-field class="col-12">
+							<input matInput [(ngModel)]="modelcamara.Web" placeholder="Pagina Web" >
+						</mat-form-field>
+						
+					</div>
+				</div>
+				<mat-form-field class="col-4">
+						<input matInput [(ngModel)]="modelcamara.Direccion" placeholder="Dirección" >
+				</mat-form-field>
+				<mat-form-field class="col-4">
+						<input matInput [(ngModel)]="modelcamara.Colonia" placeholder="Colonia" >
+				</mat-form-field>
+				<mat-form-field class="col-4">
+						<input matInput [(ngModel)]="modelcamara.Municipio" placeholder="Municipio" >
+				</mat-form-field>
+				<mat-form-field class="col-4">
+						<input matInput [(ngModel)]="modelcamara.Estado" placeholder="Estado" >
+				</mat-form-field>
+				<mat-form-field class="col-4">
+						<input matInput [(ngModel)]="modelcamara.CP" placeholder="Código Postal" >
+				</mat-form-field>
+				<mat-form-field class="col-4">
+						<input matInput [(ngModel)]="modelcamara.Telefono" placeholder="Teléfono" >
+				</mat-form-field>
 			</div>
-			
+		</div>
 
-		</form>
 	</div>
 	<div class="modal-footer">
 		<button type="button" class="btn btn-danger" (click)="closemodel(alertcamaras)">Cerrar</button>

@@ -166,15 +166,15 @@
                                   <h5>Cumplimiento</h5>
                               </div>
                               <mat-list class="col-12">
-                                  <div id="{{folder.Nump}}" *ngFor="let folder of cuestionario_cumplimiento; let i=index;" >
-                                      <mat-list-item class="par_preg" *ngIf="(folder.dependecia==='NO')?'d-none':''">
+                                  <div id="{{folder.Nump}}"  class="{{(folder.dependecia==='SI')?'d-none':''}}"  *ngFor="let folder of cuestionario_cumplimiento; let i=index;" >
+                                      <mat-list-item class="par_preg " >
                                           <div class="container">
                                               <div class="row row d-flex align-items-center">
                                                 <div class="col-7 m-t-20">
                                                   {{folder.Pregunta}}
                                                 </div>
-                                                <div class="col-5 m-t-20" (change)="ver_dependencia(folder.Nump,'cumplimiento')" *ngIf="folder.Forma==='Si/No'">
-                                                  <mat-radio-group [(ngModel)]="cuestionario_cumplimiento[i].Respuesta_usuario" aria-label="Select an option">
+                                                <div class="col-5 m-t-20"  *ngIf="folder.Forma==='Si/No'">
+                                                  <mat-radio-group (change)="ver_dependencia(folder.Nump,'cumplimiento')" [(ngModel)]="cuestionario_cumplimiento[i].Respuesta_usuario" aria-label="Select an option">
                                                       <mat-radio-button color="primary" class="mr-3" value="SI">Si</mat-radio-button>
                                                       <mat-radio-button color="primary" value="NO">No</mat-radio-button>
                                                   </mat-radio-group>
@@ -186,7 +186,7 @@
                                                       <mat-radio-button color="primary" value="NA">No Aplica</mat-radio-button>
                                                   </mat-radio-group>
                                                 </div>
-                                                <div class="col-5 m-t-20"  *ngIf="cuestionario_cumplimiento[i].Forma==='NUM' || folder.Forma==='DIAS' || folder.Forma==='MESES' || folder.Forma==='HORAS'">
+                                                <div class="col-5 m-t-20"  *ngIf="cuestionario_cumplimiento[i].Forma==='NUM' || cuestionario_cumplimiento[i].Forma=== 'DIAS' || cuestionario_cumplimiento[i].Forma==='MESES' || cuestionario_cumplimiento[i].Forma==='HORAS'">
                                                     <mat-form-field class="w-100">
                                                         <input matInput (keyup)="ver_dependencia(folder.Nump,'cumplimiento')" [(ngModel)]="cuestionario_cumplimiento[i].Respuesta_usuario" type="number">
                                                     </mat-form-field>
@@ -205,8 +205,8 @@
                                   <h5>Oferta</h5>
                               </div>
                               <mat-list class="col-12" *ngIf="tipo_califica==='Proveedor'">
-                                  <div id="{{folder.Nump}}" *ngFor="let folder of cuestionario_oferta; let  i=index;" >
-                                      <mat-list-item class="par_preg" *ngIf="(folder.dependecia==='NO')?'d-none':''">
+                                  <div id="{{folder.Nump}}" class="{{(folder.dependecia==='SI')?'d-none':''}}"   *ngFor="let folder of cuestionario_oferta; let  i=index;" >
+                                      <mat-list-item class="par_preg" >
                                           <div class="container">
                                               <div class="row d-flex align-items-center ">
                                                 <div class="col-7 m-t-20 m-t-20">

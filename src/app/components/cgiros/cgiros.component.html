@@ -1,0 +1,104 @@
+<div class="container">
+  <div class="row text-monse">
+    <div class="col-12 text-muted m-t-30 m-b-40 text-uppercase">
+        <h2>Giros</h2> 
+    </div>
+    <mat-form-field class="col-9 m-b-30">
+      <input (keyup)="buscar()" [(ngModel)]="palabra" matInput placeholder="Buscar Giros registrados" value="">
+    </mat-form-field>
+    <div class="col-3 text-right m-b-30">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" (click)="modal_open" class="btn btn-secondary"><i class="material-icons">add</i></button>
+        </div>
+    </div> 
+    <div class="col-3 m-t-20" *ngFor="let giro of listagiros">
+      <div class="card-avatar {{(giro.Principal==='1')?'bg-gris2':''}}">
+            <mat-card-actions slot="end" class="text-right float-right">
+                  <button mat-icon-button [matMenuTriggerFor]="menu">
+                      <mat-icon>more_vert</mat-icon>
+                  </button>
+                  <mat-menu #menu="matMenu">
+                   
+                    <button (click)="deletegiro(giro.IDGE)" mat-menu-item>
+                      <mat-icon>delete</mat-icon>
+                      <span>Borrar</span>
+                    </button>
+                  </mat-menu>
+              </mat-card-actions>
+       
+            
+            <mat-card-content class="container   ">
+                <div class="row text-monse text-justify">
+                  <div class="col-12 text-muted ">
+                    <small>Giro</small>
+                    <h6>{{giro.giron1}}</h6>
+                  </div>
+                  <div class="col-12 text-muted m-t-20">
+                    <small>SubGiro</small>
+                      <h6>{{giro.giron2}}</h6>
+                    </div>
+                    <div class="col-12 text-muted">
+                        <h6>{{giro.giron3}}</h6>
+                      </div>
+                </div>
+            </mat-card-content>
+            <mat-card-footer class="text-center">
+                <div class="btn-group d-flex" role="group" aria-label="Basic example">
+                    
+                    <button *ngIf="giro.Principal!=='1'" type="button" (click)="principal(giro.IDGE)"  class="btn btn-primary ">Hacer Principal</button>
+                </div>
+            </mat-card-footer>
+          </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="container-fluid fondomodal" *ngIf="modal_open">
+  <div class="container">
+      <div class="row">
+          <div class="card  m-auto col-4">
+              <div class="card-body row">
+                  <div class="col-12 m-b-20">
+                      <span class="titulo-card">Listado de Giros</span>
+                  </div>
+                  <mat-form-field class="col-12">
+                      <mat-label>Giro</mat-label>
+                      <mat-select [(ngModel)]="addgiro.sector" (selectionChange)="getsubsector()" >
+                              <mat-option value="{{giro.IDNivel1}}" *ngFor="let giro of todos_losgiros">
+                               {{giro.Giro}}
+                              </mat-option>
+                       </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-12">
+                      <mat-label>SubGiro</mat-label>
+                      <mat-select [(ngModel)]="addgiro.subgiro"  (selectionChange)="getrama()" >
+                              <mat-option  value="{{giro.IDNivel2}}" *ngFor="let giro of allsubgiros">
+                                  {{giro.Giro}}
+                              </mat-option>
+                       </mat-select>
+                  </mat-form-field>
+                  <mat-form-field class="col-12">
+                      <mat-label>Rama</mat-label>
+                      <mat-select  [(ngModel)]="addgiro.rama" >
+                              <mat-option value="{{giro.IDGiro3}}" *ngFor="let giro of allsubgiros" >
+                                  {{giro.Giro}}
+                              </mat-option>
+                       </mat-select>
+                  </mat-form-field>
+              </div>
+              <div class="card-footer ">
+                  <div class="btn-group d-flex" role="group" aria-label="Basic example">
+                      <button type="button" (click)="modal_open=false"  class="btn btn-outline-danger mr-3">Cancelar</button>
+                      <button type="button" (click)="reggiro()"  class="btn btn-primary ">Guardar</button>
+                    </div>
+                </div>
+          </div>
+        </div>
+  </div> 
+</div>
+<div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
+    <div class="spinner-border text-light" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>

@@ -1,5 +1,5 @@
-<div class="container-fluid bg-gris1 p-t-40 p-b-40">
-	<div class="container">
+<div class="container-fluid  p-t-40 p-b-40">
+	<div class="container-fluid">
 		<div class="row">
 				<div class="col-12 m-b-30">
 						<div class="container-fluid">
@@ -30,7 +30,7 @@
 					</div>
 			<div class="col-12">
 				<div class="card contenedor">
-					<div class="card-header  container text-center text-white bg-primary">
+					<div class="card-header  container-fluid text-center text-white bg-primary">
 						<div class="row">
 							<div class="col-12 text-uppercase text-monse">
 								<h5>TU IMAGEN COMO {{tipo_imagen}}</h5> 
@@ -49,12 +49,13 @@
 									<button (click)="ir()" type="button" class="btn btn-inactivo">Más Detalle</button>
 								</div>	
 							</div>
-							<div class="col-6 ">
+							<div class="col-12 text-uppercase text-muted text-monse m-t-50">
+									<h5>EVOLUCIÓN DE CALIFICACIONES recibidas {{leyenda}}</h5> 
+							</div>
+							<div class="col-4 ">
 								<div class="card  resumen container">
 									<div class="row">
-										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Número de Calificaciones {{leyenda}}
-										</div> 
+										
 										<div class="col-12 numero">
 											{{imagen?.totalCalif}}
 										</div>
@@ -69,12 +70,36 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-6 ">
+							<div class="col-8 ">
+									<div class="card contenedor">
+										<div class="card-body container-fluid">
+											<div class="container area">
+												<div class="row">
+													<div class="col-12">
+														<div style="display: block">
+															<canvas baseChart width="400" height="100"
+																[datasets]="lineChartDataec"
+																[labels]="lineChartLabelsec"
+																[options]="lineChartOptions"
+																[colors]="lineChartColors"
+																[legend]="lineChartLegend"
+																[chartType]="lineChartType"
+																>
+															</canvas>
+													  </div>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							<div class="col-12 text-uppercase text-muted text-monse m-t-60">
+								<h5>CALIFICACIÓN MEDIA RECIBIDA {{leyenda}}</h5> 
+							</div>
+							<div class="col-4 ">
 								<div class="card  resumen container">
 									<div class="row">
-										<div class="col-12 titulo text-center text-primary text-uppercase">
-											CALIFICACIÓN MEDIA RECIBIDA {{leyenda}}
-										</div> 
+										
 										<div class="col-12 numero">
 											{{imagen?.Media}}
 										</div>
@@ -90,12 +115,36 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-6 m-t-30">
+							<div class="col-8 ">
+									<div class="card contenedor">
+										<div class="card-body container-fluid">
+											<div class="container area">
+												<div class="row">
+													<div class="col-12">
+														<div style="display: block">
+															<canvas baseChart width="400" height="100"
+																[datasets]="lineChartDataem"
+																[labels]="lineChartLabelsem"
+																[options]="lineChartOptions"
+																[colors]="lineChartColors"
+																[legend]="lineChartLegend"
+																[chartType]="lineChartType"
+																>
+															</canvas>
+													  </div>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							<div class="col-12 text-uppercase text-muted text-monse m-t-60">
+								<h5>CALIFICACIÓN MEDIA RECIBIDA en calidad {{leyenda}}</h5> 
+							</div>
+							<div class="col-4 ">
 								<div class="card resumen  container">
 									<div class="row">
-										<div class="col-12 titulo text-center text-primary text-uppercase">
-											CALIFICACIÓN MEDIA RECIBIDA en calidad {{leyenda}}
-										</div> 
+										
 										<div class="col-12 numero">
 											{{imagen?.Calidad?.media}}
 										</div>
@@ -110,12 +159,36 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-6 m-t-30">
+							<div class="col-8">
+									<div class="card contenedor">
+										<div class="card-body container-fluid">
+											<div class="container area">
+												<div class="row">
+													<div class="col-12">
+														<div style="display: block">
+															<canvas baseChart width="400" height="100"
+																[datasets]="lineChartDataemcalidad"
+																[labels]="lineChartLabelsemcalidad"
+																[options]="lineChartOptions"
+																[colors]="lineChartColors"
+																[legend]="lineChartLegend"
+																[chartType]="lineChartType"
+																>
+															</canvas>
+													  </div>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 text-uppercase text-muted text-monse m-t-60">
+										<h5>Calificación Media recibida en Cumplimiento {{leyenda}}</h5> 
+								</div>
+							<div class="col-4">
 								<div class="card resumen  container">
 									<div class="row">
-										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Calificación Media recibida en Cumplimiento {{leyenda}}
-										</div> 
+										
 										<div class="col-12 numero">
 											{{imagen?.Cumplimiento?.media}}
 										</div>
@@ -130,11 +203,37 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-6 m-t-30" *ngIf='tipo_imagen==="proveedor"'>
+							<div class="col-8 ">
+									<div class="card contenedor">
+										<div class="card-body container-fluid">
+											<div class="container area">
+												<div class="row">
+													<div class="col-12">
+														<div style="display: block">
+															<canvas baseChart width="400" height="100"
+																[datasets]="lineChartDataemcumplimiento"
+																[labels]="lineChartLabelsemcumplimiento"
+																[options]="lineChartOptions"
+																[colors]="lineChartColors"
+																[legend]="lineChartLegend"
+																[chartType]="lineChartType"
+																>
+															</canvas>
+													  </div>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="col-12 text-uppercase text-muted text-monse m-t-60" *ngIf='tipo_imagen==="proveedor"'>
+										<h5>Calificación Media recibida en Oferta {{leyenda}}</h5> 
+								</div>
+							<div class="col-4 " *ngIf='tipo_imagen==="proveedor"'>
 								<div class="card resumen  container">
 									<div class="row">
 										<div class="col-12 titulo text-center text-primary text-uppercase">
-											Calificación Media recibida en Oferta {{leyenda}}
+											
 										</div> 
 										<div class="col-12 numero">
 											{{imagen?.Oferta?.media}}
@@ -150,167 +249,40 @@
 									</div>
 								</div>
 							</div>
-							
+							<div class="col-8 " *ngIf='tipo_imagen==="proveedor"'>
+									<div class="card contenedor">
+										
+										<div class="card-body container-fluid">
+											<div class="container area">
+												<div class="row">
+													<div class="col-12">
+														<div style="display: block">
+															<canvas baseChart width="400" height="100"
+																[datasets]="lineChartDataemoferta"
+																[labels]="lineChartLabelsemoferta"
+																[options]="lineChartOptions"
+																[colors]="lineChartColors"
+																[legend]="lineChartLegend"
+																[chartType]="lineChartType"
+																>
+															</canvas>
+													  </div>
+													</div>	
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-12 m-t-30">
-				<div class="card contenedor">
-					<div class="card-header  container text-center text-white bg-primary">
-						<div class="row">
-							<div class="col-12 text-uppercase text-monse">
-								<h5>EVOLUCIÓN DE CALIFICACIONES recibidas {{leyenda}}</h5> 
-							</div>
-							
-						</div>
-					</div>
-					<div class="card-body container-fluid">
-						<div class="container area">
-							<div class="row">
-								<div class="col-12">
-									<div style="display: block">
-									    <canvas baseChart width="400" height="100"
-							                [datasets]="lineChartDataec"
-							                [labels]="lineChartLabelsec"
-							                [options]="lineChartOptions"
-							                [colors]="lineChartColors"
-							                [legend]="lineChartLegend"
-							                [chartType]="lineChartType"
-							                >
-							            </canvas>
-								  </div>
-								</div>	
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 m-t-30">
-				<div class="card contenedor">
-					<div class="card-header  container text-center text-white bg-primary">
-						<div class="row">
-							<div class="col-12 text-uppercase text-monse">
-								<h5>EVOLUCIÓN DE la MEDIA DE Calificación recibida {{leyenda}}</h5> 
-							</div>
-							
-						</div>
-					</div>
-					<div class="card-body container-fluid">
-						<div class="container area">
-							<div class="row">
-								<div class="col-12">
-									<div style="display: block">
-									    <canvas baseChart width="400" height="100"
-							                [datasets]="lineChartDataem"
-							                [labels]="lineChartLabelsem"
-							                [options]="lineChartOptions"
-							                [colors]="lineChartColors"
-							                [legend]="lineChartLegend"
-							                [chartType]="lineChartType"
-							                >
-							            </canvas>
-								  </div>
-								</div>	
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 m-t-30">
-				<div class="card contenedor">
-					<div class="card-header  container text-center text-white bg-primary">
-						<div class="row">
-							<div class="col-12 text-uppercase text-monse">
-								<h5>EVOLUCIÓN DE la MEDIA DE Calificación recibida en calidad {{leyenda}}</h5> 
-							</div>
-							
-						</div>
-					</div>
-					<div class="card-body container-fluid">
-						<div class="container area">
-							<div class="row">
-								<div class="col-12">
-									<div style="display: block">
-									    <canvas baseChart width="400" height="100"
-							                [datasets]="lineChartDataemcalidad"
-							                [labels]="lineChartLabelsemcalidad"
-							                [options]="lineChartOptions"
-							                [colors]="lineChartColors"
-							                [legend]="lineChartLegend"
-							                [chartType]="lineChartType"
-							                >
-							            </canvas>
-								  </div>
-								</div>	
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 m-t-30">
-				<div class="card contenedor">
-					<div class="card-header  container text-center text-white bg-primary">
-						<div class="row">
-							<div class="col-12 text-uppercase text-monse">
-								<h5>EVOLUCIÓN DE la MEDIA DE Calificación recibida en cumplimiento  {{leyenda}}</h5> 
-							</div>
-							
-						</div>
-					</div>
-					<div class="card-body container-fluid">
-						<div class="container area">
-							<div class="row">
-								<div class="col-12">
-									<div style="display: block">
-									    <canvas baseChart width="400" height="100"
-							                [datasets]="lineChartDataemcumplimiento"
-							                [labels]="lineChartLabelsemcumplimiento"
-							                [options]="lineChartOptions"
-							                [colors]="lineChartColors"
-							                [legend]="lineChartLegend"
-							                [chartType]="lineChartType"
-							                >
-							            </canvas>
-								  </div>
-								</div>	
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-12 m-t-30" *ngIf='tipo_imagen==="proveedor"'>
-				<div class="card contenedor">
-					<div class="card-header  container text-center text-white bg-primary">
-						<div class="row">
-							<div class="col-12 text-uppercase text-monse">
-								<h5>EVOLUCIÓN DE la MEDIA DE Calificación recibida en oferta {{leyenda}}</h5> 
-							</div>
-							
-						</div>
-					</div>
-					<div class="card-body container-fluid">
-						<div class="container area">
-							<div class="row">
-								<div class="col-12">
-									<div style="display: block">
-									    <canvas baseChart width="400" height="100"
-							                [datasets]="lineChartDataemoferta"
-							                [labels]="lineChartLabelsemoferta"
-							                [options]="lineChartOptions"
-							                [colors]="lineChartColors"
-							                [legend]="lineChartLegend"
-							                [chartType]="lineChartType"
-							                >
-							            </canvas>
-								  </div>
-								</div>	
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			
+			
+		
+			
+			
 		</div>
 	</div>
 </div>

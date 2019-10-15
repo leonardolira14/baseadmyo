@@ -1,51 +1,56 @@
-<div class="container-fluid  bg-gris1 p-t-40 p-b-40">
-	<div class="conatiner">
+<div class="container-fluid p-t-40 p-b-40">
+	<div class="container">
 		<div class="row">
-			<div class="col-12">
-				<div class="card  contenedor m-t-40">
-					<div class="card-header bg-primary text-uppercase text-monse">
-						<div class="container-fluid">
-							<div class="row d-flex align-items-center ">
-								<div class="col-6">
-									<h5>Catálogo de Productos y Servicios</h5> 
-								</div>
-								<div class="col-5">
-									<div class="input-group">
-										<input (keyup)="busqueda()" type="text" class="form-control" placeholder="Producto o Servicio"  [(ngModel)]="palabra" >
-										<div class="input-group-prepend">
-											<span class="input-group-text text-primary bg-blanco" id="basic-addon1"><i class="fas fa-search"></i></span>
-										</div>
-									</div>
-								</div>
-								<div class="col-1">
-									<button (click)="openalert(alertproductos)" class="btn btn-primary"><i class="fas fa-plus"></i></button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="container">
-							<div class="row">
-								
-								<div class="col-3 m-t-20 card-prod" *ngFor="let producto of productos">
-									<div class="card" >
-										<img src="{{producto.Foto===null?'src/assets/img/foto-no-disponible.jpg':rutaserver+'assets/img/logoprod/'+producto.Foto}}" class="card-img-top" alt="">
-
-										<div class="card-body">
-											<h5 class="card-title">{{producto.Producto}}</h5>
-											<p class="card-text">{{(producto.Descripcion.length>80)? (producto.Descripcion | slice:0:80)+'...':producto.Descripcion}}</p>
-											<div class="btn-group text-center d-flex" role="group" aria-label="Basic example">
-												<button (click)="eliminar(producto.IDProducto)" type="button" class="btn btn-secondary mr-3">Eliminar</button>
-												<button (click)="editar(producto.IDProducto,alertproductos)" type="button" class="btn btn-secondary">Editar</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							
-						</div>
-					</div>
+			<div class="col-12 text-uppercase text-muted text-monse m-b-30">
+					<h2>Catálogo de Productos y Servicios</h2> 
+			</div>
+			<mat-form-field class="col-9">
+					<input (keyup)="busqueda()" matInput class="text-dark" placeholder="Buscar Producto o Servicio" value="">
+			</mat-form-field>
+			<div class="col-3 text-right">
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<button type="button" (click)="openalert(alertproductos)" class="btn btn-secondary"><i class="material-icons">add</i></button>
 				</div>
+			</div>
+			<div class="col-3  m-t-20" *ngFor="let producto of productos | paginate: {itemsPerPage: 20, currentPage: pageActual}; index as i">
+				<mat-card  class="w-100 card-avatar">
+						<div class="row">
+							<div class="col-12 text-right">
+								<button mat-icon-button [matMenuTriggerFor]="menu">
+										<mat-icon>more_vert</mat-icon>
+								</button>
+								<mat-menu #menu="matMenu">
+									<button  mat-menu-item>
+										<mat-icon>view_column</mat-icon>
+											<span>Editar</span>
+									</button>
+									<button  mat-menu-item>
+										<mat-icon>view_column</mat-icon>
+										<span>Eliminar</span>
+									</button>
+								</mat-menu>
+							</div>
+						</div>
+						<mat-card-header>
+								<img  src="{{producto.Foto===null?'src/assets/img/foto-no-disponible.jpg':rutaserver+'assets/img/logoprod/'+producto.Foto}}" mat-card-avatar  class="avatar">
+								
+						</mat-card-header>
+						<div class="row text-usuario text-muted">
+							<div class="col-12 m-t-30 text-center">
+									<h5 >{{producto.Producto}}</h5>
+							</div>
+							<div class="col-12 text-center">
+									<p >{{(producto.Descripcion.length>80)? (producto.Descripcion | slice:0:80)+'...':producto.Descripcion}}</p>
+							</div>
+							<div class="btn-group text-center d-flex col-12" role="group" aria-label="Basic example">
+									<button (click)="eliminar(producto.IDProducto)" type="button" class="btn btn-outline-secondary mr-3">Eliminar</button>
+									<button (click)="editar(producto.IDProducto,alertproductos)" type="button" class="btn btn-outline-secondary">Editar</button>
+							</div>
+						</div>						
+				</mat-card>
+			</div>
+			<div class="col-12 text-center m-t-40">
+					<pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
 			</div>
 		</div>
 	</div>

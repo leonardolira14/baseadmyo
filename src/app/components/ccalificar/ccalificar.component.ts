@@ -177,20 +177,21 @@ public lista_respuestas: any[] = [];
     console.log(this.model_calificar);
   }
   ver_dependencia(index, dedonde) {
-
+    
     let lista = [];
-    if (dedonde ==='calidad') {
+    if (dedonde === 'calidad') {
       lista = this.cuestionario_calidad;
     }
     if (dedonde === "cumplimiento") {
       lista = this.cuestionario_cumplimiento;
     }
-    if (dedonde ==='oferta') {
+    if (dedonde === 'oferta') {
       lista = this.cuestionario_oferta;
     }
     if (dedonde === "recomendacion") {
       lista = this.cuestionario_oferta;
     }
+    console.log(lista,dedonde);
     this.listas_dependencias.forEach(element => {
         lista.forEach(pag => {
             if (pag.Nump === element.ID_Pregunta) {

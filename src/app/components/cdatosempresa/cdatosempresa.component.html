@@ -1,3 +1,6 @@
+
+
+
 <div class="alert {{alertclass}} fixed-top
 w-50 mx-auto" *ngIf='alertbol' role="alert">
   <h4 class="alert-heading">{{alerttitle}}</h4>
@@ -6,106 +9,68 @@ w-50 mx-auto" *ngIf='alertbol' role="alert">
 <div class="container-fluid bg-gris1 p-t-40 p-b-40">
 	<div class="container">
 		<div class="row">
-			<div class="col-3">
-				<div class="card">
-					<div class="card-header bg-primary text-uppercase text-monse ">
-						<h5>Giros</h5> 
-					</div>
-					<div class="card-body lista">
-						<ul class="list-group d-block w-100">
-
-						  <li class="list-group-item" *ngFor="let giro of girost">
-						  	<div class="row">
-						  		<div class="col-12" >
-						  			<h5 class="text-gris3">{{(giro.giron1.length>25)? (giro.giron1 | slice:0:25)+'...':giro.giron1}}</h5>
-						  			<h6 class="text-muted">{{(giro.giron2.length>25)? (giro.giron2 | slice:0:25)+'...':giro.giron2}}</h6>
-						  			
-						  			<div class="row d-flex align-items-center m-t-10">
-						  				<div class="col-6">
-						  					<span (click)="deletegiro(giro.IDGE)" class="text-primary"><i class="fas fa-minus-circle"></i></span>
-						  				</div>
-						  				<div class="col-6 text-right" *ngIf="giro.Principal==='0'">
-						  					<button  (click)="principal(giro.IDGE)" class="btn btn-primary text-white">Principal</button>
-						  				</div>
-						  			</div>
-						  		</div>
-						  	</div>
-						  </li>
-						 
-						</ul>
-					</div>
-					<div class="card-footer text-center">
-						<button (click)="openalert(giros)" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</button>
-					</div>
-				</div>
-				<div class="card m-t-30">
-					<div class="card-header bg-primary text-uppercase text-monse ">
+			<div class="col-12 m-t-30 m-b-30">
+					<h2 class="text-muted text-uppercase text-monse ">
+							Datos de mi Empresa
+					</h2>
+			</div>
+			<div class="col-12 col-md-3 col-xl-3 col-lg-3">
+				
+				<div class="row">
+					<div class="col-12 text-uppercase text-monse text-muted">
 						<h5>Marcas</h5> 
 					</div>
-					<div class="card-body lista">
-						<ul class="list-group d-block w-100">
-						  <li *ngFor="let marca of marcas" class="list-group-item">
-						  	<div class="row">
-						  		
-						  			<div class="col-3 text-center">
-
-						  				<img *ngIf="marca.logo==''" class="img-fluid rounded-circle img-marcas" src="src/assets/img/foto-no-disponible.jpg" alt="">
-						  				<img *ngIf="marca.logo!==''" class="img-fluid rounded-circle img-marcas" src="{{rutaserver}}/assets/img/logosmarcas/{{marca.logo}}" alt="">
-							  		</div>
-							  		<div class="col-9 ">
-							  			<h5 class="text-gris3">{{marca.Marca}}</h5>
-						  			</div>
-						  		
-						  	</div>
-						  	<div class="row d-flex align-items-center m-t-10">
-						  				<div class="col-6">
-						  					<button (click)="deletemarca(marca.IDMarca)" class="btn btn-link text-primary"><i class="fas fa-minus-circle"></i></button>
-						  					
-						  				</div>
-						  				<div class="col-6 text-right">
-						  					<button (click)="editmarca(marca.IDMarca,alertmarcas)"  class="btn btn-link text-primary"><i class="fas fa-pencil-alt"></i></button>
-						  				</div>
-						  	</div>
-						  </li>						 
-						</ul>
-					</div>
-					<div class="card-footer text-center">
-						<button (click)="openalert(alertmarcas)" class="btn btn-primary"><i class="fas fa-plus"></i> Agregar</button>
-					</div>
 				</div>
+				<mat-card>
+					<mat-list role="list">
+						<mat-list-item *ngFor="let marca of marcas" class="m-b-10" role="listitem">
+							<img *ngIf="marca.logo==''" matListAvatar src="src/assets/img/foto-no-disponible.jpg" >
+							<img  *ngIf="marca.logo!==''" matListAvatar src="{{rutaserver}}/assets/img/logosmarcas/{{marca.logo}}" >
+							<h3 matLine class="text-gris3">{{marca.Marca}}</h3>
+							<div matLine class="row d-flex align-items-center">
+								<div class="col-6">
+									<button (click)="deletemarca(marca.IDMarca)" class="btn btn-link text-primary"><i class="fas fa-minus-circle"></i></button>		
+								</div>
+								<div class="col-6 text-right">
+									<button (click)="editmarca(marca.IDMarca,alertmarcas)"  class="btn btn-link text-primary"><i class="fas fa-pencil-alt"></i></button>
+								</div>
+							</div>
+						</mat-list-item>
+						
+					</mat-list>
+					<div class="w-100 text-center">
+							<button (click)="openalert(alertmarcas)" class="btn btn-outline-primary text-center">Agregar</button>
+					</div>
+					
+				</mat-card>
 				<app-cdatostelefonos></app-cdatostelefonos>
 			</div>
-			<div class="col-9">
-				<div class="card  contenedor">
-					<div class="card-header bg-primary text-uppercase text-monse">
-						<h5>Datos de mi empresa</h5> 
-					</div>
-					<div class="card-body">
-						<div class="container">
-							<div class="row">
-								<div class="col-12">
-									<div class="banner container-fluid" [ngStyle]="{'background-image':banner}">
-
-										<div class="row d-flex align-items-end">
-											<div class="col-12 text-right">
-												<div (click)="filebanner.click()" class="btn btn-primary">Cargar Banner</div>
-												<input accept="image/gif, image/jpeg, image/png" class="d-none" #filebanner type="file" (change)="previewbanner(filebanner.files)">
-											</div>
-										</div>
-
-									</div>
-									<div class="logo" [ngStyle]="{'background-image':logo}">
-										<div class="container-fluid">
-											<div class="row d-flex align-items-end">
-												<div class="col-12 text-right">
-													<div (click)="filelogo.click()" class="btn btn-link"><i class="fas fa-pencil-alt"></i></div>
-													<input accept="image/gif, image/jpeg, image/png" class="d-none" #filelogo type="file" (change)="previewlogo(filelogo.files)">
-												</div>
-											</div>
-										</div>
-
+			<div class="col-12 col-md-9 col-xl-9 col-lg-9">
+				<div class="text-muted text-uppercase text-monse">
+					<h5>Datos Generales</h5> 
+				</div>
+				<mat-card class="container-fluid">
+					<div class="row">
+						<div class="col-12">
+							<div class="banner container-fluid" [ngStyle]="{'background-image':banner}">
+								<div class="row d-flex align-items-end">
+									<div class="col-12 text-right">
+										<div (click)="filebanner.click()" class="btn btn-primary">Cargar Banner</div>
+										<input accept="image/gif, image/jpeg, image/png" class="d-none" #filebanner type="file" (change)="previewbanner(filebanner.files)">
 									</div>
 								</div>
+							</div>
+							<div class="logo" [ngStyle]="{'background-image':logo}">
+								<div class="container-fluid">
+									<div class="row d-flex align-items-end">
+										<div class="col-12 text-right">
+											<div (click)="filelogo.click()" class="btn btn-link"><i class="fas fa-pencil-alt"></i></div>
+											<input accept="image/gif, image/jpeg, image/png" class="d-none" #filelogo type="file" (change)="previewlogo(filelogo.files)">
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 								<div class="form-group col-12 m-t-30">
 									<label for=""  class="text-roboto text-gris3">Razón Social</label>
 									<input type="text" [(ngModel)]="datosempresa.Razon_Social" class="form-control" name="Razon_Social" placeholder="Razón Social">
@@ -155,14 +120,10 @@ w-50 mx-auto" *ngIf='alertbol' role="alert">
 									<textarea [(ngModel)]="datosempresa.Perfil" cols="10" rows="10" class="form-control"  ></textarea> 
 								</div>
 								<div class="col-12 text-center">
-									<button (click)="updateempresa()" class="btn btn-primary"><i class="fas fa-save"></i> Guardar Cambios</button>
+									<button (click)="updateempresa()" class="btn btn-outline-primary"> Guardar Cambios</button>
 								</div> 
-
-							</div>
-						</div>
 					</div>
-				</div>
-			
+				</mat-card>
 			<app-cdatoscontacto></app-cdatoscontacto>
 			</div>
 		</div>

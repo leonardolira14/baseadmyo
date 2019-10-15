@@ -329,7 +329,364 @@
 									</div>
 								</ng-template>
 							</ngb-tab>
+							<ngb-tab title="Detalle de Imagen como Cliente">
+								<ng-template ngbTabContent>
+									<div class="card m-t-30">
+										<div class="card-header bg-primary text-uppercase text-monse ">
+											<h5>DETALLES DE IMAGEN COMO CLIENTE EN CALIDAD</h5> 
+										</div>
+										<div class="body-card resumenn">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-6 m-t-30">
+														<div class="card text-monse text-center presentacion">
+															<h6 class="text-uppercase text-primary ">CALIFICACIÓN MEDIA RECIBIDA EN CALIDAD</h6>
+															<div class="container">
+																<div class="row">
+																	<div class="col-12 numero">
+																		{{datosperfilbuscado.detalleImagenCliente?.Calidad?.media}}
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-6 m-t-30">
+														<div class="card text-monse text-center presentacion">
+															<h6 class="text-uppercase text-primary">Variación de la calificación media en Calidad</h6>
+															<div class="container">
+																<div class="row d-flex justify-content-center align-items-center">
+																	
+																	<div class="col-12 variacion {{datosperfilbuscado.detalleImagenCliente?.Calidad?.incremento?.class}}">
+																		{{datosperfilbuscado.detalleImagenCliente?.Calidad?.incremento?.num}}
+																		<i *ngIf="datosperfilbuscado.detalleImagenCliente?.Calidad?.incremento?.class=='red'" class="fas fa-arrow-down"></i>
+																		<i *ngIf="datosperfilbuscado.detalleImagenCliente?.Calidad?.incremento?.class=='green'" class="fas fa-arrow-up"></i>
+																	</div>
+																	
+																</div>
+															</div>
+														</div>
+													</div>
+													<div *ngFor="let calidad of datosperfilbuscado.detalleImagenCliente.listCalidad" class="col-12 m-t-30  text-center">
+														<h5 class="text-primary text-monse m-b-30">{{calidad.Pregunta}}</h5>
+														<div class="row">
+															<div class="col-3 d-flex align-items-center">
+																<div class="card text-center" style="padding: 20px;">
+																	<h5 class="d-block text-primary">No de Calificaciones</h5>
+																	<h5 class="d-block text-secondary">{{calidad.Totalcalificaciones}}</h5>
+																	<h5 class="d-block text-primary">Respuesta Evaluada</h5>
+																	<h5 class=" d-block text-secondary">{{calidad.respuesta}}</h5>
+																</div>	
+															</div>
+															<div class="col-9">
+																<div class="row">
+																	<div class="col-md-12 chart">
+																		<div style="display: block" class="contene">
+																			<canvas baseChart 
+																			width="400" height="80"
+																			[datasets]="calidad.serie" 
+																			[labels]="barChartLabels"
+																			[options]="barChartOptions"
+																			[legend]="barChartLegend"
+																			[chartType]="barChartType"
+																			></canvas>
+																		</div>
+					
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
 
+									</div>
+									<div class="card m-t-30">
+										<div class="card-header bg-primary text-uppercase text-monse ">
+											<h5>DETALLES DE IMAGEN COMO CLIENTE EN cumplimiento</h5> 
+										</div>
+										<div class="body-card resumenn">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-6 m-t-30">
+														<div class="card text-monse text-center presentacion">
+															<h6 class="text-uppercase text-primary ">CALIFICACIÓN MEDIA RECIBIDA EN  Cumplimiento</h6>
+															<div class="container">
+																<div class="row">
+																	<div class="col-12 numero">
+																		{{datosperfilbuscado.detalleImagenCliente?.Cumplimiento?.media}}
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-6 m-t-30">
+														<div class="card text-monse text-center presentacion">
+															<h6 class="text-uppercase text-primary">Variación de la calificación media en Cumplimiento</h6>
+															<div class="container">
+																<div class="row d-flex justify-content-center align-items-center">
+																	
+																	<div class="col-12 variacion {{datosperfilbuscado.detalleImagenCliente?.Cumplimiento?.incremento?.class}}">
+																		{{datosperfilbuscado.detalleImagenCliente?.Cumplimiento?.incremento?.num}}
+																		<i *ngIf="datosperfilbuscado.detalleImagenCliente?.Cumplimiento?.incremento?.class=='red'" class="fas fa-arrow-down"></i>
+																		<i *ngIf="datosperfilbuscado.detalleImagenCliente?.Cumplimiento?.incremento?.class=='green'" class="fas fa-arrow-up"></i>
+																	</div>
+																	
+																</div>
+															</div>
+														</div>
+													</div>
+													<div *ngFor="let calidad of datosperfilbuscado.detalleImagenCliente.listCumplimiento" class="col-12 m-t-30  text-center">
+														<h5 class="text-primary text-monse m-b-30">{{calidad.Pregunta}}</h5>
+														<div class="row">
+															<div class="col-3 d-flex align-items-center">
+																<div class="card text-center" style="padding: 20px;">
+																	<h5 class="d-block text-primary">No de Calificaciones</h5>
+																	<h5 class="d-block text-secondary">{{calidad.Totalcalificaciones}}</h5>
+																	<h5 class="d-block text-primary">Respuesta Evaluada</h5>
+																	<h5 class=" d-block text-secondary">{{calidad.respuesta}}</h5>
+																</div>	
+															</div>
+															<div class="col-9">
+																<div class="row">
+																	<div class="col-md-12 chart">
+																		<div style="display: block">
+																			<canvas baseChart 
+																			width="400" height="80"
+																			[datasets]="calidad.serie" 
+																			[labels]="barChartLabels"
+																			[options]="barChartOptions"
+																			[legend]="barChartLegend"
+																			[chartType]="barChartType"
+																			></canvas>
+																		</div>
+					
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</ng-template>
+							</ngb-tab>
+							<ngb-tab title="Detalle de Imagen como Proveedor">
+								<ng-template ngbTabContent>
+									<div class="card m-t-30">
+										<div class="card-header bg-primary text-uppercase text-monse ">
+											<h5>DETALLES DE IMAGEN COMO Proveedor EN CALIDAD</h5> 
+										</div>
+										<div class="body-card resumenn">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-6 m-t-30">
+														<div class="card text-monse text-center presentacion">
+															<h6 class="text-uppercase text-primary ">CALIFICACIÓN MEDIA RECIBIDA EN  Oferta</h6>
+															<div class="container">
+																<div class="row">
+																	<div class="col-12 numero">
+																		{{datosperfilbuscado.detalleImagenProveedor?.Calidad?.media}}
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-6 m-t-30">
+														<div class="card text-monse text-center presentacion">
+															<h6 class="text-uppercase text-primary">Variación de la calificación media en Oferta</h6>
+															<div class="container">
+																<div class="row d-flex justify-content-center align-items-center">
+																	
+																	<div class="col-12 variacion {{datosperfilbuscado.detalleImagenProveedor?.Calidad?.incremento?.class}}">
+																		{{datosperfilbuscado.detalleImagenProveedor?.Calidad?.incremento?.num}}
+																		<i *ngIf="datosperfilbuscado.detalleImagenProveedor?.Calidad?.incremento?.class=='red'" class="fas fa-arrow-down"></i>
+																		<i *ngIf="datosperfilbuscado.detalleImagenProveedor?.Calidad?.incremento?.class=='green'" class="fas fa-arrow-up"></i>
+																	</div>
+																	
+																</div>
+															</div>
+														</div>
+													</div>
+													<div *ngFor="let calidad of datosperfilbuscado.detalleImagenProveedor.listCalidad" class="col-12 m-t-30  text-center">
+														<h5 class="text-primary text-monse m-b-30">{{calidad.Pregunta}}</h5>
+														<div class="row d-flex justify-content-center">
+															<div class="col-3 d-flex align-items-center" >
+																<div class="card text-center " style="padding: 20px;">
+																	<h5 class="d-block text-primary">No de Calificaciones</h5>
+																	<h5 class="d-block text-secondary">{{calidad.Totalcalificaciones}}</h5>
+																	<h5 class="d-block text-primary">Respuesta Evaluada</h5>
+																	<h5 class=" d-block text-secondary">{{calidad.respuesta}}</h5>
+																</div>	
+															</div>
+															<div class="col-9">
+																<div class="row">
+																	<div class="col-md-12 chart">
+																		<div style="display: block">
+																			<canvas baseChart 
+																			width="400" height="80"
+																			[datasets]="calidad.serie" 
+																			[labels]="barChartLabels"
+																			[options]="barChartOptions"
+																			[legend]="barChartLegend"
+																			[chartType]="barChartType"
+																			></canvas>
+																		</div>
+					
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+									<div class="card m-t-30">
+										<div class="card-header bg-primary text-uppercase text-monse ">
+											<h5>DETALLES DE IMAGEN COMO proveedor EN cumplimiento</h5> 
+										</div>
+										<div class="body-card resumenn">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-6 m-t-30">
+														<div class="card text-monse text-center presentacion">
+															<h6 class="text-uppercase text-primary ">CALIFICACIÓN MEDIA RECIBIDA EN  Cumplimiento</h6>
+															<div class="container">
+																<div class="row">
+																	<div class="col-12 numero">
+																		{{datosperfilbuscado.detalleImagenProveedor?.Cumplimiento?.media}}
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-6 m-t-30">
+														<div class="card text-monse text-center presentacion">
+															<h6 class="text-uppercase text-primary">Variación de la calificación media en Cumplimiento</h6>
+															<div class="container">
+																<div class="row d-flex justify-content-center align-items-center">
+																	
+																	<div class="col-12 variacion {{datosperfilbuscado.detalleImagenProveedor?.Cumplimiento?.incremento?.class}}">
+																		{{datosperfilbuscado.detalleImagenProveedor?.Cumplimiento?.incremento?.num}}
+																		<i *ngIf="datosperfilbuscado.detalleImagenProveedor?.Cumplimiento?.incremento?.class=='red'" class="fas fa-arrow-down"></i>
+																		<i *ngIf="datosperfilbuscado.detalleImagenProveedor?.Cumplimiento?.incremento?.class=='green'" class="fas fa-arrow-up"></i>
+																	</div>
+																	
+																</div>
+															</div>
+														</div>
+													</div>
+													<div *ngFor="let calidad of datosperfilbuscado.detalleImagenProveedor.listCumplimiento" class="col-12 m-t-30  text-center">
+														<h5 class="text-primary text-monse m-b-30">{{calidad.Pregunta}}</h5>
+														<div class="row d-flex justify-content-center">
+															<div class="col-3 d-flex align-items-center" >
+																<div class="card text-center " style="padding: 20px;">
+																	<h5 class="d-block text-primary">No de Calificaciones</h5>
+																	<h5 class="d-block text-secondary">{{calidad.Totalcalificaciones}}</h5>
+																	<h5 class="d-block text-primary">Respuesta Evaluada</h5>
+																	<h5 class=" d-block text-secondary">{{calidad.respuesta}}</h5>
+																</div>	
+															</div>
+															<div class="col-9">
+																<div class="row">
+																	<div class="col-md-12 chart">
+																		<div style="display: block">
+																			<canvas baseChart 
+																			width="400" height="80"
+																			[datasets]="calidad.serie" 
+																			[labels]="barChartLabels"
+																			[options]="barChartOptions"
+																			[legend]="barChartLegend"
+																			[chartType]="barChartType"
+																			></canvas>
+																		</div>
+					
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+									<div class="card m-t-30">
+										<div class="card-header bg-primary text-uppercase text-monse ">
+											<h5>DETALLES DE IMAGEN COMO proveedor EN oferta</h5> 
+										</div>
+										<div class="body-card resumenn">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-6 m-t-30">
+														<div class="card text-monse text-center presentacion">
+															<h6 class="text-uppercase text-primary ">CALIFICACIÓN MEDIA RECIBIDA EN  Oferta</h6>
+															<div class="container">
+																<div class="row">
+																	<div class="col-12 numero">
+																		{{datosperfilbuscado.detalleImagenProveedor?.Oferta?.media}}
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+													<div class="col-6 m-t-30">
+														<div class="card text-monse text-center presentacion">
+															<h6 class="text-uppercase text-primary">Variación de la calificación media en Oferta</h6>
+															<div class="container">
+																<div class="row d-flex justify-content-center align-items-center">
+																	
+																	<div class="col-12 variacion {{datosperfilbuscado.detalleImagenProveedor?.Oferta?.incremento?.class}}">
+																		{{datosperfilbuscado.detalleImagenProveedor?.Oferta?.incremento?.num}}
+																		<i *ngIf="datosperfilbuscado.detalleImagenProveedor?.Oferta?.incremento?.class=='red'" class="fas fa-arrow-down"></i>
+																		<i *ngIf="datosperfilbuscado.detalleImagenProveedor?.Oferta?.incremento?.class=='green'" class="fas fa-arrow-up"></i>
+																	</div>
+																	
+																</div>
+															</div>
+														</div>
+													</div>
+													<div *ngFor="let calidad of datosperfilbuscado.detalleImagenProveedor.listOferta" class="col-12 m-t-30  text-center">
+														<h5 class="text-primary text-monse m-b-30">{{calidad.Pregunta}}</h5>
+														<div class="row d-flex justify-content-center">
+															<div class="col-3 d-flex align-items-center" >
+																<div class="card text-center " style="padding: 20px;">
+																	<h5 class="d-block text-primary">No de Calificaciones</h5>
+																	<h5 class="d-block text-secondary">{{calidad.Totalcalificaciones}}</h5>
+																	<h5 class="d-block text-primary">Respuesta Evaluada</h5>
+																	<h5 class=" d-block text-secondary">{{calidad.respuesta}}</h5>
+																</div>	
+															</div>
+															<div class="col-9">
+																<div class="row">
+																	<div class="col-md-12 chart">
+																		<div style="display: block">
+																			<canvas baseChart 
+																			width="400" height="80"
+																			[datasets]="calidad.serie" 
+																			[labels]="barChartLabels"
+																			[options]="barChartOptions"
+																			[legend]="barChartLegend"
+																			[chartType]="barChartType"
+																			></canvas>
+																		</div>
+					
+																	</div>
+																</div>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</ng-template>
+							</ngb-tab>
 						</ngb-tabset>
 					</div>			
 				</div>

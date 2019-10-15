@@ -32,7 +32,8 @@ import {MatTabsModule,
   MatMenuModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatBadgeModule
 } from '@angular/material';
 import { PhomeComponent } from './pages/phome/phome.component';
 import { MenuaComponent } from './components/menua/menua.component';
@@ -103,6 +104,8 @@ import { PnotificacionesComponent } from './pages/pnotificaciones/pnotificacione
 import { ListaRiesgoComponent } from './pages/lista-riesgo/lista-riesgo.component';
 import { ClistaRiesgoComponent } from './components/clista-riesgo/clista-riesgo.component';
 import { OrderModule } from 'ngx-order-pipe';
+import { PgirosComponent } from './pages/pgiros/pgiros.component';
+import { CgirosComponent } from './components/cgiros/cgiros.component';
 
 @NgModule({
   declarations: [
@@ -174,6 +177,8 @@ import { OrderModule } from 'ngx-order-pipe';
     PnotificacionesComponent,
     ListaRiesgoComponent,
     ClistaRiesgoComponent,
+    PgirosComponent,
+    CgirosComponent,
 
   ],
   imports: [
@@ -193,13 +198,14 @@ import { OrderModule } from 'ngx-order-pipe';
     MatStepperModule,
     MatAutocompleteModule,
     MatCheckboxModule,
-     MatRadioModule,
-      AppRoutingModule,
-     MatDialogModule,
-     MatSelectModule,
-     MatListModule,
-     MatInputModule,
-     MatTooltipModule,
+    MatRadioModule,
+    MatBadgeModule,
+    AppRoutingModule,
+    MatDialogModule,
+    MatSelectModule,
+    MatListModule,
+    MatInputModule,
+    MatTooltipModule,
     MatCardModule,
     MatIconModule,
     MatToolbarModule,

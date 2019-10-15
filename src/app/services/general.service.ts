@@ -27,6 +27,11 @@ export class GeneralService {
    	return this.http.post(environment.urlserver + 'getperfilempresa', {empresa, token})
    	.pipe(map(data => data));
    }
+   // funcion para obtener los giros de una empresa
+   getallgiros(datos,token){
+    return this.http.post(environment.urlserver + 'getallgiro', {token, datos})
+    .pipe(map(data => data));
+   }
    // funcion para agregar un giro
    registrogiro(token, datos) {
     return this.http.post(environment.urlserver + 'reggiro', {token, datos})
@@ -129,6 +134,11 @@ export class GeneralService {
   // funcion para poner en resolucion una valoracion
   pendiente_valoracion(datos) {
     return this.http.post(environment.urlserver + 'pendientevaloracion', datos)
+    .pipe(map(data => data));
+  }
+  // funcion para recuperar contraseña
+  recuperarcontra(datos) {
+    return this.http.post(environment.urlserver + 'recuperarpass', datos)
     .pipe(map(data => data));
   }
 }

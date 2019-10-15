@@ -1,18 +1,24 @@
-<div class="container-fluid bg-gris1 p-t-40 p-b-40">
+<div class="container-fluid bg-gris1  p-t-40 p-b-40">
 	<div class="container ">
 		<div class="row ">
+			<div class="col-12 text-muted  text-monse text-uppercase m-b-30">
+				<h2>Perfil de tu empresa</h2>
+			</div>
 			<div class="col-3">
-				<div class="resumen_usuario bg-blanco d-block w-100">
+				<div class="row">
+					<div class="col-12 text-muted  text-monse">
+						<h6>Datos Empresa</h6>
+					</div>
+				</div>
+				<mat-card class="resumen_usuario bg-blanco d-block w-100">
 					<div class="banner" [ngStyle]="seletcbanner(empresa.Banner)">
 					</div>
 					<img src="{{empresa.Logo==''?'assets/img/foto-no-disponible.jpg':rutaserver+'assets/img/logosEmpresas/'+empresa.Logo}}" class="img-user rounded-circle bg-white" >
 					<div class="container-fluid  p-t-40">
 						<div class="row">
 							
-							<div class="col-12 text-primary text-center">
-								<h6>Datos Empresa</h6>
-							</div>
-							<div class="col-12 text-roboto text-muted">
+							
+							<div class="col-12 text-roboto text-muted m-t-30">
 								<h6>{{empresa.Razon_Social}}</h6>
 							</div>
 							<div class="col-12 text-roboto text-muted">
@@ -23,66 +29,66 @@
 							</div>
 							
 							<div class="col-12 text-center m-t-10">
-								<div class="btn btn-primary" (click)="goto('datosempresa')">
-									Editar Datos
+								<div class="btn btn-outline-primary" (click)="goto('datosempresa')">
+									Ver Detalle
 								</div>
-							</div>
-							<div class="col-12 ray m-t-30"></div>
-							<div class="col-12 text-primary text-center">
-								<h6>Datos de Usuario</h6>
-							</div>
-							<div class="col-12 text-center text-roboto text-muted m-t-20">
-								<h5>{{nombre}}</h5>
-							</div>
-							<div class="col-12 text-center text-roboto text-muted">
-								<h6>{{puesto}}</h6>
-							</div>
-							<div class="col-12 text-center  m-t-10">
-								<div class="btn btn-primary" (click)="goto('datosusuario')">
-									Editar Datos
-								</div>
-							</div>
+							</div>			
 							
 						</div>
 					</div>
+				</mat-card>
+				<div class="row">
+					<div class="col-12 text-muted m-t-30 text-monse">
+						<h6>Datos de Usuario</h6>
+					</div>
 				</div>
 				
-				<div class="card contenedor m-t-40">
-					<div class="card-header bg-primary">
-						Empresas que Sigues
+				<mat-card class="contenedor">
+					<div class="row">
+						<div class="col-12 text-center text-roboto text-muted m-t-20">
+							<h5>{{nombre}}</h5>
+						</div>
+						<div class="col-12 text-center text-roboto text-muted">
+							<h6>{{puesto}}</h6>
+						</div>
+						<div class="col-12 text-center  m-t-10">
+							<div class="btn btn-outline-primary" (click)="goto('datosusuario')">
+								Ver Detalle
+							</div>
+						</div>
 					</div>
-					<div class="card-body lista text-muted">
-						<ul *ngIf="follow" class="list-group d-block w-100">
-						  <li *ngFor="let follo of follow" (click)="goto('/perfilb/'+follo.IDEmpresaSeguida)" class="list-group-item">
-						  		{{follo.Razon_Social}}  	
-						  </li>
-						 </ul>
-						 <span *ngIf="!follow" class="text-center d-block w-100">Sin Registros</span>
-					</div>
-					<div class="card-footer text-center">
-						<div (click)="goto('/follow')" class="btn btn-primary text-center">
-						   		Ver Más
-						 </div>
+						
+				</mat-card>
+				<div class="row m-t-30">
+					<div class="col-12 text-muted text-monse">
+						<h6>Empresas que Sigues</h6>
 					</div>
 				</div>
-			</div>
-			<div class="col-9">
-				<div class="card contenedor">
-					<div class="card-header  container text-center text-white bg-primary">
-							<div class="row">
-								<div class="col-12 text-uppercase text-monse">
-									<h5>RESUMEN DE TU IMAGEN COMO CLIENTE</h5> 
-								</div>
-								<div class="col-12 text-uppercase text-monse">
-									<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS PROVEEDORES EN LOS ÚLTIMOS 12 MESES.</h6>
+				<mat-card class="container-fluid">
+					<div class="row">
+						<mat-list role="list" *ngIf="follow" class="list-group d-block w-100">
+							<mat-list-item role="listitem" *ngFor="let follo of follow" (click)="goto('/perfilb/'+follo.IDEmpresaSeguida)">{{follo.Razon_Social}} </mat-list-item>
+						</mat-list>
+						<span *ngIf="follow == undefined || follow==='' || follow=== null" class="text-center d-block w-100">Sin Registros</span>
+						<div class="col-12 text-center  m-t-10">
+								<div class="btn btn-outline-primary" (click)="goto('/follow')">
+										Ver Detalle
 								</div>
 							</div>
 					</div>
-					<div class="card-body container-fluid">
+				</mat-card>
+			</div>
+			<div class="col-9 text-center">
+				<div class="row text-muted text-uppercase text-monse">
+					<div class="col-12 ">
+						<h5>RESUMEN DE TU IMAGEN COMO CLIENTE</h5> 
+					</div>
+					<div class="col-12 ">
+						<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS PROVEEDORES EN LOS ÚLTIMOS 12 MESES.</h6>
+					</div>
+				</div>
+				<mat-card class="container container-fluid">
 						<div class="row">
-							<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
-								
-							</div>
 							<div class="col-6 ">
 								<div class="card  resumen container">
 									<div class="row">
@@ -167,24 +173,17 @@
 								</div>
 							</div>
 						</div>
-					</div>
+				</mat-card>
+				<div class="row m-t-40 text-muted text-uppercase text-monse text-center">
+						<div class="col-12 ">
+							<h5>RESUMEN DE TU IMAGEN COMO proveedor</h5> 
+						</div>
+						<div class="col-12">
+							<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS CLIENTES EN LOS ÚLTIMOS EN 12 MESES.</h6>
+						</div>
 				</div>
-				<div class="card contenedor m-t-40">
-					<div class="card-header  container text-center text-white bg-primary">
-							<div class="row">
-								<div class="col-12 text-uppercase text-monse">
-									<h5>RESUMEN DE TU IMAGEN COMO proveedor</h5> 
-								</div>
-								<div class="col-12 text-uppercase text-monse">
-									<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS CLIENTES EN LOS ÚLTIMOS EN 12 MESES.</h6>
-								</div>
-							</div>
-					</div>
-					<div class="card-body container-fluid">
+				<mat-card class="container-fluid">
 						<div class="row">
-							<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
-								
-							</div>
 							<div class="col-6">
 								<div class="card  resumen container">
 									<div class="row">
@@ -292,8 +291,7 @@
 								</div>
 							</div>
 						</div>
-					</div>
-				</div>
+				</mat-card>
 			</div>
 		</div>
 	</div>

@@ -1,105 +1,73 @@
-<div class="container-fluid ray-blue">
-	
-</div>
-<div class="container m-t-30">
-	<div class="row d-flex align-items-center">
-		<div class="col-3">
-			<img src="assets/img/logo-admyo2.png" class="img-fluid" alt="admyo">
-		</div>
-		<div class="col-9">
-			<div class="btn-group float-right" role="group" aria-label="Basic example">
-			 <button (click)="goto('notificaciones')" type="button" class="btn btn-white text-primary">
-			 <i class="far fa-bell"></i><span class="badge badge-primary">{{num_notificaciones}}</span>
-			</button>
-			  <button (click)="cerrar()" type="button" class="btn btn-link text-primary"><i class="fas fa-times"></i> Cerrar Sesíon</button>
-			  
-			</div>
+
+<div class="container-fluid">
+		<div class="row  ">
+				
 			
 		</div>
+		<div class="row p-t-10 p-b-10">	
+			<div class="col-2">
+				<img src="assets/img/logo-admyo2.png" class="img-fluid" alt="admyo">
+			</div>
+			<mat-toolbar class="col-8 bg-white">
+					<button mat-button [matMenuTriggerFor]="mempresa">Empresa</button>
+					<mat-menu #mempresa="matMenu">
+						<button (click)="goto('perfil')" mat-menu-item>Perfil</button>
+						<button (click)="goto('datosempresa')" mat-menu-item>Datos de mi empresa</button>
+						<button (click)="goto('productosyservicios')" mat-menu-item>Productos y Servicios</button>
+						<button (click)="goto('certificaciones')" mat-menu-item>Certificaciones</button>
+						<button  (click)="goto('asociaciones')" mat-menu-item>Asociaciones</button>
+						<button (click)="goto('visitas')"mat-menu-item>Visitas</button>
+						<button (click)="goto('giros')"mat-menu-item>Giros</button>
+					</mat-menu>
+				<button mat-button [matMenuTriggerFor]="mimagen">Tu Imagen</button>
+				<mat-menu #mimagen="matMenu">
+					<button (click)="goto('imagen/cliente/A')" mat-menu-item>Como Cliente</button>
+					<button (click)="goto('imagen/proveedor/A')" mat-menu-item>Como Proveedor</button>
+				</mat-menu>
+				<button mat-button [matMenuTriggerFor]="mriesgo">Tu Riesgo</button>
+				<mat-menu #mriesgo="matMenu">
+					<button (click)="goto('riesgo/cliente/A')" mat-menu-item>Como Cliente</button>
+					<button (click)="goto('riesgo/proveedor/A')" mat-menu-item>Como Proveedor</button>
+				</mat-menu>
+				<button mat-button [matMenuTriggerFor]="mclientes">Clientes</button>
+				<mat-menu #mclientes="matMenu">
+					<button (click)="goto('resumen/clientes')" mat-menu-item>Resumen</button>
+					<button (click)="goto('lista/clientes')" mat-menu-item>Mis Clientes</button>
+					<button (click)="goto('realizadas/clientes')" mat-menu-item>Calificaciones Realizadas</button>
+				</mat-menu>
+				<button mat-button [matMenuTriggerFor]="mproveedores">Proveedores</button>
+				<mat-menu #mproveedores="matMenu">
+					<button (click)="goto('resumen/proveedores')" mat-menu-item>Resumen</button>
+					<button (click)="goto('lista/proveedores')"  mat-menu-item>Mis Proveedores</button>
+					<button (click)="goto('realizadas/proveedores')" mat-menu-item>Calificaciones Realizadas</button>
+				</mat-menu>
+				
+				<button mat-button (click)="goto('follow')" >Seguimientos</button>
+				<button mat-button [matMenuTriggerFor]="musuarios">Usuarios</button>
+				<mat-menu #musuarios="matMenu">
+					<button  (click)="goto('datosusuario')" mat-menu-item>Mis Datos</button>
+					<button (click)="goto('listausuarios')"  mat-menu-item>Lista de Usuarios</button>
+				</mat-menu>
+				<button mat-button  >Consulta</button>
+				<button mat-button  (click)="goto('calificar')" class="bg-secondary">Calificar</button>
+				<a mat-button href="https://qvaluation.com/" target="_blank" >Qval</a>
+				
+			</mat-toolbar>
+			<div class="col-2 p-l-10">
+				<span (click)="goto('notificaciones')" matBadge="{{num_notificaciones}}"  matBadgeOverlap="false"><mat-icon>notification_important</mat-icon></span>
+				<button (click)="cerrar()" class="m-l-20" matTooltip="Cerrar Sesión" mat-icon-button aria-label="Example icon-button with a heart icon">
+					<mat-icon>clear</mat-icon>
+				</button>
+			</div>
+		</div>
 	</div>
-</div>
-<nav class="navbar navbar-expand-lg navbar-white bg-white m-t-30">
-  <button class="navbar-toggler bg-primary" type="button" data-toggle="collapse" data-target="#nav1" aria-controls="nav1" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
 
-  <div class="collapse navbar-collapse d-flex justify-content-center" id="nav1">
-    <ul class="navbar-nav">
-      <li class="nav-item ">
-        <div ngbDropdown class="d-inline-block">
-	      <button class="btn btn-link" id="btn_imagen" ngbDropdownToggle>Tu Imagen</button>
-	      <div ngbDropdownMenu aria-labelledby="btn_imagen">
-	        <button (click)="goto('imagen/cliente/A')" class="dropdown-item">Como Cliente</button>
-	        <button (click)="goto('imagen/proveedor/A')"class="dropdown-item">Como Proveedor</button>
-	      </div>
-	    </div>
-      </li>
-      <li class="nav-item">
-        <div ngbDropdown class="d-inline-block">
-	      <button class="btn btn-link" id="btn_riesgo" ngbDropdownToggle>Tu Riesgo</button>
-	      <div ngbDropdownMenu aria-labelledby="btn_riesgo">
-	        <button (click)="goto('riesgo/cliente/A')" class="dropdown-item">De Clientes</button>
-	        <button (click)="goto('riesgo/proveedor/A')" class="dropdown-item">De Proveedores</button>
-	      </div>
-	    </div>
-      </li>
-      <li class="nav-item">
-        <div ngbDropdown class="d-inline-block">
-	      <button class="btn btn-link" id="btn_riesgo" ngbDropdownToggle>Clientes</button>
-	      <div ngbDropdownMenu aria-labelledby="btn_riesgo">
-	        <button (click)="goto('resumen/clientes')" class="dropdown-item">Resumen</button>
-	        <button (click)="goto('lista/clientes')" class="dropdown-item">Mis Clientes</button>
-	        <button (click)="goto('realizadas/clientes')" class="dropdown-item">Calificaciones Realizadas</button>
-	      </div>
-	    </div>
-      </li>
-      <li class="nav-item">
-        <div ngbDropdown class="d-inline-block">
-	      <button class="btn btn-link" id="btn_riesgo" ngbDropdownToggle>Proveedores</button>
-	      <div ngbDropdownMenu aria-labelledby="btn_riesgo">
-	        <button (click)="goto('resumen/proveedores')" class="dropdown-item">Resumen</button>
-	        <button (click)="goto('lista/proveedores')" class="dropdown-item">Mis Proveedores</button>
-	        <button (click)="goto('realizadas/proveedores')" class="dropdown-item">Calificaciones Realizadas</button>
-	      </div>
-	    </div>
-      </li>
-      <li class="nav-item dropdown">
-        <div ngbDropdown class="d-inline-block">
-	      <button class="btn btn-link" id="btn_datos_empresa" ngbDropdownToggle>Empresa</button>
-	      <div ngbDropdownMenu aria-labelledby="btn_datos_empresa">
-	        <button (click)="goto('perfil')" class="dropdown-item">Perfil</button>
-	        <button (click)="goto('datosempresa')" class="dropdown-item">Datos de Empresa</button>
-	        <button (click)="goto('productosyservicios')" class="dropdown-item">Productos y Servicios</button>
-	         <button (click)="goto('certificaciones')" class="dropdown-item">Certificaciones</button>
-	          <button (click)="goto('asociaciones')" class="dropdown-item">Asociaciones</button>
-	         <button (click)="goto('visitas')" class="dropdown-item">Visitas</button>
-	         <button (click)="goto('follow')" class="dropdown-item">Empesas Seguidas</button>
-	      </div>
-	    </div>
-      </li>
-      <li class="nav-item">
-        <div ngbDropdown class="d-inline-block">
-	      <button class="btn btn-link" id="btn_riesgo" ngbDropdownToggle>Usuarios</button>
-	      <div ngbDropdownMenu aria-labelledby="btn_riesgo">
-	        <button (click)="goto('datosusuario')" class="dropdown-item">Mis Datos</button>
-	        <button (click)="goto('listausuarios')" class="dropdown-item">Listas de Usuarios</button>
-	      </div>
-	    </div>
-      </li>
-       <li class="nav-item">
-        <div ngbDropdown class="d-inline-block">
-	      <button class="btn btn-link" id="btn_riesgo" ngbDropdownToggle>Empresa Consultada</button>
-	    </div>
-      </li>
-      <li class="nav-item">
-        <button class="nav-link btn btn-secondary text-white text-uppercase" (click)="goto('calificar')" >Calificar</button>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="#" tabindex="-1" aria-disabled="false">Qval</a>
-      </li>
-    </ul>
-  </div>
-</nav>
+
+
+
+
+
+
 <app-searchb></app-searchb>
 <div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
 	<div class="spinner-border text-light" role="status">

@@ -1,8 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {NgbModal, ModalDismissReasons, NgbModalConfig} from '@ng-bootstrap/ng-bootstrap';
 import { RegistroService } from '../../services/registro.service';
+import { GeneralService  } from '../../services/general.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router} from '@angular/router';
+import swal from 'sweetalert2';
 @Component({
   selector: 'app-menua',
   templateUrl: './menua.component.html',
@@ -22,7 +24,8 @@ export class MenuaComponent implements OnInit {
     private route: Router,
     private cookieService: CookieService,
     private modalService: NgbModal,
-    private http: RegistroService
+    private http: RegistroService,
+    private httpgeneral: GeneralService
     ) { 
       this.config.backdrop = 'static';
       this.config.keyboard = false;
@@ -48,7 +51,7 @@ export class MenuaComponent implements OnInit {
       console.log(data)
       if (data['response']['code'] === 1990) {
         this.alertmsj = true;
-        this.errortext = data['response']['result'];
+        swal('Error', data['response']['result'], 'error');
       } else {
 
           this.closemodel('content');
@@ -76,6 +79,20 @@ closemodel(content) {
     // ahora mando el correo electronico al webservice
     console.log(this.correo_electronico);
     this.boton_olvida = 'Procesando Datos';
+    const datos = {correo: this.correo_electronico};
+    this.httpgeneral.recuperarcontra(datos)
+    .subscribe((data) => {
+      if (data['response']['code'] === 0) {
+        swal('Exito', data['response']['result'], 'success');
+        
+      } else {
+        swal('Error', data['response']['result'], 'error');
+      }
+      this.boton_olvida = 'Enviar';
+      console.log(data);
+    }, error => {
+      console.log(error);
+    });
   }
 
 }

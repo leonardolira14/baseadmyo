@@ -1,58 +1,58 @@
-<div class="container-fluid  bg-gris1 p-t-40 p-b-40">
-	<div class="conatiner">
+<div class="container-fluid p-t-40 p-b-40">
+	<div class="container">
 		<div class="row">
-			<div class="col-12">
-				<div class="card  contenedor m-t-40">
-					<div class="card-header bg-primary text-uppercase text-monse">
-						<div class="container-fluid">
-							<div class="row d-flex align-items-center ">
-								<div class="col-6">
-									<h5>Catálogo de Certificaciones</h5> 
-								</div>
-								<div class="col-5">
-									<div class="input-group">
-										<input (keyup)="busqueda()" type="text" class="form-control" placeholder="Certificacion"  [(ngModel)]="palabra" >
-										<div class="input-group-prepend">
-											<span class="input-group-text text-primary bg-blanco" id="basic-addon1"><i class="fas fa-search"></i></span>
-										</div>
-									</div>
-								</div>
-								<div class="col-1">
-									<button (click)="openalert(alertproductos)" class="btn btn-primary"><i class="fas fa-plus"></i></button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="card-body">
-						<div class="container">
-							<div class="row">
-								
-								<div class="col-3 m-t-20 card-prod" *ngFor="let certificacion of certificaciones">
-									<div class="card" >
-										
-
-										<div class="card-body">
-											<h5 class="card-title">{{certificacion.Norma}}</h5>
-											<p class="card-text">
-												Fecha:{{certificacion.Fecha}}
-											</p>
-											<p class="card-text">
-												Calificación:{{certificacion.Calif}}
-											</p>
-											<p class="card-text">
-												<a target="_blanck" href="{{serverruta+'assets/certificaciones/'+certificacion.Archivo}}">Ver Archivo: {{certificacion.Archivo}}</a>
-											</p>
-											<div class="btn-group text-center d-flex" role="group" aria-label="Basic example">
-												<button (click)="delete(certificacion.IDNorma)" type="button" class="btn btn-secondary mr-3">Eliminar</button>
-												<button (click)="editar(certificacion.IDNorma,alertproductos)" type="button" class="btn btn-secondary">Editar</button>
-											</div>
-										</div>
-									</div>
+			<div class="col-12 text-uppercase text-muted text-monse m-b-30">
+				<h2>Catálogo de Certificaciones</h2> 
+			</div>
+			<mat-form-field class="col-9">
+				<input (keyup)="busqueda()" matInput class="text-dark" placeholder="Buscar Certificaciones registradas" value="">
+			</mat-form-field>
+			<div class="col-3 text-right">
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<button type="button" (click)="openalert(alertproductos)" class="btn btn-secondary"><i class="material-icons">add</i></button>
+				</div>
+			</div>
+			<div class="col-3 m-t-20" *ngFor="let certificacion of certificaciones| paginate: {itemsPerPage: 20, currentPage: pageActual}; index as i">
+				<mat-card  class="w-100 card-avatar">
+						<div class="row">
+								<div class="col-12 text-right">
+									<button mat-icon-button [matMenuTriggerFor]="menu">
+											<mat-icon>more_vert</mat-icon>
+									</button>
+									<mat-menu #menu="matMenu">
+										<button (click)="delete(certificacion.IDNorma)"  mat-menu-item>
+											<mat-icon>create</mat-icon>
+												<span>Editar</span>
+										</button>
+										<button  (click)="editar(certificacion.IDNorma,alertproductos)"  mat-menu-item>
+											<mat-icon>delete</mat-icon>
+											<span>Eliminar</span>
+										</button>
+									</mat-menu>
 								</div>
 							</div>
-							
-						</div>
-					</div>
+							<div class="row text-usuario text-muted">
+									<div class="col-12 m-t-30 text-center">
+											<h5 >{{certificacion.Norma}}</h5>
+									</div>
+									<div class="col-12 text-center">
+											<p >Fecha:{{certificacion.Fecha}}</p>
+									</div>
+									<div class="col-12 text-center">
+											<p >Calificación:{{certificacion.Calif}}</p>
+									</div>
+									<div class="col-12 text-center">
+											<a target="_blanck" href="{{serverruta+'assets/certificaciones/'+certificacion.Archivo}}">Ver Archivo: {{certificacion.Archivo}}</a>
+									</div>
+									<div class="btn-group text-center d-flex col-12 m-t-20" role="group" aria-label="Basic example">
+											<button (click)="delete(certificacion.IDNorma)" type="button" class="btn btn-outline-secondary mr-3">Eliminar</button>
+											<button (click)="editar(certificacion.IDNorma,alertproductos)" type="button" class="btn btn-outline-secondary">Editar</button>
+									</div>
+							</div>
+									
+				</mat-card>
+				<div class="col-12 text-center m-t-40">
+						<pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
 				</div>
 			</div>
 		</div>

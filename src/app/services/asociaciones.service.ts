@@ -24,4 +24,8 @@ export class AsociacionesService {
   	return this.http.post(environment.urlserver+"updatecamara",datos)
   	.pipe(map(data=>data));
   }
+  // funcion para traer la lista de asociacioes
+  getlist() {
+    return this.http.get(environment.urlserver + 'getasociaciones');
+  }
 }
