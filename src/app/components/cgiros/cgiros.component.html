@@ -8,10 +8,10 @@
     </mat-form-field>
     <div class="col-3 text-right m-b-30">
         <div class="btn-group" role="group" aria-label="Basic example">
-            <button type="button" (click)="modal_open" class="btn btn-secondary"><i class="material-icons">add</i></button>
+            <button type="button" (click)="modal_open=!modal_open" class="btn btn-secondary"><i class="material-icons">add</i></button>
         </div>
     </div> 
-    <div class="col-3 m-t-20" *ngFor="let giro of listagiros">
+    <div class="col-6 m-t-20" *ngFor="let giro of listagiros">
       <div class="card-avatar {{(giro.Principal==='1')?'bg-gris2':''}}">
             <mat-card-actions slot="end" class="text-right float-right">
                   <button mat-icon-button [matMenuTriggerFor]="menu">
@@ -37,9 +37,10 @@
                     <small>SubGiro</small>
                       <h6>{{giro.giron2}}</h6>
                     </div>
-                    <div class="col-12 text-muted">
+                    <div class="col-12 text-muted m-t-20">
+                        <small>Rama</small>
                         <h6>{{giro.giron3}}</h6>
-                      </div>
+                    </div>
                 </div>
             </mat-card-content>
             <mat-card-footer class="text-center">

@@ -86,23 +86,28 @@
 						</div>
 				</div>
 				<div class="col-8">
-					<div class="row">
+					<form class="row" [formGroup]="grupformgroup">
 						<mat-form-field class="col-12 m-t-30">
-							<input  type="text" placeholder="Nombre" aria-label="Nombre" matInput [formControl]="mycontrol"   [matAutocomplete]="auto">
-								<mat-autocomplete (optionSelected)='getPosts($event.option.value)' #auto="matAutocomplete" [displayWith]="displayFn">
+							<input  type="text"  placeholder="Nombre" aria-label="mycontrol" matInput  formControlName="mycontrol"   [matAutocomplete]="nombre">
+								<mat-autocomplete (optionSelected)='getPosts($event.option.value)' #nombre="matAutocomplete" [displayWith]="displayFn">
 									<mat-option *ngFor="let option of filteredOptions | async" [value]="option">
 												{{option.Nombre}}
 									 </mat-option>
 								</mat-autocomplete>
 						</mat-form-field>
 						<mat-form-field class="col-12">
-								<input [(ngModel)]="modelcamara.Siglas" matInput placeholder="Siglas" >
+								<input  type="text"  placeholder="Siglas" aria-label="mysiglas" matInput  formControlName="mysiglas"   [matAutocomplete]="siglas">
+								<mat-autocomplete (optionSelected)='getPosts2($event.option.value)' #siglas="matAutocomplete" [displayWith]="displaysiglas">
+									<mat-option *ngFor="let option of filtrosiglas | async" [value]="option">
+												{{option.Siglas}}
+									 </mat-option>
+								</mat-autocomplete>
 						</mat-form-field>
 						<mat-form-field class="col-12">
-							<input matInput [(ngModel)]="modelcamara.Web" placeholder="Pagina Web" >
+							<input matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="modelcamara.Web" placeholder="Pagina Web" >
 						</mat-form-field>
 						
-					</div>
+					</form>
 				</div>
 				<mat-form-field class="col-4">
 						<input matInput [(ngModel)]="modelcamara.Direccion" placeholder="Dirección" >
@@ -127,7 +132,7 @@
 
 	</div>
 	<div class="modal-footer">
-		<button type="button" class="btn btn-danger" (click)="closemodel(alertcamaras)">Cerrar</button>
-		<button  type="button" (click)="deci(alertcamaras)" class="btn btn-primary" >Guardar</button>
+		<button type="button" class="btn btn-outline-danger" (click)="closemodel(alertcamaras)">Cerrar</button>
+		<button  type="button" (click)="deci(alertcamaras)" class="btn btn-succes" >Guardar</button>
 	</div>
 </ng-template>

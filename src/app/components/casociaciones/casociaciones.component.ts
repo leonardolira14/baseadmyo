@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import { AsociacionesService } from '../../services/asociaciones.service';
@@ -6,19 +6,25 @@ import { Router} from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup } from '@angular/forms';
 @Component({
   selector: 'app-casociaciones',
   templateUrl: './casociaciones.component.html',
   styleUrls: ['./casociaciones.component.scss']
 })
 export class CasociacionesComponent implements OnInit {
-	filemarcalogo:any;
+	grupformgroup= new FormGroup({
+		mycontrol: new FormControl(),
+		mysiglas: new FormControl(),
+	})
+	myForm: FormGroup;
+	filemarcalogo:File = null;
 	imagePath:any;
 	public urlserver = environment.urlserver;
 	logo_avatar: any = '/assets/img/avatar1.png';
-	mycontrol = new FormControl();
+	
 	filteredOptions: Observable<any[]>;
+	filtrosiglas: Observable<any[]>;
 	asociaciones: any = [];
 	modelcamara: any = {};
 	listasociaciones: any = [];
@@ -36,6 +42,7 @@ export class CasociacionesComponent implements OnInit {
 	lista_asociaciones: any = [];
   constructor(private route: Router, private http: AsociacionesService, private cookieService: CookieService, private modalService: NgbModal)
   {
+	
   	this.datosgen = JSON.parse(this.cookieService.get('datosUsuario'));
 	this.datosusuarios = this.datosgen['datosusuario'];
 	this.datosempresa = this.datosgen['empresa'];
@@ -52,11 +59,17 @@ export class CasociacionesComponent implements OnInit {
 				this.asociaciones = data['response']['result'];
 				this.listasociaciones = this.asociaciones;
 				this.lista_asociaciones = data['response']['data'];
-				this.filteredOptions = this.mycontrol.valueChanges
+				this.filteredOptions = this.grupformgroup.get('mycontrol').valueChanges
 				.pipe(
 					startWith(''),
 					map(value => typeof value === 'string' ? value : value['Nombre']),
 					map(name => name ? this._filter(name) : this.lista_asociaciones.slice())
+				);
+				this.filtrosiglas = this.grupformgroup.get('mysiglas').valueChanges
+				.pipe(
+					startWith(''),
+					map(value => typeof value === 'string' ? value : value['Siglas']),
+					map(name => name ? this._filter_siglas(name) : this.lista_asociaciones.slice())
 				);
 			} else {
 				this.route.navigateByUrl('/');
@@ -64,11 +77,29 @@ export class CasociacionesComponent implements OnInit {
 		});
   }
 displayFn(asociacion?: any): string | undefined {
-	return asociacion ? asociacion.Nombre : undefined;
+	if(typeof(asociacion)==='string'){
+		return asociacion;
+	}else{
+		return asociacion ? asociacion.Nombre : undefined;
+	}
+	
+}
+displaysiglas(asociacion?: any): string | undefined {
+	if(typeof(asociacion)==='string'){
+		return asociacion;
+	}else{
+		return asociacion ? asociacion.Siglas : undefined;
+	}
+	
+	
 }	
 private _filter(nombre){
 	const filterValue = nombre.toLowerCase();
-	return this.lista_asociaciones.filter(asociacion => asociacion.Nombre.toLowerCase().indexOf(filterValue) === 0)
+	return this.lista_asociaciones.filter(asociacion => asociacion.Nombre.toLowerCase().includes(filterValue))
+}
+private _filter_siglas(nombre){
+	const filterValue = nombre.toLowerCase();
+	return this.lista_asociaciones.filter(asociacion => asociacion.Siglas.toLowerCase().includes(filterValue))
 }
 
 
@@ -109,7 +140,7 @@ private _filter(nombre){
 	  		}, 3000);
 	  		return false;
   		}
-  		this.sniper = true;
+  		// this.sniper = true;
 		if (this.modelcamara['IDAsocia']) {
 			this.update(alert);
 		} else {
@@ -124,6 +155,7 @@ private _filter(nombre){
 	  	}
 	}
 	buscapalarabra() {
+		console.log(this.palabra);
   	const usuario = this.asociaciones;
   		return usuario.filter(usuario => usuario.Asociacion.toLocaleLowerCase().includes(this.palabra.toLocaleLowerCase()));
   }
@@ -159,8 +191,25 @@ private _filter(nombre){
 		});
 	}
 	save(alert) {
+		
 		this.modelcamara['IDEmpresa'] = this.datosempresa['IDEmpresa'];
 		this.modelcamara['token'] = this.token;
+		if(this.modelcamara["IDAsociasiones"]===undefined){
+			const formData = new FormData();
+			this.modelcamara["Siglas"]=this.grupformgroup.get('mysiglas').value;
+			this.modelcamara["Nombre"]=this.grupformgroup.get('mycontrol').value;
+			formData.append('datosasociacion', JSON.stringify(this.modelcamara));
+			console.log(this.filemarcalogo );
+			if (this.filemarcalogo !== null) {
+				formData.append('logo', this.filemarcalogo, this.filemarcalogo.name);
+				
+			}
+			this.http.save(formData)
+				.subscribe((data) => {
+					console.log(data);
+			})
+		}else{
+		
 		this.http.save(this.modelcamara)
 		.subscribe((data) => {
 			this.sniper = false;
@@ -181,6 +230,7 @@ private _filter(nombre){
 				}, 3000);
 			}
 		});
+	}
 	}
 	update(alert) {
 		this.modelcamara['IDEmpresa'] = this.datosempresa['IDEmpresa'];
@@ -207,9 +257,22 @@ private _filter(nombre){
 		});
 	}
 	getPosts(opcion){
+		
+		this.modelcamara = opcion;
+		this.grupformgroup.controls['mysiglas'].setValue(opcion['Siglas']);
+		
+		
+		if(this.modelcamara['Imagen'] === null) {
+			this.logo_avatar = '/assets/img/avatar1.png';
+		} else {
+			this.logo_avatar = environment.urlserver + '/assets/img/asociaciones/' + this.modelcamara['Imagen'];
+		}
+	}
+	getPosts2(opcion){
 		console.log(opcion);
 		this.modelcamara = opcion;
-		console.log(this.modelcamara);
+		this.grupformgroup.get('mycontrol').setValue(opcion['Nombre']);
+		console.log();
 		if(this.modelcamara['Imagen'] === null) {
 			this.logo_avatar = '/assets/img/avatar1.png';
 		} else {
