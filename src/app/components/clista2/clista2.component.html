@@ -1,76 +1,102 @@
 
-<div class="container-fluid  bg-gris1 p-t-40 p-b-40">
-	<div class="container-fluid">
+<div class="container-fluid p-t-40 p-b-40">
 		<div class="row">
-			<div class="col-12 m-b-30">
-				<div class="container-fluid">
-					<div class="row">
-						<div class="col-4">
-							<div (click)="goimagen()" class="card btn-ir ">
-								<span><i class="fas fa-chart-area"></i></span>
-								<br>
-								<label>Imagen como {{tipo_imagen}}</label>
-							</div>
-						</div>
-						<div class="col-4 ">
-							<div (click)="lista()" class="card btn-ir active">
-								<span><i class="fas fa-users"></i></span>
-								<br>
-								<label>Mis {{tipo}}</label>
-							</div>
-						</div>
-						<div class="col-4 ">
-							<div (click)="recibidas()" class="card btn-ir">
-								<span><i class="fas fa-award"></i></span>
-								<br>
-								<label>Calificaciones Recibidas</label>
-							</div>
-						</div>
+				<div class="col-4">
+					<div (click)="goimagen()" class="card btn-ir ">
+						<span><i class="fas fa-chart-area"></i></span>
+						<br>
+						<label>Imagen como {{tipo_imagen}}</label>
+					</div>
+				</div>
+				<div class="col-4 ">
+					<div (click)="lista()" class="card btn-ir active">
+						<span><i class="fas fa-users"></i></span>
+						<br>
+						<label>Mis {{tipo}}</label>
+					</div>
+				</div>
+				<div class="col-4 ">
+					<div (click)="recibidas()" class="card btn-ir">
+						<span><i class="fas fa-award"></i></span>
+						<br>
+						<label>Calificaciones Recibidas</label>
 					</div>
 				</div>
 			</div>
-			<div class="col-12 m-t-20">
-				<div class="card">
-					<div class="card-header text-uppercase bg-primary text-white text-center text-monse">
-						<h5>Lista de Tus {{tipo}}</h5>
-					</div>
-					<div class="card-body tarjeta contenedor">
-						<div class="container-fluid area">
-							<div class="row">
-								<div *ngFor='let item of listas | paginate: {itemsPerPage: 8, currentPage: pageActual}; index as i' class="col-12 col-md-3 col-lg-3 col-xl-3 m-b-30">
-									<div class="card tarjeta1">
-										<div class="cont-img">
-											<div class="banner" [ngStyle]="setmybanner(item.Banner)">
-												
-											</div>										
-											<div [ngStyle]="setmylogo(item.Logo)" class="logo">
-												
-											</div>
-
-											
-										</div>
-										
-										<div class="card-body p-t-40">
-											<h5 class="card-title">{{item.Razon_Social}}</h5>
-											<p class="card-text">{{item.Nombre_Comer}}</p>
-
-										</div>
-										<div class="card-footer">
-											<div class="btn-group d-flex" role="group" aria-label="Basic example">
-												<button (click)="visitar(item.num)"  class="btn btn-primary m-r-20">Visitar Pefil</button>
-												<button type="button" class="btn btn-secondary">Calificar</button>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="col-12 text-center m-t-20">
-									<pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
-								</div>	
-							</div>
-						</div>
-					</div>
+	<div class="container-fluid m-t-40">
+		<div class="row">
+			<div class="col-12 text-muted text-monse text-uppercase m-b-30">
+					<h2>Lista de Tus {{tipo}}</h2>
+			</div>
+			<mat-form-field class="col-4 m-b-30">
+					<input [(ngModel)]="model_filter.nombre"  matInput placeholder="Buscar Clientes" value="">
+			</mat-form-field >
+			<mat-form-field class="col-3 m-b-30">
+					<mat-label>Status</mat-label>
+					<mat-select [(ngModel)]="model_filter.status">
+							<mat-option value="sn">Selecciona</mat-option>
+							<mat-option value="1">Activo</mat-option>
+							<mat-option value="0">Descativado</mat-option>
+					</mat-select>
+			</mat-form-field>
+			<mat-form-field class="col-3 m-b-30">
+					<mat-label>Validado</mat-label>
+					<mat-select [(ngModel)]="model_filter.validado">
+							<mat-option value="sn">Selecciona</mat-option>
+							<mat-option value="1">Por mi</mat-option>
+							<mat-option value="2">Por Cliente/proveedor</mat-option>
+							<mat-option value="3">Sin Validar</mat-option>
+					</mat-select>
+			</mat-form-field>
+			<div class="col-2">
+				<div class="btn-group float-right" role="group" aria-label="Basic example">
+					<button type="button" (click)="filterclientes()" class="btn btn-secondary m-r-20">Filtrar</button>
+					<button type="button" class="btn btn-secondary"><mat-icon>add</mat-icon></button>
 				</div>
 			</div>
+			<div *ngFor='let item of listas | paginate: {itemsPerPage: 8, currentPage: pageActual}; index as i' class="col-12 col-md-3 col-lg-3 col-xl-3 m-b-30">
+					<div class="card tarjeta1">
+						<div class="cont-img">
+							<div class="banner" [ngStyle]="setmybanner(item.Banner)">
+								<mat-card-actions class="d-flex justify-content-end ">
+									<div class="redondo {{(item.CerA)==='0'?'bg-girsmenu':'bg-primary'}}"  matTooltip="Validado por mi"><mat-icon>done</mat-icon></div>
+									<div class="redondo  {{(item.CerB)==='0'?'bg-girsmenu':'bg-primary'}}"  matTooltip="Validado Cliente/Proveedor"><mat-icon>done</mat-icon></div>
+									
+								</mat-card-actions>
+							</div>										
+							<div [ngStyle]="setmylogo(item.Logo)" class="logo">
+								
+							</div>
+						</div>
+						
+						<div class="card-body p-t-40 text-monse text-muted">
+							<h5 class="card-title">{{item.Razon_Social}}</h5>
+							<p class="card-text">{{item.Nombre_Comer}}</p>
+						<mat-list class="text-muted" role="list ">
+							<mat-list-item role="listitem">
+								<small mat-line>Última Calificación Recibida:</small>
+								<p mat-line> {{item.ultimarecibida}} </p>
+							</mat-list-item>
+							<mat-list-item role="listitem">
+								<small mat-line>Última Calificación Realizada:</small>
+								<p mat-line> {{item.ultimarealizada}} </p>
+							</mat-list-item>
+						  </mat-list>		
+						</div>
+						<div class="card-footer">
+							<mat-card-actions class="d-flex justify-content-between">
+									<button
+									matTooltip="Visitar Perfil" 
+									 (click)="visitar(item.num)" mat-icon-button color="accent"> <mat-icon>visibility</mat-icon></button>
+									<button matTooltip="Calificar"  mat-icon-button color="accent"><mat-icon>done</mat-icon></button>
+									<button  mat-icon-button color="accent" matTooltip="Desactivar"><mat-icon>delete</mat-icon></button>
+							</mat-card-actions>
+						</div>
+					</div>
+			</div>
+				<div class="col-12 text-center m-t-20">
+					<pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+				</div>	
 		</div>
 	</div>
 </div>

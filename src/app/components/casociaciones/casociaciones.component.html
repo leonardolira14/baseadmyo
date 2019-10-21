@@ -4,7 +4,7 @@
 			<h2>Catálogo de Asociaciones</h2> 
 		</div>
 		<mat-form-field class="col-9">
-			<input (keyup)="busqueda()" matInput class="text-dark" placeholder="Buscar Asociaciones/Camaras" value="">
+			<input (keyup)="busqueda()" [(ngModel)]="palabra" matInput class="text-dark" placeholder="Buscar Asociaciones/Camaras" value="">
 		</mat-form-field>
 		<div class="col-3 text-right">
 				<div class="btn-group" role="group" aria-label="Basic example">
