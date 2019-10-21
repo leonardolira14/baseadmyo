@@ -50,7 +50,7 @@
 			</mat-form-field>
 			<div class="col-2">
 				<div class="btn-group float-right" role="group" aria-label="Basic example">
-					<button type="button" (click)="filterclientes()" class="btn btn-secondary m-r-20">Filtrar</button>
+					<button type="button" (click)="filterclientes()" class="btn btn-primary m-r-20">Filtrar</button>
 					<button type="button" class="btn btn-secondary"><mat-icon>add</mat-icon></button>
 				</div>
 			</div>
@@ -59,8 +59,8 @@
 						<div class="cont-img">
 							<div class="banner" [ngStyle]="setmybanner(item.Banner)">
 								<mat-card-actions class="d-flex justify-content-end ">
-									<div class="redondo {{(item.CerA)==='0'?'bg-girsmenu':'bg-primary'}}"  matTooltip="Validado por mi"><mat-icon>done</mat-icon></div>
-									<div class="redondo  {{(item.CerB)==='0'?'bg-girsmenu':'bg-primary'}}"  matTooltip="Validado Cliente/Proveedor"><mat-icon>done</mat-icon></div>
+									<div class="redondo {{(item.CerA)==='0'?'bg-girsmenu':'bg-sucess'}}"  matTooltip="Validado por mi"><mat-icon>done</mat-icon></div>
+									<div class="redondo  {{(item.CerB)==='0'?'bg-girsmenu':'bg-sucess'}}"  matTooltip="Validado Cliente/Proveedor"><mat-icon>done</mat-icon></div>
 									
 								</mat-card-actions>
 							</div>										
@@ -88,7 +88,7 @@
 									<button
 									matTooltip="Visitar Perfil" 
 									 (click)="visitar(item.num)" mat-icon-button color="accent"> <mat-icon>visibility</mat-icon></button>
-									<button matTooltip="Calificar"  mat-icon-button color="accent"><mat-icon>done</mat-icon></button>
+									<button (click)="calificar(item.num)" matTooltip="Calificar"  mat-icon-button color="accent"><mat-icon>done</mat-icon></button>
 									<button  mat-icon-button color="accent" matTooltip="Desactivar"><mat-icon>delete</mat-icon></button>
 							</mat-card-actions>
 						</div>
@@ -105,3 +105,32 @@
 		<span class="sr-only">Loading...</span>
 	</div>
 </div>
+<ng-template  #invitacion let-modal>	
+	<div class="modal-body ">
+		<div class="container-fluid">
+			<div class="row text-primary text-monse">
+				<div class="col-12 tex-rigth m-t-10">
+						<button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+								<span aria-hidden="true">&times;</span>
+							</button>
+				</div>
+			<div class="col-12 text-center">
+				<span>Parece que no tienes una cuenta admyo!</span>
+			</div>
+			<div class="col-12 text-justify m-t-10" >
+					Únete a la familia admyo hoy y recibe inumerables beneficios.
+					<p>
+						Deja que el mundo te conosca, crea una reputación empresarial, y empieza a crecer en el mundo de los negocios 
+					</p>
+					
+			</div>
+		</div>
+		</div>
+		
+	</div>
+	<div class="modal-footer text-center">
+			<div class="btn-group" role="group" aria-label="Basic example">
+					<button type="button" (click)="registro()" class="btn btn-primary">Obtener una Cuenta</button>	
+			</div>
+	</div>
+</ng-template>

@@ -11,6 +11,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./clista2.component.scss']
 })
 export class Clista2Component implements OnInit {
+  @ViewChild('invitacion') private invitacion;
   model_filter = {};
   public tipo_imagen: string = '';
   tipo = 'clientes';
@@ -79,10 +80,30 @@ export class Clista2Component implements OnInit {
   	this.route.navigateByUrl('/recibidas/' + this.tipo);
   }
   filterclientes(){
-    const datos = {filtros: this.model_filter, IDEmpresa: this.datosempresa['IDEmpresa']};
+    this.sniper = true;
+    const datos = {filtros: this.model_filter, IDEmpresa: this.datosempresa['IDEmpresa'], tipo: this.tipo};
     this.http.filterclientes(datos)
-    .subscribe(data => {
-      console.log(data);
-    });
+    .subscribe((data) => {
+  		this.sniper = false;
+  		this.listas = data['response']['result'];
+  		console.log(data);
+  	})
+  }
+  openalert(alert) {
+		this.modalService.open(alert,{ariaLabelledBy: 'modal-basic-title'});
+	}
+  visitar(ir) {
+		if (this.datosempresa['IDEmpresa'] === "0"){
+			this.openalert(this.invitacion);
+		}else{
+			this.route.navigateByUrl('/perfilbuscado/' + ir);
+		}
+  }
+  calificar(idempresa) {
+		if (this.datosempresa['IDEmpresa'] === "0"){
+			this.openalert(this.invitacion);
+		}else{
+			
+		}
   }
 }
