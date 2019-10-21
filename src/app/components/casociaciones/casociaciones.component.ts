@@ -148,6 +148,7 @@ private _filter_siglas(nombre){
 		}
 	}
 	busqueda() {
+		console.log(this.palabra)
 		if (this.palabra === '') {
   			this.asociaciones = this.listasociaciones;
 	  	} else {
@@ -156,8 +157,9 @@ private _filter_siglas(nombre){
 	}
 	buscapalarabra() {
 		console.log(this.palabra);
-  	const usuario = this.asociaciones;
-  		return usuario.filter(usuario => usuario.Asociacion.toLocaleLowerCase().includes(this.palabra.toLocaleLowerCase()));
+		  const asociaciones = this.asociaciones;
+		  console.log(asociaciones);
+  		return asociaciones.filter(usuario => usuario.Nombre.toLocaleLowerCase().includes(this.palabra.toLocaleLowerCase()));
   }
 	delete(id) {
 		if (this.datosusuarios['Tipo_Usuario'] !== 'Master') {
@@ -202,12 +204,27 @@ private _filter_siglas(nombre){
 			console.log(this.filemarcalogo );
 			if (this.filemarcalogo !== null) {
 				formData.append('logo', this.filemarcalogo, this.filemarcalogo.name);
-				
 			}
 			this.http.save(formData)
 				.subscribe((data) => {
-					console.log(data);
-			})
+					this.sniper = false;
+				if (data['response']['code'] === 0) {
+
+					this.ngOnInit();
+					this.closemodel(alert);
+					this.successAlertClosed = true;
+					this.alertsuccess = 'Datos Actualizados';
+					setTimeout(() => {
+						this.successAlertClosed = false;
+						this.modelcamara = {};
+					}, 3000);
+				} else {
+					this.alertterror = data['response']['result'];
+					setTimeout(() => {
+						this.staticAlertClosed = false;
+					}, 3000);
+				}
+			});
 		}else{
 		
 		this.http.save(this.modelcamara)

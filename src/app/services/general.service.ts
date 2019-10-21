@@ -112,6 +112,11 @@ export class GeneralService {
     return this.http.post(environment.urlserver + 'getlista', datos)
     .pipe(map(data => data));
   }
+  // funcion para filtar los clientes 
+  filterclientes(datos){
+    return this.http.post(environment.urlserver + 'filterclientes', datos)
+    .pipe(map(data => data));
+  }
   getallrealizadas(datos) {
     return this.http.post(environment.urlserver + 'getallrealizadas', datos)
     .pipe(map(data => data));

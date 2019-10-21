@@ -11,7 +11,7 @@
 				</div>
 			</mat-list-item>
 			<div class="text-center w-100">
-					<button (click)="openalert(alerttelefonos)" class="btn btn-outline-primary"> Agregar</button>
+					<button (click)="openalert(alerttelefonos)" class="btn btn-secondary"><i class="material-icons">add</i></button>
 			</div>
 	</mat-list>
 </mat-card>
@@ -44,8 +44,8 @@
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-danger" (click)="closemodel(alertmarcas)">Cerrar</button>
-    <button type="button" (click)="addtel()" class="btn btn-primary" >Guardar</button>
+    <button type="button" class="btn btn-outline-danger" (click)="closemodel(alertmarcas)">Cerrar</button>
+    <button type="button" (click)="addtel()" class="btn btn-succes" >Guardar</button>
   </div>
 </ng-template>
 <div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">

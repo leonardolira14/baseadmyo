@@ -15,7 +15,7 @@ export class CgirosComponent implements OnInit {
  listagiros: any;
  listagiros2: any;
  todos_losgiros: any;
- modal_open: false;
+ modal_open = false;
  sniper = false;
  allsubgiros: any = [];
   allramas: any = [];

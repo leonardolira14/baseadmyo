@@ -34,11 +34,10 @@
 		text-transform: uppercase;
 	}
 }
-.tarjeta{
-	& .tarjeta1{
+.tarjeta1{
 		position: relative;
 		width: 100%;
-		height: 300px;
+
 		& .card-body{
 			& .card-title, & .card-text{
 				font-family: map-get($fonts,monse);
@@ -88,4 +87,11 @@
 			}
 		}
 	}
+.redondo{
+	width: 24px;
+	height: 24px;
+	border-radius: 50%;
+	margin-top: 5px;
+	margin-right: 5px; 
+	cursor: pointer;
 }

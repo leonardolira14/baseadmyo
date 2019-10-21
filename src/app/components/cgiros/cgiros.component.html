@@ -45,7 +45,6 @@
             </mat-card-content>
             <mat-card-footer class="text-center">
                 <div class="btn-group d-flex" role="group" aria-label="Basic example">
-                    
                     <button *ngIf="giro.Principal!=='1'" type="button" (click)="principal(giro.IDGE)"  class="btn btn-primary ">Hacer Principal</button>
                 </div>
             </mat-card-footer>
@@ -91,7 +90,7 @@
               <div class="card-footer ">
                   <div class="btn-group d-flex" role="group" aria-label="Basic example">
                       <button type="button" (click)="modal_open=false"  class="btn btn-outline-danger mr-3">Cancelar</button>
-                      <button type="button" (click)="reggiro()"  class="btn btn-primary ">Guardar</button>
+                      <button type="button" (click)="reggiro()"  class="btn btn-succes ">Guardar</button>
                     </div>
                 </div>
           </div>
