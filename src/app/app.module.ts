@@ -109,6 +109,7 @@ import { CgirosComponent } from './components/cgiros/cgiros.component';
 import { CplanesComponent } from './components/cplanes/cplanes.component';
 import { PageplanesComponent } from './components/pageplanes/pageplanes.component';
 import { PagesplanesComponent } from './pages/pagesplanes/pagesplanes.component';
+import { CdatospagoComponent } from './pages/cdatospago/cdatospago.component';
 
 @NgModule({
   declarations: [
@@ -185,6 +186,7 @@ import { PagesplanesComponent } from './pages/pagesplanes/pagesplanes.component'
     CplanesComponent,
     PageplanesComponent,
     PagesplanesComponent,
+    CdatospagoComponent,
 
   ],
   imports: [

@@ -35,6 +35,7 @@ import { PnotificacionesComponent } from './pages/pnotificaciones/pnotificacione
 import { ListaRiesgoComponent } from './pages/lista-riesgo/lista-riesgo.component';
 import { PgirosComponent } from './pages/pgiros/pgiros.component';
 import { PagesplanesComponent  } from './pages/pagesplanes/pagesplanes.component';
+import { CdatospagoComponent} from './pages/cdatospago/cdatospago.component'
 const appRoutes: Routes = [
   {path: '', component: PhomeComponent},
   {path: 'terminosycondiciones', component: TerminosComponent},
@@ -72,7 +73,8 @@ const appRoutes: Routes = [
   {path: 'activar/:token', component: PhomeComponent },
   {path: 'listariesgo/:forma/:tipo/:persona/:rama/:fecha', component: ListaRiesgoComponent},
   {path: 'giros', component: PgirosComponent},
-  {path: 'updateplan', component: PagesplanesComponent }
+  {path: 'updateplan', component: PagesplanesComponent },
+  {path: 'datoscargo', component: CdatospagoComponent }
   ];
 @NgModule({
   imports: [

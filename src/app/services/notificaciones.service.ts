@@ -7,7 +7,9 @@ import { environment } from 'src/environments/environment';
 })
 export class NotificacionesService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient
+    ) { }
 
   getnumnoficaciones(datos) {
     return this.http.post(environment.urlserver + 'numregistros', datos);
