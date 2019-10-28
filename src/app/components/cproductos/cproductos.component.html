@@ -5,11 +5,11 @@
 					<h2>Catálogo de Productos y Servicios</h2> 
 			</div>
 			<mat-form-field class="col-9">
-					<input (keyup)="busqueda()" matInput class="text-dark" placeholder="Buscar Producto o Servicio" value="">
+					<input (keyup)="busqueda()" [(ngModel)]="palabra" matInput class="text-dark" placeholder="Buscar Producto o Servicio" value="">
 			</mat-form-field>
 			<div class="col-3 text-right">
 				<div class="btn-group" role="group" aria-label="Basic example">
-					<button type="button" (click)="openalert(alertproductos)" class="btn btn-secondary"><i class="material-icons">add</i></button>
+					<button type="button" (click)="modal_open=!modal_open" class="btn btn-secondary"><i class="material-icons">add</i></button>
 				</div>
 			</div>
 			<div class="col-3  m-t-20" *ngFor="let producto of productos | paginate: {itemsPerPage: 20, currentPage: pageActual}; index as i">
@@ -20,11 +20,11 @@
 										<mat-icon>more_vert</mat-icon>
 								</button>
 								<mat-menu #menu="matMenu">
-									<button  mat-menu-item>
+									<button (click)="editar(producto.IDProducto)"  mat-menu-item>
 										<mat-icon>view_column</mat-icon>
 											<span>Editar</span>
 									</button>
-									<button  mat-menu-item>
+									<button  (click)="eliminar(producto.IDProducto)" mat-menu-item>
 										<mat-icon>view_column</mat-icon>
 										<span>Eliminar</span>
 									</button>
@@ -44,7 +44,7 @@
 							</div>
 							<div class="btn-group text-center d-flex col-12" role="group" aria-label="Basic example">
 									<button (click)="eliminar(producto.IDProducto)" type="button" class="btn btn-outline-secondary mr-3">Eliminar</button>
-									<button (click)="editar(producto.IDProducto,alertproductos)" type="button" class="btn btn-outline-secondary">Editar</button>
+									<button (click)="editar(producto.IDProducto)" type="button" class="btn btn-outline-secondary">Editar</button>
 							</div>
 						</div>						
 				</mat-card>
@@ -63,50 +63,52 @@
 <ngb-alert *ngIf="staticAlertClosed" type="danger" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;" (click)="close(alert)">{{ alertterror }}</ngb-alert>
 <ngb-alert *ngIf="successAlertClosed" type="success" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;" (click)="close(alert)">{{ alertsuccess }}</ngb-alert>
 
-<ng-template #alertproductos let-modal>
-	<div class="modal-header">
-		<h4 class="modal-title" id="modal-basic-title">{{modelproductos.IDProducto?'Editar Producto o Servicio':'Registrar Producto o Servicio'}}</h4>
-		<button type="button" class="close" aria-label="Close" (click)="closemodel(alertproductos)">
-			<span aria-hidden="true">&times;</span>
-		</button>
-	</div>
-	<div class="modal-body">
-		<form class="container">
-			<div class="row">
-				<div class="col-6 m-auto m-t-20 text-center">
-					<div class="cont-img">
-						<img src="{{imglogo}}" class="img-fluid" alt="">
-					</div>
-					<button (click)="logo.click()" class="btn btn-primary">Cargar Logo</button>
-					<input (change)="preview(logo.files)" class="d-none" type="file" #logo >
-				</div>
-				<div class="col-6">
-					<div class="form-group row">
-						<label class="col-sm-12 col-form-label">Producto o Servicio</label>
-						<div class="col-sm-12">
-							<input class="form-control" [(ngModel)]="modelproductos.Producto" name="Producto" #Producto="ngModel" type="text">
-						</div>
-					</div>
-					<div class="form-group d-none row">
-						<label class="col-sm-12 col-form-label">Promoción</label>
-						<div class="col-sm-12">
-							<input class="form-control" [(ngModel)]="modelproductos.Promocion" name="Promocion" #Promocion="ngModel" type="text">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label class="col-sm-12 col-form-label">Descripción</label>
-						<div class="col-sm-12">
-							<textarea class="form-control" [(ngModel)]="modelproductos.Descripcion" name="Descripcion" #Descripcion="ngModel" col="5" rows="5"></textarea>
-						</div>
-					</div>
-				</div>
-			</div>
-			
 
-		</form>
-	</div>
-	<div class="modal-footer">
-		<button type="button" class="btn btn-danger" (click)="closemodel(alertproductos)">Cerrar</button>
-		<button  type="button" (click)="deci(alertproductos)" class="btn btn-primary" >Guardar</button>
-	</div>
-</ng-template>
+<div class="container-fluid fondomodal" *ngIf="modal_open">
+		<div class="container">
+				<div class="row">
+					<div class="card  m-auto col-6">
+						<div class="card-body row">
+							<div class="col-12 m-b-20">
+								<span class="titulo-card">{{modelproductos.IDProducto?'Editar Producto o Servicio':'Registrar Producto o Servicio'}}</span>
+							</div>
+							<div class="col-4 justify-content-center align-content-center">
+									<div class="row">
+									  <div class="col-12 text-center">
+										  <div class="avatar m-auto" [ngStyle]="{'background-image': 'url('+imglogo+')'}"></div>
+										 
+									  </div>
+									  <div class="col-12 text-center m-t-20">
+											<button (click)="logo.click()" class="btn btn-outline-primary">Cargar Logo</button>
+											<input (change)="preview(logo.files)" class="d-none" accept="image/gif, image/jpeg, image/png" type="file" #logo >
+									  </div>
+						
+									</div>
+									  
+								  </div>
+							
+							<div class="col-8">
+								<div class="row">
+									<mat-form-field class="col-12">
+										<input matInput placeholder="Producto o Servicio" [(ngModel)]="modelproductos.Producto" value="">
+									</mat-form-field>
+									<mat-form-field class="col-12">
+										<input matInput placeholder="Promoción" [(ngModel)]="modelproductos.Promocion" value="">
+									</mat-form-field>
+									<mat-form-field class="col-12">
+											<textarea  matInput placeholder="Descripción" [(ngModel)]="modelproductos.Descripcion" ></textarea>
+										</mat-form-field>
+								</div>
+							</div>
+						</div>
+						<div class="card-footer ">
+								
+								<div class="btn-group float-right" role="group" aria-label="Basic example">
+									<button type="button" (click)="cerrar_modal()"  class="btn btn-outline-danger mr-3">Cancelar</button>
+									<button type="button" (click)="deci(alertproductos)"  class="btn btn-succes ">Guardar</button>
+								  </div>
+							  </div>
+					</div>
+				</div>
+		</div>
+</div>

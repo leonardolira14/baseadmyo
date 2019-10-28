@@ -106,6 +106,9 @@ model: any = {};
 closemodel(content) {
 		this.modalService.dismissAll(content);
 }
+ir() {
+	this.route.navigateByUrl('/detalleimagen/' + this.tipo_imagen + '/A');
+}
   detalles(ir, alert) {
   	this.sniper = true;
   	const datos = {IDEmpresa: this.datosempresa['IDEmpresa'], token: this.token, IDValora: ir};

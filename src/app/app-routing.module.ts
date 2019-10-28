@@ -34,6 +34,7 @@ import { DetallesriesgoComponent } from './pages/detallesriesgo/detallesriesgo.c
 import { PnotificacionesComponent } from './pages/pnotificaciones/pnotificaciones.component'
 import { ListaRiesgoComponent } from './pages/lista-riesgo/lista-riesgo.component';
 import { PgirosComponent } from './pages/pgiros/pgiros.component';
+import { PagesplanesComponent  } from './pages/pagesplanes/pagesplanes.component';
 const appRoutes: Routes = [
   {path: '', component: PhomeComponent},
   {path: 'terminosycondiciones', component: TerminosComponent},
@@ -70,7 +71,8 @@ const appRoutes: Routes = [
   {path: 'notificaciones', component: PnotificacionesComponent },
   {path: 'activar/:token', component: PhomeComponent },
   {path: 'listariesgo/:forma/:tipo/:persona/:rama/:fecha', component: ListaRiesgoComponent},
-  {path: 'giros', component: PgirosComponent}
+  {path: 'giros', component: PgirosComponent},
+  {path: 'updateplan', component: PagesplanesComponent }
   ];
 @NgModule({
   imports: [

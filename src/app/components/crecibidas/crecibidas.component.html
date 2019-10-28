@@ -2,21 +2,28 @@
 <div class="container-fluid bg-gris1 p-t-40 p-b-40">
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-4">
+			<div class="col-3">
 				<div (click)="goimagen()" class="card btn-ir ">
 					<span><i class="fas fa-chart-area"></i></span>
 					<br>
 					<label>Imagen como {{tipo_imagen}}</label>
 				</div>
 			</div>
-			<div class="col-4 ">
+			<div class="col-3">
+					<div (click)="ir()" class="card btn-ir ">
+						<span><i class="fas fa-chart-area"></i></span>
+						<br>
+						<label>Mas Detalles</label>
+					</div>
+			</div>
+			<div class="col-3 ">
 				<div (click)="lista()" class="card btn-ir ">
 					<span><i class="fas fa-users"></i></span>
 					<br>
 					<label>Mis {{tipo}}</label>
 				</div>
 			</div>
-			<div class="col-4 ">
+			<div class="col-3 ">
 				<div  class="card btn-ir active">
 					<span><i class="fas fa-award"></i></span>
 					<br>

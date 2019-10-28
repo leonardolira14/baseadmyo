@@ -4,21 +4,28 @@
 				<div class="col-12 m-b-30">
 						<div class="container-fluid">
 							<div class="row">
-								<div class="col-4">
+								<div class="col-3">
 									<div (click)="goimagen()" class="card btn-ir active">
 										<span><i class="fas fa-chart-area"></i></span>
 										<br>
 										<label>Imagen como {{tipo_imagen}}</label>
 									</div>
 								</div>
-								<div class="col-4 ">
+								<div class="col-3">
+										<div (click)="ir()" class="card btn-ir">
+											<span><i class="fas fa-chart-area"></i></span>
+											<br>
+											<label>Mas Detalles</label>
+										</div>
+									</div>
+								<div class="col-3 ">
 									<div (click)="lista()" class="card btn-ir ">
 										<span><i class="fas fa-users"></i></span>
 										<br>
 										<label>Mis {{tipo}}</label>
 									</div>
 								</div>
-								<div class="col-4 ">
+								<div class="col-3 ">
 									<div (click)="recibidas()" class="card btn-ir">
 										<span><i class="fas fa-award"></i></span>
 										<br>
@@ -37,7 +44,7 @@
 					<div class="btn-group" role="group" aria-label="Basic example">
 						<button (click)="cambiar('A')" type="button" class="btn {{fecha_imagen==='A'?'btn-primary':'btn-inactivo'}}">12 Meses</button>
 						<button (click)="cambiar('M')" type="button" class="btn {{fecha_imagen==='M'?'btn-primary':'btn-inactivo'}}">Mes Actual</button>
-						<button (click)="ir()" type="button" class="btn btn-inactivo">Más Detalle</button>
+						
 					</div>	
 				</div>
 			<div class="col-12">

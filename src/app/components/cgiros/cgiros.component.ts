@@ -93,7 +93,6 @@ export class CgirosComponent implements OnInit {
   }
   buscar() {
     const giros = this.listagiros2;
-     console.log(this.palabra,giros)
     if (this.palabra === '') {
       this.listagiros = this.listagiros2;
     } else {

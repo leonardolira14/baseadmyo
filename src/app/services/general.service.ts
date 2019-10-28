@@ -146,4 +146,14 @@ export class GeneralService {
     return this.http.post(environment.urlserver + 'recuperarpass', datos)
     .pipe(map(data => data));
   }
+  // funcion para registar un cliente o proveedor
+  addclieprove(datos){
+    return this.http.post(environment.urlserver + 'addclieprove', datos)
+    .pipe(map(data => data));
+  }
+  // para dar de baja una relacion cliente-proveedor o viseversa
+  bajarelacion(datos){
+    return this.http.post(environment.urlserver + 'bajarelacion', datos)
+    .pipe(map(data => data));
+  }
 }

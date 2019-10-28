@@ -13,11 +13,13 @@
 					<mat-menu #mempresa="matMenu">
 						<button (click)="goto('perfil')" mat-menu-item>Perfil</button>
 						<button (click)="goto('datosempresa')" mat-menu-item>Datos de mi empresa</button>
-						<button (click)="goto('productosyservicios')" mat-menu-item>Productos y Servicios</button>
-						<button (click)="goto('certificaciones')" mat-menu-item>Certificaciones</button>
-						<button  (click)="goto('asociaciones')" mat-menu-item>Asociaciones</button>
-						<button (click)="goto('visitas')"mat-menu-item>Visitas</button>
 						<button (click)="goto('giros')"mat-menu-item>Giros</button>
+						<button  (click)="goto('asociaciones')" mat-menu-item>Asociaciones</button>
+						<button (click)="goto('productosyservicios')" mat-menu-item>Productos y Servicios</button>
+						<button (click)="goto('certificaciones')" mat-menu-item>Certificaciones</button>	
+						<button (click)="goto('updateplan')"mat-menu-item>Cambio de Plan</button>
+						<button (click)="goto('visitas')"mat-menu-item>Visitas</button>
+						
 					</mat-menu>
 				<button mat-button [matMenuTriggerFor]="mimagen">Tu Imagen</button>
 				<mat-menu #mimagen="matMenu">

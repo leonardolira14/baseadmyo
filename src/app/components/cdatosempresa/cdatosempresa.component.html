@@ -60,11 +60,11 @@ w-50 mx-auto" *ngIf='alertbol' role="alert">
 									</div>
 								</div>
 							</div>
-							<div class="logo" [ngStyle]="{'background-image':logo}">
+							<div (click)="filelogo.click()" class="logo" [ngStyle]="{'background-image':logo}">
+								
 								<div class="container-fluid">
 									<div class="row d-flex align-items-end">
 										<div class="col-12 text-right">
-											<div (click)="filelogo.click()" class="btn btn-link"><i class="fas fa-pencil-alt"></i></div>
 											<input accept="image/gif, image/jpeg, image/png" class="d-none" #filelogo type="file" (change)="previewlogo(filelogo.files)">
 										</div>
 									</div>
@@ -111,10 +111,7 @@ w-50 mx-auto" *ngIf='alertbol' role="alert">
 									<label for="" class="text-roboto text-gris3">Días de Pago</label>
 									<input [(ngModel)]="datosempresa.DiasPagoEmpresa" type="text" class="form-control"  placeholder="0"> 
 								</div>
-								<div class="form-group col-6">
-									<label for="" class="text-roboto text-gris3">El proximo cargo sera el día.</label>
-									<input readonly type="text" class="form-control" [value]="datosempresa.DiasPago" placeholder="0"> 
-								</div>
+								
 								<div class="form-group col-12">
 									<label for="" class="text-roboto text-gris3">Descripción de la Empresa</label>
 									<textarea [(ngModel)]="datosempresa.Perfil" cols="10" rows="10" class="form-control"  ></textarea> 
@@ -189,10 +186,10 @@ w-50 mx-auto" *ngIf='alertbol' role="alert">
   <div class="modal-body">
     <form class="container">
       	<div class="form-group row">
-		    <label class="col-sm-12 col-form-label">Marca</label>
-		    <div class="col-sm-12">
-		    	<input class="form-control" [(ngModel)]="modelmarca.marca" name="marca" #marca="ngModel" type="text">
-		    </div>
+			<mat-form-field class="col-12">
+				<input matInput #marca="ngModel" [(ngModel)]="modelmarca.marca" placeholder="Marca" value="">
+			</mat-form-field>
+		   
 		</div>
 		<div class="row">
 			<div class="col-5 centrar text-center logomarcaalert">
@@ -202,7 +199,7 @@ w-50 mx-auto" *ngIf='alertbol' role="alert">
 				<button (click)="logmarca.click()" class="btn btn-outline-primary">Cargar Imagen</button>
 				<input (change)="preview(logmarca.files)" accept="image/gif, image/jpeg, image/png" type="file" class="d-none" #logmarca>
 			</div>
-			<div class="col-12 text-center">
+			<div class="col-12 text-center m-t-20">
 				<small class="text-muted m-t-15">Archivos permitidos JPG,PNG,SVG no mayor a 1M.</small>
 			</div>
 		</div>

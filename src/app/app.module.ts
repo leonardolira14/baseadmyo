@@ -106,6 +106,9 @@ import { ClistaRiesgoComponent } from './components/clista-riesgo/clista-riesgo.
 import { OrderModule } from 'ngx-order-pipe';
 import { PgirosComponent } from './pages/pgiros/pgiros.component';
 import { CgirosComponent } from './components/cgiros/cgiros.component';
+import { CplanesComponent } from './components/cplanes/cplanes.component';
+import { PageplanesComponent } from './components/pageplanes/pageplanes.component';
+import { PagesplanesComponent } from './pages/pagesplanes/pagesplanes.component';
 
 @NgModule({
   declarations: [
@@ -179,6 +182,9 @@ import { CgirosComponent } from './components/cgiros/cgiros.component';
     ClistaRiesgoComponent,
     PgirosComponent,
     CgirosComponent,
+    CplanesComponent,
+    PageplanesComponent,
+    PagesplanesComponent,
 
   ],
   imports: [

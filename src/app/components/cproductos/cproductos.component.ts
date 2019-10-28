@@ -11,6 +11,8 @@ import swal from 'sweetalert2';
 	styleUrls: ['./cproductos.component.scss']
 })
 export class CproductosComponent implements OnInit {
+	lista_productos: any = [];
+	modal_open = false;
 	palabra = '';
 	modelproductos: any = {};
 	productos: any = [];
@@ -44,8 +46,9 @@ export class CproductosComponent implements OnInit {
 		this.http.getall(datos)
 		.subscribe((data) => {
 			this.sniper = false;
-			if (data['response']['code'] == 0) {
+			if (data['response']['code'] === 0) {
 				this.productos = data['response']['result'];
+				this.lista_productos = this.productos;
 			} else {
 				this.route.navigateByUrl('/');
 			}
@@ -97,14 +100,24 @@ preview(files) {
 				if (producto.Foto !== null) {
 					this.imglogo = this.rutaserver + 'assets/img/logoprod/' + producto.Foto;
 				}
-				this.openalert(alert);
+				this.modal_open = false;
 				return false ;
 			}
 		});
 
 	}
 	busqueda() {
-
+		const prod = this.lista_productos;
+		if (this.palabra === '') {
+			this.productos = this.lista_productos;
+		} else {
+			this.productos = prod.filter(cliente => cliente['Producto'].toLocaleLowerCase().includes(this.palabra.toLocaleLowerCase()));
+		}
+	}
+	cerrar_modal() {
+		this.modal_open = false;
+		this.modelproductos = {};
+		this.imglogo = 'assets/img/foto-no-disponible.jpg';
 	}
 	eliminar(id) {
 		if (this.datosusuarios['Tipo_Usuario'] !== 'Master') {
@@ -169,14 +182,7 @@ preview(files) {
 			this.sniper = false;
 			if (data['response']['code'] === 0) {
 				this.productos = data['response']['result'];
-				this.closemodel(alert);
-	  			this.successAlertClosed = true;
-	  			this.alertsuccess = 'Datos Actualizados';
-	  			this.modelproductos = {};
-	  			this.imglogo = 'assets/img/foto-no-disponible.jpg';
-	  			setTimeout(() => {
-	  					this.successAlertClosed = false;
-	  			}, 3000);
+				this.cerrar_modal();
 			} else {
 				this.staticAlertClosed = false;
 	  			this.alertterror = data['response']['result'];
@@ -201,14 +207,7 @@ preview(files) {
 			this.sniper = false;
 			if (data['response']['code'] === 0) {
 				this.productos = data['response']['result'];
-				this.closemodel(alert);
-	  			this.successAlertClosed = true;
-	  			this.alertsuccess = 'Datos Actualizados';
-	  			this.modelproductos = {};
-	  			this.imglogo = 'assets/img/foto-no-disponible.jpg';
-	  			setTimeout(() => {
-	  					this.successAlertClosed = false;
-	  			}, 3000);
+				this.cerrar_modal();
 			} else if (data['response']['code'] === 1990) {
 				this.closemodel('alertmarcas');
 	  	 		swal('Error', 'Usted cuenta con un plan basico, para seguir registrando marcas te recomendamos aumentar de plan.', 'info');
