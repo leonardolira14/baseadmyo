@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { PlanesService} from '../../services/planes.service';
@@ -32,8 +32,8 @@ export class CplanesComponent implements OnInit {
   public mensual_qval = false;
   public mensual_admyo = false;
   public datos_generales_empresa: any[] = [];
-  private tipo_plan='';
-  public datos_cargo:any[]=[];
+  private tipo_plan = '';
+  public datos_cargo: any = {};
   constructor(
     private route: Router,
     private cookieService: CookieService,
@@ -41,11 +41,11 @@ export class CplanesComponent implements OnInit {
   ) {
     this.datos_generales_empresa = JSON.parse(this.cookieService.get('datosUsuario'));
     console.log(this.datos_generales_empresa['empresa']);
-    if(this.datos_generales_empresa['empresa']['TipoCuenta']==='basic'){
-      this.tipo_plan='gratis';
-      this.datos_cargo["fecha_proximo_cargo"]="Sin Cargo";
-    }else{
-      this.tipo_plan=this.datos_generales_empresa['empresa']['TipoCuenta'];
+    if (this.datos_generales_empresa['empresa']['TipoCuenta'] === 'basic') {
+      this.tipo_plan = 'gratis';
+      this.datos_cargo['fecha_proximo_cargo'] = 'Sin Cargo';
+    } else {
+      this.tipo_plan = this.datos_generales_empresa['empresa']['TipoCuenta'];
       this.getdata();
     }
     this.cambio_micro(this.tipo_plan);
@@ -113,32 +113,33 @@ export class CplanesComponent implements OnInit {
     this.Coste_Final = this.coste_admyo + this.coste_qval;
   }
   // funcion para solicitar  los datos de un cliente
-  getdata(){
-    const datos={empresa:this.datos_generales_empresa['empresa']['IDEmpresa']}
+  getdata() {
+    const datos = {empresa: this.datos_generales_empresa['empresa']['IDEmpresa']};
     this.http.solicita_data(datos)
-    .subscribe(data=>{
-      this.datos_cargo=data["response"];
-    })
+    .subscribe(data => {
+      this.datos_cargo = data['response'];
+    });
   }
-  proximo_paso(){
-    const datos={IDEmpresa:this.datos_generales_empresa['empresa']['IDEmpresa']}
-    if(this.plan_selec==="Gratis"){
-      datos["coste_admyo"]=0;
-      datos["plan_selec"]="gratis";
-      datos["datos_cargo"]= this.datos_cargo;
+  proximo_paso() {
+    const datos = [{IDEmpresa: this.datos_generales_empresa['empresa']['IDEmpresa']}];
+    if (this.plan_selec === 'Gratis') {
+      datos['coste_admyo'] = 0;
+      datos['plan_selec'] = 'gratis';
+      datos['datos_cargo'] = this.datos_cargo;
       this.http.changeplan(datos)
-      .subscribe(data=>{
-        swal("Exito",'Datos Actualizados','success');
+      .subscribe(data => {
+        swal('Exito', 'Datos Actualizados', 'success');
         this.route.navigateByUrl('/perfil');
       });
-    }else{
-      datos["coste_admyo"]=this.coste_admyo;
-      datos["anual_admyo"]=this.anual_admyo;
-      datos["mensual_admyo"]=this.mensual_admyo;
-      datos["plan"]=this.plan_selec;
-      datos["datos_cargo"]= this.datos_cargo;
-      datos["leyenda"]=this.leyenda_admyo;
-      localStorage.setItem("card_admyo",JSON.stringify(datos));
+    } else {
+      datos[0]['total'] = this.coste_admyo;
+      datos[0]['anual'] = this.anual_admyo;
+      datos[0]['mensual'] = this.mensual_admyo;
+      datos[0]['plan'] = this.plan_selec;
+      datos[0]['datos_cargo'] = this.datos_cargo;
+      datos[0]['leyenda'] = this.leyenda_admyo;
+      
+      localStorage.setItem('datoscard', JSON.stringify(datos));
       this.route.navigateByUrl('/datoscargo');
     }
     console.log(this.plan_selec);

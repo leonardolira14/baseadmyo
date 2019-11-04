@@ -5,7 +5,7 @@ import { RegistroInterface } from '../../models/registro-interface';
 import { FormBuilder, FormGroup, FormControl } from '@angular/forms';
 import {  SwalComponent } from '@toverux/ngx-sweetalert2';
 import * as $ from 'jquery';
-
+import { CookieService } from 'ngx-cookie-service';
 @Component({
   selector: 'app-registro2',
   templateUrl: './registro2.component.html',
@@ -34,6 +34,8 @@ export class Registro2Component implements OnInit, OnDestroy {
     PrecioQval: '',
     NlicenasQval: '',
   };
+  datosgenerales_usuario: any[] = [];
+  datosgenerales_empresa: any[] = [];
 	datosgenerales: any[] = [];
 	producto = '';
 	precioproducto = 0;
@@ -48,19 +50,26 @@ export class Registro2Component implements OnInit, OnDestroy {
   spinner = false;
   textalert = '';
   alertmsj = false;
-  constructor(private router: Router, private http: RegistroService) {
+  constructor(
+    private router: Router,
+     private http: RegistroService,
+     private cookieService: CookieService,
+     ) {
   	if (localStorage.card_admyo) {
       this.datosgenerales = JSON.parse(localStorage.card_admyo);
-      console.log(this.datosgenerales);
+     
       this.producto = this.datosgenerales[0].plan;
       this.precioproducto = this.datosgenerales[0].total;
-      this.precioproductoqval = this.datosgenerales[1].total;
-      this.check_planqval(this.datosgenerales[1].plan);
-      this.numlicqval = this.datosgenerales[1].NumLic;
+
+      if (typeof  this.datosgenerales[1] !== 'undefined') {
+        this.precioproductoqval = this.datosgenerales[1].total;
+        this.check_planqval(this.datosgenerales[1].plan);
+        this.numlicqval = this.datosgenerales[1].NumLic;
+      }
 
       if (this.datosgenerales['datoscliente'] !== undefined) {
         this.registroi = this.datosgenerales['datoscliente'];
-      }
+      } 
       this.total = this.precioproducto + this.precioproductoqval;
       } else {
         this.router.navigateByUrl('/preciosadmyo');

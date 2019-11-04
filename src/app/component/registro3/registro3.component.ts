@@ -3,6 +3,7 @@ import { PagoInterface } from '../../models/pago-interface';
 import { Router} from '@angular/router';
 import swal from 'sweetalert2';
 import { RegistroService } from '../../services/registro.service';
+import { PlanesService } from '../../services/planes.service';
 declare var Conekta: any;
 
 @Component({
@@ -45,7 +46,8 @@ export class Registro3Component implements OnInit {
 	 };
   constructor(
 		 private rote: Router,
-		 private http: RegistroService
+		 private http: RegistroService,
+		 private httpplanes: PlanesService
 		 ) {
 			Conekta.setPublicKey('key_EDxZCrdzJsGgsEaqzxutE8A');
       Conekta.setLanguage('es');
@@ -63,7 +65,12 @@ export class Registro3Component implements OnInit {
 		this.check_planqval(this.datosgenerales[1]['plan']);
         this.total = this.precioproducto + this.precioproductoqval;
         console.log(this.datosgenerales);
-  	}
+	  }
+	  if(localStorage.datoscard){
+		this.datosgenerales = JSON.parse(localStorage.datoscard);
+		this.producto = this.datosgenerales[0]['plan'];
+		this.precioproducto = this.datosgenerales[0]['total'];
+	  }
    }
 
   ngOnInit() {
@@ -89,7 +96,14 @@ export class Registro3Component implements OnInit {
 }
 
   pagar_admyo() {
-	  this.datos_pago['datosempresa'] = this.datosgenerales[3]['IDEmpresa'];
+	  let tiempo_pago = '';
+	  if (this.datosgenerales[3] !== undefined){
+		this.datos_pago['datosempresa'] = this.datosgenerales[3]['IDEmpresa'];
+		tiempo_pago = this.datosgenerales[1]['anual'];
+	  } else {
+		this.datos_pago['datosempresa'] = this.datosgenerales[0]['IDEmpresa'];
+		tiempo_pago = this.datosgenerales[0]['anual'];
+	  }
 	let telefono = '0000000000';
 	if ((this.pago.Movil === undefined) || (this.pago.Movil === '') ) {
 		telefono = '0000000000';
@@ -105,9 +119,17 @@ export class Registro3Component implements OnInit {
 			correo: this.pago.Correo,
 			tel: telefono,
 			descripcion: this.producto,
-			tiempo: this.datosgenerales[1]['anual']
+			tiempo: tiempo_pago
 		};
+		if (this.datosgenerales[3] !== undefined){
 		this.send_pago(this.datos_pago);
+		} else{
+			this.httpplanes.changeplan(this.datos_pago)
+			.subscribe(data=>{
+				console.log(data);
+			})
+			
+		}
 	} else {
 		const tokenParams = {
 			'card': {
@@ -134,7 +156,14 @@ export class Registro3Component implements OnInit {
 				descripcion: this.producto,
 				tiempo: this.datosgenerales[0]['anual']
 			};
-			this.send_pago(this.datos_pago);
+			if (this.datosgenerales[3] !== undefined){
+				this.send_pago(this.datos_pago);
+			} else{
+				this.httpplanes.changeplan(this.datos_pago)
+			.subscribe(data=>{
+				console.log(data);
+			})
+			}
 			}, (error) => {
 				this.spinner = false;
 				swal('Error!', error.message_to_purchaser, 'error' );
