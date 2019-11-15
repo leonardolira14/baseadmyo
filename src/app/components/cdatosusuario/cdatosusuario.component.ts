@@ -29,7 +29,7 @@ export class CdatosusuarioComponent implements OnInit {
   }
   enviarform() {
   	this.sniper = true;
-  	this.http.update(this.token, this.datosusuarios)
+  	this.http.update( this.datosusuarios)
   	.subscribe((data) => {
   		this.sniper = false;
   		if (data['response']['code'] === 0) {
@@ -57,7 +57,6 @@ export class CdatosusuarioComponent implements OnInit {
   			this.successAlertClosed = true;
   			setTimeout(() => {
 				this.successAlertClosed = false;
-				console;
   			}, 4000);
   			this.datosclave = {};
   		} else {

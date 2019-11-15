@@ -469,6 +469,7 @@ select{
 .texto_black_titulo{
   color:map-get($colors ,blackk);
   font-weight: 700;
+  text-transform: uppercase;
 }
 .texto_black_subtitulo{
   color:map-get($colors ,blackk);

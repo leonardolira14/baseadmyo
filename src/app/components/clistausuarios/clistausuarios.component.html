@@ -1,70 +1,74 @@
 <div class="container-fluid bg-gris1 p-t-40 p-b-40">
+	<div class="container">
+		<div class="row">
+			<div class="col-12 texto_black_titulo text-monse ">
+				<h2>Lista de Usuarios</h2>
+			</div>
+			<mat-form-field class="col-6 m-t-30">
+				<mat-label>
+					Nombre de Usuario
+				</mat-label>
+				<input matInput type="text" [(ngModel)]="palabra" (keyup)="busqueda()">
+			</mat-form-field>
+			<div class="col-6 text-right m-t-30">
+				<div class="btn-group" role="group" aria-label="Basic example">
+					<button (click)="openalert()" type="button" class="btn btn-secondary">
+						<mat-icon>add</mat-icon>
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	<div class="row">
-		<div class="col-12">
-			<div class="card  contenedor m-t-40">
-				<div class="card-header bg-primary text-uppercase text-monse">
-					
-					<div class="container-fluid">
-						<div class="row d-flex align-items-center ">
-							<div class="col-6">
-								<h5>Lista de Usuarios</h5> 
-							</div>
-							<div class="col-6">
-								<div class="input-group">
-								  <input (keyup)="busqueda()" type="text" class="form-control" placeholder="Nombre de Usuario"  [(ngModel)]="palabra" >
-								   <div class="input-group-prepend">
-								    <span class="input-group-text text-primary bg-blanco" id="basic-addon1"><i class="fas fa-search"></i></span>
-								  </div>
-								</div>
-							</div>
-						</div>
+
+		<div class="col-12 col-lg-3 col-md-3 col-xl-3 m-t-30"
+			*ngFor="let usuario of usuarios | paginate: {itemsPerPage: 7, currentPage: pageActual}; index as i">
+			<mat-card class="w-100 tarjeta1 ">
+				<div class="row">
+					<div class="col-12 text-right">
+						<button mat-icon-button [matMenuTriggerFor]="menu" class="text-blackk">
+							<mat-icon>more_vert</mat-icon>
+						</button>
+						<mat-menu #menu="matMenu">
+							<button mat-menu-item (click)="delete(usuario.IDUsuario,usuario.Status)">
+								<mat-icon>{{usuario.Status==='1'?'clear':'done' }}</mat-icon>
+								<span>{{usuario.Status==='1'?'Desactivar':'Activar' }}</span>
+							</button>
+							<button mat-menu-item (click)="modif(usuario.IDUsuario,alertusuarios)">
+								<mat-icon>create</mat-icon>
+								<span>Editar</span>
+							</button>
+							<button mat-menu-item (click)="master(usuario.IDUsuario)"
+								*ngIf="usuario.Tipo_Usuario!=='Master'">
+								<mat-icon>notifications_off</mat-icon>
+								<span>Hacer Usuario Master</span>
+							</button>
+						</mat-menu>
 					</div>
 				</div>
-				<div class="card-body">
-					<div class="container-fluid">
-						
-						<div class="col-12 text-right">
-							<div class="btn-group" role="group" aria-label="Basic example">
-							  <button (click)="openalert(alertusuarios)" type="button" class="btn btn-secondary">Registrar</button>
-							</div>
-						</div>
-						<div class="col-12 m-t-40">
-							<table class="table table-hover">
-								<thead>
-									<th  scope="col">Nombre</th>
-									<th  scope="col">Apellidos</th>
-									<th  scope="col">Correo Electrónico</th>
-									<th class="text-center" scope="col">Puesto</th>
-									<th class="text-center" scope="col">Tipo Usuario</th>	
-									<th scope="col"> </th>	
-								</thead>
-								<tbody>
-									<tr *ngFor="let usuario of usuarios | paginate: {itemsPerPage: 7, currentPage: pageActual}; index as i">
-										<td>{{usuario.Nombre}}</td>
-										<td>{{usuario.Apellidos}}</td>
-										<td>{{usuario.Correo}}</td>
-										<td class="text-center">{{usuario.Puesto}}</td>
-										<td class="text-center">{{usuario.Tipo_Usuario}}</td>
-										<td>
-											<div ngbDropdown class="d-inline-block">
-										      <button class="btn btn-primary" id="dropdownBasic1" ngbDropdownToggle>Acciones</button>
-										      <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-										        <button (click)="delete(usuario.IDUsuario,usuario.Status)" class="dropdown-item">{{usuario.Status==='1'?'Desactivar':'Activar' }}</button>
-										        <button (click)="modif(usuario.IDUsuario,alertusuarios)" class="dropdown-item">Editar</button>
-										        <button (click)="master(usuario.IDUsuario)" *ngIf="usuario.Tipo_Usuario!=='Master'" class="dropdown-item">Master</button>
-										      </div>
-										    </div>
-										</td>
-									</tr>
-								</tbody>
-							</table>
-							 <pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
-						</div>
-						
+				<mat-card-header>
+					<div mat-card-avatar class=" centrar avatar "
+						[style.background-image]="(usuario.Imagen==='' || usuario.Imagen=== null )?'url(/assets/img/avatar1.png)':'url('+ruta_serve+'/assets/img/logosUsuarios/'+usuario.Imagen+')'">
 					</div>
+				</mat-card-header>
+				<div class="card-body p-t-40 text-monse text-muted text-center">
+					<h5>{{usuario.Nombre}} {{usuario.Apellidos}}</h5>
+					<p>
+						{{usuario.Correo}}
+					</p>
+					<p>
+						{{usuario.Puesto}}
+					</p>
+					<p>
+						{{usuario.Tipo_Usuario}}
+					</p>
 				</div>
-			</div>	
-		</div>	
+			</mat-card>
+		</div>
+		<div class="col-12 text-center m-t-30">
+			<pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior"
+				nextLabel="Siguiente"></pagination-controls>
+		</div>
 	</div>
 </div>
 <div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
@@ -72,55 +76,69 @@
 		<span class="sr-only">Loading...</span>
 	</div>
 </div>
-<ngb-alert *ngIf="staticAlertClosed" type="danger" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;z-index: 10001;" (click)="close(alert)">{{ alertterror }}</ngb-alert>
-<ngb-alert *ngIf="successAlertClosed" type="success" style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;z-index: 10001;" (click)="close(alert)">{{ alertsuccess }}</ngb-alert>
-<ng-template #alertusuarios let-modal>
-<div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">{{modelusuario.IDUsuario?'Editar Usuario':'Registrar Usuario'}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="closemodel(alertusuarios)">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-    <div class="modal-body">
-    <form class="container">
-      	<div class="form-group row">
-		    <label class="col-sm-12 col-form-label">Nombre</label>
-		    <div class="col-sm-12">
-		    	<input class="form-control" [(ngModel)]="modelusuario.Nombre" name="Nombre" #Nombre="ngModel" type="text">
-		    </div>
+<ngb-alert *ngIf="staticAlertClosed" type="danger"
+	style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;z-index: 10001;" (click)="close('alert')">
+	{{ alertterror }}</ngb-alert>
+<ngb-alert *ngIf="successAlertClosed" type="success"
+	style="position: fixed;z-index: 1000;top: 0;width: 100%;margin: 0 auto;z-index: 10001;" (click)="close('alert')">
+	{{ alertsuccess }}</ngb-alert>
+
+<div class="container-fluid fondomodal" *ngIf="alertusuarios">
+	<div class="container">
+		<div class="row">
+			<div class="card  m-auto col-7">
+				<div class="card-body row">
+					<div class="col-12 m-b-20 d-flex justify-content-between">
+						<span class="titulo-card text-uppercase">
+							Datos de usuario
+						</span>
+						<button class="float-right" (click)="closemodel()" mat-icon-button>
+							<mat-icon>clear</mat-icon>
+						</button>
+					</div>
+					<div class="col-4 text-center">
+						<img src="{{imglogo}}" class="avatar-alert">
+						<button class="btn btn-outline-primary m-t-40" (click)="logo.click()">Cambiar Avatar</button>
+						<input (change)="preview(logo.files)" class="d-none" accept="image/gif, image/jpeg, image/png" type="file" #logo>
+					</div>
+					<div class="col-8">
+						<div class="row">
+							<mat-form-field class="col-12">
+								<mat-label>Nombre (S)</mat-label>
+								<input matInput autocomplete="off" [(ngModel)]="modelusuario.Nombre" type="text">
+							</mat-form-field>
+							<mat-form-field class="col-6">
+								<mat-label>Apellidos</mat-label>
+								<input matInput autocomplete="off" [(ngModel)]="modelusuario.Apellidos" type="text">
+							</mat-form-field>
+							<mat-form-field class="col-6">
+								<mat-label>Puesto</mat-label>
+								<input matInput autocomplete="off" [(ngModel)]="modelusuario.Puesto" type="text">
+							</mat-form-field>
+							<mat-form-field class="col-6">
+								<mat-label>Correo Electrónico</mat-label>
+								<input matInput autocomplete="off" [(ngModel)]="modelusuario.Correo" type="mail">
+							</mat-form-field>
+							<mat-form-field class="col-6">
+								<mat-label>Visible</mat-label>
+								<mat-select [(ngModel)]="modelusuario.Visible">
+									<mat-option value="1">Visible </mat-option>
+									<mat-option value="0">No Visible </mat-option>
+								</mat-select>
+							</mat-form-field>
+						</div>
+
+					</div>
+
+				</div>
+				<div class="card-footer ">
+					<div class="btn-group float-right" role="group" aria-label="Basic example">
+						<button type="button" (click)="closemodel()"
+							class="btn btn-outline-danger mr-3">Cancelar</button>
+						<button type="button" (click)="deci()" class="btn btn-succes ">Guardar</button>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="form-group row">
-		    <label class="col-sm-12 col-form-label">Apellidos</label>
-		    <div class="col-sm-12">
-		    	<input class="form-control" [(ngModel)]="modelusuario.Apellidos" name="Apellidos" #Apellidos="ngModel" type="text">
-		    </div>
-		</div>
-		<div class="form-group row">
-		    <label class="col-sm-12 col-form-label">Puesto</label>
-		    <div class="col-sm-12">
-		    	<input class="form-control" [(ngModel)]="modelusuario.Puesto" name="Puesto" #Puesto="ngModel" type="text">
-		    </div>
-		</div>
-		<div class="form-group row">
-		    <label class="col-sm-12 col-form-label">Correo</label>
-		    <div class="col-sm-12">
-		    	<input class="form-control" [(ngModel)]="modelusuario.Correo" name="Correo" #Correo="ngModel" type="text">
-		    </div>
-		</div>
-		<div class="form-group row">
-		    <label class="col-sm-12 col-form-label">Visible</label>
-		    <div class="col-sm-12">
-		    	<select  [(ngModel)]="modelusuario.Visible" class="form-control" name="Visible" placeholder="Estado">
-									<option value="1">Visible </option>
-									<option value="0">No Visible </option>
-				</select>
-		    </div>
-		</div>	
-		
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-danger" (click)="closemodel(alertusuarios)">Cerrar</button>
-    <button  type="button" (click)="deci(alertusuarios)" class="btn btn-primary" >Guardar</button>
-  </div>
-</ng-template>
+	</div>
+</div>

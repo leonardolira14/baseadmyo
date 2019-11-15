@@ -32,32 +32,7 @@
 			<div class="col-12 texto_black_titulo m-t-20 text-monse text-uppercase">
 				<h2>Lista de Tus {{tipo}}</h2>
 			</div>
-			<mat-form-field class="col-4 m-b-30">
-					<input [(ngModel)]="model_filter.nombre"  matInput placeholder="Buscar Clientes" value="">
-			</mat-form-field >
-			<mat-form-field class="col-3 m-b-30">
-					<mat-label>Status</mat-label>
-					<mat-select [(ngModel)]="model_filter.status">
-							<mat-option value="sn">Selecciona</mat-option>
-							<mat-option value="1">Activo</mat-option>
-							<mat-option value="0">Descativado</mat-option>
-					</mat-select>
-			</mat-form-field>
-			<mat-form-field class="col-3 m-b-30">
-					<mat-label>Validado</mat-label>
-					<mat-select [(ngModel)]="model_filter.validado">
-							<mat-option value="sn">Selecciona</mat-option>
-							<mat-option value="1">Por mi</mat-option>
-							<mat-option value="2">Por Cliente/proveedor</mat-option>
-							<mat-option value="3">Sin Validar</mat-option>
-					</mat-select>
-			</mat-form-field>
-			<div class="col-2">
-				<div class="btn-group float-right" role="group" aria-label="Basic example">
-					<button type="button" (click)="filterclientes()" class="btn btn-primary m-r-20">Filtrar</button>
-					<button type="button" (click)="modal_open=!modal_open" class="btn btn-secondary"><mat-icon>add</mat-icon></button>
-				</div>
-			</div>
+			
 			<div *ngFor='let item of listas | paginate: {itemsPerPage: 8, currentPage: pageActual}; index as i' class="col-12 col-md-3 col-lg-3 col-xl-3 m-b-30">
 					<div class="card tarjeta1">
 							<div class="cont-img">

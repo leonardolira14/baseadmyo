@@ -34,13 +34,13 @@
 				<button mat-button [matMenuTriggerFor]="mclientes">Clientes</button>
 				<mat-menu #mclientes="matMenu">
 					<button (click)="goto('resumen/clientes')" mat-menu-item>Resumen</button>
-					<button (click)="goto('lista/clientes')" mat-menu-item>Mis Clientes</button>
+					<button (click)="goto('lista/clientes/a')" mat-menu-item>Mis Clientes</button>
 					<button (click)="goto('realizadas/clientes')" mat-menu-item>Calificaciones Realizadas</button>
 				</mat-menu>
 				<button mat-button [matMenuTriggerFor]="mproveedores">Proveedores</button>
 				<mat-menu #mproveedores="matMenu">
 					<button (click)="goto('resumen/proveedores')" mat-menu-item>Resumen</button>
-					<button (click)="goto('lista/proveedores')"  mat-menu-item>Mis Proveedores</button>
+					<button (click)="goto('lista/proveedores/a')"  mat-menu-item>Mis Proveedores</button>
 					<button (click)="goto('realizadas/proveedores')" mat-menu-item>Calificaciones Realizadas</button>
 				</mat-menu>
 				

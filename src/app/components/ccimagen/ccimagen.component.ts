@@ -105,7 +105,7 @@ export class CcimagenComponent implements OnInit {
 		this.route.navigateByUrl('/imagen/' + this.tipo_imagen + '/A');
 	}
 	lista() {
-  	this.route.navigateByUrl('/listan/' + this.tipo);
+  	this.route.navigateByUrl('/lista/' + this.tipo + '/b');
 	}
 	recibidas() {
   	this.route.navigateByUrl('/recibidas/' + this.tipo);
