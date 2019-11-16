@@ -13,7 +13,7 @@ import { environment } from 'src/environments/environment';
 export class ClistaComponent implements OnInit {
 	listas: any = [];
    model: any = {};
-
+   model_filter: any = {};
 	datosgen: any = [];
 	datosempresa: any = [];
 	datosusuarios: any = [];

@@ -466,3 +466,11 @@ select{
   align-items: center;
   overflow: auto;
 }
+.texto_black_titulo{
+  color:map-get($colors ,blackk);
+  font-weight: 700;
+}
+.texto_black_subtitulo{
+  color:map-get($colors ,blackk);
+  
+}

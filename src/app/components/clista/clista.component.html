@@ -1,5 +1,5 @@
 
-<div class="container-fluid  bg-gris1 p-t-40 p-b-40">
+<div class="container-fluid  p-t-40 p-b-40">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
@@ -29,9 +29,64 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12 text-muted text-monse text-uppercase">
+			<div class="col-12 texto_black_titulo m-t-20 text-monse text-uppercase">
 				<h2>Lista de Tus {{tipo}}</h2>
 			</div>
+			<mat-form-field class="col-4 m-b-30">
+					<input [(ngModel)]="model_filter.nombre"  matInput placeholder="Buscar Clientes" value="">
+			</mat-form-field >
+			<mat-form-field class="col-3 m-b-30">
+					<mat-label>Status</mat-label>
+					<mat-select [(ngModel)]="model_filter.status">
+							<mat-option value="sn">Selecciona</mat-option>
+							<mat-option value="1">Activo</mat-option>
+							<mat-option value="0">Descativado</mat-option>
+					</mat-select>
+			</mat-form-field>
+			<mat-form-field class="col-3 m-b-30">
+					<mat-label>Validado</mat-label>
+					<mat-select [(ngModel)]="model_filter.validado">
+							<mat-option value="sn">Selecciona</mat-option>
+							<mat-option value="1">Por mi</mat-option>
+							<mat-option value="2">Por Cliente/proveedor</mat-option>
+							<mat-option value="3">Sin Validar</mat-option>
+					</mat-select>
+			</mat-form-field>
+			<div class="col-2">
+				<div class="btn-group float-right" role="group" aria-label="Basic example">
+					<button type="button" (click)="filterclientes()" class="btn btn-primary m-r-20">Filtrar</button>
+					<button type="button" (click)="modal_open=!modal_open" class="btn btn-secondary"><mat-icon>add</mat-icon></button>
+				</div>
+			</div>
+			<div *ngFor='let item of listas | paginate: {itemsPerPage: 8, currentPage: pageActual}; index as i' class="col-12 col-md-3 col-lg-3 col-xl-3 m-b-30">
+					<div class="card tarjeta1">
+							<div class="cont-img">
+								<div class="banner" [ngStyle]="setmybanner(item.Banner)">
+									
+								</div>										
+								<div [ngStyle]="setmylogo(item.Logo)" class="logo">
+									
+								</div>
+									
+								
+							</div>
+							
+							<div class="card-body p-t-40">
+								<h5 class="card-title">{{item.Razon_Social}}</h5>
+								<p class="card-text">{{item.Nombre_Comer}}</p>
+
+							</div>
+							<div class="card-footer">
+								<div class="btn-group d-flex" role="group" aria-label="Basic example">
+									<button (click)="visitar(item.num)"  class="btn btn-primary m-r-20">Visitar Pefil</button>
+									<button type="button" class="btn btn-secondary">Calificar</button>
+								</div>
+							</div>
+						</div>
+			</div>
+			<div class="col-12 text-center m-t-20">
+					<pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+				</div>
 			<div class="col-12 m-t-20">
 				<div class="card">
 					
@@ -64,9 +119,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="col-12 text-center m-t-20">
-									<pagination-controls class="my-pagination" (pageChange)="pageActual = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
-								</div>	
+									
 							</div>
 						</div>
 					</div>
