@@ -5,33 +5,30 @@
 	    z-index: 1;
 	    top: 0;
 	    left: 0;
-	    background-color:map-get($colors,secondary);
+		background-position: center center;
+		background-repeat: no-repeat;
+		background-size: cover;
+
 	    width: 100%;
 }
- .img-banner{
-		height: 62px;
-	    position: absolute;
-	    z-index: 1;
-	    top: 0;
-	    left: 0;
-	}
+ 
 	.img-logo{
 		    display: flex;
 		    flex-direction: column;
 		    align-items: center;
-		    margin-bottom: 8px;
+			margin-bottom: 8px;
+			position: absolute;
+			transform: translateX(-50%) translateY(50%);
+			left: 50%;
+			top: 30%;
 		    z-index: 1;
-		    padding-top: 10px;
-		    padding-bottom: 10px;
-	    & img{
-			background-color:map-get($colors,blanco);
-		    width: 80px;
+			width: 80px;
 		    height: 80px;
-		    box-sizing: border-box;
-		    background-clip: content-box;
-		    border: 0 solid transparent;
-		    border-radius: 49.9%;
-	    }
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+			 border-radius: 49.9%;
+			 background-color: #fff;
 	}
 
 
@@ -66,3 +63,27 @@
 		}
 	}
 }
+.tarjeta1{
+		
+		position: relative;
+		width: 100%;
+		min-height: 400px;
+		& .mat-card-header{
+			display: block;
+			border-color: transparent !important;
+			height: 62px;
+			margin-bottom: 50px;
+		}
+		
+		& .avatar{
+				width: 80px;
+				height: 80px;
+				position: relative;
+				background-position: center center;
+				background-repeat: no-repeat;
+				background-size: cover;
+				border-radius: 50%;
+				flex-shrink: 0;
+				background-color:#fff;
+			} 
+	}

@@ -1,76 +1,204 @@
-<div class="container p-t-40 p-b-40">
-	<div class="row text-monse">
-		<div class="col-12 texto_black_titulo m-t-30 m-b-40 text-uppercase">
+<div class="container-fluid p-t-40 ">
+	<div class="row">
+		<div class="col-12 texto_black_titulo m-t-30 m-b-40 text-uppercase text">
 			<h2>EMPRESAS EN SEGUIMIENTO</h2>
 		</div>
+	</div>
+</div>
+<div class="container p-b-40">
+	<div class="row text-monse">
+		
 		<mat-form-field class="col-9">
 			<input matInput (keyup)="busqueda()" [(ngModel)]="palabra" placeholder="Buscar Razón Social">
 		</mat-form-field>
 		<div class="col-3 text-right m-b-30">
 			<div class="btn-group" role="group" aria-label="Basic example">
-				<button type="button" (click)="modal_open=!modal_open" class="btn btn-secondary"><i
+				<button type="button"  class="btn btn-secondary"><i
 						class="material-icons">add</i></button>
 			</div>
 		</div>
 	</div>
-	<section class="row">
-		<div *ngFor='let cliente of follows' class="col-12 col-md-4 col-xl-3 col-lg-3">
-			<div class="card">
-				<div *ngIf="cliente.Banner===''" class="logo-baner">
 
-				</div>
-				<img *ngIf="cliente.Banner!==''" src="{{serverruta+'assets/img/banners/'+cliente.Banner}}"
-					class="img-banner" alt="">
-				
-					<img 
-						src="{{cliente.Logo===''?'assets/img/foto-no-disponible80x80.jpg':serverruta+'img/logosEmpresas/'+cliente.Logo}}">
-				</div>
-				<div class="card-body cont-text text-muted">
-
-
-
-
-
-					<ul class="list-group list-group-flush">
-						<li class="list-group-item" *ngIf='cliente.Razon_Social!==""'>
-							<small class="text-muted text-left">Razón Social:</small>
-							<p class="card-text text-center"> {{cliente.Razon_Social}}</p>
-						</li>
-						<li class="list-group-item" *ngIf='cliente.Nombre_Comer!==""'>
-							<small class="text-muted text-left">Nombre Comercial:</small>
-							<p class="card-text text-center text-muted">{{cliente.Nombre_Comer}}</p>
-						</li>
-						<li class="list-group-item">
-							<small class="text-muted  text-left">RFC:</small>
-							<p class="card-text  text-center text-muted">{{cliente.RFC}}</p>
-						</li>
-					</ul>
-				</div>
-				<div class="card-footer ">
-					.
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-12 d-flex">
-								<div ngbPopover="Visitar Perfil" (click)="visitar(cliente.IDEmpresaSeguida)"
-									class="btn-card mr-3">
-									<i class="fas fa-user-circle"></i>
-								</div>
-								<div ngbPopover="Olvidar" (click)="olvidar(cliente.IDFollow)" class="mr-3 btn-card">
-									<i class="fas fa-ban"></i>
-								</div>
-								<div ngbPopover="Calificar" (click)="calificar(cliente.IDEmpresaSeguida)"
-									class="mr-3 btn-card">
-									<i class="fas fa-check"></i>
-								</div>
+</div>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-3">
+			<mat-card class="text-monse text-gris3">
+				<div class="container-fluid m-t-40">
+					<div class="row">
+						<div class="col-12 m-t-0">
+							<strong>Calificaciones Recibidas</strong>
+						</div>
+						<mat-radio-group class="col-12 m-b-40" aria-label="Select an option">
+							<mat-list role="list">
+								<mat-list-item role="listitem"><mat-radio-button value="0-10">Menor a 10</mat-radio-button></mat-list-item>
+								<mat-list-item role="listitem"><mat-radio-button value="11-50">de 11 a 50</mat-radio-button></mat-list-item>
+								<mat-list-item role="listitem">
+									<mat-radio-button value="51-100">de 51 a 100</mat-radio-button>
+								</mat-list-item>
+								<mat-list-item role="listitem">
+									<mat-radio-button value="101-250">de 101 a 250</mat-radio-button>
+								</mat-list-item>
+								<mat-list-item role="listitem">
+									<mat-radio-button value="251-500">de 201 a 500</mat-radio-button>
+								</mat-list-item>
+								<mat-list-item role="listitem">
+									<mat-radio-button value="501-1000">Màs de 501</mat-radio-button>
+								</mat-list-item>
+								
+							</mat-list>
+						</mat-radio-group>
+						<mat-form-field class="col-4">
+							<mat-label>Mín</mat-label>
+							<input matInput  value="0">
+						</mat-form-field>
+						<mat-form-field class="col-4">
+							<mat-label>Max</mat-label>
+							<input matInput  value="1">
+						</mat-form-field>
+						<div class="col-4">
+							<button  mat-mini-fab color="warn"><i class="fas fa-angle-right"></i></button>
+						</div>
+						<mat-form-field class="col-12 m-t-30">
+							<mat-label>Ubicación</mat-label>
+							<mat-select>
+								<mat-option [value]="estado.Siglas" *ngFor="let estado of estados" >
+								{{estado.estadonombre}}
+								</mat-option>
+							</mat-select>
+						</mat-form-field>
+						
+						<div class="col-12 text-center m-t-20">
+							<div class="btn-group d-flex" role="group" aria-label="Basic example">
+								<button  class="btn btn-danger mr-3">Limpiar</button>
+								<button class="btn btn-succes">Aplicar</button>
 							</div>
+						
 						</div>
 					</div>
 				</div>
-			</div>
+			</mat-card>
 		</div>
-	</section>
+		<div class="col-9">
+			<section class="row">
+				<div *ngFor='let cliente of follows' class="col-12 col-md-4 col-xl-4 col-lg-4">
+					<mat-card class="w-100 tarjeta1 ">
+						<div class="row">
+							<div class="col-12 text-right">
+								<button mat-icon-button [matMenuTriggerFor]="menu" class="text-blackk">
+									<mat-icon>more_vert</mat-icon>
+								</button>
+								<mat-menu #menu="matMenu">
+									<button mat-menu-item >
+										<mat-icon>clear</mat-icon>
+										<span>Desactivar</span>
+									</button>
+									
+								</mat-menu>
+							</div>
+						</div>
+						<mat-card-header class="logo-baner" [ngStyle]="{'background-image': (cliente.Banner==='' || cliente.Banner=== null)?'url(assets/img/funfacts-bg.jpg)':'url(' + serverruta+'assets/img/banners/'+cliente.Banner + ')'}">
+								<div mat-card-avatar class=" centrar avatar "
+									[ngStyle]="{'background-image': (cliente.Banner==='' || cliente.Banner=== null)?'url(assets/img/foto-no-disponible.jpg)':'url(' + serverruta+'assets/img/logosEmpresas/'+cliente.Logo + ')'}">
+								</div>
+						</mat-card-header>
+						<mat-card-content class="text-monse text-muted text-center">
+							<div class="container-fluid">
+								<div class="row  m-t-50">
+									<div class="col-12">
+										<h6>{{cliente.Razon_Social}}</h6>
+										<p>
+											{{cliente.Nombre_Comer}}
+										</p>
+										<p>
+											{{cliente.RFC}}
+										</p>
+									</div>
+									<div class="col-12 m-t-30">
+										Imagen Como Cliente
+									</div>
+									<div class="col-6 text-center">
+										80
+										<p>
+											<small>NÚMERO DE CALIFICACIONES RECIBIDAS EN LOS ÚLTMOS EN 12 MESES</small>
+										</p>
+										
+									</div>
+									<div class="col-6 text-center">
+										6.9
+										<p>
+											<small>CALIFICACIÓN MEDIA RECIBIDA EN LOS ÚLTMOS EN 12 MESES</small>
+										</p>
+									
+									</div>
+									<div class="col-12 m-t-30">
+										Imagen Como Proveedor 
+									</div>
+									<div class="col-6 text-center">
+										80
+										<p>
+											<small>NÚMERO DE CALIFICACIONES RECIBIDAS EN LOS ÚLTMOS EN 12 MESES</small>
+										</p>
+									
+									</div>
+									<div class="col-6 text-center">
+										6.9
+										<p>
+											<small>CALIFICACIÓN MEDIA RECIBIDA EN LOS ÚLTMOS EN 12 MESES</small>
+										</p>
+									
+									</div>
+									<div class="col-12 m-t-30">
+										Riesgo Como Cliente 
+									</div>
+									<div class="col-6 text-center">
+										80
+										<p>
+											<small>NÚMERO DE CALIFICACIONES RECIBIDAS EN LOS ÚLTMOS EN 12 MESES</small>
+										</p>
+									
+									</div>
+									<div class="col-6 text-center">
+										6.9
+										<p>
+											<small>CALIFICACIÓN MEDIA RECIBIDA EN LOS ÚLTMOS EN 12 MESES</small>
+										</p>
+									
+									</div>
+									<div class="col-12 m-t-30">
+										Riesgo Como Proveedor
+									</div>
+									<div class="col-6 text-center">
+										80
+										<p>
+											<small>NÚMERO DE CALIFICACIONES RECIBIDAS EN LOS ÚLTMOS EN 12 MESES</small>
+										</p>
+									
+									</div>
+									<div class="col-6 text-center">
+										6.9
+										<p>
+											<small>CALIFICACIÓN MEDIA RECIBIDA EN LOS ÚLTMOS EN 12 MESES</small>
+										</p>
+									
+									</div>
+								</div>
+							</div>							
+						</mat-card-content>
+						<mat-card-footer >
+							<div class="btn-group d-flex" role="group" aria-label="Basic example">
+								<button type="button" (click)="visitar(cliente.IDEmpresaSeguida)" class="btn btn-outline-primary mr-3">Ir a Perfil</button>
+								<button type="button"  (click)="olvidar(cliente.IDFollow)" class="btn btn-outline-danger mr-3">Olvidar</button>
+								<button type="button" (click)="calificar(cliente.IDEmpresaSeguida)" class="btn btn-outline-secondary">Calificar</button>
+							</div>
+						</mat-card-footer>
+					</mat-card>
+					
+			</div>
+			</section>
+		</div>
+	</div>
 </div>
-
 <div *ngIf="sniper" class="sniper d-flex justify-content-center align-items-center">
 	<div class="spinner-border text-light" role="status">
 		<span class="sr-only">Loading...</span>
