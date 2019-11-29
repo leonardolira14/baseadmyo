@@ -1,4 +1,9 @@
-<div class="container-fluid bg-gris1 p-t-40 p-b-40">
+<div class="container-fluid p-t-40 p-b-40">
+	<div class="row">
+		<div class=" col-12 text-uppercase texto_black_titulo text-monse m-b-40">
+			<h2>DETALLES DE TU RIESGO DE TUS CLIENTES</h2>
+		</div>
+	</div>
 	<div class="container resumen">
 		<div class="row">
 			<mat-form-field class="col-3  m-t-30  m-b-30">
@@ -28,19 +33,13 @@
 					
 				</div>	
 			</div>
+			<div class="col-12 text-center text-uppercase text-monse text-muted m-t-30">
+				<h5>Calidad</h5>
+				<br>
+				<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS {{tipo}} {{leyenda}}</h6>
+			</div>
 			<div class="col-12">
 				<div class="card contenedor">
-					<div class="card-header  container text-center text-white bg-primary">
-						<div class="row">
-							<div class="col-12 text-uppercase text-monse">
-								<h5>DETALLES DE TU RIESGO de tus {{tipo}} en calidad</h5> 
-							</div>
-							<div class="col-12 text-uppercase text-monse">
-								<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS  {{tipo}} {{leyenda}}</h6>
-							</div>
-						</div>
-					</div>
-
 					<div class="body-card bg-white">
 						<div class="container-fluid">
 							<div class="row">
@@ -95,19 +94,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12 m-t-30">
+			<div class="col-12 text-center text-uppercase text-monse text-muted m-t-30">
+				<h5>cumplimiento</h5>
+				<br>
+				<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS {{tipo}} {{leyenda}}</h6>
+			</div>
+			<div class="col-12 ">
 				<div class="card contenedor">
-					<div class="card-header  container text-center text-white bg-primary">
-						<div class="row">
-							<div class="col-12 text-uppercase text-monse">
-								<h5>DETALLES DE TU RIESGO de tus {{tipo}} en cumplimiento</h5> 
-							</div>
-							<div class="col-12 text-uppercase text-monse">
-								<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS  {{tipo}} {{leyenda}}</h6>
-							</div>
-						</div>
-					</div>
-
 					<div class="body-card bg-white">
 						<div class="container-fluid">
 							<div class="row">
@@ -160,19 +153,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12 m-t-30" *ngIf="tipo_persona==='proveedor'">
+			<div class="col-12 text-center text-uppercase text-monse text-muted m-t-30" *ngIf="tipo_persona==='proveedor'">
+				<h5>Oferta</h5>
+				<br>
+				<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS {{tipo}} {{leyenda}}</h6>
+			</div>
+			<div class="col-12" *ngIf="tipo_persona==='proveedor'">
 				<div class="card contenedor">
-					<div class="card-header  container text-center text-white bg-primary">
-						<div class="row">
-							<div class="col-12 text-uppercase text-monse">
-								<h5>DETALLES DE TU RIESGO de tus {{tipo}} en oferta</h5> 
-							</div>
-							<div class="col-12 text-uppercase text-monse">
-								<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS  {{tipo}} {{leyenda}}</h6>
-							</div>
-						</div>
-					</div>
-
 					<div class="body-card bg-white">
 						<div class="container-fluid">
 							<div class="row">

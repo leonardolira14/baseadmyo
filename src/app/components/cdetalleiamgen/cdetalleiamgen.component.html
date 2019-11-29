@@ -1,4 +1,4 @@
-<div class="container-fluid bg-gris1 p-t-40 p-b-40">
+<div class="container-fluid p-t-40 p-b-40">
 
 		<div class="row">
 			<div class="col-12 m-b-30">
@@ -36,8 +36,11 @@
 				</div>
 			</div>
 		</div>
-	<div class="container resumen">
+	<div class="container-fluid resumen">
 		<div class="row">
+			<div class="col-12  texto_black_titulo text-monse">
+				<h2>DETALLES DE TU IMAGEN COMO {{tipo_imagen}}</h2>
+			</div>
 			<div class="col-12 d-flex justify-content-end m-t-30  m-b-30">
 				<div class="btn-group" role="group" aria-label="Basic example">
 					<button (click)="cambiar('A')" type="button" class="btn {{fecha_imagen==='A'?'btn-primary':'btn-inactivo'}}">12 Meses</button>
@@ -45,18 +48,13 @@
 					
 				</div>	
 			</div>
+			<div class="col-12 text-monse text-muted text-uppercase text-center">
+				<h5>calidad</h5>
+				<br>
+				<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS {{tipo_contrario}} {{leyenda}}</h6>
+			</div>
 			<div class="col-12">
 				<div class="card contenedor">
-					<div class="card-header  container text-center text-white bg-primary">
-						<div class="row">
-							<div class="col-12 text-uppercase text-monse">
-								<h5>DETALLES DE TU IMAGEN COMO {{tipo_imagen}} en calidad</h5> 
-							</div>
-							<div class="col-12 text-uppercase text-monse">
-								<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS  {{tipo_contrario}} {{leyenda}}</h6>
-							</div>
-						</div>
-					</div>
 					<div class="body-card">
 						<div class="container-fluid">
 							<div class="row">
@@ -124,18 +122,14 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-12 m-t-40">
+			<div class="col-12 text-monse text-muted text-uppercase text-center  m-t-60">
+				<h5>Cumplimiento</h5>
+				<br>
+				<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS {{tipo_contrario}} {{leyenda}}</h6>
+			</div>
+			<div class="col-12 ">
 				<div class="card contenedor">
-					<div class="card-header  container text-center text-white bg-primary">
-						<div class="row">
-							<div class="col-12 text-uppercase text-monse">
-								<h5>DETALLES DE TU IMAGEN COMO {{tipo_imagen}} en Cumplimiento</h5> 
-							</div>
-							<div class="col-12 text-uppercase text-monse">
-								<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS  {{tipo_contrario}} {{leyenda}}</h6>
-							</div>
-						</div>
-					</div>
+					
 					<div class="body-card">
 						<div class="container-fluid">
 							<div class="row">
@@ -203,18 +197,13 @@
 					</div>
 				</div>
 			</div>
-			<div *ngIf="tipo_imagen=='proveedor'" class="col-12 m-t-40">
+			<div *ngIf="tipo_imagen==='proveedor'" class="col-12 text-monse text-muted text-uppercase text-center m-t-60">
+				<h5>oferta</h5>
+				<br>
+				<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS {{tipo_contrario}} {{leyenda}}</h6>
+			</div>
+			<div *ngIf="tipo_imagen==='proveedor'" class="col-12">
 				<div class="card contenedor">
-					<div class="card-header  container text-center text-white bg-primary">
-						<div class="row">
-							<div class="col-12 text-uppercase text-monse">
-								<h5>DETALLES DE TU IMAGEN COMO {{tipo_imagen}} en oferta</h5> 
-							</div>
-							<div class="col-12 text-uppercase text-monse">
-								<h6>BASADO EN CALIFICACIONES RECIBIDAS DE TUS  {{tipo_contrario}} {{leyenda}}</h6>
-							</div>
-						</div>
-					</div>
 					<div class="body-card">
 						<div class="container-fluid">
 							<div class="row">

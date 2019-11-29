@@ -470,6 +470,7 @@ select{
   color:map-get($colors ,blackk);
   font-weight: 700;
   text-transform: uppercase;
+  font-family: map-get($fonts , monse )
 }
 .texto_black_subtitulo{
   color:map-get($colors ,blackk);
