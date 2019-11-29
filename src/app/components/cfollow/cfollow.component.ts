@@ -14,7 +14,7 @@ import {NgbPopoverConfig} from '@ng-bootstrap/ng-bootstrap';
 export class CfollowComponent implements OnInit {
 	follows:any=[];
 	list:any=[];
-
+	serverruta = environment.urlserver;
 	datosgen:any=[];
 	datosempresa:any=[];
 	datosusuarios:any=[];
