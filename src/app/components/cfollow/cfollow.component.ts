@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { FollowService } from '../../services/follow.service';
 import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
+import swal from 'sweetalert2';
 @Component({
 	selector: 'app-cfollow',
 	templateUrl: './cfollow.component.html',
@@ -13,29 +14,7 @@ import { NgbPopoverConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class CfollowComponent implements OnInit {
 
-	follows:any=[];
-	list:any=[];
-	serverruta = environment.urlserver;
-	datosgen:any=[];
-	datosempresa:any=[];
-	datosusuarios:any=[];
-		token:string="";
-		sniper:boolean=false;
-		staticAlertClosed:boolean=false;
-		successAlertClosed:boolean=false;
-		alertterror:string="";
-		alertsuccess:string="";
-		palabra:string="";
-  constructor(private config: NgbPopoverConfig,public http:FollowService,private cookieService:CookieService,private modalService: NgbModal,private route:Router)
-  {
-  	 this.config.placement = 'right';
-    this.config.triggers = 'hover';
-  	this.datosgen=JSON.parse(this.cookieService.get('datosUsuario'));
-  	this.datosusuarios=this.datosgen["datosusuario"];
-  	this.datosempresa=this.datosgen["empresa"];
-  	this.token=this.datosgen["Token"];
-  }
-
+	model: any = {};
 	follows: any = [];
 	list: any = [];
 	serverruta = environment.urlserver;
@@ -83,6 +62,7 @@ export class CfollowComponent implements OnInit {
 				if (data['response']['code'] === 0) {
 					this.follows = data['response']['result'];
 					this.list = this.follows;
+					swal('Exito', 'Datos Actualizados...', 'success');
 				}
 
 
@@ -90,6 +70,9 @@ export class CfollowComponent implements OnInit {
 	}
 	visitar(ir) {
 		this.route.navigateByUrl('/perfilbuscado/' + ir);
+	}
+	add() {
+		this.route.navigateByUrl('/buscar/');
 	}
 	busqueda() {
 		if (this.palabra === '') {
@@ -101,6 +84,27 @@ export class CfollowComponent implements OnInit {
 	buscapalarabra() {
 		const usuario = this.follows;
 		return usuario.filter(usuario => usuario.Razon_Social.toLocaleLowerCase().includes(this.palabra.toLocaleLowerCase()));
+	}
+	porcalifcar(inicio?, fin?) {
+		this.model['calificacion'] = inicio + '-' + fin;
+		this.buscar_filtro();
+
+	}
+	buscar_filtro() {
+		//this.sniper = true;
+		this.model['IDEmpresaEmisora'] = this.datosempresa['IDEmpresa'];
+		this.http.filtro(this.model)
+			.subscribe(data => {
+				console.log(data);
+				if (data['response']['code'] === 0) {
+					this.follows = data['response']['result'];
+					this.list = this.follows;
+				}
+			})
+	}
+	limpiarfiltro() {
+		this.model = {};
+		this.buscar_filtro();
 	}
 
 }

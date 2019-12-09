@@ -20,4 +20,8 @@ export class FollowService {
   	return this.http.post(environment.urlserver+"olvidarfollow",datos)
   	.pipe(map(data=>data));
   }
+  filtro(datos){
+  	return this.http.post(environment.urlserver+"filtrofollow",datos)
+  	.pipe(map(data=>data));
+  }
 }

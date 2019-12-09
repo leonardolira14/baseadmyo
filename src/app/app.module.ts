@@ -16,6 +16,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 // tslint:disable-next-line:max-line-length
 import {MatTabsModule,
+  MatGridListModule,
   MatAutocompleteModule,
   MatStepperModule,
   MatButtonModule,
@@ -191,6 +192,7 @@ import { CdatospagoComponent } from './pages/cdatospago/cdatospago.component';
   ],
   imports: [
     OrderModule,
+    MatGridListModule,
     MatSlideToggleModule,
     MatNativeDateModule,
     MatDatepickerModule,
