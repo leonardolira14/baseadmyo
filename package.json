@@ -29,7 +29,7 @@
     "chart.js": "^2.7.3",
     "conekta": "^3.6.1",
     "core-js": "^2.5.4",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "ng2-charts": "^1.6.0",
     "ng2-date-picker": "^2.11.0",
     "ngx-cookie-service": "^2.1.0",
